@@ -156,9 +156,9 @@
                         <li>
                             <div class="line-top"></div>
                         </li>
-                        <a class="signup nomation" href="./dangky.php"><i class="fa fa-user-edit"></i> Đăng ký</a>
+                        <a class="signup nomation" href="dangky.php"><i class="fa fa-user-edit"></i> Đăng ký</a>
                         <div class="line-top"></div>
-                        <a class="login nomation" href="./dangnhap.php"><i class="fa fa-sign-in"></i> Đăng nhập</a>
+                        <a class="login nomation" href="dangnhap.php"><i class="fa fa-sign-in"></i> Đăng nhập</a>
                     <?php
                     }
                     ?>
@@ -193,7 +193,7 @@
                         <div class="vanh-navBarr__main">
                             <ul class="vanh-navBarr__Ul-li">
                                 <li class="megamenu__li">
-                                    <a href="../view/sanpham.php" class="vanh-navBarr__a">Sản Phẩm <i class="fa-solid fa-chevron-down"></i></a>
+                                    <a href=".php" class="vanh-navBarr__a">Sản Phẩm <i class="fa-solid fa-chevron-down"></i></a>
                                     <ul class="chil-nav">
                                         <li>
                                             <ul>
@@ -315,7 +315,7 @@
                             if(isset($_SESSION['vanhstore'])) {
                                 ?>
                                     <div class="header-with-search__cart_hoverProductCart">
-                                        <a href="../view/cart.php" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
+                                        <a href="p" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
                                         <div class="amount__sessionCart">
                                             <span class="cart-item-count"><?= $totalProducts ?></span>
                                         </div>
@@ -329,7 +329,7 @@
                                                                 <?php
                                                                     foreach($resultSpSelectCart as $key) {
                                                                         ?>
-                                                                            <a href="../view/chitietsp.php?id=<?= $key['id_spgiohang'] ?>" class="cart_boxContentProduct_flex">
+                                                                            <a href="sp.php?id=<?= $key['id_spgiohang'] ?>" class="cart_boxContentProduct_flex">
                                                                                 <div class="cart_boxContentProduct_img">
                                                                                     <div class="cart_boxContentProduct_imgChil">
                                                                                         <img src="../img1/<?= $key['image'] ?>" alt="">
@@ -342,7 +342,7 @@
                                                                     }
                                                                 ?>
                                                                 <div class="cart_boxContentProduct_btnhrefProduct">
-                                                                    <a href="../view/cart.php" class="aViewProduct">Xem Giỏ Hàng</a>
+                                                                    <a href="p" class="aViewProduct">Xem Giỏ Hàng</a>
                                                                 </div>
                                                             </div>
                                                             
@@ -365,7 +365,7 @@
                             } else {
                                 ?>
                                     <div class="header-with-search__cart_hoverProductCart">
-                                        <a href="../view/cart.php" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
+                                        <a href="p" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
                                         <div class="hoverProduct__cart">
                                             <div class="list__hoverProduct__cartNoProduct">
                                                 <div class="cart_boxContentProduct_flex__bg_img"></div>
@@ -388,9 +388,9 @@
         <div class="main">
             <div class="container">
                 <div class="flex items-center page-product__main">
-                    <a class="page-product__main_a" href="../view/trangchu2.php">VanhStore</a>
+                    <a class="page-product__main_a" href="/trangchu2.php">VanhStore</a>
                     <i class="fa-solid fa-angle-right"></i>
-                    <a class="page-product__main_a" href="../view/trangchu2.php">Sản Phẩm Chi Tiết</a>
+                    <a class="page-product__main_a" href="/trangchu2.php">Sản Phẩm Chi Tiết</a>
                     <i class="fa-solid fa-angle-right"></i>
                     <span class="page-product__main_span"><?= $result['name'] ?></span>
                 </div>
@@ -442,7 +442,7 @@
                         </div>
                     </div>
                     <div class="flex_product-briefing_text flex-auto">
-                        <form id="productForm" action="../view/addProduct.php?id=<?= $result['id_spBanChay'] ?>" method="post">
+                        <form id="productForm" action="uct.php?id=<?= $result['id_spBanChay'] ?>" method="post">
                             <input type="hidden" name="id_sanpham" value="<?= $value['id_sanpham'] ?>">
                             <div class="flex__product-text">
                                 <div class="box-flex__product-text">
@@ -610,7 +610,7 @@
                                                     $priceFomatSPBanChay = number_format($itemSpBanChay['price'], 0, ',', '.');
                                                     ?>
                                                         <div class="stardust-tabs-panels__panel_navSChilrent">
-                                                            <a href="../view/chitietsp.php?id=<?= $itemSpBanChay['id_spBanChay'] ?>" class="stardust-tabs-panels__flexHref">
+                                                            <a href="sp.php?id=<?= $itemSpBanChay['id_spBanChay'] ?>" class="stardust-tabs-panels__flexHref">
                                                                 <div class="stardust-tabs-panels__ColumFlex__div">
                                                                     <div class="stardust-tabs-panels__ColumFlex_img">
                                                                         <img src="../img1/<?= $itemSpBanChay['image'] ?>" alt="">

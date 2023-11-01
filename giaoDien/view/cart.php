@@ -86,9 +86,9 @@
                         <li>
                             <div class="line-top"></div>
                         </li>
-                        <a class="signup nomation" href="./dangky.php"><i class="fa fa-user-edit"></i> Đăng ký</a>
+                        <a class="signup nomation" href="dangky.php"><i class="fa fa-user-edit"></i> Đăng ký</a>
                         <div class="line-top"></div>
-                        <a class="login nomation" href="./dangnhap.php"><i class="fa fa-sign-in"></i> Đăng nhập</a>
+                        <a class="login nomation" href="dangnhap.php"><i class="fa fa-sign-in"></i> Đăng nhập</a>
                     <?php
                     }
                     ?>
@@ -190,7 +190,7 @@
                                                                                 <div class="link-img-product">
                                                                                     <div class="box-img-product">
                                                                                         <div class="div-box-imgA">
-                                                                                            <a href="../view/chitietsp.php?id=<?= $key['id_spgiohang'] ?>">
+                                                                                            <a href="sp.php?id=<?= $key['id_spgiohang'] ?>">
                                                                                                 <img class="img-product-item" src="../img1/<?= $key['image'] ?>" alt="">
                                                                                             </a>
                                                                                         </div>
@@ -326,7 +326,7 @@
                             <div class="no__productCart">
                                 <div class="no__productCart__logo"></div>
                                 <div class="no__productCart__text">Giỏ hàng của bạn còn trống</div>
-                                <a href="../view/sanpham.php" class="no__productCart__aClickProduct">Mua Ngay</a>
+                                <a href=".php" class="no__productCart__aClickProduct">Mua Ngay</a>
                             </div>
                         <?php
                     }
@@ -353,7 +353,7 @@
                                 foreach($resultSearchMax as $item) {
                                     ?>
                                         <div class="productS-full-link-view">
-                                            <a href="../view/chitietsp.php?id=<?= $item['id_spBanChay'] ?>" class="">
+                                            <a href="sp.php?id=<?= $item['id_spBanChay'] ?>" class="">
                                                 <div class="prd-v2">
                                                     <div class="prd-v3">
                                                         <div style="pointer-events: none;">

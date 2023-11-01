@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    require_once "./connect/connect.php";
+    require_once "./php/flashSale.php";
+    require_once "./php/searchMaxProduct.php";
+    require_once "./php/sanphambanchay.php";
+    require_once "./php/dulieusp.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,20 +15,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VanhStore | Mua và Bán Trên Ứng Dụng Hoặc Website</title>
-    <link rel="shortcut icon" href="./img1/iconLogo.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/index.css">
-    
+    <link rel="shortcut icon" href="img1conLogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
     <div class="wrapper">
         <!-- header -->
-        <!-- <div class="thongBaoSuccess">
+        <div class="thongBaoSuccess">
             <div class="animation__loadWeb">
                 <i class="fa-solid fa-xmark"></i>
-                <img src="./img1/loadweb.png" alt="">
+                <img src="img1oadweb.png" alt="">
             </div>
-        </div> -->
+        </div>
         <header>
             <div class="header-top container">
                 <div class="time">
@@ -32,6 +40,9 @@
                     <i class="fa-brands fa-twitter"></i>
                 </div>
                 <div class="btn-span">
+                    <?php
+                    if (isset($_SESSION['vanhstore'])) {
+                    ?>
                         <nav class="navTop">
                             <ul class="userTop">
                                 <li class="boxUser">
@@ -53,17 +64,20 @@
                                     <div class="line-top"></div>
                                 </li>
                                 <li class="boxUser">
-                                    <a href="./view/user.php" class="userLog nomation"><i class="fa-solid fa-user"></i> <?= $_SESSION['vanhstore'] ?></a>
+                                    <a href="viewser.php" class="userLog nomation"><i class="fa-solid fa-user"></i> <?= $_SESSION['vanhstore'] ?></a>
                                     <ul class="userChil">
-                                        <li><a href="./view/user.php">Tài khoản của tôi</a></li>
-                                        <li><a href="./view/user.php">Hồ sơ</a></li>
+                                        <li><a href="viewser.php">Tài khoản của tôi</a></li>
+                                        <li><a href="viewser.php">Hồ sơ</a></li>
                                         <li>
-                                            <a href="./php/logout.php" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất hay không?')">Đăng xuất</a>
+                                            <a href="phpogout.php" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất hay không?')">Đăng xuất</a>
                                         </li>
                                     </ul>
                                 </li>
                             </ul>
                         </nav>
+                    <?php
+                    } else {
+                    ?>
                         <li class="boxUser">
                             <a href="thongBao.php" class="nomation"><i class="fa-solid fa-bell"></i> Thông báo</a>
                         </li>
@@ -82,22 +96,34 @@
                         <li>
                             <div class="line-top"></div>
                         </li>
-                        <a class="signup nomation" href="./view/dangky.php"><i class="fa fa-user-edit"></i> Đăng ký</a>
+                        <a class="signup nomation" href="viewangky.php"><i class="fa fa-user-edit"></i> Đăng ký</a>
                         <div class="line-top"></div>
-                        <a class="login nomation" href="./view/dangnhap.php"><i class="fa fa-sign-in"></i> Đăng nhập</a>
+                        <a class="login nomation" href="viewangnhap.php"><i class="fa fa-sign-in"></i> Đăng nhập</a>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
             <div class="header-nav">
                 <div class="container nav-bn">
                     <a href="index.php" class="header-logo-navH1">
-                        <img src="./img1/vanhstore.jpg" alt="">
+                        <img src="img1anhstore.jpg" alt="">
                     </a>
                     <div class="header-with-search">
                         <div class="vanh-searchbar">
                             <div class="vanh-searchbar__main">
                                 <form action="" role="search" class="vanh-searchbar-form">
-                                    <input type="text" class="vanh-searchbar-form-input" placeholder="SALE TOÀN BỘ SẢN PHẨM LÊN ĐẾN 50%">
-                                    <!-- <input type="text" class="vanh-searchbar-form-input" placeholder="Miễn phí ship 0đ - Đăng ký ngay!"> -->
+                                    <?php
+                                    if (isset($_SESSION['vanhstore'])) {
+                                    ?>
+                                        <input type="text" class="vanh-searchbar-form-input" placeholder="SALE TOÀN BỘ SẢN PHẨM LÊN ĐẾN 50%">
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <input type="text" class="vanh-searchbar-form-input" placeholder="Miễn phí ship 0đ - Đăng ký ngay!">
+                                    <?php
+                                    }
+                                    ?>
                                 </form>
                             </div>
                             <a href="" class="btn btn-chil-icon btn-solid-primary btn--s btn--inline vanh-searchbar__search-button">
@@ -107,7 +133,7 @@
                         <div class="vanh-navBarr__main">
                             <ul class="vanh-navBarr__Ul-li">
                                 <li class="megamenu__li">
-                                    <a href="./view/sanpham.php" class="vanh-navBarr__a">Sản Phẩm <i class="fa-solid fa-chevron-down"></i></a>
+                                    <a href="viewanpham.php" class="vanh-navBarr__a">Sản Phẩm <i class="fa-solid fa-chevron-down"></i></a>
                                     <ul class="chil-nav">
                                         <li>
                                             <ul>
@@ -225,47 +251,71 @@
                         </div>
                     </div>
                     <div class="header-with-search__cart-wrapper">
-                        <div class="header-with-search__cart_hoverProductCart">
-                            <!-- <a href="./view/cart.php" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
-                            <div class="amount__sessionCart">
-                                <span class="cart-item-count">1</span>
-                            </div>
-                                <div class="hoverProduct__cart">
-                                    <div class="list__hoverProduct__cart">
-                                        <div class="hoverProduct__cart_textTop">Sản phẩm mới thêm</div>
-                                        <div class="list_hoverProduct__cart_boxContentProduct">
-                                            <a href="./view/chitietsp.php?id=<?= $keyCart['id_spgiohang'] ?>" class="cart_boxContentProduct_flex">
-                                                <div class="cart_boxContentProduct_img">
-                                                    <div class="cart_boxContentProduct_imgChil">
-                                                        <img src="./img1/<?= $keyCart['image'] ?>" alt="">
+                        <?php
+                            if(isset($_SESSION['vanhstore'])) {
+                                ?>
+                                    <div class="header-with-search__cart_hoverProductCart">
+                                        <a href="viewart.php" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
+                                        <div class="amount__sessionCart">
+                                            <span class="cart-item-count"><?= $totalProducts ?></span>
+                                        </div>
+                                        <?php
+                                            if($resultSpSelectCart && count($resultSpSelectCart) > 0) {
+                                                ?>
+                                                    <div class="hoverProduct__cart">
+                                                        <div class="list__hoverProduct__cart">
+                                                            <div class="hoverProduct__cart_textTop">Sản phẩm mới thêm</div>
+                                                            <div class="list_hoverProduct__cart_boxContentProduct">
+                                                                <?php
+                                                                    foreach($resultSpSelectCart as $keyCart) {
+                                                                        ?>
+                                                                            <a href="viewhitietsp.php?id=<?= $keyCart['id_spgiohang'] ?>" class="cart_boxContentProduct_flex">
+                                                                                <div class="cart_boxContentProduct_img">
+                                                                                    <div class="cart_boxContentProduct_imgChil">
+                                                                                        <img src="./img1/<?= $keyCart['image'] ?>" alt="">
+                                                                                    </div>
+                                                                                    <div class="cart_boxContentProduct_textContent"><?= $keyCart['name_sanpham'] ?></div>
+                                                                                </div>
+                                                                                <div class="cart_boxContentProduct_priceProduct"><?= number_format($keyCart['price'], 0, ',', '.'); ?>đ</div>
+                                                                            </a>
+                                                                        <?php
+                                                                    }
+                                                                ?>
+                                                                <div class="cart_boxContentProduct_btnhrefProduct">
+                                                                    <a href="viewart.php" class="aViewProduct">Xem Giỏ Hàng</a>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
                                                     </div>
-                                                    <div class="cart_boxContentProduct_textContent">Áo Thun Siêu Đẹp</div>
-                                                </div>
-                                                <div class="cart_boxContentProduct_priceProduct">200.000đ</div>
-                                            </a>
-                                            <div class="cart_boxContentProduct_btnhrefProduct">
-                                                <a href="./view/cart.php" class="aViewProduct">Xem Giỏ Hàng</a>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                    <div class="hoverProduct__cart">
+                                                        <div class="list__hoverProduct__cartNoProduct">
+                                                            <div class="cart_boxContentProduct_flex__bg_img"></div>
+                                                            <div class="cart_boxContentProduct_textNoProduct">Chưa có sản phẩm</div>
+                                                        </div>
+                                                    </div>
+                                                <?php
+                                            }
+                                        ?>
+                                    </div>
+                                <?php
+                            } else {
+                                ?>
+                                    <div class="header-with-search__cart_hoverProductCart">
+                                        <a href="viewart.php" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
+                                        <div class="hoverProduct__cart">
+                                            <div class="list__hoverProduct__cartNoProduct">
+                                                <div class="cart_boxContentProduct_flex__bg_img"></div>
+                                                <div class="cart_boxContentProduct_textNoProduct">Chưa có sản phẩm</div>
                                             </div>
                                         </div>
-                                        
                                     </div>
-                                </div> -->
-                                <!-- <div class="hoverProduct__cart">
-                                    <div class="list__hoverProduct__cartNoProduct">
-                                        <div class="cart_boxContentProduct_flex__bg_img"></div>
-                                        <div class="cart_boxContentProduct_textNoProduct">Chưa có sản phẩm</div>
-                                    </div>
-                                </div> -->
-                        </div>
-                        <div class="header-with-search__cart_hoverProductCart">
-                            <a href="./view/cart.php" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
-                            <div class="hoverProduct__cart">
-                                <div class="list__hoverProduct__cartNoProduct">
-                                    <div class="cart_boxContentProduct_flex__bg_img"></div>
-                                    <div class="cart_boxContentProduct_textNoProduct">Chưa có sản phẩm</div>
-                                </div>
-                            </div>
-                        </div>
+                                <?php
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -283,31 +333,31 @@
                             <div class="full-home-banners__flex">
                                 <div class="full-home-banners">
                                     <a>
-                                        <img src="./img1/d3.png" alt="">
+                                        <img src="img13.png" alt="">
                                     </a>
                                     <a>
-                                        <img src="./img1/d12.png" alt="">
+                                        <img src="img112.png" alt="">
                                     </a>
                                     <a>
-                                        <img src="./img1/d5.png" alt="">
+                                        <img src="img15.png" alt="">
                                     </a>
                                     <a>
-                                        <img src="./img1/d4.png" alt="">
+                                        <img src="img14.png" alt="">
                                     </a>
                                     <a>
-                                        <img src="./img1/d10.png" alt="">
+                                        <img src="img110.png" alt="">
                                     </a>
                                     <a>
-                                        <img src="./img1/d13.png" alt="">
+                                        <img src="img113.png" alt="">
                                     </a>
                                     <a>
-                                        <img src="./img1/d1.png" alt="">
+                                        <img src="img11.png" alt="">
                                     </a>
                                     <a>
-                                        <img src="./img1/d7.png" alt="">
+                                        <img src="img17.png" alt="">
                                     </a>
                                     <a>
-                                        <img src="./img1/d6.png" alt="">
+                                        <img src="img16.png" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -565,19 +615,19 @@
                                             <ul class="oclock_slider__banner_img">
                                                 <div class="oclock_slider__banner_Boximg">
                                                     <a>
-                                                        <img src="./img1/d19.png" alt="">
+                                                        <img src="img119.png" alt="">
                                                     </a>
                                                     <a>
-                                                        <img src="./img1/bs1.png" alt="">
+                                                        <img src="img1s1.png" alt="">
                                                     </a>
                                                     <a>
-                                                        <img src="./img1/a28.jpg" alt="">
+                                                        <img src="img128.jpg" alt="">
                                                     </a>
                                                     <a>
-                                                        <img src="./img1/a14.jpg" alt="">
+                                                        <img src="img114.jpg" alt="">
                                                     </a>
                                                     <a>
-                                                        <img src="./img1/d13.png" alt="">
+                                                        <img src="img113.png" alt="">
                                                     </a>
                                                 </div>
                                             </ul>
@@ -616,33 +666,42 @@
                                     <div class="oclock_time-right__banner">
                                         <div class="oclock__Flashsale_timeSlider_nav">
                                             <ul id="oclock__Flashsale_timeSlider_ul" class="oclock__Flashsale_timeSlider_ul">
-                                                <li class="oclock__Flashsale_timeSlider_li">
-                                                    <div class="oclock__Flashsale_div">
-                                                        <a href="./view/chitietsp.php?id=<?= $item['id_spBanChay'] ?>" class="oclock__Flashsale_timeSlider_a">
-                                                            <div class="Flashsale_timeSlider_BoxImageS">
-                                                                <img src="./img1/a1.jpg">
-                                                                <div class="Flashsale_timeSlider_textSpan">
-                                                                    <span class="Flashsale_timeSlider_Span">Sale</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="Flashsale_timeSlider_BoxTextS">
-                                                                <div class="Flashsale_timeSlider_BoxTextS_price">
-                                                                    đ 200.000
-                                                                </div>
-                                                                <div class="Flashsale_timeSlider_BoxTextS_updateSale">
-                                                                    <div class="Flashsale_timeSlider_BoxTextS_updateSaleNumber">
-                                                                        <div class="BoxTextS_Image_sendSuccess"></div>
-                                                                        <div class="BoxTextS_sendSuccess_content">
-                                                                            Đã bán 23,2k
-                                                                        </div>
-                                                                        <div class="BoxTextS_sendSuccess_bg"></div>
-                                                                        <div class="BoxTextS_sendSuccess_bg_2"></div>
+                                                <?php
+                                                    if($resultFlash) {
+                                                        foreach($resultFlash as $item) {
+                                                            $formatted_price = number_format($item['price'], 0, ',', '.');
+                                                            ?>
+                                                                <li class="oclock__Flashsale_timeSlider_li">
+                                                                    <div class="oclock__Flashsale_div">
+                                                                        <a href="viewhitietsp.php?id=<?= $item['id_spBanChay'] ?>" class="oclock__Flashsale_timeSlider_a">
+                                                                            <div class="Flashsale_timeSlider_BoxImageS">
+                                                                                <img src="./img1/<?= $item['image'] ?>">
+                                                                                <div class="Flashsale_timeSlider_textSpan">
+                                                                                    <span class="Flashsale_timeSlider_Span">Sale</span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="Flashsale_timeSlider_BoxTextS">
+                                                                                <div class="Flashsale_timeSlider_BoxTextS_price">
+                                                                                    đ <?= $formatted_price ?>
+                                                                                </div>
+                                                                                <div class="Flashsale_timeSlider_BoxTextS_updateSale">
+                                                                                    <div class="Flashsale_timeSlider_BoxTextS_updateSaleNumber">
+                                                                                        <div class="BoxTextS_Image_sendSuccess"></div>
+                                                                                        <div class="BoxTextS_sendSuccess_content">
+                                                                                            <?= $item['about_ban'] ?>
+                                                                                        </div>
+                                                                                        <div class="BoxTextS_sendSuccess_bg"></div>
+                                                                                        <div class="BoxTextS_sendSuccess_bg_2"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </li>
+                                                                </li>
+                                                            <?php
+                                                        }
+                                                    }
+                                                ?>
                                             </ul>
                                         </div>
                                         <div class="carousel-arrow carousel-arrow--prev carousel-arrow--hint">
@@ -661,7 +720,7 @@
                                 
                             <div class="" style="margin-top: 20px; height: 110px;">
                                 <div class="simple-banner">
-                                    <img class="banner-image" role="presentation" alt="" src="./img1/fva.jpg">
+                                    <img class="banner-image" role="presentation" alt="" src="img1va.jpg">
                                     <div class="click-sections-wrapper">
                                         <a class="click-section" target="_self" href="">
                                             <!---->
@@ -694,13 +753,13 @@
                                                 <a class="freeVc" href="/mall">Vanh Shop</a>
                                                 <div class="freeVc_Box_logoS">
                                                     <div class="freeVc_Box_logoS__Box1">
-                                                        <img class="freeVc_Box_logoS__Box1_img1" src="./img1/t1.png" alt=""> 7 ngày miễn phí trả hàng
+                                                        <img class="freeVc_Box_logoS__Box1_img1" src="img11.png" alt=""> 7 ngày miễn phí trả hàng
                                                     </div>
                                                     <div class="freeVc_Box_logoS__Box1">
-                                                        <img class="freeVc_Box_logoS__Box1_img1" src="./img1/t2.png" alt=""> Hàng chính hãng 100%
+                                                        <img class="freeVc_Box_logoS__Box1_img1" src="img12.png" alt=""> Hàng chính hãng 100%
                                                     </div>
                                                     <div class="freeVc_Box_logoS__Box1">
-                                                        <img class="freeVc_Box_logoS__Box1_img1" src="./img1/t3.png" alt=""> Miễn phí vận chuyển
+                                                        <img class="freeVc_Box_logoS__Box1_img1" src="img13.png" alt=""> Miễn phí vận chuyển
                                                     </div>
                                                 </div>
                                             </div>
@@ -725,16 +784,16 @@
                                                     <div class="vanh-banner-content_imgS__carouselList_Img">
                                                         <ul class="stardust-carousel2__item-list__image">
                                                             <a class="stardust-carousel2__item-list__li">
-                                                                <img src="./img1/a38.jpg" alt="">
+                                                                <img src="img138.jpg" alt="">
                                                             </a>
                                                             <a class="stardust-carousel2__item-list__li">
-                                                                <img src="./img1/a36.jpg" alt="">
+                                                                <img src="img136.jpg" alt="">
                                                             </a>
                                                             <a class="stardust-carousel2__item-list__li">
-                                                                <img src="./img1/a44.jpg" alt="">
+                                                                <img src="img144.jpg" alt="">
                                                             </a>
                                                             <a class="stardust-carousel2__item-list__li">
-                                                                <img src="./img1/bh.jpg" alt="">
+                                                                <img src="img1h.jpg" alt="">
                                                             </a>
                                                         </ul>
                                                         <div class="box__dost__banner3">
@@ -1043,43 +1102,52 @@
                                             </a>
                                         </div>
                                         <div class="productS-link-full-view viewOne">
-                                            <div class="productS-full-link-view">
-                                                <a href="./view/chitietsp.php?id=<?= $itemSearchMax['id_spBanChay'] ?>" class="">
-                                                    <div class="prd-v2">
-                                                        <div class="prd-v3">
-                                                            <div style="pointer-events: none;">
-                                                                <div class="prd-img-hv">
-                                                                    <img src="./img1/a1.jpg" class="prd-img" alt="">
-                                                                    <div class="yt-prd">
-                                                                        <div class="yt-chill rgba-yt-chil">
-                                                                            <span class="span-yt-chil span-yt-prd">Hot</span>
+                                            <?php
+                                                if($resultSearchMax) {
+                                                    foreach($resultSearchMax as $itemSearchMax) {
+                                                        $priceFomatSearch = number_format($itemSearchMax['price'], 0, ',', '.');
+                                                        ?>
+                                                            <div class="productS-full-link-view">
+                                                                <a href="viewhitietsp.php?id=<?= $itemSearchMax['id_spBanChay'] ?>" class="">
+                                                                    <div class="prd-v2">
+                                                                        <div class="prd-v3">
+                                                                            <div style="pointer-events: none;">
+                                                                                <div class="prd-img-hv">
+                                                                                    <img src="./img1/<?= $itemSearchMax['image'] ?>" class="prd-img" alt="">
+                                                                                    <div class="yt-prd">
+                                                                                        <div class="yt-chill rgba-yt-chil">
+                                                                                            <span class="span-yt-chil span-yt-prd">Hot</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="prd-v3-chil">
+                                                                                <div class="prd-v3-title-text">
+                                                                                    <div class="prd-v3-box-text">
+                                                                                        <div class="prd-v3-text">
+                                                                                            <?= $itemSearchMax['name'] ?>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="prd-v3-price prd-v3-price-bv">
+                                                                                    <div class="prd-v3-price-textChil">
+                                                                                        <span class="prd-v3-price-textChil-span">
+                                                                                            <?= $priceFomatSearch ?>đ
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <div class="check-sub-success">
+                                                                                        <?= $itemSearchMax['about_ban'] ?>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                </a>
                                                             </div>
-                                                            <div class="prd-v3-chil">
-                                                                <div class="prd-v3-title-text">
-                                                                    <div class="prd-v3-box-text">
-                                                                        <div class="prd-v3-text">
-                                                                            Áo Thun Nam
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="prd-v3-price prd-v3-price-bv">
-                                                                    <div class="prd-v3-price-textChil">
-                                                                        <span class="prd-v3-price-textChil-span">
-                                                                            200.000đ
-                                                                        </span>
-                                                                    </div>
-                                                                    <div class="check-sub-success">
-                                                                        đã bán 23.2k
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
+                                                        <?php
+                                                    }
+                                                }
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
@@ -1103,38 +1171,47 @@
                                             <div class="stardust-tabs-header-product">
                                                 <section class="stardust-tabs-panels__panel" style="display: block;">
                                                     <div class="stardust-tabs-panels__panel_navS">
-                                                        <div class="stardust-tabs-panels__panel_navSChilrent">
-                                                            <a href="./view/chitietsp.php?id=<?= $itemSpBanChay['id_spBanChay'] ?>" class="stardust-tabs-panels__flexHref">
-                                                                <div class="stardust-tabs-panels__ColumFlex__div">
-                                                                    <div class="stardust-tabs-panels__ColumFlex_img">
-                                                                        <img src="./img1/a1.jpg" alt="">
-                                                                        <div class="ColumFlex_img__spanSale">
-                                                                            <span class="ColumFlex_img__span">Sale</span>
+                                                        <?php
+                                                            if($resultSPBanChay) {
+                                                                foreach($resultSPBanChay as $itemSpBanChay) {
+                                                                    $priceFomatSPBanChay = number_format($itemSpBanChay['price'], 0, ',', '.');
+                                                                    ?>
+                                                                        <div class="stardust-tabs-panels__panel_navSChilrent">
+                                                                            <a href="viewhitietsp.php?id=<?= $itemSpBanChay['id_spBanChay'] ?>" class="stardust-tabs-panels__flexHref">
+                                                                                <div class="stardust-tabs-panels__ColumFlex__div">
+                                                                                    <div class="stardust-tabs-panels__ColumFlex_img">
+                                                                                        <img src="./img1/<?= $itemSpBanChay['image'] ?>" alt="">
+                                                                                        <div class="ColumFlex_img__spanSale">
+                                                                                            <span class="ColumFlex_img__span">Sale</span>
+                                                                                        </div>
+                                                                                        <div class="ColumFlex_img__spanSalePt">
+                                                                                            <span class="ColumFlex_img__textSaleContent"><?= $itemSpBanChay['sale'] ?></span>
+                                                                                            <span class="ColumFlex_img__textSaleGiam">GIẢM</span>
+                                                                                        </div>
+                                                                                        <!-- <div class="ColumFlex_img__bgrImage">
+                                                                                            <img src="../../img1/bgpr.png" alt="">
+                                                                                        </div> -->
+                                                                                    </div>
+                                                                                    <div class="stardust-tabs-panels__ColumFlex_BoxText">
+                                                                                        <div class="stardust-ColumFlex_title">
+                                                                                            <?= $itemSpBanChay['name'] ?>
+                                                                                        </div>
+                                                                                        <div class="stardust-ColumFlex_Boxprice">
+                                                                                            <div class="stardust-ColumFlex_Boxprice">
+                                                                                                <?= $priceFomatSPBanChay ?> đ
+                                                                                            </div>
+                                                                                            <div class="stardust-ColumFlex_clickPrice">
+                                                                                                <?= $itemSpBanChay['about_ban'] ?>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </a>
                                                                         </div>
-                                                                        <div class="ColumFlex_img__spanSalePt">
-                                                                            <span class="ColumFlex_img__textSaleContent">10</span>
-                                                                            <span class="ColumFlex_img__textSaleGiam">GIẢM</span>
-                                                                        </div>
-                                                                        <!-- <div class="ColumFlex_img__bgrImage">
-                                                                            <img src="../../img1/bgpr.png" alt="">
-                                                                        </div> -->
-                                                                    </div>
-                                                                    <div class="stardust-tabs-panels__ColumFlex_BoxText">
-                                                                        <div class="stardust-ColumFlex_title">
-                                                                            Áo Thun
-                                                                        </div>
-                                                                        <div class="stardust-ColumFlex_Boxprice">
-                                                                            <div class="stardust-ColumFlex_Boxprice">
-                                                                                200.000 đ
-                                                                            </div>
-                                                                            <div class="stardust-ColumFlex_clickPrice">
-                                                                                đã bán 23.2k
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                        </div>
+                                                                    <?php
+                                                                }
+                                                            }
+                                                        ?>
                                                         
                                                         <div class="btn__click_stardust__product">
                                                             <a class="btn btn-light btn--m btn--inline btn-light--link btn__click___productAhref" href="">Xem thêm</a>
@@ -1162,28 +1239,28 @@
 
             <div class="delivery container">
                 <div class="delivery-content">
-                    <img src="./img1/giaohang1.png" alt="">
+                    <img src="img1iaohang1.png" alt="">
                     <div class="delivery-text">
                         <h3>GIAO HÀNG MIỄN PHÍ</h3>
                         <P>Toàn cầu từ 75k</P>
                     </div>
                 </div>
                 <div class="delivery-content">
-                    <img src="./img1/giaohang2.png" alt="">
+                    <img src="img1iaohang2.png" alt="">
                     <div class="delivery-text">
                         <h3>DỄ DÀNG ĐỔI TRẢ</h3>
                         <P>Đổi trả thoải mái trong 30 ngày</P>
                     </div>
                 </div>
                 <div class="delivery-content">
-                    <img src="./img1/giaohang3.png" alt="">
+                    <img src="img1iaohang3.png" alt="">
                     <div class="delivery-text">
                         <h3>THANH TOÁN NHANH</h3>
                         <P>Thẻ tín dụng có sẵn</P>
                     </div>
                 </div>
                 <div class="delivery-content">
-                    <img src="./img1/giaohang4.png" alt="">
+                    <img src="img1iaohang4.png" alt="">
                     <div class="delivery-text">
                         <h3>QUÀ TẶNG MIỄN PHÍ</h3>
                         <P>Nhận quà tặng và giảm giá</P>
@@ -1193,7 +1270,7 @@
 
             <div class="footer-information container">
                 <div class="footer-text">
-                    <img class="logo__vanhCart_footer" src="./img1/vanhcart.jpg" alt="">
+                    <img class="logo__vanhCart_footer" src="img1anhcart.jpg" alt="">
                     <div class="address-footer">
                         <ul>
                             <li> 22 Trịnh văn bô, Quận Nam Từ Liêm, Hà Nội</li>
@@ -1244,7 +1321,7 @@
         <!-- end footer -->
 
     </div>
-    <script src="./js/trangchu2.js"></script>
+    <script src="jsrangchu2.js"></script>
 </body>
 </body>
 

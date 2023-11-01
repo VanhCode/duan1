@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                             <div class="XLzpXt">
-                                <div class="Oug9xv Z8OMtU">Bạn mới biết đến VanhStore <a class="wzgwUg" href="../view/dangky.php">Đăng ký</a>
+                                <div class="Oug9xv Z8OMtU">Bạn mới biết đến VanhStore <a class="wzgwUg" href="php">Đăng ký</a>
                                 </div>
                             </div>
                         </div>

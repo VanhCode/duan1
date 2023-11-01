@@ -704,7 +704,7 @@ user agent stylesheet a:-webkit-any-link {
   background-repeat: no-repeat;
   width: 6.75rem;
   height: 6.125rem;
-  background-image: url("../img1/noproduct.png");
+  background-image: url("noproduct.png");
 }
 
 .no__productCart__text {

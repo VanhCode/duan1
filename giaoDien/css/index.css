@@ -516,7 +516,7 @@ input {
 }
 
 .cart_boxContentProduct_flex__bg_img {
-  background: url(../img1/noproduct.png);
+  background: url(noproduct.png);
   background-position: 50%;
   background-repeat: no-repeat;
   display: inline-block;
@@ -841,7 +841,7 @@ input {
 }
 
 .box__img_bannerEnd {
-  background-image: url("../img1/s1.png");
+  background-image: url("s1.png");
   background-size: contain;
   background-repeat: no-repeat;
   height: 100%;
@@ -850,7 +850,7 @@ input {
 }
 
 .box__img_bannerEnd1 {
-  background-image: url("../img1/s2.png");
+  background-image: url("s2.png");
   background-size: contain;
   background-repeat: no-repeat;
   height: 100%;
@@ -858,7 +858,7 @@ input {
   transition: opacity 0.2s ease;
 }
 .box__img_bannerEnd2 {
-  background-image: url("../img1/s4.png");
+  background-image: url("s4.png");
   background-size: contain;
   background-repeat: no-repeat;
   height: 100%;
@@ -867,7 +867,7 @@ input {
 }
 
 .box__img_bannerEnd3 {
-  background-image: url("../img1/s7.png");
+  background-image: url("s7.png");
   background-size: contain;
   background-repeat: no-repeat;
   height: 100%;
@@ -876,7 +876,7 @@ input {
 }
 
 .box__img_bannerEnd4 {
-  background-image: url("../img1/s3.png");
+  background-image: url("s3.png");
   background-size: contain;
   background-repeat: no-repeat;
   height: 100%;
@@ -885,7 +885,7 @@ input {
 }
 
 .box__img_bannerEnd5 {
-  background-image: url("../img1/s6.png");
+  background-image: url("s6.png");
   background-size: contain;
   background-repeat: no-repeat;
   height: 100%;
@@ -893,7 +893,7 @@ input {
   transition: opacity 0.2s ease;
 }
 .box__img_bannerEnd6 {
-  background-image: url("../img1/s5.png");
+  background-image: url("s5.png");
   background-size: contain;
   background-repeat: no-repeat;
   height: 100%;
@@ -901,7 +901,7 @@ input {
   transition: opacity 0.2s ease;
 }
 .box__img_bannerEnd7 {
-  background-image: url("../img1/s8.png");
+  background-image: url("s8.png");
   background-size: contain;
   background-repeat: no-repeat;
   height: 100%;
@@ -985,7 +985,7 @@ li {
 .image-carousel__image {
   width: 100%;
   height: 120px;
-  background: url("../img1/q3.jpg") no-repeat;
+  background: url("q3.jpg") no-repeat;
   background-size: contain;
   background-position: center;
 }
@@ -993,7 +993,7 @@ li {
 .image-carousel__image2 {
   width: 100%;
   height: 120px;
-  background: url("../img1/thn.png") no-repeat;
+  background: url("thn.png") no-repeat;
   background-size: contain;
   background-position: center;
 }
@@ -1001,7 +1001,7 @@ li {
 .image-carousel__image3 {
   width: 100%;
   height: 120px;
-  background: url("../img1/thn2.png") no-repeat;
+  background: url("thn2.png") no-repeat;
   background-size: contain;
   background-position: center;
 }
@@ -1009,7 +1009,7 @@ li {
 .image-carousel__image4 {
   width: 100%;
   height: 120px;
-  background: url("../img1/ak.jfif") no-repeat;
+  background: url("ak.jfif") no-repeat;
   background-size: contain;
   background-position: center;
 }
@@ -1017,7 +1017,7 @@ li {
 .image-carousel__image5 {
   width: 100%;
   height: 120px;
-  background: url("../img1/pk.png") no-repeat;
+  background: url("pk.png") no-repeat;
   background-size: contain;
   background-position: center;
 }
@@ -1025,7 +1025,7 @@ li {
 .image-carousel__image6 {
   width: 100%;
   height: 120px;
-  background: url("../img1/fk2.jpg") no-repeat;
+  background: url("fk2.jpg") no-repeat;
   background-size: contain;
   background-position: center;
 }
@@ -1033,7 +1033,7 @@ li {
 .image-carousel__image7 {
   width: 100%;
   height: 120px;
-  background: url("../img1/g1.jfif") no-repeat;
+  background: url("g1.jfif") no-repeat;
   background-size: contain;
   background-position: center;
 }
@@ -1096,7 +1096,7 @@ li {
 }
 
 .vanh-header-section__content_flash {
-  background: url("../img1/sl2.png") 50% no-repeat;
+  background: url("sl2.png") 50% no-repeat;
   padding-left: 16px;
   width: 153px;
   height: 30px;
@@ -1413,7 +1413,7 @@ li {
 .BoxTextS_Image_sendSuccess {
   width: 0.875rem;
   height: 1rem;
-  background: url("../img1/send.png") 0 100% no-repeat;
+  background: url("send.png") 0 100% no-repeat;
   background-size: contain;
   position: absolute;
   left: 0.1875rem;
@@ -1444,7 +1444,7 @@ li {
   height: 18px;
   width: 56%;
   border-radius: 8px 0px 0px 8px;
-  background: url("../img1/send2.png") 0 100% no-repeat;
+  background: url("send2.png") 0 100% no-repeat;
   background-size: cover;
   z-index: 2;
 }
@@ -1827,7 +1827,7 @@ li {
   background-repeat: no-repeat;
   background-size: contain;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  background-image: url("../img1/c1.jfif");
+  background-image: url("c1.jfif");
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -1840,7 +1840,7 @@ li {
   background-repeat: no-repeat;
   background-size: contain;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  background-image: url("../img1/salesnk.png");
+  background-image: url("salesnk.png");
   background-size: contain;
   background-repeat: no-repeat;
 }

@@ -459,7 +459,7 @@ input {
 }
 
 .cart_boxContentProduct_flex__bg_img {
-  background: url(../img1/noproduct.png);
+  background: url(noproduct.png);
   background-position: 50%;
   background-repeat: no-repeat;
   display: inline-block;
@@ -1006,7 +1006,7 @@ input {
   background-repeat: no-repeat;
   width: 100px;
   height: 100px;
-  background-image: url("../img1/noproduct.png");
+  background-image: url("noproduct.png");
 }
 
 .form-single h2 {

@@ -147,7 +147,7 @@
                                 </div>
                             </div>
                             <div class="XLzpXt">
-                                <div class="Oug9xv Z8OMtU">Bạn đã có tài khoản? <a class="wzgwUg" href="../view/dangnhap.php">Đăng nhập</a>
+                                <div class="Oug9xv Z8OMtU">Bạn đã có tài khoản? <a class="wzgwUg" href="p.php">Đăng nhập</a>
                                 </div>
                             </div>
                         </div>

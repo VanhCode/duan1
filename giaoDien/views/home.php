@@ -471,8 +471,8 @@
                                                 </div>
                                                 <div class="box__nextBack__banner3">
                                                     <button class="backBanner3">
-                                                        << /button>
-                                                            <button class="nextBanner3">></button>
+                                                        <
+                                                    <button class="nextBanner3">></button>
                                                 </div>
                                             </div>
                                         </div>
