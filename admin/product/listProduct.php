@@ -50,40 +50,37 @@
                     <i class='bx bx-search'></i>
                     <i class='bx bx-filter'></i>
                 </div>
-                <table>
+                <div class="alert alert-primary add__btn__click">
+                    <a class="btn btn-primary w100hz" href="index.php?action=addProduct">Thêm</a>
+                </div>
+                <table class="tbl__tab">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Tuỳ chỉnh</th>
+                        <th>STT</th>
+                        <th>ẢNH</th>
+                        <th>TÊN</th>
+                        <th>DANH MỤC</th>
+                        <th>THAO TÁC</th>
+                        <th>CHI TIẾT</th>
                     </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td><img src="../public/image/people.png" alt=""></td>
+                            <td class="img__productadd"><img src="../public/image/people.png" alt=""></td>
                             <td>Áo chống tăng</td>
                             <td>Luxury</td>
                             <td>
                                 <a class="btn btn-outline-success btn-sm" href="index.php?action=editProduct">Sửa</a>
                                 <a class="btn btn-outline-danger btn-sm" href="">Xoá</a>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td><img src="../public/image/people.png" alt=""></td>
-                            <td>Áo chống tăng</td>
-                            <td>Luxury</td>
                             <td>
-                                <a class="btn btn-outline-success btn-sm" href="index.php?action=editProduct">Sửa</a>
-                                <a class="btn btn-outline-danger btn-sm" href="">Xoá</a>
+                                <a class="btn btn-primary btn-sm" href="index.php?action=editProduct">Xem</a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <a class="" href="index.php?action=addProduct"><button class="btn btn-primary">Thêm</button></a>
+                
             </div>
 
         </div>

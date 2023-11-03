@@ -67,6 +67,14 @@
                         <input type="file" class="upFile form-control" name="image">
                     </div>
                     <div class="form-group">
+                        <label for="" class="form-label">Giá sản phẩm</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="form-label">Giảm giá</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label for="" class="form-label">Danh mục</label>
                         <select class="form-select" name="" id="">
                             <option value="">option 1</option>
@@ -78,16 +86,17 @@
                     <div class="form-group" id="listVariant">
                         <div class="variant">
                             <label for="" class="form-label">Màu sắc</label>
-                            <input style="outline: none;padding-left: 5px" type="text" name="color[]">
-                            <label for="" class="form-label">Size</label>
-                            <input style="outline: none;padding-left: 5px" type="text" name="size[]">
-                            <label for="" class="form-label">Số lượng</label>
-                            <input style="outline: none;padding-left: 5px" type="text" name="amount[]">
+                            <input class="add_vari" type="text" name="color[]">
+                            <label for="" class="form-label mg_lr">Size</label>
+                            <input class="add_vari" type="text" name="size[]">
+                            <label for="" class="form-label mg_lr">Số lượng</label>
+                            <input class="add_vari" type="text" name="amount[]">
                         </div>
                     </div>
-                    <input class="btn btn-success btn-sm addVariant" type="button" value="Thêm phân loại">
                     <div class="form-group">
+                        <input class="btn btn-success addVariant" type="button" value="Thêm phân loại">
                         <input class="btn btn-primary" type="submit" value="Thêm sản phẩm">
+                        <a href="index.php?action=listProduct" class="btn btn-dark">Danh sách</a>
                     </div>
                 </form>
             </div>

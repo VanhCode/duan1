@@ -46,6 +46,8 @@
         }
 
         include "views/viewblock/footer.php";
+
+        
     } else {
         include "views/viewblock/header.php";
         include "views/home.php";
