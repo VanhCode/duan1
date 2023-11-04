@@ -56,6 +56,7 @@ switch ($action) {
                 $errCategory = "Vui lòng nhập trường này";
             }
 
+<<<<<<< HEAD
             if ($checkCate) {
                 addCategory($namecate);
                 header('location: index.php?action=listCategory');
@@ -73,8 +74,39 @@ switch ($action) {
                 if (empty($value)) {
                     $errValidate[$key] = "không được để trống";
                     $err = true;
+=======
+            include 'category/addCategory.php';
+            break;
+        
+
+
+        //edit
+        case 'editProduct':
+            include 'product/editProduct.php';
+            break;
+
+        case 'editCategory':
+
+            if(isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
+                $categoryId = $_GET['category_id'];
+                $succesEditCate = editCategory($categoryId);
+            } else {
+                $categoryId = "";
+                $succesEditCate = "";
+            }
+
+            if(isset($_POST['updateCate'])) {
+                $id = $_POST['id'];
+                $namecate = $_POST['danhmuc'];
+                $checkCate = true;
+
+                if(empty($namecate)) {
+                    $checkCate = false;
+                    $errCategory = "Vui lòng nhập trường này";
+>>>>>>> origin/master
                 }
             }
+<<<<<<< HEAD
             if (!$err) {
                 $path = "../public/upload/image/user/";
                 move_uploaded_file($_FILES['user_image']['tmp_name'], $path . $_FILES['user_image']['name']);
@@ -91,6 +123,21 @@ switch ($action) {
         }
         include 'customer/addCustomer.php';
         break;
+=======
+        
+            include 'category/editCategory.php';
+            break;
+
+
+        //other
+        case 'order_detail':
+
+        
+
+        default:
+            include 'dashboard.php';
+        
+>>>>>>> origin/master
     }
 
 

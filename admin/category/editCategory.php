@@ -55,11 +55,19 @@
                     <i class="bx bx-filter"></i>
                 </div>
 
+<<<<<<< HEAD
                 <form action="<?=$_SERVER['REQUEST_URI']?>" method="post">
+=======
+                <form action="index.php?action=editCategory&category_id=<?= $category_id ?>" method="post">
+>>>>>>> origin/master
                     <div class="form__cateadd">
                         <div class="form-group">
                             <label class="form-label">Tên danh mục</label>
+<<<<<<< HEAD
                             <input type="text" placeholder="Nhập tên danh mục" value="<?= $category['category_name']??'' ?>" name="danhmuc" class="form-control">
+=======
+                            <input type="text" placeholder="Nhập tên danh mục" value="<?= !empty($category_name) ? $category_name : "" ?>" name="danhmuc" class="form-control">
+>>>>>>> origin/master
                         </div>
                         <div class="error error_category">
                             <?= isset($errCategory) ? $errCategory : "" ?>
