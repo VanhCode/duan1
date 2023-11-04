@@ -72,33 +72,13 @@
 
         case 'editCategory':
 
-            if(isset($_POST['updateCate'])) {
-                $id = $_POST['id'];
-                $namecate = $_POST['danhmuc'];
-                $checkCate = true;
-
-                if(empty($namecate)) {
-                    $checkCate = false;
-                    $errCategory = "Vui lòng nhập trường này";
-                }
-                
-            }
-
             if(isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
-                $category_id = $_GET['category_id'];
-
-                $succesEditCate = editCategory($category_id);  
+                $categoryId = $_GET['category_id'];
+                $succesEditCate = editCategory($categoryId);
             } else {
-                $category_id = "";
+                $categoryId = "";
+                $succesEditCate = "";
             }
-
-            include 'category/editCategory.php';
-            break;
-        
-
-
-        // Update
-        case 'updateCategory':
 
             if(isset($_POST['updateCate'])) {
                 $id = $_POST['id'];
@@ -117,6 +97,9 @@
                 
             }
         
+            include 'category/editCategory.php';
+            break;
+
 
         //other
         case 'order_detail':
