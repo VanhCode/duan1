@@ -51,15 +51,13 @@
                     <i class="bx bx-filter"></i>
                 </div>
 
-                <form action="index.php?action=addCategory" method="post">
+                <form action="index.php?action=addCategory" onsubmit="return sendCategory()" method="post">
                     <div class="form__cateadd">
                         <div class="form-group">
                             <label class="form-label">Tên danh mục</label>
-                            <input type="text" placeholder="Nhập tên danh mục" name="danhmuc" class="form-control">
+                            <input type="text" placeholder="Nhập tên danh mục" name="danhmuc" class="form-control danhmuc">
                         </div>
-                        <div class="error error_category">
-                            <?= isset($errCategory) ? $errCategory : "" ?>
-                        </div>
+                        <div class="error error_category"></div>
                         <div class="form-group mg_tb">
                             <input class="btn btn-primary" type="submit" name="addcategory" value="Thêm danh mục">
                             <a href="index.php?action=listCategory" class="btn btn-dark">Danh sách</a>
@@ -72,7 +70,6 @@
     </main>
     <!-- MAIN -->
 </section>
-<script src="../public/js/Admin_pro.js">
-
-</script>
+<script src="../public/js/Admin_pro.js"></script>
+<script src="../js/categoryAdmin.js"></script>
 <!-- CONTENT -->

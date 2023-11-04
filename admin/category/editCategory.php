@@ -57,16 +57,14 @@
                     <i class="bx bx-filter"></i>
                 </div>
 
-                <form action="index.php?action=editCategory&category_id=<?= $category_id ?>" method="post">
+                <form action="index.php?action=editCategory&category_id=<?= $category_id ?>" onsubmit="return sendCategory()" method="post">
                     <div class="form__cateadd">
                         <input type="hidden" name="id" value="<?= $category_id ?>">
                         <div class="form-group">
                             <label class="form-label">Tên danh mục</label>
-                            <input type="text" placeholder="Nhập tên danh mục" value="<?= !empty($category_name) ? $category_name : "" ?>" name="danhmuc" class="form-control">
+                            <input type="text" placeholder="Nhập tên danh mục" value="<?= $category_name ?>" name="danhmuc" class="form-control danhmuc">
                         </div>
-                        <div class="error error_category">
-                            <?= isset($errCategory) ? $errCategory : "" ?>
-                        </div>
+                        <div class="error error_category"></div>
                         <div class="form-group mg_tb">
                             <input class="btn btn-primary" type="submit" name="updateCate" value="Cập nhật danh mục">
                             <a href="index.php?action=listCategory" class="btn btn-dark">Danh sách</a>
@@ -79,7 +77,5 @@
     </main>
     <!-- MAIN -->
 </section>
-<script src="../public/js/Admin_pro.js">
-
-</script>
-<!-- CONTENT -->
+<script src="../public/js/Admin_pro.js"></script>
+<script src="../js/categoryAdmin.js">

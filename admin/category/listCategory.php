@@ -71,7 +71,8 @@
                                         <td><?= $category_name ?></td>
                                         <td>
                                             <a class="btn btn-outline-success btn-sm" href="index.php?action=editCategory&category_id=<?= $category_id ?>">Sửa</a>
-                                            <a class="btn btn-outline-danger btn-sm" href="index.php?action=editCategory&category_id=<?= $category_id ?>">Xoá</a>
+                                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" href="index.php?action=deleteCategory&category_id=<?= $category_id ?>">Xoá</a>
+                                        
                                         </td>
                                     </tr>
                                 <?php
@@ -83,7 +84,25 @@
             </div>
 
         </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Xóa danh mục</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có muốn xóa danh muc: <?= $category_name ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <a class="btn btn-primary" href="index.php?action=deleteCategory&category_id=<?= $category_id ?>">Xoá</a>
+                </div>
+                </div>
+            </div>
+        </div>
     </main>
     <!-- MAIN -->
 </section>
+<script src="../js/categoryAdmin.js"></script>
 <!-- CONTENT -->

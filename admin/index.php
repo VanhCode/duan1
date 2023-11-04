@@ -47,17 +47,8 @@
             if(isset($_POST['addcategory'])) {
                 $errCategory = "";
                 $namecate = $_POST['danhmuc'];
-                $checkCate = true;
-
-                if(empty($namecate)) {
-                    $checkCate = false;
-                    $errCategory = "Vui lòng nhập trường này";
-                }
-
-                if($checkCate) {
-                    addCategory($namecate);
-                    header('location: index.php?action=listCategory');
-                }
+                addCategory($namecate);
+                header('location: index.php?action=listCategory');
             }
 
             include 'category/addCategory.php';
@@ -71,7 +62,6 @@
             break;
 
         case 'editCategory':
-
             if(isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
                 $categoryId = $_GET['category_id'];
                 $succesEditCate = editCategory($categoryId);
@@ -83,22 +73,22 @@
             if(isset($_POST['updateCate'])) {
                 $id = $_POST['id'];
                 $namecate = $_POST['danhmuc'];
-                $checkCate = true;
-
-                if(empty($namecate)) {
-                    $checkCate = false;
-                    $errCategory = "Vui lòng nhập trường này";
-                }
-
-                if($checkCate) {
-                    updateCategory($id,$namecate);
-                    header('location: index.php?action=listCategory');
-                }
-                
+                updateCategory($id,$namecate);
+                header('location: index.php?action=listCategory');  
             }
-        
             include 'category/editCategory.php';
             break;
+
+
+        // Delete
+        case 'deleteCategory':
+            if(isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
+                $categoryId = $_GET['category_id'];
+                deleteCategory($categoryId);
+                header('location: index.php?action=listCategory'); 
+            } else {
+                $categoryId = "";
+            }
 
 
         //other
