@@ -20,10 +20,13 @@ const sidebar = document.getElementById('sidebar');
 
 menuBar.addEventListener('click', function () {
 	sidebar.classList.toggle('hide');
-})
-
-
-
+});
+sidebar.addEventListener('mouseenter', function () {
+	sidebar.classList.remove('hide');
+});
+sidebar.addEventListener('mouseleave', function () {
+	sidebar.classList.add('hide');
+});
 
 
 
