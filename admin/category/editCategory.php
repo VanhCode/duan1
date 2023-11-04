@@ -1,7 +1,5 @@
 <?php
-    if(is_array($succesEditCate)) {
-        extract($succesEditCate);
-    }
+
 ?>
 
 <!-- CONTENT -->
@@ -57,12 +55,11 @@
                     <i class="bx bx-filter"></i>
                 </div>
 
-                <form action="index.php?action=updateCategory" method="post">
+                <form action="<?=$_SERVER['REQUEST_URI']?>" method="post">
                     <div class="form__cateadd">
-                        <input type="hidden" name="id" value="<?= $category_id ?>">
                         <div class="form-group">
                             <label class="form-label">Tên danh mục</label>
-                            <input type="text" placeholder="Nhập tên danh mục" value="<?= $category_name ?>" name="danhmuc" class="form-control">
+                            <input type="text" placeholder="Nhập tên danh mục" value="<?= $category['category_name']??'' ?>" name="danhmuc" class="form-control">
                         </div>
                         <div class="error error_category">
                             <?= isset($errCategory) ? $errCategory : "" ?>

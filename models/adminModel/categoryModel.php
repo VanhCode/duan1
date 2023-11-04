@@ -7,7 +7,6 @@
     }
 
 
-
     // Thêm danh mục
     function addCategory($name) {
         $sql = "INSERT INTO categories (`category_name`) VALUES ('$name')";

@@ -1,5 +1,5 @@
 <!-- SIDEBAR -->
-<section id="sidebar">
+<section id="sidebar" class="">
     <a href="#" class="brand logo__admin">
         <i class='bx bxs-smile'></i>
         <span class="text">Admin</span>

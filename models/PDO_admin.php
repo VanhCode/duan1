@@ -1,7 +1,7 @@
 <?php
 $conn = null;
 try {
-    $conn = new PDO('mysql:host=localhost;dbname=shoestore', 'root', '', [
+    $conn = new PDO('mysql:host=localhost;dbname=vanh-store', 'root', '', [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
     ]);
@@ -22,12 +22,10 @@ function getDataBy($table, $data)
     return query($sql)->fetch();
 }
 
-function getAll($table, $orderBy, $limit,$where='')
+function getAll($table, $orderBy=[], $limit=20)
 {
-    $orderBy = $orderBy ?? ['id ASC'];
-    $limit = $limit ?? 15;
-    $orderBy = implode(",", $orderBy);
-    $sql = "SELECT * FROM ${table} ${where} ORDER BY ${orderBy} LIMIT ${limit}";
+    $orderBy = implode(",", $orderBy)??"ORDER BY ".implode(",", $orderBy);
+    $sql = "SELECT * FROM ${table}  ${orderBy} LIMIT ${limit}";
     return query($sql)->fetchAll();
 }
 
@@ -60,13 +58,13 @@ function updateData($table, $data, $id)
         $data[$key] = $key . "='" . $value . "'";
     }
     $data = implode(",", $data);
-    $sql = "UPDATE ${table} SET ${data} WHERE id=${id}";
+    $sql = "UPDATE ${table} SET ${data} WHERE ${id}";
     return query($sql)->rowCount();
 }
 
 function deleteData($table, $id)
 {
-    $sql = "DELETE FROM ${table} WHERE id=${id}";
+    $sql = "DELETE FROM ${table} WHERE ${id}";
     return query($sql)->rowCount();
 }
 
