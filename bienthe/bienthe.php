@@ -37,6 +37,7 @@
                 $stmt->execute([$product_id, $variation_name, $variation_amount, $value]);
             }
         }
+        
         echo "Thêm sản phẩm thành công!";
 
     }

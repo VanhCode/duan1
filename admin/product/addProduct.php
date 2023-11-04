@@ -57,10 +57,10 @@
                     echo "</pre>";
                 }
                 ?>
-                <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post">
+                <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="" class="form-label">Tên</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="namePro" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Ảnh</label>
@@ -68,18 +68,25 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Giá sản phẩm</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="pricePro">
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Giảm giá</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="sale">
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Danh mục</label>
-                        <select class="form-select" name="" id="">
-                            <option value="">option 1</option>
+                        <select class="form-select" name="selectCategory" id="">
+                            <!-- <option value="">option 1</option>
                             <option value="">option 2</option>
-                            <option value="">option 3</option>
+                            <option value="">option 3</option> -->
+                            <?php
+                                foreach($listCategory as $key) {
+                                    ?>
+                                        <option value="<?= $key['category_id'] ?>"><?= $key['category_name'] ?></option>
+                                    <?php
+                                }
+                            ?>
                         </select>
                     </div>
                     <div class="title-text fw-semibold">Phân loại</div>
@@ -95,7 +102,7 @@
                     </div>
                     <div class="form-group">
                         <input class="btn btn-success addVariant" type="button" value="Thêm phân loại">
-                        <input class="btn btn-primary" type="submit" value="Thêm sản phẩm">
+                        <input class="btn btn-primary" type="submit" name="addProduct" value="Thêm sản phẩm">
                         <a href="index.php?action=listProduct" class="btn btn-dark">Danh sách</a>
                     </div>
                 </form>
