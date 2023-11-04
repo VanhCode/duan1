@@ -3,10 +3,10 @@
     <!-- NAVBAR -->
     <nav>
         <i class='bx bx-menu'></i>
-        <a href="#" class="nav-link">Categories</a>
+        <a href="#" class="nav-link">Trang chủ</a>
         <form action="#">
             <div class="form-input">
-                <input type="search" placeholder="Search...">
+                <input type="search" placeholder="Tìm kiếm">
                 <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
             </div>
         </form>

@@ -3,10 +3,10 @@
     <!-- NAVBAR -->
     <nav>
         <i class='bx bx-menu'></i>
-        <a href="#" class="nav-link">Categories</a>
+        <a href="#" class="nav-link">Trang chủ</a>
         <form action="#">
             <div class="form-input">
-                <input type="search" placeholder="Search...">
+                <input type="search" placeholder="Tìm kiếm">
                 <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
             </div>
         </form>
@@ -29,7 +29,7 @@
                 <h1>Quản lý sản phẩm</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="">Product</a>
+                        <a href="">Danh sách sản phẩm</a>
                     </li>
                     <li><i class='bx bx-chevron-right'></i></li>
                     <li>
@@ -39,7 +39,7 @@
             </div>
             <a href="#" class="btn-download">
                 <i class='bx bxs-cloud-download'></i>
-                <span class="text">Download PDF</span>
+                <span class="text">Tải xuống PDF</span>
             </a>
         </div>
 

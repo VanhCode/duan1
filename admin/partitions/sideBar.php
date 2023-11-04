@@ -1,38 +1,44 @@
 <!-- SIDEBAR -->
 <section id="sidebar">
-    <a href="#" class="brand">
+    <a href="#" class="brand logo__admin">
         <i class='bx bxs-smile'></i>
-        <span class="text">AdminHub</span>
+        <span class="text">Admin</span>
     </a>
     <ul style="padding-left: 0" class="side-menu top">
         <li class="<?=$action=='dashboard' ?'active':''?>">
             <a href="index.php?action=dashboard">
                 <i class='bx bxs-dashboard' ></i>
-                <span class="text">Dashboard</span>
+                <span class="text">Thống kê trang web</span>
+            </a>
+        </li>
+        <li class="<?=$action=='listProduct'|| $action=='addProduct' ?'active':''?>">
+            <a href="index.php?action=listProduct">
+                <i class='bx bxl-product-hunt'></i>
+                <span class="text">Quản lí sản phẩm</span>
+            </a>
+        </li>
+        <li class="<?=$action=='listCategory' ?'active':''?>">
+            <a href="index.php?action=listCategory">
+                <i class='bx bxs-doughnut-chart'></i>
+                <span class="text">Quản lí danh mục</span>
             </a>
         </li>
         <li class="<?=$action=='listCustomer' ?'active':''?>">
             <a href="index.php?action=listCustomer">
                 <i class='bx bxs-group' ></i>
-                <span class="text">Customer</span>
+                <span class="text">Quản lí tài khoản</span>
             </a>
         </li>
         <li class="<?=$action=='listOrder' ?'active':''?>">
             <a href="index.php?action=listOrder">
-                <i class='bx bxs-shopping-bag-alt' ></i>
-                <span class="text">Orders</span>
+                <i class='bx bxs-shopping-bag-alt'></i>
+                <span class="text">Quản lí đơn hàng</span>
             </a>
         </li>
-        <li class="<?=$action=='listProduct'||$action=='addProduct' ?'active':''?>">
-            <a href="index.php?action=listProduct">
-                <i class='bx bxl-product-hunt'></i>
-                <span class="text">Products</span>
-            </a>
-        </li>
-        <li class="<?=$action=='category' ?'active':''?>">
-            <a href="index.php?action=categories">
-                <i class='bx bxs-doughnut-chart' ></i>
-                <span class="text">Categories</span>
+        <li class="<?=$action=='listComment' ?'active':''?>">
+            <a href="index.php?action=listComment">
+                <i class='bx bxs-comment'></i>
+                <span class="text">Quản lí bình luận</span>
             </a>
         </li>
     </ul>
@@ -40,13 +46,13 @@
         <li>
             <a href="#">
                 <i class='bx bxs-cog' ></i>
-                <span class="text">Settings</span>
+                <span class="text">Cài đặt</span>
             </a>
         </li>
         <li>
             <a href="#" class="logout">
                 <i class='bx bxs-log-out-circle' ></i>
-                <span class="text">Logout</span>
+                <span class="text">Đăng xuất</span>
             </a>
         </li>
     </ul>

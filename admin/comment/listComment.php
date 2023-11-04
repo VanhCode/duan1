@@ -3,7 +3,7 @@
     <!-- NAVBAR -->
     <nav>
         <i class='bx bx-menu'></i>
-        <a href="#" class="nav-link">Đơn hàng</a>
+        <a href="#" class="nav-link">Bình luận</a>
         <form action="#">
             <div class="form-input">
                 <input type="search" placeholder="Search...">
@@ -26,14 +26,14 @@
     <main>
         <div class="head-title">
             <div class="left">
-                <h1>Quản lý đơn hàng</h1>
+                <h1>Quản lý bình luận</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="#">Quản lí đơn hàng</a>
+                        <a href="#">Quản lí bình luận</a>
                     </li>
                     <li><i class='bx bx-chevron-right'></i></li>
                     <li>
-                        <a class="active" href="#">Danh sách đơn hàng</a>
+                        <a class="active" href="#">Danh sách tài khoản bình luận</a>
                     </li>
                 </ul>
             </div>
@@ -47,7 +47,7 @@
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Recent Orders</h3>
+                    <h3>Tài khoản bình luận</h3>
                     <i class='bx bx-search'></i>
                     <i class='bx bx-filter'></i>
                 </div>
@@ -55,11 +55,10 @@
                     <thead>
                     <tr class="tr_th">
                         <th>STT</th>
-                        <th>Người đặt hàng</th>
-                        <th>Tổng cộng</th>
-                        <th>Ngày đặt hàng</th>
-                        <th>Trạng thái</th>
-                        <th>Hình thức</th>
+                        <th>Người bình luận</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Ngày bình luận</th>
+                        <th>Tổng bình luận</th>
                         <th>Chi tiết</th>
                     </tr>
                     </thead>
@@ -72,10 +71,10 @@
                                 <span>Nguyễn Ngọc Duy</span>
                             </div>
                         </td>
-                        <td>3.000.000</td>
+                        <td>Áo thun</td>
                         <td>01-10-2021</td>
-                        <td><span class="status completed">Đang vận chuyển</span></td>
-                        <td><span class="status pending">Đã xem</span></td>
+                        <td><span class="status completed">10</span></td>
+                        <!-- <td><span class="status pending">Pending</span></td> -->
                         <td><a class="btn btn-success btn-sm" href="index.php?action=order_detail">Chi tiết</a></td>
                     </tr>
                     </tbody>

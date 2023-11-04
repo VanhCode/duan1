@@ -3,10 +3,10 @@
     <!-- NAVBAR -->
     <nav>
         <i class='bx bx-menu'></i>
-        <a href="#" class="nav-link">Categories</a>
+        <a href="#" class="nav-link">Sản phẩm</a>
         <form action="#">
             <div class="form-input">
-                <input type="search" placeholder="Search...">
+                <input type="search" placeholder="Tìm kiếm">
                 <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
             </div>
         </form>
@@ -29,7 +29,7 @@
                 <h1>Quản lý sản phẩm</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="#">Product</a>
+                        <a href="#">Quản lí sản phẩm</a>
                     </li>
                     <li><i class='bx bx-chevron-right'></i></li>
                     <li>
@@ -39,7 +39,7 @@
             </div>
             <a href="#" class="btn-download">
                 <i class='bx bxs-cloud-download'></i>
-                <span class="text">Download PDF</span>
+                <span class="text">Tải xuống PDF</span>
             </a>
         </div>
 
@@ -51,21 +51,21 @@
                     <i class='bx bx-filter'></i>
                 </div>
                 <div class="alert alert-primary add__btn__click">
-                    <a class="btn btn-primary w100hz" href="index.php?action=addProduct">Thêm</a>
+                    <a class="btn btn-primary w100hz" href="index.php?action=addProduct">Thêm sản phẩm</a>
                 </div>
                 <table class="tbl__tab">
                     <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>ẢNH</th>
-                        <th>TÊN</th>
-                        <th>DANH MỤC</th>
-                        <th>THAO TÁC</th>
-                        <th>CHI TIẾT</th>
-                    </tr>
+                        <tr class="tr_th">
+                            <th>STT</th>
+                            <th>Ảnh</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Danh mục</th>
+                            <th>Thao tác</th>
+                            <th>Chi tiết</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr class="tr_td">
                             <td>1</td>
                             <td class="img__productadd"><img src="../public/image/people.png" alt=""></td>
                             <td>Áo chống tăng</td>

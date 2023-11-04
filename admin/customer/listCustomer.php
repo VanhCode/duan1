@@ -3,7 +3,7 @@
     <!-- NAVBAR -->
     <nav>
         <i class='bx bx-menu'></i>
-        <a href="#" class="nav-link">Categories</a>
+        <a href="#" class="nav-link">Tài khoản</a>
         <form action="#">
             <div class="form-input">
                 <input type="search" placeholder="Search...">
@@ -29,17 +29,17 @@
                 <h1>Quản lý tài khoản</h1>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="#">Order</a>
+                        <a href="#">Quản lí tài khoản</a>
                     </li>
                     <li><i class='bx bx-chevron-right'></i></li>
                     <li>
-                        <a class="active" href="#">Quản lý tài khoản</a>
+                        <a class="active" href="#">Danh sách tài khoản</a>
                     </li>
                 </ul>
             </div>
             <a href="#" class="btn-download">
                 <i class='bx bxs-cloud-download'></i>
-                <span class="text">Download PDF</span>
+                <span class="text">Tải xuống PDF</span>
             </a>
         </div>
 
@@ -53,80 +53,32 @@
                 </div>
                 <table>
                     <thead>
-                    <tr>
-                        <th>User</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Password</th>
-                        <th>Tuỳ chỉnh</th>
-                    </tr>
+                        <tr class="tr_th">
+                            <th>STT</th>
+                            <th>Người dùng</th>
+                            <th>Email</th>
+                            <th>Điện thoại</th>
+                            <th>Mật khẩu</th>
+                            <th>Tuỳ chỉnh</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>
-                            <img src="img/people.png">
-                            <p>John Doe</p>
-                        </td>
-                        <td>duynnz1901@gmail.com</td>
-                        <td>0987654321</td>
-                        <td>duy1234</td>
-                        <td>
-                            <a class="btn btn-outline-success btn-sm" href="index.php?action=editProduct">Sửa</a>
-                            <a class="btn btn-outline-danger btn-sm" href="">Xoá</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="img/people.png">
-                            <p>John Doe</p>
-                        </td>
-                        <td>duynnz2812@gmail.com</td>
-                        <td>0987654321</td>
-                        <td>duy1234</td>
-                        <td>
-                            <a class="btn btn-outline-success btn-sm" href="index.php?action=editProduct">Sửa</a>
-                            <a class="btn btn-outline-danger btn-sm" href="">Xoá</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="img/people.png">
-                            <p>John Doe</p>
-                        </td>
-                        <td>duynnz1901@gmail.com</td>
-                        <td>0987654321</td>
-                        <td>duy1234</td>
-                        <td>
-                            <a class="btn btn-outline-success btn-sm" href="index.php?action=editProduct">Sửa</a>
-                            <a class="btn btn-outline-danger btn-sm" href="">Xoá</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="img/people.png">
-                            <p>John Doe</p>
-                        </td>
-                        <td>duynnz1901@gmail.com</td>
-                        <td>0987654321</td>
-                        <td>duy1234</td>
-                        <td>
-                            <a class="btn btn-outline-success btn-sm" href="index.php?action=editProduct">Sửa</a>
-                            <a class="btn btn-outline-danger btn-sm" href="">Xoá</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="img/people.png">
-                            <p>John Doe</p>
-                        </td>
-                        <td>duynnz1901@gmail.com</td>
-                        <td>0987654321</td>
-                        <td>duy1234</td>
-                        <td>
-                            <a class="btn btn-outline-success btn-sm" href="index.php?action=editProduct">Sửa</a>
-                            <a class="btn btn-outline-danger btn-sm" href="">Xoá</a>
-                        </td>
-                    </tr>
+                        <tr class="tr_td">
+                            <td>1</td>
+                            <td>
+                                <div class="td_user_img">
+                                    <img src="img/people.png">
+                                    <p>John Doe</p>
+                                </div>
+                            </td>
+                            <td>duynnz1901@gmail.com</td>
+                            <td>0987654321</td>
+                            <td>duy1234</td>
+                            <td>
+                                <a class="btn btn-outline-success btn-sm" href="index.php?action=editProduct">Sửa</a>
+                                <a class="btn btn-outline-danger btn-sm" href="">Xoá</a>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

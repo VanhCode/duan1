@@ -1,3 +1,8 @@
+:root {
+    --nc-cl-hd: #cc3b1e;
+    --nc-cl-hd2-dost: #dd3f1f;
+    --nc-bg-bd: #ee4d2d;
+}
 
 .form-group {
     margin-top: 20px;
@@ -74,9 +79,9 @@
     margin-bottom: 42px !important;
 }
 
-.w100hz {
-    width: 120px !important;
-}
+/* .w100hz {
+    width: 150px !important;
+} */
 
 .add_vari {
     width: 325px;
@@ -102,4 +107,67 @@
 
 .mg_lr {
     margin: 0 10px;
+}
+
+.logo__admin {
+    color: var(--nc-cl-hd2-dost) !important;
+}
+
+#content nav form .form-input button {
+    background-color: var(--nc-cl-hd2-dost);
+}
+
+#content nav .switch-mode::before {
+    background-color: var(--nc-cl-hd2-dost);
+}
+
+#content main .head-title .left .breadcrumb li a.active {
+    color: var(--nc-cl-hd2-dost) !important;
+}
+
+#content main .head-title .btn-download {
+    background-color: var(--nc-cl-hd2-dost);
+}
+
+#sidebar .side-menu.top li.active a {
+    color: var(--nc-cl-hd2-dost) !important;
+}
+
+#sidebar .side-menu.top li a:hover {
+    color: var(--nc-cl-hd2-dost) !important;
+}
+
+.tr_th th {
+    text-align: center !important;
+}
+
+.tr_td td {
+    text-align: center !important;
+}
+
+#content main .table-data .order table tr td:first-child {
+    display: block;
+    align-items: center;
+    grid-gap: 12px;
+    padding-left: 6px;
+}
+
+.td_user_img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form__cateadd {
+    position: relative;
+}
+
+.error_category {
+    position: absolute;
+    bottom: 55px;
+    color: red;
+}
+
+.mg_tb {
+    margin-top: 48px !important;
 }
