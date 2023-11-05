@@ -33,12 +33,7 @@
                     </li>
                     <li><i class='bx bx-chevron-right'></i></li>
                     <li>
-                        <a href="">Danh sách thống kê bình luận</a>
-                    </li>
-                    <li><i class='bx bx-chevron-right'></i></li>
-
-                    <li>
-                        <a class="active" href="#">Danh sách bình luận</a>
+                        <a class="active" href="#">Danh sách thống kê bình luận</a>
                     </li>
                 </ul>
             </div>
@@ -60,10 +55,9 @@
                     <thead>
                     <tr class="tr_th">
                         <th>STT</th>
-                        <th>Người dùng</th>
-                        <th>Nội dung bình luận</th>
-                        <th>Tạo ngày</th>
-                        <th>Thao tác</th>
+                        <th>Sản phẩm</th>
+                        <th>Tổng số bình luận</th>
+                        <th>Chi tiết</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -72,15 +66,11 @@
                         <td>
                             <div class="pro">
                                 <img src="" alt="">
-                                <span>Nguyễn Ngọc Duy</span>
+                                <span>Giay</span>
                             </div>
                         </td>
-                        <td>Áo này rẻ quá</td>
-                        <td>05/11/2023</td>
-                        <td>
-                            <a class="btn btn-outline-success btn-sm" href="index.php?action=editComment&comment_id=">Sửa</a>
-                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" href="index.php?action=deleteComment&comment_id=">Xoá</a>
-                        </td>
+                        <td><span class="status completed">10</span></td>
+                        <td><a class="btn btn-success btn-sm" href="index.php?action=listComment">Chi tiết</a></td>
                     </tr>
                     </tbody>
                 </table>

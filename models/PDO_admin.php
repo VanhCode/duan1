@@ -41,15 +41,13 @@ function addData($table, $data)
 }
 function addDataReturnId($table, $data)
 {
-    global $conn;
     foreach ($data as $key => $value) {
         $data[$key] = "'" . $value . "'";
     }
     $cols = implode(",", array_keys($data));
     $values = implode(",", array_values($data));
     $sql = "INSERT INTO ${table} (${cols}) VALUES (${values})";
-    query($sql);
-    return $conn->lastInsertId();
+    return query_returnID($sql);
 }
 
 function updateData($table, $data, $id)
@@ -74,4 +72,11 @@ function query($sql)
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     return $stmt;
+}
+function query_returnID($sql)
+{
+    global $conn;
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    return $conn->lastInsertId();
 }
