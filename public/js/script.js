@@ -8,6 +8,7 @@ allSideMenu.forEach(item=> {
 			i.parentElement.classList.remove('active');
 		})
 		li.classList.add('active');
+		
 	})
 });
 

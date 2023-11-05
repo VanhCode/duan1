@@ -57,7 +57,7 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Ảnh</label>
-                        <input type="file" class="upFile form-control" name="image[]" multiple accept="image/*">>
+                        <input type="file" class="upFile form-control" name="image[]" multiple accept="image/*">
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Giá sản phẩm</label>
@@ -93,7 +93,7 @@
                     <div class="form-group">
                         <input class="btn btn-success addVariant" type="button" value="Thêm phân loại">
                         <input class="btn btn-primary" type="submit" name="addProduct" value="Thêm sản phẩm">
-                        <a href="index.php?action=listProduct" class="btn btn-dark">Danh sách</a>
+                        <a href="index.php?action=listCus" class="btn btn-dark">Danh sách</a>
                     </div>
                 </form>
             </div>

@@ -85,7 +85,7 @@
 
                     <div class="form-group">
                         <input class="btn btn-primary" type="submit" value="Sửa tài khoản">
-                        <a href="index.php?action=listProduct" class="btn btn-dark">Danh sách</a>
+                        <a href="index.php?action=listCustomer" class="btn btn-dark">Danh sách</a>
                     </div>
                 </form>
             </div>

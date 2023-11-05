@@ -68,13 +68,9 @@
 
     // Update sản phẩm
     function updateProduct($id,$name,$price,$sale,$image,$category) {
-        if($image != "") {
-            $sql = "UPDATE products SET product_name='".$name."',price='".$price."',sale='".$sale."',images='".$image."',category_id='".$category."'
-                WHERE product_id = '$id'";
-        } else {
-            $sql = "UPDATE products SET product_name='".$name."',price='".$price."',sale='".$sale."',category_id='".$category."'
-                WHERE product_id = '$id'";
-        }
+        $sql = "UPDATE products SET product_name='".$name."',price='".$price."',sale='".$sale."',images='".$image."',category_id='".$category."'
+            WHERE product_id = '$id'";
+
         return pdo_execute_returnLastInsertId($sql);
     }
 

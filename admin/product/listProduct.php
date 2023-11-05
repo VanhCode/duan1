@@ -50,11 +50,6 @@
                     <i class='bx bx-search'></i>
                     <i class='bx bx-filter'></i>
                 </div>
-                <?php
-                    echo "<pre>";
-                    print_r($listProduct);
-                    echo "</pre>";
-                ?>
                 <div class="alert alert-primary add__btn__click">
                     <a class="btn btn-primary w100hz" href="index.php?action=addProduct">Thêm sản phẩm</a>
                 </div>
@@ -70,12 +65,16 @@
                         </tr>
                     </thead>
                     <tbody>
+
+                        
                         <?php
                             foreach($listProduct as $keysanpham => $valueSanpham) {
                                 ?>
                                     <tr class="tr_td">
                                         <td><?= $keysanpham + 1 ?></td>
-                                        <td class="img__productadd"><img src="../public/upload/image/product/<?= $valueSanpham['images'] ?>" alt=""></td>
+                                        <td class="img__productadd">
+                                            <img src="../public/upload/image/product/<?= explode(",", $valueSanpham['images'])[0] ?>" alt="">
+                                        </td>
                                         <td><?= $valueSanpham['product_name'] ?></td>
                                         <td><?= $valueSanpham['category_name'] ?></td>
                                         <td>

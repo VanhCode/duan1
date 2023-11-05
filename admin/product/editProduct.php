@@ -51,14 +51,55 @@
                     <i class="bx bx-filter"></i>
                 </div>
                 <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
+
                     <input type="hidden" name="id" value="<?= $productInfo['product_id'] ?>">
+                    
                     <div class="form-group">
                         <label for="" class="form-label">Tên</label>
                         <input type="text" name="namePro" value="<?= $productInfo['product_name'] ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Ảnh</label>
-                        <input type="file" class="upFile form-control" name="image">
+                        <input type="file" class="upFile form-control" name="image[]" multiple multiple accept="image/*">
+                        <!--  -->
+                        <input type="hidden" width="1000px" id="oldImage" name="oldImage" value="<?= $productInfo['images'] ?>">
+                        <!--  -->
+                        <div class="product__images">
+                            <?php
+                                foreach(explode(",", $productInfo['images']) as $valueImage) {
+                                    if($productInfo['images'] !== "") {
+                                        ?>
+                                            <div class="ab_ic">
+                                                <button type="button" class="lb_lg"><i class="fa-solid fa-xmark"></i></button>
+                                                <img src="../public/upload/image/product/<?= $valueImage ?>" alt="">
+                                            </div>
+                                        <?php
+                                    } else {
+
+                                    }
+                                }
+                            ?>
+
+                        </div>
+
+                        <script>
+                            var oldImageElement = document.querySelector('#oldImage');
+                            var oldImage = oldImageElement.value.split(',');
+                            var boxDiv = document.querySelectorAll('.ab_ic');
+
+                            boxDiv.forEach(function(box, index) {
+                                var deleteButton = box.querySelector('.lb_lg');
+                                deleteButton.addEventListener('click', function() {
+                                    oldImage.splice(index, 1);
+                                    oldImageElement.value = oldImage.join(',');
+                                    console.log(oldImage);
+                                    this.parentElement.remove();
+                                });
+                            });
+                            
+
+                        </script>
+
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Giá sản phẩm</label>

@@ -17,13 +17,13 @@
                 <span class="text">Quản lí sản phẩm</span>
             </a>
         </li>
-        <li class="<?=$action=='listCategory' ?'active':''?>">
+        <li class="<?=$action=='listCategory' || $action=='addCategory' || $action=='editCategory' ?'active':''?>">
             <a href="index.php?action=listCategory">
                 <i class='bx bxs-doughnut-chart'></i>
                 <span class="text">Quản lí danh mục</span>
             </a>
         </li>
-        <li class="<?=$action=='listCustomer' ?'active':''?>">
+        <li class="<?=$action=='listCustomer' || $action=='addCustomer' || $action=='editCustomer' ?'active':''?>">
             <a href="index.php?action=listCustomer">
                 <i class='bx bxs-group' ></i>
                 <span class="text">Quản lí tài khoản</span>
