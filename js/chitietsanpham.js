@@ -25,14 +25,14 @@ function listClickImage () {
 
     nextBoxImg.addEventListener('click', function() {
         if (curenIndex > -180) {
-            curenIndex -= 90;
+            curenIndex -= 93;
             transformBox.style.transform = `translate(${curenIndex}px, 0px)`;
         }
     })
 
     prevBoxImg.addEventListener('click', function() {
         if (curenIndex !== 0) {
-            curenIndex += 90;
+            curenIndex += 93;
             transformBox.style.transform = `translate(${curenIndex}px, 0px)`;
         }
     })

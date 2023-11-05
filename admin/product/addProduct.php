@@ -50,13 +50,6 @@
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>
-                <?php
-                if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                    echo "<pre>";
-                    print_r($_POST);
-                    echo "</pre>";
-                }
-                ?>
                 <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="" class="form-label">Tên</label>
@@ -77,9 +70,6 @@
                     <div class="form-group">
                         <label for="" class="form-label">Danh mục</label>
                         <select class="form-select" name="selectCategory" id="">
-                            <!-- <option value="">option 1</option>
-                            <option value="">option 2</option>
-                            <option value="">option 3</option> -->
                             <?php
                                 foreach($listCategory as $key) {
                                     ?>

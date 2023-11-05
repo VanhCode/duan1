@@ -50,37 +50,37 @@
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>
-                <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
+                <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" onsubmit="return sendUser()" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="" class="form-label">Firth Name</label>
-                        <input type="text" class="form-control" name="firth_name" value="<?=$user['firth_name']?>">
-                        <small><?=$errValidate['firth_name']??''?></small>
+                        <input type="text" class="form-control first blurinp" name="firth_name" value="<?=$user['firth_name']?>">
+                        <small class="error er_firstname"></small>
                     </div>
                     <div class="form-group">
                         <label onclick="" for="" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" name="last_name" value="<?=$user['last_name']?>">
-                        <small><?=$errValidate['last_name']??''?></small>
+                        <input type="text" class="form-control last blurinp" name="last_name" value="<?=$user['last_name']?>">
+                        <small class="error er_lastname"></small>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Ảnh</label>
                         <input type="file" class="upFile form-control" name="user_image">
                         <img src="<?=$user['user_image']?>" width="100px" height="100px" style="border-radius: 50%;object-fit: cover" alt="">
-                        <small><?=$errValidate['user_image']??''?></small>
+                        <small class="error "></small>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Email</label>
-                        <input type="text" class="form-control" name="email" value="<?=$user['email']?>">
-                        <small><?=$errValidate['email']??''?></small>
+                        <input type="text" class="form-control email blurinp" name="email" value="<?=$user['email']?>">
+                        <small class="error er_email"></small>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Số điện thoại</label>
-                        <input type="text" class="form-control" name="phone" value="<?=$user['phone']?>">
-                        <small><?=$errValidate['phone']??''?></small>
+                        <input type="text" class="form-control phone blurinp" name="phone" value="<?=$user['phone']?>">
+                        <small class="error er_phone"></small>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Mật khẩu</label>
-                        <input type="text" class="form-control" name="password" value="<?=$user['password']?>">
-                        <small><?=$errValidate['password']??''?></small>
+                        <input type="text" class="form-control password blurinp" name="password" value="<?=$user['password']?>">
+                        <small class="error er_pass"></small>
                     </div>
 
                     <div class="form-group">
@@ -94,7 +94,6 @@
     </main>
     <!-- MAIN -->
 </section>
-<script src="../public/js/Admin_pro.js">
-
-</script>
+<script src="../public/js/Admin_pro.js"></script>
+<script src="../js/customModel.js"></script>
 <!-- CONTENT -->

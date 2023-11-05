@@ -65,25 +65,49 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="tr_td">
-                            <td>1</td>
-                            <td class="img__productadd"><img src="../public/image/people.png" alt=""></td>
-                            <td>Áo chống tăng</td>
-                            <td>Luxury</td>
-                            <td>
-                                <a class="btn btn-outline-success btn-sm" href="index.php?action=editProduct">Sửa</a>
-                                <a class="btn btn-outline-danger btn-sm" href="">Xoá</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-primary btn-sm" href="index.php?action=editProduct">Xem</a>
-                            </td>
-                        </tr>
+                        <?php
+                            foreach($listProduct as $keysanpham => $valueSanpham) {
+                                ?>
+                                    <tr class="tr_td">
+                                        <td><?= $keysanpham + 1 ?></td>
+                                        <td class="img__productadd"><img src="../public/upload/image/product/<?= $valueSanpham['images'] ?>" alt=""></td>
+                                        <td><?= $valueSanpham['product_name'] ?></td>
+                                        <td><?= $valueSanpham['category_name'] ?></td>
+                                        <td>
+                                            <a class="btn btn-outline-success btn-sm" href="index.php?action=editProduct&id_product=<?= $valueSanpham['product_id'] ?>">Sửa</a>
+                                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $valueSanpham['product_id'] ?>">Xoá</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary btn-sm" href="index.php?action=editProduct">Xem</a>
+                                        </td>
+                                    </tr>
+                                    <div class="modal fade" id="exampleModal<?= $valueSanpham['product_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Xóa danh mục</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Bạn có muốn xóa sản phẩm: <?= $valueSanpham['product_name'] ?>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                                <a class="btn btn-primary" href="index.php?action=deleteProduct&id_product=<?= $valueSanpham['product_id'] ?>">Xoá</a>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php
+                            }
+                        ?>
                     </tbody>
                 </table>
                 
             </div>
 
         </div>
+        
     </main>
     <!-- MAIN -->
 </section>

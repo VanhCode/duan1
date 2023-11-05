@@ -3,6 +3,7 @@ include '../models/pdo.php';
 include '../models/PDO_admin.php';
 include '../models/adminModel/categoryModel.php';
 include '../models/adminModel/productModel.php';
+include '../models/adminModel/varitionModel.php';
 
 $action = $_GET['action'] ?? 'dashboard';
 
@@ -11,6 +12,7 @@ include 'partitions/sideBar.php';
 
 
 $listCategory = listDanhmuc();
+$listProduct = listProduct();
 
 switch ($action) {
     case 'dashboard':
@@ -45,25 +47,28 @@ switch ($action) {
     case 'addProduct':
         if(isset($_POST['addProduct'])) {
             $namePro = $_POST['namePro'];
-            $image = $_FILES['image']['name'];
             $pricePro = $_POST['pricePro'];
             $sale = $_POST['sale'];
             $selectCategory = $_POST['selectCategory'];
             $color = $_POST['color'];
             $size = $_POST['size'];
             $amount = $_POST['amount'];
-        
-            $conn = pdo_get_connection(); // Get the database connection
-            if ($conn) {
-                $product_id = addProduct($conn, $namePro, $pricePro, $sale, $image, $selectCategory);
-        
-                for($i = 0; $i < count($color); $i++) {
-                    // Perform actions with $color
-                }
-        
-                echo "<script>alert('.$product_id.')</script>";
+            
+
+            $filename =  time().basename($_FILES['image']['name']);
+            $target = "../public/upload/image/product/".$filename;
+            move_uploaded_file($_FILES['image']['tmp_name'], $target);
+
+
+            $product_id = addProduct($namePro,$pricePro,$sale,$filename,$selectCategory);
+
+            for($i = 0; $i < count($color); $i++) {
+                addVation($product_id,$color[$i],$size[$i],$amount[$i]);
             }
+
+            header('location: index.php?action=listProduct');
         }
+
         include 'product/addProduct.php';
         break;
 
@@ -100,6 +105,46 @@ switch ($action) {
 
     //edit
     case 'editProduct':
+        if(isset($_GET['id_product']) && ($_GET['id_product'] > 0)) {
+            $idProduct = $_GET['id_product'];
+            $productInfo = selectIdproduct($idProduct);
+        
+            // Lấy danh sách biến thể của sản phẩm cụ thể theo id
+            $listVariations = getVariationsByProductId($idProduct);
+        } else {
+            $idProduct = "";
+            $productInfo = "";
+            $listVariations = array();
+        }
+
+        if(isset($_POST['updatePro'])) {
+            $id = $_POST['id'];
+            $variant_id = $_POST['variant_id'];
+            $namePro = $_POST['namePro'];
+            $pricePro = $_POST['pricePro'];
+            $sale = $_POST['sale'];
+            $selectCategory = $_POST['selectCategory'];
+            $color = $_POST['color'];
+            $size = $_POST['size'];
+            $amount = $_POST['amount'];
+
+            $filename = "";
+
+            if($_FILES['image']['name']) {
+                $filename =  time().basename($_FILES['image']['name']);
+                $target = "../public/upload/image/product/".$filename;
+                move_uploaded_file($_FILES['image']['tmp_name'], $target);
+            }
+
+            $product_id = updateProduct($id,$namePro,$pricePro,$sale,$filename,$selectCategory);
+
+            for($i = 0; $i < count($color); $i++) {
+                updateVation($variant_id[$i],$color[$i],$size[$i],$amount[$i]);
+            }
+
+            header('location: index.php?action=listProduct');
+        }
+
         include 'product/editProduct.php';
         break;
 
@@ -119,6 +164,7 @@ switch ($action) {
             updateCategory($id,$namecate);
             header('location: index.php?action=listCategory');  
         }
+
         include 'category/editCategory.php';
         break;
 
@@ -126,29 +172,21 @@ switch ($action) {
         $user = getDataBy('users', [
             'user_id' => $_GET['user_id']
         ]);
-        $errValidate = [];
-        $err = false;
+
         if (isset($_POST['firth_name'])) {
-            foreach ($_POST as $key => $value) {
-                if (empty($value)) {
-                    $errValidate[$key] = "không được để trống";
-                    $err = true;
-                }
-            }
-            if (!$err) {
-                $path = "../public/upload/image/user/";
-                move_uploaded_file($_FILES['user_image']['tmp_name'], $path . $_FILES['user_image']['name']);
-                updateData('users', [
-                    'firth_name' => $_POST['firth_name'],
-                    'last_name' => $_POST['last_name'],
-                    'user_image' => $path . $_FILES['user_image']['name'] | $user['user_image'],
-                    'email' => $_POST['email'],
-                    'password' => $_POST['password'],
-                    'phone' => $_POST['phone'],
-                ], "user_id=" . $_GET['user_id']);
-                header("location: index.php?action=listCustomer");
-            }
+            $path = "../public/upload/image/user/";
+            move_uploaded_file($_FILES['user_image']['tmp_name'], $path . $_FILES['user_image']['name']);
+            updateData('users', [
+                'firth_name' => $_POST['firth_name'],
+                'last_name' => $_POST['last_name'],
+                'user_image' => $path . $_FILES['user_image']['name'] | $user['user_image'],
+                'email' => $_POST['email'],
+                'password' => $_POST['password'],
+                'phone' => $_POST['phone'],
+            ], "user_id=" . $_GET['user_id']);
+            header("location: index.php?action=listCustomer");
         }
+        
         include 'customer/editCustomer.php';
         break;
 
@@ -168,9 +206,18 @@ switch ($action) {
             $categoryId = "";
         }
 
+    case 'deleteProduct':
+        if(isset($_GET['id_product']) && ($_GET['id_product'] > 0)) {
+            $productId = $_GET['id_product'];
+            deleteProduct($productId);
+            header('location: index.php?action=listProduct'); 
+        } else {
+            $productId = "";
+        }
+        
 
 
-        //other
+    //other
     case 'order_detail':
 
 
