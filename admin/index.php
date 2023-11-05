@@ -166,9 +166,15 @@ switch ($action) {
                 $oldImage = $oldImage.",";
             } 
 
-            if($filename == "" && $oldImage !== "") {
-                $oldImage = $oldImage;
-            }
+            // if($filename == "" && $oldImage !== "") {
+            //     $oldImage = $oldImage;
+            // }
+
+            // if($filename !== "") {
+            //     $oldImage = $oldImage.",";
+            // } else {
+            //     $oldImage = $oldImage;
+            // }
         
 
             $product_id = updateProduct($id,$namePro,$pricePro,$sale,$filename ? $oldImage.$filename : $oldImage,$selectCategory);

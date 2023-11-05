@@ -60,7 +60,7 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Ảnh</label>
-                        <input type="file" class="upFile form-control" name="image[]" multiple multiple accept="image/*">
+                        <input type="file" id="imageInput" class="upFile form-control" name="image[]" multiple multiple accept="image/*">
                         <!--  -->
                         <input type="hidden" width="1000px" id="oldImage" name="oldImage" value="<?= $productInfo['images'] ?>">
                         <!--  -->

@@ -14,8 +14,10 @@
     <link rel="stylesheet" href="../public/css/admin.css">
     <link rel="stylesheet" href="../public/css/adminDetail.css">
 
+    <link rel="shortcut icon" href="../img1/iconLogo.png" type="image/x-icon">
 
-    <title>AdminHub</title>
+
+    <title>Admin</title>
 </head>
 <body>
 

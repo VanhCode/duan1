@@ -1,4 +1,6 @@
 <?php
+    include "./models/pdo.php";
+
     if (isset($_GET['url'])) {
         $url = $_GET['url'];
 
@@ -168,7 +170,7 @@
                         echo '<script>alert("Lỗi.");</script>';
                     }
                 }   
-                
+
                 include "views/account/dangky.php";
                 break;
             case "signup":
