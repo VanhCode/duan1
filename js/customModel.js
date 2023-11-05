@@ -55,3 +55,25 @@ function sendUser() {
     }
 }
 
+
+var blurinpS = document.querySelectorAll('.blurinp');
+var errorS = document.querySelectorAll('.error');
+
+blurinpS.forEach(function(blurinp) {
+    blurinp.addEventListener('blur', function(e) {
+        if(blurinp.value == "") {
+            let err = blurinp.nextElementSibling.innerHTML = "Vui lòng nhập trường này"
+        } else {
+            let err = blurinp.nextElementSibling.innerHTML = ""
+        }
+    })
+
+    blurinp.addEventListener('keyup', function(e) {
+        if(blurinp.value == "") {
+            let err = blurinp.nextElementSibling.innerHTML = "Vui lòng nhập trường này"
+        } else {
+            let err = blurinp.nextElementSibling.innerHTML = ""
+        }
+    })
+
+})

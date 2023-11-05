@@ -66,9 +66,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($users as $user): ?>
+                    <?php foreach ($users as $keyuser => $user): ?>
                         <tr class="tr_td">
-                            <td>1</td>
+                            <td><?= $keyuser + 1 ?></td>
                             <td>
                                 <div class="td_user_img">
                                     <img src="<?= $user['user_image'] ?>">
@@ -80,30 +80,30 @@
                             <td><?=$user['password']?></td>
                             <td>
                                 <a class="btn btn-outline-success btn-sm" href="index.php?action=editCustomer&user_id=<?=$user['user_id']?>">Sửa</a>
-                                <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-danger btn-sm" href="index.php?action=deleteCustomer&user_id=<?=$user['user_id']?>">Xoá</a>
+                                <a data-bs-toggle="modal" data-bs-target="#exampleModal<?=$user['user_id']?>" class="btn btn-outline-danger btn-sm">Xoá</a>
                             </td>
                         </tr>
+                        <div class="modal fade" id="exampleModal<?=$user['user_id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Xóa tài khoản</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                <div class="modal-body">
+                                    Bạn có muốn xóa tài khoản: <?= $user['firth_name'] . ' ' . $user['last_name'] ?>
+                                </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                        <a class="btn btn-primary" href="index.php?action=deleteCustomer&user_id=<?=$user['user_id']?>">Xoá</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <?php endforeach; ?>
 
                     </tbody>
                 </table>
-            </div>
-        </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Xóa tài khoản</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Bạn có muốn xóa tài khoản: <?= $user['last_name'] ?>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                    <a class="btn btn-primary" href="index.php?action=deleteCustomer&user_id=<?=$user['user_id']?>">Xoá</a>
-                </div>
-                </div>
             </div>
         </div>
     </main>
