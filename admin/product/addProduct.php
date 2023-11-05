@@ -57,7 +57,10 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Ảnh</label>
-                        <input type="file" class="upFile form-control" name="image[]" multiple accept="image/*">
+                        <input type="file" id="imageInput" class="upFile form-control" name="image[]" multiple accept="image/*">
+                    </div>
+                    <div class="product__images">
+
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Giá sản phẩm</label>
@@ -102,7 +105,6 @@
     </main>
     <!-- MAIN -->
 </section>
-<script src="../public/js/Admin_pro.js">
-
-</script>
+<script src="../public/js/Admin_pro.js"></script>
+<script src="../public/js/script.js"></script>
 <!-- CONTENT -->

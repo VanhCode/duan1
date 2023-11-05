@@ -51,7 +51,7 @@
                     <i class="fa-brands fa-twitter"></i>
                 </div>
                 <div class="btn-span">
-                        <nav class="navTop">
+                        <!-- <nav class="navTop">
                             <ul class="userTop">
                                 <li class="boxUser">
                                     <a href="index.php?url=announcement" class="nomation"><i class="fa-solid fa-bell"></i> Thông báo</a>
@@ -82,8 +82,8 @@
                                     </ul>
                                 </li>
                             </ul>
-                        </nav>
-                        <!-- <li class="boxUser">
+                        </nav> -->
+                        <li class="boxUser">
                             <a href="thongBao.php" class="nomation"><i class="fa-solid fa-bell"></i> Thông báo</a>
                         </li>
                         <li>
@@ -103,7 +103,7 @@
                         </li>
                         <a class="signup nomation" href="index.php?url=login"><i class="fa fa-user-edit"></i> Đăng ký</a>
                         <div class="line-top"></div>
-                        <a class="login nomation" href="index.php?url=signup"><i class="fa fa-sign-in"></i> Đăng nhập</a> -->
+                        <a class="login nomation" href="index.php?url=signup"><i class="fa fa-sign-in"></i> Đăng nhập</a>
                 </div>
             </div>
             <div class="header-nav">

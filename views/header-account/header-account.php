@@ -19,7 +19,7 @@
             }
         ?>
     </title>
-    <link rel="shortcut icon" href="../img1/iconLogo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./img1/iconLogo.png" type="image/x-icon">
     <?php
         if($_GET['url'] == 'login') {
             ?>

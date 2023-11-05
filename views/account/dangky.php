@@ -4,7 +4,7 @@
     <div class="bg__img container">
         <div class="bg__box_content_form">
             <div class="Content__box__form"></div>
-            <form class="form" method="POST">
+            <form class="form" action="<?= $_SERVER['REQUEST_URI'] ?>" method="POST">
                 <div class="form__box_group_title_inputS">
                     <div class="group_content__title">
                         <div class="group_content__title_text">
@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <div>
-
+                        <?= isset($success) ? $success : "" ?>
                     </div>
                     <div class="group_inputS">
                         <div></div>

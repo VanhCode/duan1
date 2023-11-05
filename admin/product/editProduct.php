@@ -79,27 +79,7 @@
                                     }
                                 }
                             ?>
-
                         </div>
-
-                        <script>
-                            var oldImageElement = document.querySelector('#oldImage');
-                            var oldImage = oldImageElement.value.split(',');
-                            var boxDiv = document.querySelectorAll('.ab_ic');
-
-                            boxDiv.forEach(function(box, index) {
-                                var deleteButton = box.querySelector('.lb_lg');
-                                deleteButton.addEventListener('click', function() {
-                                    oldImage.splice(index, 1);
-                                    oldImageElement.value = oldImage.join(',');
-                                    console.log(oldImage);
-                                    this.parentElement.remove();
-                                });
-                            });
-                            
-
-                        </script>
-
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Giá sản phẩm</label>
@@ -167,7 +147,6 @@
     </main>
     <!-- MAIN -->
 </section>
-<script src="../public/js/Admin_pro.js">
-
-</script>
+<script src="../public/js/Admin_pro.js"></script>
+<script src="../public/js/script.js"></script>
 <!-- CONTENT -->
