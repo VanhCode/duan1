@@ -50,6 +50,11 @@
                     <i class='bx bx-search'></i>
                     <i class='bx bx-filter'></i>
                 </div>
+                <?php
+                    echo "<pre>";
+                    print_r($listProduct);
+                    echo "</pre>";
+                ?>
                 <div class="alert alert-primary add__btn__click">
                     <a class="btn btn-primary w100hz" href="index.php?action=addProduct">Thêm sản phẩm</a>
                 </div>

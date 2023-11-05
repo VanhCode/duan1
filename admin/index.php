@@ -55,12 +55,24 @@ switch ($action) {
             $amount = $_POST['amount'];
             
 
-            $filename =  time().basename($_FILES['image']['name']);
-            $target = "../public/upload/image/product/".$filename;
-            move_uploaded_file($_FILES['image']['tmp_name'], $target);
+            // $filename =  time().basename($_FILES['image']['name']);
+            // $target = "../public/upload/image/product/".$filename;
+            // move_uploaded_file($_FILES['image']['tmp_name'], $target);
 
+
+            $uploadedImages = array();
+
+            foreach ($_FILES['image']['tmp_name'] as $key => $tmp_name) {
+                $filename = time() . basename($_FILES['image']['name'][$key]);
+                $target = "../public/upload/image/product/" . $filename;
+
+                if (move_uploaded_file($tmp_name, $target)) {
+                    $uploadedImages[] = $filename;
+                }
+            }
 
             $product_id = addProduct($namePro,$pricePro,$sale,$filename,$selectCategory);
+
 
             for($i = 0; $i < count($color); $i++) {
                 addVation($product_id,$color[$i],$size[$i],$amount[$i]);

@@ -57,7 +57,7 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Ảnh</label>
-                        <input type="file" class="upFile form-control" name="image">
+                        <input type="file" class="upFile form-control" name="image[]" multiple accept="image/*">>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Giá sản phẩm</label>
