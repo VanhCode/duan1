@@ -36,7 +36,7 @@
             </a>
         </li>
         <li class="<?=$action=='listComment' ?'active':''?>">
-            <a href="index.php?action=listComment">
+            <a href="index.php?action=listComment_statistical">
                 <i class='bx bxs-comment'></i>
                 <span class="text">Quản lí bình luận</span>
             </a>

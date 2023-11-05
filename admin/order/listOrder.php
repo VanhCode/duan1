@@ -58,8 +58,8 @@
                         <th>Người đặt hàng</th>
                         <th>Tổng cộng</th>
                         <th>Ngày đặt hàng</th>
-                        <th>Trạng thái</th>
-                        <th>Hình thức</th>
+                        <th>Thanh toán</th>
+                        <th>Vận chuyển</th>
                         <th>Chi tiết</th>
                     </tr>
                     </thead>
@@ -74,8 +74,8 @@
                         </td>
                         <td>3.000.000</td>
                         <td>01-10-2021</td>
-                        <td><span class="status completed">Đang vận chuyển</span></td>
-                        <td><span class="status pending">Đã xem</span></td>
+                        <td><span class="status completed">Hoàn thành</span></td>
+                        <td><span class="status pending">Đang giao</span></td>
                         <td><a class="btn btn-success btn-sm" href="index.php?action=order_detail">Chi tiết</a></td>
                     </tr>
                     </tbody>

@@ -33,7 +33,12 @@
                     </li>
                     <li><i class='bx bx-chevron-right'></i></li>
                     <li>
-                        <a class="active" href="#">Danh sách tài khoản bình luận</a>
+                        <a href="">Danh sách thống kê bình luận</a>
+                    </li>
+                    <li><i class='bx bx-chevron-right'></i></li>
+
+                    <li>
+                        <a class="active" href="#">Danh sách bình luận</a>
                     </li>
                 </ul>
             </div>
@@ -55,11 +60,10 @@
                     <thead>
                     <tr class="tr_th">
                         <th>STT</th>
-                        <th>Người bình luận</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Ngày bình luận</th>
-                        <th>Tổng bình luận</th>
-                        <th>Chi tiết</th>
+                        <th>Người dùng</th>
+                        <th>Nội dung bình luận</th>
+                        <th>Tạo ngày</th>
+                        <th>Thao tác</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -71,11 +75,12 @@
                                 <span>Nguyễn Ngọc Duy</span>
                             </div>
                         </td>
-                        <td>Áo thun</td>
-                        <td>01-10-2021</td>
-                        <td><span class="status completed">10</span></td>
-                        <!-- <td><span class="status pending">Pending</span></td> -->
-                        <td><a class="btn btn-success btn-sm" href="index.php?action=order_detail">Chi tiết</a></td>
+                        <td>Áo này rẻ quá</td>
+                        <td>05/11/2023</td>
+                        <td>
+                            <a class="btn btn-outline-success btn-sm" href="index.php?action=editComment&comment_id=">Sửa</a>
+                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" href="index.php?action=deleteComment&comment_id=">Xoá</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

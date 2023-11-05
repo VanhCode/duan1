@@ -31,19 +31,26 @@ switch ($action) {
         include 'order/listOrder.php';
         break;
 
+    case 'listOrder_detail':
+        include 'order/listOrder_detail.php';
+        break;
+    case 'listComment_statistical':
+        include 'comment/listComment_statistical.php';
+        break;
+    case 'listComment':
+        include 'comment/listComment.php';
+        break;
+
     case 'listCustomer':
         $users = getAll('users');
         include 'customer/listCustomer.php';
         break;
 
-    case 'listComment':
-        include './comment/listComment.php';
-        break;
 
 
     //add
     case 'addProduct':
-        if(isset($_POST['addProduct'])) {
+        if (isset($_POST['addProduct'])) {
             $namePro = $_POST['namePro'];
             $image = $_FILES['image']['name'];
             $pricePro = $_POST['pricePro'];
@@ -52,15 +59,15 @@ switch ($action) {
             $color = $_POST['color'];
             $size = $_POST['size'];
             $amount = $_POST['amount'];
-        
+
             $conn = pdo_get_connection(); // Get the database connection
             if ($conn) {
                 $product_id = addProduct($conn, $namePro, $pricePro, $sale, $image, $selectCategory);
-        
-                for($i = 0; $i < count($color); $i++) {
+
+                for ($i = 0; $i < count($color); $i++) {
                     // Perform actions with $color
                 }
-        
+
                 echo "<script>alert('.$product_id.')</script>";
             }
         }
@@ -80,8 +87,8 @@ switch ($action) {
         break;
 
 
-    case 'addCustomer': 
-        if(isset($_POST['addUser'])) {
+    case 'addCustomer':
+        if (isset($_POST['addUser'])) {
             $path = "../public/upload/image/user/";
             move_uploaded_file($_FILES['user_image']['tmp_name'], $path . $_FILES['user_image']['name']);
             addData('users', [
@@ -105,7 +112,7 @@ switch ($action) {
 
 
     case 'editCategory':
-        if(isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
+        if (isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
             $categoryId = $_GET['category_id'];
             $succesEditCate = editCategory($categoryId);
         } else {
@@ -113,13 +120,16 @@ switch ($action) {
             $succesEditCate = "";
         }
 
-        if(isset($_POST['updateCate'])) {
+        if (isset($_POST['updateCate'])) {
             $id = $_POST['id'];
             $namecate = $_POST['danhmuc'];
-            updateCategory($id,$namecate);
-            header('location: index.php?action=listCategory');  
+            updateCategory($id, $namecate);
+            header('location: index.php?action=listCategory');
         }
         include 'category/editCategory.php';
+        break;
+    case 'editComment':
+        include './comment/editComment.php';
         break;
 
     case 'editCustomer':
@@ -160,17 +170,16 @@ switch ($action) {
 
     // Delete
     case 'deleteCategory':
-        if(isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
+        if (isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
             $categoryId = $_GET['category_id'];
             deleteCategory($categoryId);
-            header('location: index.php?action=listCategory'); 
+            header('location: index.php?action=listCategory');
         } else {
             $categoryId = "";
         }
 
 
-
-        //other
+    //other
     case 'order_detail':
 
 
