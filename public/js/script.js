@@ -1,9 +1,3 @@
-// var load = document.getElementById('imageInput')
-
-// if(load) {
-
-	
-// }
 document.getElementById('imageInput').addEventListener('change', function (event) {
 	const fileList = event.target.files;
 
@@ -27,6 +21,7 @@ document.getElementById('imageInput').addEventListener('change', function (event
 	}
 
 });
+
 
 var oldImageElement = document.querySelector('#oldImage');
 var oldImage = oldImageElement.value.split(',');

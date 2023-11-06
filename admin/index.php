@@ -182,6 +182,9 @@ switch ($action) {
 
             for($i = 0; $i < count($color); $i++) {
                 updateVation($variant_id[$i],$color[$i],$size[$i],$amount[$i]);
+                if(!$variant_id[$i]){
+                    addVation($id,$color[$i],$size[$i],$amount[$i]);
+                }
             }
 
             header('location: index.php?action=listProduct');
