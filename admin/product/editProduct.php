@@ -113,12 +113,13 @@
                             if (!empty($listVariations)) {
                                 ?>
                                     <div class="variations">
-                                        <?php 
+                                        <?php
+                                            $count=0;
                                             foreach ($listVariations as $variant) {
+                                                $count++;
                                                 ?>
+                                                <input type="hidden" name="variant_id[]" value="<?= $variant['variant_id'] ?>">
                                                 <div class="variant">
-
-                                                    <input type="hidden" name="variant_id[]" value="<?= $variant['variant_id'] ?>">
 
                                                     <label for="" class="form-label">Màu sắc</label>
                                                     <input class="add_vari" type="text" value="<?= $variant['color'] ?>" name="color[]">
@@ -126,8 +127,13 @@
                                                     <input class="add_vari" type="text" value="<?= $variant['size'] ?>" name="size[]">
                                                     <label for="" class="form-label mg_lr">Số lượng</label>
                                                     <input class="add_vari" type="text" value="<?= $variant['amount'] ?>" name="amount[]">
+                                                    <?php
+                                                    if ($count>=2){
+                                                        echo '<input type="button" value="xoá" onclick="removeElement(this)" class="btn btn-outline-danger btn-sm" style="margin-left: 8px;">';
+                                                    }
+                                                    ?>
                                                 </div>
-                                                <?php 
+                                                <?php
                                             }
                                         ?>
                                     </div>

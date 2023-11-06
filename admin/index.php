@@ -11,7 +11,6 @@ include 'partitions/header.php';
 include 'partitions/sideBar.php';
 
 
-
 $listCategory = listDanhmuc();
 
 switch ($action) {
@@ -26,7 +25,7 @@ switch ($action) {
         break;
 
     case 'listCategory':
-        
+
         include 'category/listCategory.php';
         break;
 
@@ -48,7 +47,6 @@ switch ($action) {
         $users = getAll('users');
         include 'customer/listCustomer.php';
         break;
-
 
 
     //add
@@ -74,14 +72,14 @@ switch ($action) {
                 }
             }
 
-            $filename = implode(",",$uploadedImages);
+            $filename = implode(",", $uploadedImages);
 
-            $product_id = addProduct($namePro,$pricePro,$sale,$filename,$selectCategory);
+            $product_id = addProduct($namePro, $pricePro, $sale, $filename, $selectCategory);
 
-            for($i = 0; $i < count($color); $i++) {
-                addVation($product_id,$color[$i],$size[$i],$amount[$i]);
+            for ($i = 0; $i < count($color); $i++) {
+                addVation($product_id, $color[$i], $size[$i], $amount[$i]);
             }
-            
+
             header('location: index.php?action=listProduct');
         }
         include 'product/addProduct.php';
@@ -120,7 +118,7 @@ switch ($action) {
 
     //edit
     case 'editProduct':
-        if(isset($_GET['id_product']) && ($_GET['id_product'] > 0)) {
+        if (isset($_GET['id_product']) && ($_GET['id_product'] > 0)) {
             $idProduct = $_GET['id_product'];
 
             // Lấy ra 1 sản phẩm edit theo id
@@ -134,7 +132,7 @@ switch ($action) {
             $listVariations = array();
         }
 
-        if(isset($_POST['updatePro'])) {
+        if (isset($_POST['updatePro'])) {
             $id = $_POST['id'];
             $variant_id = $_POST['variant_id'];
             $namePro = $_POST['namePro'];
@@ -146,10 +144,10 @@ switch ($action) {
             $amount = $_POST['amount'];
             $oldImage = $_POST['oldImage'];
 
-            if($_FILES['image']['name']) {
+            if ($_FILES['image']['name']) {
                 $uploadedImages = array();
 
-                foreach ($_FILES['image']['tmp_name'] as $key => $tmp_name) {     
+                foreach ($_FILES['image']['tmp_name'] as $key => $tmp_name) {
                     $filename = time() . basename($_FILES['image']['name'][$key]);
                     $target = "../public/upload/image/product/" . $filename;
 
@@ -158,33 +156,35 @@ switch ($action) {
                     }
                 }
 
-                $filename = implode(",",$uploadedImages);
-                
+                $filename = implode(",", $uploadedImages);
+
             }
 
-            if($oldImage !== "" && $filename !== "") {
-                $oldImage = $oldImage.",";
-            } 
-
-            // if($filename == "" && $oldImage !== "") {
-            //     $oldImage = $oldImage;
-            // }
-
-            // if($filename !== "") {
-            //     $oldImage = $oldImage.",";
-            // } else {
-            //     $oldImage = $oldImage;
-            // }
-        
-
-            $product_id = updateProduct($id,$namePro,$pricePro,$sale,$filename ? $oldImage.$filename : $oldImage,$selectCategory);
+            if ($oldImage !== "" && $filename !== "") {
+                $oldImage = $oldImage . ",";
+            }
 
 
-            for($i = 0; $i < count($color); $i++) {
-                updateVation($variant_id[$i],$color[$i],$size[$i],$amount[$i]);
-                if(!$variant_id[$i]){
-                    addVation($id,$color[$i],$size[$i],$amount[$i]);
+
+
+            $product_id = updateProduct($id, $namePro, $pricePro, $sale, $filename ? $oldImage . $filename : $oldImage, $selectCategory);
+
+            $length=9999;
+            for ($i = 0; $i < $length; $i++) {
+                //nếu cả 2 tồn tại
+                if (isset($variant_id[$i]) && isset($color[$i])) {
+                    updateVation($variant_id[$i], $color[$i], $size[$i], $amount[$i]);
                 }
+                if (!isset($variant_id[$i]) && isset($color[$i])) {
+                    addVation($id, $color[$i], $size[$i], $amount[$i]);
+                    $length=count($color);
+                }
+                if(!isset($color[$i])&&isset($variant_id[$i])) {
+                    deleteVation($variant_id[$i]);
+                    $length=count($variant_id);
+                }
+
+
             }
 
             header('location: index.php?action=listProduct');
@@ -209,7 +209,7 @@ switch ($action) {
             updateCategory($id, $namecate);
             header('location: index.php?action=listCategory');
         }
-        
+
         include 'category/editCategory.php';
         break;
     case 'editComment':
@@ -245,11 +245,10 @@ switch ($action) {
         break;
 
 
-
     case 'deleteProduct':
-        if(isset($_GET['id_product']) && ($_GET['id_product'] > 0)) {
+        if (isset($_GET['id_product']) && ($_GET['id_product'] > 0)) {
             $productId = $_GET['id_product'];
-            
+
             $selectImage = selectIdproduct($productId);
 
             $selectImage = explode(",", $selectImage['images']);
@@ -257,14 +256,14 @@ switch ($action) {
             // echo "<pre>";
             // print_r($selectImage);
 
-            
-            foreach($selectImage as $valueTarget) {
+
+            foreach ($selectImage as $valueTarget) {
                 $target = "../public/upload/image/product/" . $valueTarget;
                 unlink($target);
             }
 
             deleteProduct($productId);
-            header('location: index.php?action=listProduct'); 
+            header('location: index.php?action=listProduct');
         } else {
             $productId = "";
         }

@@ -9,4 +9,8 @@
         $sql = "UPDATE variants SET color = '".$color."', size = '".$size."', amount = '".$amount."' WHERE variant_id = '".$id."'";
         pdo_execute($sql);
     }
+    function deleteVation($id){
+        $sql="DELETE FROM variants WHERE variant_id=".$id;
+        pdo_execute($sql);
+    }
 ?>
