@@ -11,7 +11,7 @@
                 <span class="text">Thống kê trang web</span>
             </a>
         </li>
-        <li class="<?=$action=='listProduct'|| $action=='addProduct' ?'active':''?>">
+        <li class="<?=$action=='listProduct'|| $action=='addProduct' || $action=='editProduct' ?'active':''?>">
             <a href="index.php?action=listProduct">
                 <i class='bx bxl-product-hunt'></i>
                 <span class="text">Quản lí sản phẩm</span>

@@ -90,14 +90,16 @@
 
 </body>
 <?php
-    if($_GET['url'] == 'signup') {
-        ?>
-            <script src="./js/dangky.js"></script>
-        <?php
-    } else {
-        ?>
-            <script src="./js/dangnhap.js"></script>
-        <?php
+    if(isset($_GET['url'])) {
+        if($_GET['url'] == 'signup') {
+            ?>
+                <script src="./js/dangky.js"></script>
+            <?php
+        } else {
+            ?>
+                <script src="./js/dangnhap.js"></script>
+            <?php
+        }
     }
 ?>
 <script src="./js/trangchu2.js"></script>

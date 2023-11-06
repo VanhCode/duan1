@@ -52,7 +52,7 @@
                 </div>
                 <div class="btn-span">
                         <?php
-                            if(isset($_SESSION['vanhstore'])) {
+                            if($user) {
                                 ?>
                                     <nav class="navTop">
                                         <ul class="userTop">
@@ -75,12 +75,12 @@
                                                 <div class="line-top"></div>
                                             </li>
                                             <li class="boxUser">
-                                                <a href="index.php?url=user" class="userLog nomation"><i class="fa-solid fa-user"></i> Vanh</a>
+                                                <a href="index.php?url=user" class="userLog nomation"><i class="fa-solid fa-user"></i> <?= $user ? $user['firth_name']." ".$user['last_name'] : "" ?></a>
                                                 <ul class="userChil">
                                                     <li><a href="index.php?url=user">Tài khoản của tôi</a></li>
                                                     <li><a href="index.php?url=user">Hồ sơ</a></li>
                                                     <li>
-                                                        <a href="index.php?url=logout" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất hay không?')">Đăng xuất</a>
+                                                        <a href="index.php?url=logout">Đăng xuất</a>
                                                     </li>
                                                 </ul>
                                             </li>
