@@ -24,7 +24,7 @@ $(document).ready(function () {
         
         $.ajax({
             type: "POST",
-            url: "../php/ajaxdangky.php",
+            url: "./php/ajaxdangky.php",
             data: { firstname: inputFirstname },
             success: function (responseFirstname) {
 
@@ -47,7 +47,7 @@ $(document).ready(function () {
         
         $.ajax({
             type: "POST",
-            url: "../php/ajaxdangky.php",
+            url: "./php/ajaxdangky.php",
             data: { lastname: inputLastname },
             success: function (responseLirstname) {
 
@@ -71,7 +71,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "../php/ajaxdangky.php",
+            url: "./php/ajaxdangky.php",
             data: { phone: inputPhone },
             success: function (responsePhone) {
 
@@ -94,7 +94,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "../php/ajaxdangky.php",
+            url: "./php/ajaxdangky.php",
             data: { password: inputPassword },
             success: function (responsePassword) {
 
@@ -125,7 +125,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "../php/ajaxdangky.php",
+            url: "./php/ajaxdangky.php",
             data: { date: inputDate },
             success: function (responseDate) {
                 if (responseDate.trim() !== "") {

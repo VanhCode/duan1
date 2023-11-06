@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div class="XLzpXt">
-                        <div class="Oug9xv Z8OMtU">Bạn đã có tài khoản? <a class="wzgwUg" href="index.php?url=signup">Đăng nhập</a>
+                        <div class="Oug9xv Z8OMtU">Bạn đã có tài khoản? <a class="wzgwUg" href="index.php?url=login">Đăng nhập</a>
                         </div>
                     </div>
                 </div>

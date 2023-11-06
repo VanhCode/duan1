@@ -1,200 +1,148 @@
 <?php
+    session_start();
     include "./models/pdo.php";
+    include "./models/userModel/accountModel.php";
 
-    if (isset($_GET['url'])) {
+    
+    if(isset($_GET['url']) && $_GET['url'] != "") {
         $url = $_GET['url'];
-
         if ($url == "login" || $url == "signup") {
-            include "views/header-account/header-account.php";
-        } else if ($url == "gio-hang") {
-            include "views/header-cart/headerCart.php";
-        } else if ($url == "thanh-toan") {
-            include "views/header-thanhtoan/header-thanhtoan.php";
-        } else {
-            include "views/viewblock/header.php";
-        }
+                include "views/header-account/header-account.php";
+            } else if ($url == "gio-hang") {
+                include "views/header-cart/headerCart.php";
+            } else if ($url == "thanh-toan") {
+                include "views/header-thanhtoan/header-thanhtoan.php";
+            } else {
+                include "views/viewblock/header.php";
+            }
 
+            switch ($url) {
+                case "home":
+                    include "views/home.php";
+                    break;
+                case "san-pham":
+                    include "views/sanpham.php";
+                    break;
+                case "danh-muc":
+                    include "views/danhmuc.php";
+                    break;
+                case "user":
+                    include "views/user/user.php";
+                    break;
+                case "login":
+                    $isCheck = true;
+                    $phoneErr = $success = "";
+                    $phone = $password = "";
 
-        switch ($url) {
-            case "home":
-                include "views/home.php";
-                break;
-            case "san-pham":
-                include "views/sanpham.php";
-                break;
-            case "danh-muc":
-                include "views/danhmuc.php";
-                break;
-            case "user":
-                include "views/user/user.php";
-                break;
-            case "login":
-                $isCheck = true;
-                $phoneErr = $success = "";
-
-                if(isset($_POST['firstname'])) {
-                    $firstname = isset($_POST['firstname']) ? $_POST['firstname'] : "";
-                    $firstnameErr = "";
-            
-                    if (empty($firstname)) {
-                        $isCheck = false;
-                        $firstnameErr = "Vui lòng điền vào mục này.";
-                    }
-                
-                    if (!empty($firstnameErr)) {
-                        echo $firstnameErr;
-                    }
-                }
-            
-                if(isset($_POST['lastname'])) {
-                    $lastname = isset($_POST['lastname']) ? $_POST['lastname'] : "";
-                    $lastnameErr = "";
-            
-                    if (empty($lastname)) {
-                        $isCheck = false;
-                        $lastnameErr = "Vui lòng điền vào mục này.";
-                    }
-                
-                    if (!empty($lastnameErr)) {
-                        echo $lastnameErr;
-                    }
-                }
-            
-                if(isset($_POST['phone'])) {
-                    $phone = $_POST['phone'];
-                    $phoneErr = "";
-                    
-                    if(empty($phone)) {
-                        $isCheck = false;
-                        $phoneErr = "Vui lòng điền vào mục này.";
-                    } else {
-                        if (preg_match('/^(03|08|09|06)\d{8}$/', $phone)) {
-                            
-                        } else if (preg_match('/^[a-zA-Z0-9._%+-]+@gmail\.com$/', $phone)) {
-                            
-                        } else {
-                            $isCheck = false;
-                            $phoneErr = "Số điện thoại hoặc email không hợp lệ.";
-                        }
-                    }
-            
-                    $query = "SELECT * FROM login WHERE email_phone = :email_phone";
-                    $state = $db->prepare($query);
-                    $data = [
-                        ':email_phone' => $phone,
-                    ];
-                    $result = $state->execute($data);
-            
-                    if ($state->rowCount() > 0) {
-                        $isCheck = false;
-                        $phoneErr = "Số điện thoại hoặc email này đã tồn tại.";
-                    }
-            
-                    if (!empty($phoneErr)) {
-                        $isCheck = false;
-                        echo $phoneErr;
-                    }
-                }
-            
-                if(isset($_POST['password'])) {
-                    $password = isset($_POST['password']) ? $_POST['password'] : "";
-                    $passwordErr = "";
-            
-                    if(empty($password)) {
-                        $isCheck = false;
-                        $passwordErr = "Vui lòng điền vào mục này.";
-                    } else {
-                        if (strlen($password) < 6) {
-                            $isCheck = false;
-                            $passwordErr = "Mật khẩu mới phải lớn hơn 6 kí tự.";
-                        }
-                    }
-                
-                    if (!empty($passwordErr)) {
-                        $isCheck = false;
-                        echo $passwordErr;
-                    }
-                }
-            
-                if(isset($_POST['date'])) {
-                    $date = isset($_POST['date']) ? $_POST['date'] : "";
-                    $dateErr = "";
-            
-                    if (empty($date)) {
-                        $isCheck = false;
-                        $dateErr = "Vui lòng nhập ngày sinh.";
-                    }
-                
-                    if (!empty($dateErr)) {
-                        $isCheck = false;
-                        echo $dateErr;
-                    }
-                }
-            
-                if(isset($_POST['submitClick'])) {
-                    if($isCheck) {
-                        $firstname = $_POST['firstname'];
-                        $lastname = $_POST['lastname'];
+                    if (isset($_POST['submitClick'])) {
                         $phone = $_POST['phone'];
                         $password = $_POST['password'];
-                        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                        $date = $_POST['date'];
-                        $gender = $_POST['gender'];
-            
-                        $query = "INSERT INTO `login`(`firstname`, `lastname`,`email_phone`, `password`, `gender`, `date`) VALUES (:firstname,:lastname,:email_phone,:password,:gender,:date)";
-                        $state = $db->prepare($query);
-                        $data = [
-                            ':firstname' => $firstname,
-                            ':lastname' => $lastname,
-                            ':email_phone' => $phone,
-                            ':password' => $hashed_password,
-                            ':gender' => $gender,
-                            ':date' => $date
-                        ];
-                        $result = $state->execute($data);
-                        if($result) {
-                            $success = '
-                                <div style="display:flex;" class="group_content__succesS">
-                                    <div class="group_content__Animation__success__icon">
-                                        <i class="fa-regular fa-circle-check check__squa"></i>
-                                    </div>
-                                    <div class="group_content__Animation__success">
-                                        Đăng ký thành công
-                                    </div>
-                                </div>
-                            ';
-                        } else {
-                            echo '<script>alert("Lỗi truy vấn cơ sở dữ liệu.");</script>';
-                        } 
-                    } else {
-                        echo '<script>alert("Lỗi.");</script>';
+                    
+                        if ($isCheck) {
+
+                            $result = selectAllAccount($phone);
+                            
+                            if (!$result) {
+                                
+                                $row = selectCheck($phone);
+
+                                if($row) {
+                                    $hashed_password = $row['password'];
+                
+                                    if (password_verify($password, $hashed_password)) {
+                                        $_SESSION['vanhstore'] = $row['firth_name'] . " " . $row['last_name'];
+                                        header('location: index.php');
+                                        exit();
+                                    } else {
+                                        $success = '
+                                            <div style="display:flex;" class="group_content__succesS">
+                                                <div class="group_content__Animation__success__icon">
+                                                    <i class="fa-regular fa-circle-xmark"></i>
+                                                </div>
+                                                <div class="group_content__Animation__success">
+                                                    Tên tài khoản của bạn hoặc Mật khẩu không đúng, vui lòng thử lại
+                                                </div>
+                                            </div>
+                                        ';
+                                    }
+                                } else {
+                                    $success = '
+                                        <div style="display:flex;" class="group_content__succesS">
+                                            <div class="group_content__Animation__success__icon2">
+                                                <i class="fa-regular fa-circle-xmark"></i>
+                                            </div>
+                                            <div class="group_content__Animation__success">
+                                                Tài khoản không tồn tại
+                                            </div>
+                                        </div>
+                                    ';
+                                }
+                            } else {
+                                echo '<script>alert("Lỗi truy vấn cơ sở dữ liệu.");</script>';
+                            }
+                        }
                     }
-                }   
+                    include "views/account/dangnhap.php";
+                    break;
+                case "signup":
+                    $isCheck = true;
+                    $phoneErr = $success = "";
+                    if(isset($_POST['submitClick'])) {
+                        if($isCheck) {
+                            $firstname = $_POST['firstname'];
+                            $lastname = $_POST['lastname'];
+                            $phone = $_POST['phone'];
+                            $password = $_POST['password'];
+                            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                            $date = $_POST['date'];
+                            $gender = $_POST['gender'];
+                
+                            $resultInsert = addAccount($firstname,$lastname,$phone,$hashed_password,$phone,$date,$gender);
+                
+                            if(!$resultInsert) {
+                                $success = '
+                                    <div style="display:flex;" class="group_content__succesS">
+                                        <div class="group_content__Animation__success__icon">
+                                            <i class="fa-regular fa-circle-check check__squa"></i>
+                                        </div>
+                                        <div class="group_content__Animation__success">
+                                            Đăng ký thành công
+                                        </div>
+                                    </div>
+                                ';
+                            } else {
+                                echo '<script>alert("Lỗi truy vấn cơ sở dữ liệu.");</script>';
+                            } 
+                        } else {
+                            echo '<script>alert("Lỗi.");</script>';
+                        }
+                    }  
+                    include "views/account/dangky.php";
+                    break;
+                case "logout":
+                    if(isset($_SESSION['vanhstore'])) {
+                        unset($_SESSION['vanhstore']);
+                    }
+                    header('location:index.php');
+                    break;
+                case "chi-tiet-sanpham":
+                    include "views/chitietsp.php";
+                    break;
+                case "gio-hang":
+                    include "views/giohang.php";
+                    break;
+                case "thanh-toan":
+                    include "views/thanhtoan.php";
+                    break;
+                default:
+                    include "views/404.php";
+            }
 
-                include "views/account/dangky.php";
-                break;
-            case "signup":
-                include "views/account/dangnhap.php";
-                break;
-            case "chi-tiet-sanpham":
-                include "views/chitietsp.php";
-                break;
-            case "gio-hang":
-                include "views/giohang.php";
-                break;
-            case "thanh-toan":
-                include "views/thanhtoan.php";
-                break;
-            default:
-                include "views/404.php";
-        }
-
-        include "views/viewblock/footer.php";
-
-        
+            include "views/viewblock/footer.php";
     } else {
-        include "views/viewblock/header.php";
-        include "views/home.php";
-        include "views/viewblock/footer.php";
+            include "views/viewblock/header.php";
+            include "views/home.php";
+            include "views/viewblock/footer.php";
     }
+
 ?>

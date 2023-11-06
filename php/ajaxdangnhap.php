@@ -1,13 +1,7 @@
 <?php
-    session_start();
-
-    if(isset($_SESSION['vanhstore'])) {
-        header("Location: ../index.php");
-        exit();
-    }
-
-    require_once "../connect/connect.php";
-
+    include "../models/pdo.php";
+    include "../models/userModel/accountModel.php";
+    
     $isCheck = true;
     $phoneErr = $success = "";
     $phone = $password = "";
