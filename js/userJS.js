@@ -1,66 +1,66 @@
-const stickyLinks = document.querySelectorAll('.click_text_sticky');
-const addActiveLinks = document.querySelectorAll('.add_atc_cl');
+// const stickyLinks = document.querySelectorAll('.click_text_sticky');
+// const addActiveLinks = document.querySelectorAll('.add_atc_cl');
 
 
-function handleStickyLinkClick(clickedLink) {
-    // addActiveLinks.forEach((link) => link.classList.remove('add-active'));
-    clickedLink.classList.remove('add-active');
-    localStorage.setItem('addActiveLink', clickedLink.getAttribute('data-target'));
+// function handleStickyLinkClick(clickedLink) {
+//     // addActiveLinks.forEach((link) => link.classList.remove('add-active'));
+//     clickedLink.classList.remove('add-active');
+//     localStorage.setItem('addActiveLink', clickedLink.getAttribute('data-target'));
 
-    stickyLinks.forEach((link) => link.classList.remove('sticky'));
-    clickedLink.classList.add('sticky');
-    localStorage.setItem('stickyLink', clickedLink.getAttribute('href'));
-}
+//     stickyLinks.forEach((link) => link.classList.remove('sticky'));
+//     clickedLink.classList.add('sticky');
+//     localStorage.setItem('stickyLink', clickedLink.getAttribute('href'));
+// }
 
-if (localStorage.getItem('stickyLink') !== null) {
-    const savedStickyLink = localStorage.getItem('stickyLink');
+// if (localStorage.getItem('stickyLink') !== null) {
+//     const savedStickyLink = localStorage.getItem('stickyLink');
     
 
-    const selectedLink = document.querySelector(`.click_text_sticky[href="${savedStickyLink}"]`);
+//     const selectedLink = document.querySelector(`.click_text_sticky[href="${savedStickyLink}"]`);
     
-    if (selectedLink) {
-        selectedLink.classList.add('sticky');
-    }
-}
+//     if (selectedLink) {
+//         selectedLink.classList.add('sticky');
+//     }
+// }
 
-stickyLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-        handleStickyLinkClick(link);
-    });
-});
-
-
+// stickyLinks.forEach((link) => {
+//     link.addEventListener('click', () => {
+//         handleStickyLinkClick(link);
+//     });
+// });
 
 
-function handleAddActiveLinkClick(clickedLink) {
 
-    clickedLink.classList.remove('sticky');
-    localStorage.setItem('stickyLink', clickedLink.getAttribute('href'));
+
+// function handleAddActiveLinkClick(clickedLink) {
+
+//     clickedLink.classList.remove('sticky');
+//     localStorage.setItem('stickyLink', clickedLink.getAttribute('href'));
   
-    addActiveLinks.forEach((link) => link.classList.remove('add-active'));
-    clickedLink.classList.add('add-active');
+//     addActiveLinks.forEach((link) => link.classList.remove('add-active'));
+//     clickedLink.classList.add('add-active');
     
-    localStorage.setItem('addActiveLink', clickedLink.getAttribute('data-target'));
-}
+//     localStorage.setItem('addActiveLink', clickedLink.getAttribute('data-target'));
+// }
 
 
-addActiveLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-        handleAddActiveLinkClick(link);
-    });
-});
+// addActiveLinks.forEach((link) => {
+//     link.addEventListener('click', () => {
+//         handleAddActiveLinkClick(link);
+//     });
+// });
 
 
-if (localStorage.getItem('addActiveLink') !== null) {
-    const savedAddActiveLink = localStorage.getItem('addActiveLink');
+// if (localStorage.getItem('addActiveLink') !== null) {
+//     const savedAddActiveLink = localStorage.getItem('addActiveLink');
 
-    // Tìm thẻ a tương ứng và thêm class 'add-active'
-    const selectedAddActiveLink = document.querySelector(`.add_atc_cl[data-target="${savedAddActiveLink}"]`);
+//     // Tìm thẻ a tương ứng và thêm class 'add-active'
+//     const selectedAddActiveLink = document.querySelector(`.add_atc_cl[data-target="${savedAddActiveLink}"]`);
 
-    if (selectedAddActiveLink) {
-        selectedAddActiveLink.classList.add('add-active');
-    }
-}
+//     if (selectedAddActiveLink) {
+//         selectedAddActiveLink.classList.add('add-active');
+//     }
+// }
 
 
 
@@ -103,39 +103,38 @@ if (localStorage.getItem('addActiveLink') !== null) {
 
 
 
-const anchorElements = document.querySelectorAll('li.abill a');
-let selectedTab = localStorage.getItem('selectedTab');
+// const anchorElements = document.querySelectorAll('li.abill a');
+// let selectedTab = localStorage.getItem('selectedTab');
 
-anchorElements.forEach(anchorElement => {
-  anchorElement.addEventListener('click', function(event) {
-    event.preventDefault();
+// anchorElements.forEach(anchorElement => {
+//   anchorElement.addEventListener('click', function(event) {
+//     event.preventDefault();
 
-    const allLiElements = document.querySelectorAll('li.abill');
-    allLiElements.forEach(liElement => {
-      liElement.classList.remove('activeNav');
-    });
+//     const allLiElements = document.querySelectorAll('li.abill');
+//     allLiElements.forEach(liElement => {
+//       liElement.classList.remove('activeNav');
+//     });
 
-    const parentLiElement = this.parentElement;
-    parentLiElement.classList.add('activeNav');
-    selectedTab = this.getAttribute('href');
-    localStorage.setItem('selectedTab', selectedTab);
+//     const parentLiElement = this.parentElement;
+//     parentLiElement.classList.add('activeNav');
+//     selectedTab = this.getAttribute('href');
+//     localStorage.setItem('selectedTab', selectedTab);
 
-    // Chuyển đổi trang sau khi cập nhật lớp 'activeNav'
-    window.location.href = selectedTab;
-  });
+//     // Chuyển đổi trang sau khi cập nhật lớp 'activeNav'
+//     window.location.href = selectedTab;
+//   });
 
-  // Nếu tab được lưu trong local storage, thêm lớp 'activeNav'
-  if (selectedTab && anchorElement.getAttribute('href') === selectedTab) {
-    const parentLiElement = anchorElement.parentElement;
-    parentLiElement.classList.add('activeNav');
-  }
-});
+//   // Nếu tab được lưu trong local storage, thêm lớp 'activeNav'
+//   if (selectedTab && anchorElement.getAttribute('href') === selectedTab) {
+//     const parentLiElement = anchorElement.parentElement;
+//     parentLiElement.classList.add('activeNav');
+//   }
+// });
 
-// Mặc định, thêm lớp 'activeNav' cho tab đầu tiên
-if (!selectedTab) {
-  anchorElements[0].click();
-}
-
+// // Mặc định, thêm lớp 'activeNav' cho tab đầu tiên
+// if (!selectedTab) {
+//   anchorElements[0].click();
+// }
 
 
 

@@ -106,4 +106,6 @@
 <script src="./js/chitietsanpham.js"></script>
 <script src="./js/userJS.js"></script>
 <script src="./js/danhmuc.js"></script>
+<script src="./js/loadding.js"></script>
+
 </html>

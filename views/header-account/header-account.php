@@ -6,6 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/loadding.css">
     <title>
         <?php
             if($_GET['action'] == 'login') {
@@ -34,6 +35,9 @@
 </head>
 
 <body>
+    <div id="loading-overlay">
+        <div class="loader"></div>
+    </div>
     <div class="wrapper">
 
         <!-- Header -->

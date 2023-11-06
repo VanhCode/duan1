@@ -11,7 +11,7 @@
                 </div>
                 <div class="menu-item">
                     <div class="sale">
-                        <a href="index.php?url=user&user=sieu-sale" class="asale click_text_sticky">
+                        <a href="index.php?action=user&user=sieu-sale" class="asale <?= $user == 'sieu-sale' ? 'sticky' : '' ?>">
                             <div class="icon">
                                 <i class="fa-brands fa-salesforce"></i>
                             </div>
@@ -21,7 +21,7 @@
                         </a>
                     </div>
                     <div class="account">
-                        <a href="index.php?url=user&user=tai-khoan-cua-toi" id="aacount" class="aacount click_text_sticky">
+                        <a href="index.php?action=user&user=tai-khoan-cua-toi" id="aacount" class="aacount">
                             <div class="icon ic__ac">
                                 <i class="fa-regular fa-user"></i>
                             </div>
@@ -31,15 +31,15 @@
                         </a>
                         <div class="account-content account-content-open">
                             <div class="account-content-item">
-                                <a href="index.php?url=user&user=tai-khoan-cua-toi&profile=ho-so" class="add_atc_cl" data-target="box1"><span>Hồ sơ</span></a>
-                                <a href="index.php?url=user&user=tai-khoan-cua-toi&profile=ngan-hang" class="add_atc_cl" data-target="box2"><span>Ngân hàng</span></a>
-                                <a href="index.php?url=user&user=tai-khoan-cua-toi&profile=dia-chi" class="add_atc_cl" data-target="box3"><span>Địa chỉ</span></a>
-                                <a href="index.php?url=user&user=tai-khoan-cua-toi&profile=change-page" class="add_atc_cl" data-target="box4"><span>Đổi mật khẩu</span></a>
+                                <a href="index.php?action=user&user=tai-khoan-cua-toi&profile=ho-so" class="add_atc_cl <?= ($profile =='ho-so') ? 'sticky' : "" ?>" data-target="box1"><span>Hồ sơ</span></a>
+                                <a href="index.php?action=user&user=tai-khoan-cua-toi&profile=ngan-hang" class="add_atc_cl <?= $profile=='ngan-hang' ? 'sticky' : "" ?>" data-target="box2"><span>Ngân hàng</span></a>
+                                <a href="index.php?action=user&user=tai-khoan-cua-toi&profile=dia-chi" class="add_atc_cl <?= $profile=='dia-chi' ? 'sticky' : "" ?>" data-target="box3"><span>Địa chỉ</span></a>
+                                <a href="index.php?action=user&user=tai-khoan-cua-toi&profile=change-page" class="add_atc_cl <?= $profile=='change-page' ? 'sticky' : "" ?>" data-target="box4"><span>Đổi mật khẩu</span></a>
                             </div>
                         </div>
                     </div>
                     <div class="single">
-                        <a href="index.php?url=user&user=don-mua" id="singleID" class="single-text click_text_sticky">
+                        <a href="index.php?action=user&user=don-mua" id="singleID" class="single-text <?= $user == 'don-mua' ? 'sticky' : '' ?>">
                             <div class="icon">
                                 <i class="fa-solid fa-calendar-days"></i>
                             </div>
@@ -49,7 +49,7 @@
                         </a>
                     </div>
                     <div class="nomationS">
-                        <a href="index.php?url=user&user=thong-bao" id="anomationID" class="anomation click_text_sticky">
+                        <a href="index.php?action=user&user=thong-bao" id="anomationID" class="anomation <?= $user == 'thong-bao' ? 'sticky' : '' ?>">
                             <div class="icon">
                                 <i class="fa-regular anomation__menu__icon fa-bell"></i>
                             </div>
@@ -59,7 +59,7 @@
                         </a>
                     </div>
                     <div class="voucher">
-                        <a href="index.php?url=user&user=voucher" class="avoucher click_text_sticky">
+                        <a href="index.php?action=user&user=voucher" class="avoucher <?= $user == 'voucher' ? 'sticky' : '' ?>">
                             <div class="icon">
                                 <i class="fa-sharp fa-solid fa-ticket-simple"></i>
                             </div>
@@ -75,21 +75,21 @@
             <?php
 
 
-                if(isset($_GET['url']) && isset($_GET['user'])) {
+                if(isset($_GET['action']) && isset($_GET['user'])) {
 
-                    $url = $_GET['url'];
+                    $action = $_GET['action'];
                     $user = $_GET['user'];
 
-                    if ($url == "user" && $user == "sieu-sale") {
+                    if ($action == "user" && $user == "sieu-sale") {
                         include "sale.php";
-                    } else if($url == "user" && $user == "tai-khoan-cua-toi") {
+                    } else if($action == "user" && $user == "tai-khoan-cua-toi") {
                         include "thongtin.php";
                         // echo '<style>.account-content { display: block; }</style>';
-                    } else if($url == "user" && $user == "don-mua") {
+                    } else if($action == "user" && $user == "don-mua") {
                         include "donmua.php";
-                    } else if($url == "user" && $user == "thong-bao") {
+                    } else if($action == "user" && $user == "thong-bao") {
                         include "thongbao.php";
-                    } else if($url == "user" && $user == "voucher") {
+                    } else if($action == "user" && $user == "voucher") {
                         include "voucher.php";
                     } else {
                         include "donmua.php";

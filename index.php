@@ -8,12 +8,12 @@
     $userID = $_SESSION['user_id'] ?? 0;
     $user = select__userByid($userID);
 
-
     $listCategory = listCategory();
 
 
     if(isset($_GET['action']) && $_GET['action'] != "") {
         $action = $_GET['action'];
+
 
         if ($action == "login" || $action == "signup") {
             include "views/header-account/header-account.php";
@@ -27,6 +27,7 @@
             include "views/viewblock/header.php";
         }
 
+
         switch ($action) {
             case "home":
                 include "views/home.php";
@@ -38,6 +39,9 @@
                 include "views/danhmuc.php";
                 break;
             case "user":
+                $profile = $_GET['profile'] ?? "";
+                $user = $_GET['user'] ?? "";
+                $order = $_GET['order'] ?? "";
                 include "views/user/user.php";
                 break;
             case "login":

@@ -5,9 +5,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>VanhStore | Mua và Bán Trên Ứng Dụng Hoặc Website</title>
     <link rel="shortcut icon" href="./img1/iconLogo.png" type="image/x-icon">
-
+    <link rel="stylesheet" href="./css/loadding.css">
     <?php
         if(isset($_GET['action']) == "") {
             ?>
@@ -27,10 +28,17 @@
             <?php
         }
     ?>
-   
 </head>
-
 <body>
+    <?php
+        if(!isset($_GET['user'])) {
+            ?>
+                <div id="loading-overlay">
+                    <div class="loader"></div>
+                </div>
+            <?php
+        }
+    ?>
     <div class="wrapper">
         <!-- header -->
         <!-- <div class="thongBaoSuccess">
