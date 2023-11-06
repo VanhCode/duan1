@@ -735,7 +735,7 @@ input {
 
 .section-recommend-products-wrapper {
   position: relative;
-  z-index: -9999;
+  z-index: 0;
 }
 
 .section-recommend-products-wrapper__Box {

@@ -1209,24 +1209,20 @@ button.size_tee_product:hover {
 
 /* Gợi ý sản phẩm */
 
-.section-recommend-products-wrapper {
+/* .section-recommend-products-wrapper {
   position: relative;
-  z-index: -99;
-}
+  z-index: 0;
+} */
 
 .section-recommend-products-wrapper__Box {
-  margin-top: -5.5rem;
+  margin-top: 1.5rem;
 }
 
 .stardust-tabs-header-wrapper {
-  position: sticky;
-  z-index: 999;
   width: 100%;
   background: #f6f6f6;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
-  margin-top: 8.305rem;
   background-color: #fff;
-  top: 0;
 }
 
 .stardust-tabs-header {
@@ -1268,7 +1264,6 @@ button.size_tee_product:hover {
   flex: 1 0 auto;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .stardust-tabs-header__tab--active .zJaHI0 {

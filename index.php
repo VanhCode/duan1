@@ -2,29 +2,32 @@
     session_start();
     include "./models/pdo.php";
     include "./models/userModel/accountModel.php";
+    include "./models/userModel/categoryModel.php";
 
     
     $userID = $_SESSION['user_id'] ?? 0;
     $user = select__userByid($userID);
-    // echo $userID;
 
 
-    if(isset($_GET['url']) && $_GET['url'] != "") {
-        $url = $_GET['url'];
+    $listCategory = listCategory();
 
-        if ($url == "login" || $url == "signup") {
+
+    if(isset($_GET['action']) && $_GET['action'] != "") {
+        $action = $_GET['action'];
+
+        if ($action == "login" || $action == "signup") {
             include "views/header-account/header-account.php";
-        } else if ($url == "gio-hang") {
+        } else if ($action == "gio-hang") {
             include "views/header-cart/headerCart.php";
-        } else if ($url == "thanh-toan") {
+        } else if ($action == "thanh-toan") {
             include "views/header-thanhtoan/header-thanhtoan.php";
-        } else if ($url == "logout") {
+        } else if ($action == "logout") {
             logoutAccount();
         } else {
             include "views/viewblock/header.php";
         }
 
-        switch ($url) {
+        switch ($action) {
             case "home":
                 include "views/home.php";
                 break;

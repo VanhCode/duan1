@@ -287,9 +287,10 @@ switch ($action) {
         if (isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
             $categoryId = $_GET['category_id'];
             $selectImg_byId = editCategory($categoryId);
-            unlink("../public/upload/image/category/".$selectImg_byId['image_cate']);
 
+            unlink("../public/upload/image/category/".$selectImg_byId['image_cate']);
             deleteCategory($categoryId);
+
             header('location: index.php?action=listCategory');
         } else {
             $categoryId = "";

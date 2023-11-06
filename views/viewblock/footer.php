@@ -90,8 +90,8 @@
 
 </body>
 <?php
-    if(isset($_GET['url'])) {
-        if($_GET['url'] == 'signup') {
+    if(isset($_GET['action'])) {
+        if($_GET['action'] == 'signup') {
             ?>
                 <script src="./js/dangky.js"></script>
             <?php

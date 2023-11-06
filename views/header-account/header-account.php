@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         <?php
-            if($_GET['url'] == 'login') {
+            if($_GET['action'] == 'login') {
                 ?>
                     Đăng nhập tài khoản - Mua sắm Online | VanhStore
                 <?php
@@ -21,7 +21,7 @@
     </title>
     <link rel="shortcut icon" href="./img1/iconLogo.png" type="image/x-icon">
     <?php
-        if($_GET['url'] == 'login') {
+        if($_GET['action'] == 'login') {
             ?>
                 <link rel="stylesheet" href="./css/dangnhap.css">
                 <?php
@@ -46,7 +46,7 @@
                     </a>
                     <div class="signup">
                         <?php
-                            if($_GET['url'] == 'login') {
+                            if($_GET['action'] == 'login') {
                                 ?>
                                     Đăng nhập
                                 <?php
