@@ -57,7 +57,7 @@
                     <i class="bx bx-filter"></i>
                 </div>
 
-                <form action="index.php?action=editCategory&category_id=<?= $category_id ?>" onsubmit="return sendCategory()" method="post">
+                <form action="index.php?action=editCategory&category_id=<?= $category_id ?>" enctype="multipart/form-data" onsubmit="return sendCategory()" method="post">
                     <div class="form__cateadd">
                         <input type="hidden" name="id" value="<?= $category_id ?>">
                         <div class="form-group">
@@ -65,6 +65,11 @@
                             <input type="text" placeholder="Nhập tên danh mục" value="<?= $category_name ?>" name="danhmuc" class="form-control danhmuc">
                         </div>
                         <div class="error error_category"></div>
+                        <div class="form-group cate_img">
+                            <label class="form-label">Ảnh danh mục</label>
+                            <input type="file" name="imageCate" class="form-control danhmuc">
+                            <input type="text" name="oldCate" value="<?= $image_cate ?>" class="form-control danhmuc">
+                        </div>
                         <div class="form-group mg_tb">
                             <input class="btn btn-primary" type="submit" name="updateCate" value="Cập nhật danh mục">
                             <a href="index.php?action=listCategory" class="btn btn-dark">Danh sách</a>

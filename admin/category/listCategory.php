@@ -58,6 +58,7 @@
                         <tr class="tr_th">
                             <th>STT</th>
                             <th>Tên danh mục</th>
+                            <th>Ảnh danh mục</th>
                             <th>Thao tác</th>
                         </tr>
                     </thead>
@@ -69,6 +70,7 @@
                                     <tr class="tr_td">
                                         <td><?= $keycategory + 1 ?></td>
                                         <td><?= $category['category_name'] ?></td>
+                                        <td><img src="../public/upload/image/category/<?= $category['image_cate'] ?>" alt=""></td>
                                         <td>
                                             <a class="btn btn-outline-success btn-sm" href="index.php?action=editCategory&category_id=<?= $category['category_id'] ?>">Sửa</a>
                                             <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $category['category_id'] ?>">Xoá</a>

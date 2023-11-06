@@ -51,13 +51,17 @@
                     <i class="bx bx-filter"></i>
                 </div>
 
-                <form action="index.php?action=addCategory" onsubmit="return sendCategory()" method="post">
+                <form action="index.php?action=addCategory" enctype="multipart/form-data" onsubmit="return sendCategory()" method="post">
                     <div class="form__cateadd">
                         <div class="form-group">
                             <label class="form-label">Tên danh mục</label>
                             <input type="text" placeholder="Nhập tên danh mục" name="danhmuc" class="form-control danhmuc">
                         </div>
                         <div class="error error_category"></div>
+                        <div class="form-group cate_img">
+                            <label class="form-label">Ảnh danh mục</label>
+                            <input type="file" name="imageCate" class="form-control danhmuc" multiple>
+                        </div>
                         <div class="form-group mg_tb">
                             <input class="btn btn-primary" type="submit" name="addcategory" value="Thêm danh mục">
                             <a href="index.php?action=listCategory" class="btn btn-dark">Danh sách</a>
