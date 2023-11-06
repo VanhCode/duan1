@@ -22,7 +22,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "../php/ajaxdangnhap.php",
+            url: "./php/ajaxdangnhap.php",
             data: { phone: inputPhone },
             success: function (responsePhone) {
 
@@ -43,7 +43,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "../php/ajaxdangnhap.php",
+            url: "./php/ajaxdangnhap.php",
             data: { password: inputPassword },
             success: function (responsePassword) {
 

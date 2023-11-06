@@ -12,19 +12,19 @@
                         </div>
                     </div>
                     <div>
-
+                        <?= isset($success) ? $success : "" ?>
                     </div>
                     <div class="group_inputS">
                         <div></div>
                         <div class="group_input_control">
                             <div class="group_input_box">
-                                <input type="text" placeholder="Email/Số điện thoại/Tên đăng nhập" value="" id="phone" name="phone" class="phone">
+                                <input type="text" placeholder="Email/Số điện thoại/Tên đăng nhập" value="<?= $phone ?>" id="phone" name="phone" class="phone">
                             </div>
                             <div id="phoneErr" class="phoneErr"></div>
                         </div>
                         <div class="group_input_control">
                             <div class="group_input_box">
-                                <input type="password" placeholder="Mật khẩu" id="password" value="" name="password" class="password">
+                                <input type="password" placeholder="Mật khẩu" id="password" value="<?= $password ?>" name="password" class="password">
                                 <i class="fa-regular fa-eye-slash"></i>
                                 <i class="fa-sharp fa-regular fa-eye"></i>
                             </div>
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="XLzpXt">
-                        <div class="Oug9xv Z8OMtU">Bạn mới biết đến VanhStore <a class="wzgwUg" href="index.php?url=login">Đăng ký</a>
+                        <div class="Oug9xv Z8OMtU">Bạn mới biết đến VanhStore <a class="wzgwUg" href="index.php?url=signup">Đăng ký</a>
                         </div>
                     </div>
                 </div>

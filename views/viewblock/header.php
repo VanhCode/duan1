@@ -51,59 +51,68 @@
                     <i class="fa-brands fa-twitter"></i>
                 </div>
                 <div class="btn-span">
-                        <!-- <nav class="navTop">
-                            <ul class="userTop">
-                                <li class="boxUser">
-                                    <a href="index.php?url=announcement" class="nomation"><i class="fa-solid fa-bell"></i> Thông báo</a>
-                                </li>
-                                <li>
+                        <?php
+                            if(isset($_SESSION['vanhstore'])) {
+                                ?>
+                                    <nav class="navTop">
+                                        <ul class="userTop">
+                                            <li class="boxUser">
+                                                <a href="index.php?url=announcement" class="nomation"><i class="fa-solid fa-bell"></i> Thông báo</a>
+                                            </li>
+                                            <li>
+                                                <div class="line-top"></div>
+                                            </li>
+                                            <li class="boxUser">
+                                                <a href="index.php?url=support" class="nomation"><i class="fa-regular fa-circle-question"></i> Hỗ trợ</a>
+                                            </li>
+                                            <li>
+                                                <div class="line-top"></div>
+                                            </li>
+                                            <li class="boxUser">
+                                                <a href="index.php?url=language" class="nomation"><i class="fa-solid fa-globe"></i> Tiếng việt</a>
+                                            </li>
+                                            <li>
+                                                <div class="line-top"></div>
+                                            </li>
+                                            <li class="boxUser">
+                                                <a href="index.php?url=user" class="userLog nomation"><i class="fa-solid fa-user"></i> Vanh</a>
+                                                <ul class="userChil">
+                                                    <li><a href="index.php?url=user">Tài khoản của tôi</a></li>
+                                                    <li><a href="index.php?url=user">Hồ sơ</a></li>
+                                                    <li>
+                                                        <a href="index.php?url=logout" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất hay không?')">Đăng xuất</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                <?php
+                            } else {
+                                ?>
+                                    <li class="boxUser">
+                                        <a href="thongBao.php" class="nomation"><i class="fa-solid fa-bell"></i> Thông báo</a>
+                                    </li>
+                                    <li>
+                                        <div class="line-top"></div>
+                                    </li>
+                                    <li class="boxUser">
+                                        <a href="support.php" class="nomation"><i class="fa-regular fa-circle-question"></i> Hỗ trợ</a>
+                                    </li>
+                                    <li>
+                                        <div class="line-top"></div>
+                                    </li>
+                                    <li class="boxUser">
+                                        <a href="language.php" class="nomation"><i class="fa-solid fa-globe"></i> Tiếng việt</a>
+                                    </li>
+                                    <li>
+                                        <div class="line-top"></div>
+                                    </li>
+                                    <a class="signup nomation" href="index.php?url=signup"><i class="fa fa-user-edit"></i> Đăng ký</a>
                                     <div class="line-top"></div>
-                                </li>
-                                <li class="boxUser">
-                                    <a href="index.php?url=support" class="nomation"><i class="fa-regular fa-circle-question"></i> Hỗ trợ</a>
-                                </li>
-                                <li>
-                                    <div class="line-top"></div>
-                                </li>
-                                <li class="boxUser">
-                                    <a href="index.php?url=language" class="nomation"><i class="fa-solid fa-globe"></i> Tiếng việt</a>
-                                </li>
-                                <li>
-                                    <div class="line-top"></div>
-                                </li>
-                                <li class="boxUser">
-                                    <a href="index.php?url=user" class="userLog nomation"><i class="fa-solid fa-user"></i> Vanh</a>
-                                    <ul class="userChil">
-                                        <li><a href="index.php?url=user">Tài khoản của tôi</a></li>
-                                        <li><a href="index.php?url=user">Hồ sơ</a></li>
-                                        <li>
-                                            <a href="index.php?url=logout" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất hay không?')">Đăng xuất</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav> -->
-                        <li class="boxUser">
-                            <a href="thongBao.php" class="nomation"><i class="fa-solid fa-bell"></i> Thông báo</a>
-                        </li>
-                        <li>
-                            <div class="line-top"></div>
-                        </li>
-                        <li class="boxUser">
-                            <a href="support.php" class="nomation"><i class="fa-regular fa-circle-question"></i> Hỗ trợ</a>
-                        </li>
-                        <li>
-                            <div class="line-top"></div>
-                        </li>
-                        <li class="boxUser">
-                            <a href="language.php" class="nomation"><i class="fa-solid fa-globe"></i> Tiếng việt</a>
-                        </li>
-                        <li>
-                            <div class="line-top"></div>
-                        </li>
-                        <a class="signup nomation" href="index.php?url=login"><i class="fa fa-user-edit"></i> Đăng ký</a>
-                        <div class="line-top"></div>
-                        <a class="login nomation" href="index.php?url=signup"><i class="fa fa-sign-in"></i> Đăng nhập</a>
+                                    <a class="login nomation" href="index.php?url=login"><i class="fa fa-sign-in"></i> Đăng nhập</a>
+                                <?php
+                            }
+                        ?>
                 </div>
             </div>
             <div class="header-nav">
@@ -115,8 +124,17 @@
                         <div class="vanh-searchbar">
                             <div class="vanh-searchbar__main">
                                 <form action="" role="search" class="vanh-searchbar-form">
-                                    <input type="text" class="vanh-searchbar-form-input" placeholder="SALE TOÀN BỘ SẢN PHẨM LÊN ĐẾN 50%">
-                                    <!-- <input type="text" class="vanh-searchbar-form-input" placeholder="Miễn phí ship 0đ - Đăng ký ngay!"> -->
+                                    <?php
+                                        if(isset($_SESSION['vanhstore'])) {
+                                            ?>
+                                                <input type="text" class="vanh-searchbar-form-input" placeholder="SALE TOÀN BỘ SẢN PHẨM LÊN ĐẾN 50%">
+                                            <?php
+                                        } else {
+                                            ?>
+                                                <input type="text" class="vanh-searchbar-form-input" placeholder="Miễn phí ship 0đ - Đăng ký ngay!">
+                                            <?php
+                                        }
+                                    ?>
                                 </form>
                             </div>
                             <a href="" class="btn btn-chil-icon btn-solid-primary btn--s btn--inline vanh-searchbar__search-button">

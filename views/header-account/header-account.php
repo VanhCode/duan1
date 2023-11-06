@@ -10,11 +10,11 @@
         <?php
             if($_GET['url'] == 'login') {
                 ?>
-                    Đăng ký ngay | VanhStore Việt Nam
+                    Đăng nhập tài khoản - Mua sắm Online | VanhStore
                 <?php
             } else {
                 ?>
-                    Đăng nhập tài khoản - Mua sắm Online | VanhStore
+                    Đăng ký ngay | VanhStore Việt Nam
                 <?php
             }
         ?>
@@ -23,11 +23,11 @@
     <?php
         if($_GET['url'] == 'login') {
             ?>
-                <link rel="stylesheet" href="./css/dangky.css">
-            <?php
+                <link rel="stylesheet" href="./css/dangnhap.css">
+                <?php
         } else {
             ?>
-                <link rel="stylesheet" href="./css/dangnhap.css">
+                <link rel="stylesheet" href="./css/dangky.css">
             <?php
         }
     ?>
@@ -48,11 +48,11 @@
                         <?php
                             if($_GET['url'] == 'login') {
                                 ?>
-                                    Đăng ký
+                                    Đăng nhập
                                 <?php
                             } else {
                                 ?>
-                                    Đăng nhập
+                                    Đăng ký
                                 <?php
                             }
                         ?>
