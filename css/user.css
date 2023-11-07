@@ -26,6 +26,10 @@ div {
   display: block;
 }
 
+li {
+  list-style: none;
+}
+
 a {
   text-decoration: none;
   cursor: pointer;
@@ -1019,13 +1023,13 @@ input {
   background-repeat: no-repeat;
   width: 100px;
   height: 100px;
-  background-image: url("../img1/noproduct.png");
+  background-image: url("../img1/cart_bg_ic.png");
 }
 
 .form-single h2 {
   margin-top: 15px;
   font-weight: 100;
-  font-size: 23px;
+  font-size: 18px;
   color: #515151;
 }
 

@@ -71,6 +71,10 @@
                         <input type="text" class="form-control" name="sale">
                     </div>
                     <div class="form-group">
+                        <label for="" class="form-label">Sản phẩm dành cho</label>
+                        <input type="text" class="form-control" name="product_gender">
+                    </div>
+                    <div class="form-group">
                         <label for="" class="form-label">Danh mục</label>
                         <select class="form-select" name="selectCategory" id="">
                             <?php

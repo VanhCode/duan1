@@ -148,120 +148,20 @@
                         <div class="vanhstore-header-section__content">
                             <div class="image-carousel">
                                 <ul class="image-carousel__item-list">
-                                    <li class="image-carousel__title">
-                                        <a href="index.php?url=danh-muc" class="image-carousel__contentA">
-                                            <div class="image-carousel__image"></div>
-                                            <div class="image-carousel__image-text">
-                                                Các Mẫu Quần Mới
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="image-carousel__title">
-                                        <a href="index.php?url=danh-muc" class="image-carousel__contentA">
-                                            <div class="image-carousel__image2"></div>
-                                            <div class="image-carousel__image-text">
-                                                Thời Trang Nam
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="image-carousel__title">
-                                        <a href="index.php?url=danh-muc" class="image-carousel__contentA">
-                                            <div class="image-carousel__image3"></div>
-                                            <div class="image-carousel__image-text">
-                                                Thời Trang Nữ
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="image-carousel__title">
-                                        <a href="index.php?url=danh-muc" class="image-carousel__contentA">
-                                            <div class="image-carousel__image4"></div>
-                                            <div class="image-carousel__image-text">
-                                                Áo Khoác
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="image-carousel__title">
-                                        <a href="index.php?url=danh-muc" class="image-carousel__contentA">
-                                            <div class="image-carousel__image5"></div>
-                                            <div class="image-carousel__image-text">
-                                                Phụ Kiện & Thời Trang
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="image-carousel__title">
-                                        <a href="index.php?url=danh-muc" class="image-carousel__contentA">
-                                            <div class="image-carousel__image6"></div>
-                                            <div class="image-carousel__image-text">
-                                                Mẫu Áo Mới Nhất
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="image-carousel__title">
-                                        <a href="index.php?url=danh-muc" class="image-carousel__contentA">
-                                            <div class="image-carousel__image7"></div>
-                                            <div class="image-carousel__image-text">
-                                                Giày Thể Thao
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="image-carousel__item-list">
-                                    <li class="image-carousel__title">
-                                        <a href="index.php?url=danh-muc" class="image-carousel__contentA">
-                                            <div class="image-carousel__image"></div>
-                                            <div class="image-carousel__image-text">
-                                                Các Mẫu Quần Mới
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="image-carousel__title">
-                                        <a href="index.php?url=danh-muc" class="image-carousel__contentA">
-                                            <div class="image-carousel__image2"></div>
-                                            <div class="image-carousel__image-text">
-                                                Thời Trang Nam
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="image-carousel__title">
-                                        <a href="index.php?url=danh-muc" class="image-carousel__contentA">
-                                            <div class="image-carousel__image3"></div>
-                                            <div class="image-carousel__image-text">
-                                                Thời Trang Nữ
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="image-carousel__title">
-                                        <a href="index.php?url=danh-muc" class="image-carousel__contentA">
-                                            <div class="image-carousel__image4"></div>
-                                            <div class="image-carousel__image-text">
-                                                Áo Khoác
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="image-carousel__title">
-                                        <a href="index.php?url=danh-muc" class="image-carousel__contentA">
-                                            <div class="image-carousel__image5"></div>
-                                            <div class="image-carousel__image-text">
-                                                Phụ Kiện & Thời Trang
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="image-carousel__title">
-                                        <a href="index.php?url=danh-muc" class="image-carousel__contentA">
-                                            <div class="image-carousel__image6"></div>
-                                            <div class="image-carousel__image-text">
-                                                Mẫu Áo Mới Nhất
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="image-carousel__title">
-                                        <a href="index.php?url=danh-muc" class="image-carousel__contentA">
-                                            <div class="image-carousel__image7"></div>
-                                            <div class="image-carousel__image-text">
-                                                Giày Thể Thao
-                                            </div>
-                                        </a>
-                                    </li>
+                                    <?php
+                                        foreach($listCategory as $category) {
+                                            ?>
+                                                <li class="image-carousel__title">
+                                                    <a href="index.php?action=danh-muc?product_category=<?= $category['category_id'] ?>" class="image-carousel__contentA">
+                                                        <div class="image-carousel__image"><img src="./public/upload/image/category/<?= $category['image_cate'] ?>" alt=""></div>
+                                                        <div class="image-carousel__image-text">
+                                                            <?= $category['category_name'] ?>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            <?php
+                                        }
+                                    ?>
                                 </ul>
                             </div>
                         </div>

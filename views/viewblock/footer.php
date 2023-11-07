@@ -90,18 +90,22 @@
 
 </body>
 <?php
-    if($_GET['url'] == 'signup') {
-        ?>
-            <script src="./js/dangky.js"></script>
-        <?php
-    } else {
-        ?>
-            <script src="./js/dangnhap.js"></script>
-        <?php
+    if(isset($_GET['action'])) {
+        if($_GET['action'] == 'signup') {
+            ?>
+                <script src="./js/dangky.js"></script>
+            <?php
+        } else {
+            ?>
+                <script src="./js/dangnhap.js"></script>
+            <?php
+        }
     }
 ?>
 <script src="./js/trangchu2.js"></script>
 <script src="./js/chitietsanpham.js"></script>
 <script src="./js/userJS.js"></script>
 <script src="./js/danhmuc.js"></script>
+<script src="./js/loadding.js"></script>
+
 </html>

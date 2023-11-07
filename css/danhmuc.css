@@ -1150,6 +1150,13 @@ svg.active__checked_cate {
   color: #fff;
 }
 
+
+.shopee-search-result-header__text-highlight {
+  color: rgb(238, 77, 45);
+  font-weight: 400;
+  text-decoration: none;
+}
+
 .btn-sort__bar {
   overflow: visible;
   outline: 0;

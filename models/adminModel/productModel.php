@@ -1,8 +1,8 @@
 <?php
     // Thêm sản phẩm
-    function addProduct($name, $price, $sale, $image, $danhmuc) {
-        $sql = "INSERT INTO products (product_name, price, sale, images, category_id) 
-                VALUES ('$name','$price','$sale','$image','$danhmuc')";
+    function addProduct($name, $price, $sale, $image, $product_gender, $danhmuc) {
+        $sql = "INSERT INTO products (product_name, price, sale, images, product_gender, category_id) 
+                VALUES ('$name','$price','$sale','$image','$product_gender','$danhmuc')";
         return pdo_execute_returnLastInsertId($sql);
     }
 
@@ -15,6 +15,7 @@
                     products.price,
                     products.sale,
                     products.images,
+                    products.product_gender,
                     products.category_id,
                     categories.category_id,
                     categories.category_name 
@@ -34,6 +35,7 @@
                     products.price,
                     products.sale,
                     products.images,
+                    products.product_gender,
                     products.category_id,
                     variants.product_id,
                     variants.variant_id,
@@ -67,8 +69,8 @@
 
 
     // Update sản phẩm
-    function updateProduct($id,$name,$price,$sale,$image,$category) {
-        $sql = "UPDATE products SET product_name='".$name."',price='".$price."',sale='".$sale."',images='".$image."',category_id='".$category."'
+    function updateProduct($id,$name,$price,$sale,$image,$product_gender,$category) {
+        $sql = "UPDATE products SET product_name='".$name."',price='".$price."',sale='".$sale."',images='".$image."',product_gender='".$product_gender."',category_id='".$category."'
             WHERE product_id = '$id'";
 
         return pdo_execute_returnLastInsertId($sql);

@@ -164,8 +164,12 @@
 
 .error_category {
     position: absolute;
-    bottom: 55px;
+    bottom: 168px;
     color: red;
+}
+
+.cate_img {
+    margin-top: 42px !important;
 }
 
 .mg_tb {

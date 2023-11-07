@@ -6,10 +6,16 @@
         return $result;
     }
 
+    // function selectImage__byId($img) {
+    //     $sql = "SELECT * FROM categories WHERE cate = '$imgid'";
+    //     $result = pdo_query_one($sql);
+    //     return $result;
+    // }
+
 
     // Thêm danh mục
-    function addCategory($name) {
-        $sql = "INSERT INTO categories (`category_name`) VALUES ('$name')";
+    function addCategory($name,$image) {
+        $sql = "INSERT INTO categories (`category_name`,`image_cate`) VALUES ('$name','$image')";
         pdo_execute($sql);
     }
 
@@ -31,8 +37,8 @@
 
     
     // Update danh mục
-    function updateCategory($id,$name) {
-        $sql = "UPDATE categories SET category_name = '".$name."' WHERE category_id = '".$id."'";
+    function updateCategory($id,$name,$image) {
+        $sql = "UPDATE categories SET category_name = '".$name."',image_cate = '".$image."' WHERE category_id = '".$id."'";
         pdo_execute($sql);
     }
 ?>

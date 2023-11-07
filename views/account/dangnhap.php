@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="XLzpXt">
-                        <div class="Oug9xv Z8OMtU">Bạn mới biết đến VanhStore <a class="wzgwUg" href="index.php?url=signup">Đăng ký</a>
+                        <div class="Oug9xv Z8OMtU">Bạn mới biết đến VanhStore <a class="wzgwUg" href="index.php?action=signup">Đăng ký</a>
                         </div>
                     </div>
                 </div>

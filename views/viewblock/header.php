@@ -5,19 +5,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>VanhStore | Mua và Bán Trên Ứng Dụng Hoặc Website</title>
     <link rel="shortcut icon" href="./img1/iconLogo.png" type="image/x-icon">
-
+    <link rel="stylesheet" href="./css/loadding.css">
+    <link rel="stylesheet" href="./css/danhmuc.css">
     <?php
-        if(isset($_GET['url']) == NULL) {
+        if(isset($_GET['action']) == "") {
             ?>
                 <link rel="stylesheet" href="./css/index.css">
             <?php
-        } else if($_GET['url'] == "user") {
+        } else if($_GET['action'] == "user") {
             ?>
                 <link rel="stylesheet" href="./css/user.css">
             <?php
-        } else if($_GET['url'] == "danh-muc") {
+        } else if($_GET['action'] == "search") {
+            ?>
+                <link rel="stylesheet" href="./css/viewsearch.css">
+            <?php
+        } else if($_GET['action'] == "danh-muc") {
             ?>
                 <link rel="stylesheet" href="./css/danhmuc.css">
             <?php
@@ -27,10 +33,17 @@
             <?php
         }
     ?>
-   
 </head>
-
 <body>
+    <?php
+        if(!isset($_GET['user'])) {
+            ?>
+                <div id="loading-overlay">
+                    <div class="loader"></div>
+                </div>
+            <?php
+        }
+    ?>
     <div class="wrapper">
         <!-- header -->
         <!-- <div class="thongBaoSuccess">
@@ -52,35 +65,35 @@
                 </div>
                 <div class="btn-span">
                         <?php
-                            if(isset($_SESSION['vanhstore'])) {
+                            if($user) {
                                 ?>
                                     <nav class="navTop">
                                         <ul class="userTop">
                                             <li class="boxUser">
-                                                <a href="index.php?url=announcement" class="nomation"><i class="fa-solid fa-bell"></i> Thông báo</a>
+                                                <a href="index.php?action=announcement" class="nomation"><i class="fa-solid fa-bell"></i> Thông báo</a>
                                             </li>
                                             <li>
                                                 <div class="line-top"></div>
                                             </li>
                                             <li class="boxUser">
-                                                <a href="index.php?url=support" class="nomation"><i class="fa-regular fa-circle-question"></i> Hỗ trợ</a>
+                                                <a href="index.php?action=support" class="nomation"><i class="fa-regular fa-circle-question"></i> Hỗ trợ</a>
                                             </li>
                                             <li>
                                                 <div class="line-top"></div>
                                             </li>
                                             <li class="boxUser">
-                                                <a href="index.php?url=language" class="nomation"><i class="fa-solid fa-globe"></i> Tiếng việt</a>
+                                                <a href="index.php?action=language" class="nomation"><i class="fa-solid fa-globe"></i> Tiếng việt</a>
                                             </li>
                                             <li>
                                                 <div class="line-top"></div>
                                             </li>
                                             <li class="boxUser">
-                                                <a href="index.php?url=user" class="userLog nomation"><i class="fa-solid fa-user"></i> Vanh</a>
+                                                <a href="index.php?action=user" class="userLog nomation"><i class="fa-solid fa-user"></i> <?= $user ? $user['firth_name']." ".$user['last_name'] : "" ?></a>
                                                 <ul class="userChil">
-                                                    <li><a href="index.php?url=user">Tài khoản của tôi</a></li>
-                                                    <li><a href="index.php?url=user">Hồ sơ</a></li>
+                                                    <li><a href="index.php?action=user">Tài khoản của tôi</a></li>
+                                                    <li><a href="index.php?action=user">Hồ sơ</a></li>
                                                     <li>
-                                                        <a href="index.php?url=logout" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất hay không?')">Đăng xuất</a>
+                                                        <a href="index.php?action=logout">Đăng xuất</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -107,9 +120,9 @@
                                     <li>
                                         <div class="line-top"></div>
                                     </li>
-                                    <a class="signup nomation" href="index.php?url=signup"><i class="fa fa-user-edit"></i> Đăng ký</a>
+                                    <a class="signup nomation" href="index.php?action=signup"><i class="fa fa-user-edit"></i> Đăng ký</a>
                                     <div class="line-top"></div>
-                                    <a class="login nomation" href="index.php?url=login"><i class="fa fa-sign-in"></i> Đăng nhập</a>
+                                    <a class="login nomation" href="index.php?action=login"><i class="fa fa-sign-in"></i> Đăng nhập</a>
                                 <?php
                             }
                         ?>
@@ -144,7 +157,7 @@
                         <div class="vanh-navBarr__main">
                             <ul class="vanh-navBarr__Ul-li">
                                 <li class="megamenu__li">
-                                    <a href="index.php?url=san-pham" class="vanh-navBarr__a">Sản Phẩm <i class="fa-solid fa-chevron-down"></i></a>
+                                    <a href="index.php?action=san-pham" class="vanh-navBarr__a">Sản Phẩm <i class="fa-solid fa-chevron-down"></i></a>
                                     <ul class="chil-nav">
                                         <li>
                                             <ul>
@@ -263,7 +276,7 @@
                     </div>
                     <div class="header-with-search__cart-wrapper">
                         <div class="header-with-search__cart_hoverProductCart">
-                            <a href="index.php?url=gio-hang" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
+                            <a href="index.php?action=gio-hang" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
                             <div class="amount__sessionCart">
                                 <span class="cart-item-count">1</span>
                             </div>

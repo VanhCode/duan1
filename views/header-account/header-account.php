@@ -6,9 +6,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/loadding.css">
     <title>
         <?php
-            if($_GET['url'] == 'login') {
+            if($_GET['action'] == 'login') {
                 ?>
                     Đăng nhập tài khoản - Mua sắm Online | VanhStore
                 <?php
@@ -21,7 +22,7 @@
     </title>
     <link rel="shortcut icon" href="./img1/iconLogo.png" type="image/x-icon">
     <?php
-        if($_GET['url'] == 'login') {
+        if($_GET['action'] == 'login') {
             ?>
                 <link rel="stylesheet" href="./css/dangnhap.css">
                 <?php
@@ -34,6 +35,9 @@
 </head>
 
 <body>
+    <div id="loading-overlay">
+        <div class="loader"></div>
+    </div>
     <div class="wrapper">
 
         <!-- Header -->
@@ -46,7 +50,7 @@
                     </a>
                     <div class="signup">
                         <?php
-                            if($_GET['url'] == 'login') {
+                            if($_GET['action'] == 'login') {
                                 ?>
                                     Đăng nhập
                                 <?php

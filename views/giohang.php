@@ -179,7 +179,7 @@
                     </div>
                     <div class="line-end-total-payout"></div>
                 </div>
-                <a href="index.php?url=thanh-toan" class="vanh-button-solid vanh-button-solid--primary">
+                <a href="index.php?action=thanh-toan" class="vanh-button-solid vanh-button-solid--primary">
                     <span class="send-end-total">Mua hàng</span>
                 </a>
             </div>

@@ -60,6 +60,7 @@ switch ($action) {
             $color = $_POST['color'];
             $size = $_POST['size'];
             $amount = $_POST['amount'];
+            $product_gender = $_POST['product_gender'];
 
             $uploadedImages = array();
 
@@ -74,7 +75,7 @@ switch ($action) {
 
             $filename = implode(",", $uploadedImages);
 
-            $product_id = addProduct($namePro, $pricePro, $sale, $filename, $selectCategory);
+            $product_id = addProduct($namePro, $pricePro, $sale, $filename, $product_gender, $selectCategory);
 
             for ($i = 0; $i < count($color); $i++) {
                 addVation($product_id, $color[$i], $size[$i], $amount[$i]);
@@ -90,7 +91,12 @@ switch ($action) {
         if (isset($_POST['addcategory'])) {
             $errCategory = "";
             $namecate = $_POST['danhmuc'];
-            addCategory($namecate);
+
+            $filename = time().basename($_FILES['imageCate']['name']);
+            $target = "../public/upload/image/category/".$filename;
+            move_uploaded_file($_FILES['imageCate']['tmp_name'],$target);
+
+            addCategory($namecate,$filename);
             header('location: index.php?action=listCategory');
         }
 
@@ -142,6 +148,7 @@ switch ($action) {
             $color = $_POST['color'];
             $size = $_POST['size'];
             $amount = $_POST['amount'];
+            $product_gender = $_POST['product_gender'];
             $oldImage = $_POST['oldImage'];
 
             if ($_FILES['image']['name']) {
@@ -167,7 +174,7 @@ switch ($action) {
 
 
 
-            $product_id = updateProduct($id, $namePro, $pricePro, $sale, $filename ? $oldImage . $filename : $oldImage, $selectCategory);
+            $product_id = updateProduct($id, $namePro, $pricePro, $sale, $filename ? $oldImage . $filename : $oldImage, $product_gender, $selectCategory);
 
             $length=9999;
             for ($i = 0; $i < $length; $i++) {
@@ -206,7 +213,15 @@ switch ($action) {
         if (isset($_POST['updateCate'])) {
             $id = $_POST['id'];
             $namecate = $_POST['danhmuc'];
-            updateCategory($id, $namecate);
+            $oldCate = $_POST['oldCate'];
+
+            if(!empty($_FILES['imageCate']['name'])) {
+                $filename = time().basename($_FILES['imageCate']['name']);
+                $target = "../public/upload/image/category/" . $filename;
+                move_uploaded_file($_FILES['imageCate']['tmp_name'],$target);
+            }
+
+            updateCategory($id,$namecate,$filename ? $filename : $oldCate);
             header('location: index.php?action=listCategory');
         }
 
@@ -271,10 +286,15 @@ switch ($action) {
     case 'deleteCategory':
         if (isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
             $categoryId = $_GET['category_id'];
+            $selectImg_byId = editCategory($categoryId);
+
+            unlink("../public/upload/image/category/".$selectImg_byId['image_cate']);
             deleteCategory($categoryId);
+
             header('location: index.php?action=listCategory');
         } else {
             $categoryId = "";
+            $selectImg_byId = "";
         }
 
 

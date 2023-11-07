@@ -1,5 +1,11 @@
 <?php
     // Select tài khoản
+    function select__userByid($id) {
+        $sql = "SELECT * FROM users WHERE user_id = '$id'";
+        $result = pdo_query_one($sql);
+        return $result;
+    }
+
     function selectAllAccount($email) {
         $sql = "SELECT * FROM users WHERE email = '$email'";
         pdo_execute($sql);
@@ -19,9 +25,12 @@
         pdo_execute($sql);
     }
 
-    // Đăng xuất
-    function logoutUser() {
-        unset($_SESSION['vanhstore']);
-        header('location: index.php');
+
+    // Đăng xuất tài khoản
+    function logoutAccount() {
+        if(isset($_SESSION["user_id"])) {
+            unset($_SESSION["user_id"]);
+            header('Location: index.php');
+        }
     }
 ?>
