@@ -669,7 +669,7 @@
                                 </div>
                                 <div class="productS-link-full-view viewOne">
                                     <div class="productS-full-link-view">
-                                        <a href="index.php?url=chi-tiet-sanpham" class="">
+                                        <a href="index.php?action=chi-tiet-sanpham" class="">
                                             <div class="prd-v2">
                                                 <div class="prd-v3">
                                                     <div style="pointer-events: none;">

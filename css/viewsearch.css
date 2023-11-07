@@ -266,11 +266,12 @@ form {
   display: flex;
   flex: 1;
   box-sizing: border-box;
-  padding: 0 0.625rem;
+  padding: 0 0.075rem 0 0.625rem;
   position: relative;
   background-color: #fff;
   border-color: #fff;
 }
+
 
 input {
   line-height: normal;
@@ -339,6 +340,25 @@ input {
   color: #fff;
   font-size: 17px;
 }
+
+.btn__click_view_search_pr {
+  position: relative;
+}
+
+.btn__click_view_search_pr input {
+  position: relative;
+}
+
+.btn__click_view_search_pr i {
+  position: absolute;
+  color: #fff;
+  font-size: 17px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+
 
 .btn-chil-icon:hover {
   background: #fb6445;

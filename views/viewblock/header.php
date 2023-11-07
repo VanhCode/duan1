@@ -134,26 +134,27 @@
                         <img src="./img1/vanhstore.jpg" alt="">
                     </a>
                     <div class="header-with-search">
-                        <div class="vanh-searchbar">
-                            <div class="vanh-searchbar__main">
-                                <form action="" role="search" class="vanh-searchbar-form">
+                        <form action="index.php?action=search" method="POST" role="search" class="vanh-searchbar-form">
+                            <div class="vanh-searchbar">
+                                <div class="vanh-searchbar__main">
                                     <?php
-                                        if(isset($_SESSION['vanhstore'])) {
+                                        if(isset($user)) {
                                             ?>
-                                                <input type="text" class="vanh-searchbar-form-input" placeholder="SALE TOÀN BỘ SẢN PHẨM LÊN ĐẾN 50%">
+                                                <input type="text" name="keyword" class="vanh-searchbar-form-input" placeholder="SALE TOÀN BỘ SẢN PHẨM LÊN ĐẾN 50%">
                                             <?php
                                         } else {
                                             ?>
-                                                <input type="text" class="vanh-searchbar-form-input" placeholder="Miễn phí ship 0đ - Đăng ký ngay!">
+                                                <input type="text" name="keyword" class="vanh-searchbar-form-input" placeholder="Miễn phí ship 0đ - Đăng ký ngay!">
                                             <?php
                                         }
-                                    ?>
-                                </form>
+                                    ?>  
+                                </div>
+                                <div class="btn__click_view_search_pr">
+                                    <input type="submit" name="searchProduct" value=" " class="btn btn-chil-icon btn-solid-primary btn--s btn--inline vanh-searchbar__search-button">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
                             </div>
-                            <a href="" class="btn btn-chil-icon btn-solid-primary btn--s btn--inline vanh-searchbar__search-button">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </a>
-                        </div>
+                        </form>
                         <div class="vanh-navBarr__main">
                             <ul class="vanh-navBarr__Ul-li">
                                 <li class="megamenu__li">

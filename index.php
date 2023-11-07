@@ -3,6 +3,7 @@
     include "./models/pdo.php";
     include "./models/userModel/accountModel.php";
     include "./models/userModel/categoryModel.php";
+    include "./models/userModel/searchModel.php";
 
     
     $userID = $_SESSION['user_id'] ?? 0;
@@ -40,7 +41,7 @@
                 break;
             case "user":
                 $profile = $_GET['profile'] ?? "";
-                $user = $_GET['user'] ?? "";
+                $userAction = $_GET['user'] ?? "";
                 $order = $_GET['order'] ?? "";
                 include "views/user/user.php";
                 break;
@@ -138,6 +139,13 @@
                 include "views/chitietsp.php";
                 break;
             case "search":
+                if(isset($_POST['searchProduct'])) {
+                    $keyword = $_POST['keyword'];
+                    // echo $listProdSearch;
+                } else {
+                    $keyword = "";
+                }
+                $listProdSearch = searchModel($keyword);
                 include "views/viewSearch.php";
                 break;
             case "gio-hang":

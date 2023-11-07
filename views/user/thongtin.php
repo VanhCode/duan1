@@ -3,16 +3,16 @@
 
         if (isset($_GET['url']) && isset($_GET['user']) && isset($_GET['profile'])) {
             $url = $_GET['url'];
-            $user = $_GET['user'];
+            $userAction = $_GET['user'];
             $profile = $_GET['profile'];
         
-            if ($url == "user" && $user == "tai-khoan-cua-toi" && $profile == "ho-so") {
+            if ($url == "user" && $userAction == "tai-khoan-cua-toi" && $profile == "ho-so") {
                 include "thongtin/profile.php";
-            } else if ($url == "user" && $user == "tai-khoan-cua-toi" && $profile == "ngan-hang") {
+            } else if ($url == "user" && $userAction == "tai-khoan-cua-toi" && $profile == "ngan-hang") {
                 include "thongtin/atm.php";
-            } else if ($url == "user" && $user == "tai-khoan-cua-toi" && $profile == "dia-chi") {
+            } else if ($url == "user" && $userAction == "tai-khoan-cua-toi" && $profile == "dia-chi") {
                 include "thongtin/address.php";
-            } else if ($url == "user" && $user == "tai-khoan-cua-toi" && $profile == "change-page") {
+            } else if ($url == "user" && $userAction == "tai-khoan-cua-toi" && $profile == "change-page") {
                 include "thongtin/changepass.php";
             }
         } else {

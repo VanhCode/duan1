@@ -11,7 +11,7 @@
                 </div>
                 <div class="menu-item">
                     <div class="sale">
-                        <a href="index.php?action=user&user=sieu-sale" class="asale <?= $user == 'sieu-sale' ? 'sticky' : '' ?>">
+                        <a href="index.php?action=user&user=sieu-sale" class="asale <?= $userAction == 'sieu-sale' ? 'sticky' : '' ?>">
                             <div class="icon">
                                 <i class="fa-brands fa-salesforce"></i>
                             </div>
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="single">
-                        <a href="index.php?action=user&user=don-mua" id="singleID" class="single-text <?= $user == 'don-mua' ? 'sticky' : '' ?>">
+                        <a href="index.php?action=user&user=don-mua" id="singleID" class="single-text <?= $userAction == 'don-mua' ? 'sticky' : '' ?>">
                             <div class="icon">
                                 <i class="fa-solid fa-calendar-days"></i>
                             </div>
@@ -49,7 +49,7 @@
                         </a>
                     </div>
                     <div class="nomationS">
-                        <a href="index.php?action=user&user=thong-bao" id="anomationID" class="anomation <?= $user == 'thong-bao' ? 'sticky' : '' ?>">
+                        <a href="index.php?action=user&user=thong-bao" id="anomationID" class="anomation <?= $userAction == 'thong-bao' ? 'sticky' : '' ?>">
                             <div class="icon">
                                 <i class="fa-regular anomation__menu__icon fa-bell"></i>
                             </div>
@@ -59,7 +59,7 @@
                         </a>
                     </div>
                     <div class="voucher">
-                        <a href="index.php?action=user&user=voucher" class="avoucher <?= $user == 'voucher' ? 'sticky' : '' ?>">
+                        <a href="index.php?action=user&user=voucher" class="avoucher <?= $userAction == 'voucher' ? 'sticky' : '' ?>">
                             <div class="icon">
                                 <i class="fa-sharp fa-solid fa-ticket-simple"></i>
                             </div>
@@ -78,18 +78,18 @@
                 if(isset($_GET['action']) && isset($_GET['user'])) {
 
                     $action = $_GET['action'];
-                    $user = $_GET['user'];
+                    $userAction = $_GET['user'];
 
-                    if ($action == "user" && $user == "sieu-sale") {
+                    if ($action == "user" && $userAction == "sieu-sale") {
                         include "sale.php";
-                    } else if($action == "user" && $user == "tai-khoan-cua-toi") {
+                    } else if($action == "user" && $userAction == "tai-khoan-cua-toi") {
                         include "thongtin.php";
                         // echo '<style>.account-content { display: block; }</style>';
-                    } else if($action == "user" && $user == "don-mua") {
+                    } else if($action == "user" && $userAction == "don-mua") {
                         include "donmua.php";
-                    } else if($action == "user" && $user == "thong-bao") {
+                    } else if($action == "user" && $userAction == "thong-bao") {
                         include "thongbao.php";
-                    } else if($action == "user" && $user == "voucher") {
+                    } else if($action == "user" && $userAction == "voucher") {
                         include "voucher.php";
                     } else {
                         include "donmua.php";

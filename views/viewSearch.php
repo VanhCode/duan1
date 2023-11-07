@@ -250,9 +250,21 @@
                                        </g>
                                    </svg>
                                </div>
-                               <span class="shopee-search-result-header__text">Kết quả tìm kiếm cho từ khoá '
-                                   <span class="shopee-search-result-header__text-highlight" style="color: rgb(238, 77, 45); font-weight: 400;">áo thun</span>'
-                               </span>
+                               <?php
+                                    if(!empty($keyword)) {
+                                        ?>
+                                            <span class="shopee-search-result-header__text">
+                                                Kết quả tìm kiếm cho từ khoá '<span class="shopee-search-result-header__text-highlight" style="color: rgb(238, 77, 45); font-weight: 400;"><?= $keyword ?></span>'
+                                            </span>
+                                        <?php
+                                    } else {
+                                        ?>
+                                            <span class="shopee-search-result-header__text">
+                                                Chúng tôi không tìm thấy sản phẩm '<span class="shopee-search-result-header__text-highlight" style="color: rgb(238, 77, 45); font-weight: 400;"><?= $keyword ?></span>' nào
+                                            </span>
+                                        <?php
+                                    }
+                               ?>
                            </h1>
                            <section class="category-search__item-result">
                                <div class="vanhstore-sort-bar">
@@ -293,52 +305,58 @@
                                    </div>
                                </div>
                                <ul class="row vanhstore-search-item-result__items">
-                                   <li class="col-xs-2-4 vanhstore-search-item-result__item">
-                                       <a href="">
-                                           <div class="ZK4XOV">
-                                               <div class="GnRhpE">
-                                                   <div style="pointer-events: none;">
-                                                       <div class="Vd2yUl OI9tKN">
-                                                           <img src="./img1/a1.jpg" class="Fd4QmV KbUcCB" alt="">
-                                                           <div class="D3Hha7">
-                                                               <div class="JhPmwn rXAd6u" style="color: rgb(242, 82, 32);">
-                                                                   <div class="DqPlQB lGEnMK">Yêu thích</div>
-                                                               </div>
-                                                           </div>
-                                                           <div class="TS7wv2">
-                                                               <div class="JC9p5x">
-                                                                   <span class="FTxtVW">-35%</span>
-                                                               </div>
-                                                           </div>
-                                                           <div class="N+Ex9S">
-                                                               <div class="customized-overlay-image">
-                                                                   <img alt="overlay image" src="./img1/bg_sale.png" width="" height="">
-                                                               </div>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="JxvxgB">
-                                                       <div class="wuYpH6" data-sqe="name">
-                                                           <div class="efwNRW">
-                                                               <div aria-hidden="true" class="DgXDzJ rolr6k Zvjf4O">Áo Phông Cộc Tay Hè Nam Nữ Phối Họa Tiết Nhịp Đập Cá Tính, Chất Liệu Cotton Khô Mềm Mịn Thấm Hút Mồ Hối Tốt</div>
-                                                           </div>
-                                                       </div>
-                                                       <div class="cA9TT+">
-                                                           <div class="bPcAVl FMvHxS H5ICvW" aria-hidden="true">₫189.000</div>
-                                                           <div class="bPcAVl IWBsMB">
-                                                               <span aria-label="current price"></span>
-                                                               <span class="bx++ig">₫</span>
-                                                               <span class="k9JZlv">99.000</span>
-                                                           </div>
-                                                       </div>
-                                                       <div class="DN6Jp1">
-                                                           <div class="OwmBnn eumuJJ">Đã bán 51</div>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                       </a>
-                                   </li>
+                                    <?php
+                                        foreach($listProdSearch as $product) {
+                                            ?>
+                                                <li class="col-xs-2-4 vanhstore-search-item-result__item">
+                                                    <a href="">
+                                                        <div class="ZK4XOV">
+                                                            <div class="GnRhpE">
+                                                                <div style="pointer-events: none;">
+                                                                    <div class="Vd2yUl OI9tKN">
+                                                                        <img src="./public/upload/image/product/<?= explode(",", $product['images'])[0] ?>" class="Fd4QmV KbUcCB" alt="">
+                                                                        <div class="D3Hha7">
+                                                                            <div class="JhPmwn rXAd6u" style="color: rgb(242, 82, 32);">
+                                                                                <div class="DqPlQB lGEnMK">Yêu thích</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="TS7wv2">
+                                                                            <div class="JC9p5x">
+                                                                                <span class="FTxtVW">-<?= $product['sale'] ?>%</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="N+Ex9S">
+                                                                            <div class="customized-overlay-image">
+                                                                                <img alt="overlay image" src="./img1/bg_sale.png" width="" height="">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="JxvxgB">
+                                                                    <div class="wuYpH6" data-sqe="name">
+                                                                        <div class="efwNRW">
+                                                                            <div aria-hidden="true" class="DgXDzJ rolr6k Zvjf4O"><?= $product['product_name'] ?></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="cA9TT+">
+                                                                        <div class="bPcAVl FMvHxS H5ICvW" aria-hidden="true">₫<?= $product['price'] ?></div>
+                                                                        <div class="bPcAVl IWBsMB">
+                                                                            <span aria-label="current price"></span>
+                                                                            <span class="bx++ig">₫</span>
+                                                                            <span class="k9JZlv">99.000</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="DN6Jp1">
+                                                                        <div class="OwmBnn eumuJJ">Đã bán 51</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            <?php
+                                        }
+                                    ?>
                                </ul>
                            </section>
                        </div>
