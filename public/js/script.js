@@ -30,6 +30,7 @@ var boxDiv = document.querySelectorAll('.ab_ic');
 boxDiv.forEach(function(box, index) {
     var deleteButton = box.querySelector('.lb_lg');
     deleteButton.addEventListener('click', function() {
+		index=this.parentElement.dataset.index
         oldImage.splice(index, 1);
         oldImageElement.value = oldImage.join(',');
         // console.log(oldImage);
