@@ -27,13 +27,13 @@ var oldImageElement = document.querySelector('#oldImage');
 var oldImage = oldImageElement.value.split(',');
 var boxDiv = document.querySelectorAll('.ab_ic');
 
-boxDiv.forEach(function(box) {
+boxDiv.forEach(function(box, index) {
     var deleteButton = box.querySelector('.lb_lg');
-    var indexToDelete = parseInt(box.getAttribute('data-index'));
-    
     deleteButton.addEventListener('click', function() {
-        oldImage.splice(indexToDelete, 1);
+		index=this.parentElement.dataset.index
+        oldImage.splice(index, 1);
         oldImageElement.value = oldImage.join(',');
+        // console.log(oldImage);
         this.parentElement.remove();
     });
 });
