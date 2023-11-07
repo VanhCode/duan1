@@ -152,7 +152,7 @@
                                         foreach($listCategory as $category) {
                                             ?>
                                                 <li class="image-carousel__title">
-                                                    <a href="index.php?action=danh-muc?product_category" class="image-carousel__contentA">
+                                                    <a href="index.php?action=danh-muc?product_category=<?= $category['category_id'] ?>" class="image-carousel__contentA">
                                                         <div class="image-carousel__image"><img src="./public/upload/image/category/<?= $category['image_cate'] ?>" alt=""></div>
                                                         <div class="image-carousel__image-text">
                                                             <?= $category['category_name'] ?>

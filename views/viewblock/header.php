@@ -9,6 +9,7 @@
     <title>VanhStore | Mua và Bán Trên Ứng Dụng Hoặc Website</title>
     <link rel="shortcut icon" href="./img1/iconLogo.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/loadding.css">
+    <link rel="stylesheet" href="./css/danhmuc.css">
     <?php
         if(isset($_GET['action']) == "") {
             ?>
@@ -17,6 +18,10 @@
         } else if($_GET['action'] == "user") {
             ?>
                 <link rel="stylesheet" href="./css/user.css">
+            <?php
+        } else if($_GET['action'] == "search") {
+            ?>
+                <link rel="stylesheet" href="./css/viewsearch.css">
             <?php
         } else if($_GET['action'] == "danh-muc") {
             ?>
