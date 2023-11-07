@@ -19,8 +19,9 @@
                                    </div>
                                </div>
                                <div class="btn__click__banners">
-                                    <button class="click-left"><</button>
-                                    <button class="click-right">></button>
+                                   <button class="click-left">
+                                       <</button>
+                                           <button class="click-right">></button>
                                </div>
                                <div class="list-icdost__dostClick">
                                    <div class="icdost icdost-0 active"></div>
@@ -165,7 +166,7 @@
                                                                <path d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z"></path>
                                                            </g>
                                                        </svg>
-                                                    </span>
+                                                   </span>
                                                </a>
                                                <span class="vanhstore-checkbox__label">Áo Sơ Mi</span>
                                            </label>
@@ -187,8 +188,8 @@
                                                                        <g>
                                                                            <path d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z"></path>
                                                                        </g>
-                                                                    </svg>
-                                                                </span>
+                                                                   </svg>
+                                                               </span>
                                                            </a>
                                                            <span class="vanhstore-checkbox__label">Áo Thun</span>
                                                        </label>
@@ -203,7 +204,7 @@
                                                                            <path d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z"></path>
                                                                        </g>
                                                                    </svg>
-                                                                </span>
+                                                               </span>
                                                            </a>
                                                            <span class="vanhstore-checkbox__label">Áo Khoác</span>
                                                        </label>
@@ -218,7 +219,7 @@
                                                                            <path d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z"></path>
                                                                        </g>
                                                                    </svg>
-                                                                </span>
+                                                               </span>
                                                            </a>
                                                            <span class="vanhstore-checkbox__label">Hoodie & Áo
                                                                Nỉ</span>
@@ -234,7 +235,7 @@
                                                                            <path d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z"></path>
                                                                        </g>
                                                                    </svg>
-                                                                </span>
+                                                               </span>
                                                            </a>
                                                            <span class="vanhstore-checkbox__label">Áo Sơ Mi</span>
                                                        </label>
@@ -294,7 +295,7 @@
                                            <span class="vanhstore-mini-page-controller__total">17</span>
                                        </div>
                                        <a href="" class="vanhstore-mini_controller_left">
-                                           <</a>
+                                           << /a>
                                                <a href="" class="vanhstore-mini_controller_right">></a>
                                    </div>
                                </div>

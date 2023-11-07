@@ -137,6 +137,9 @@
             case "chi-tiet-sanpham":
                 include "views/chitietsp.php";
                 break;
+            case "search":
+                include "views/viewSearch.php";
+                break;
             case "gio-hang":
                 include "views/giohang.php";
                 break;

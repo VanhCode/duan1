@@ -1216,13 +1216,34 @@ button.size_tee_product:hover {
 
 .section-recommend-products-wrapper__Box {
   margin-top: 1.5rem;
+  padding: 8px 20px 20px 20px;
+  /* background-color: #fff; */
 }
 
 .stardust-tabs-header-wrapper {
   width: 100%;
-  background: #f6f6f6;
+  /* background: #f6f6f6;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
-  background-color: #fff;
+  background-color: #fff; */
+}
+
+.stardust-tabs-header-product {
+  background: #fff;
+  padding: 10px 18px 18px 18px;
+}
+
+.pro_you {
+  display: flex;
+  align-items: center;
+  color: #000000bf;
+  padding: 10px ;
+}
+
+.pro_you h3 {
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-left: 8px;
+  padding-top: 4px;
 }
 
 .stardust-tabs-header {
@@ -1468,15 +1489,23 @@ button.size_tee_product:hover {
 .btn__click___productAhref {
   min-width: 24.375rem;
   height: 2.5rem;
-  color: #555;
+  color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.09);
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.03);
-  background-color: #fff;
+  background-color: var(--nc-bg-bd);
   outline: 0;
 }
 
 .btn__click___productAhref:hover {
-  background: rgba(0, 0, 0, 0.02);
+  background-color: #ee4d2d9e;
+}
+
+.wpB2 {
+  margin-top: 0;
+}
+
+.wpB3 {
+  margin-bottom: 11px;
 }
 
 /* Phần màu sắc */
