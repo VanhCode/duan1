@@ -225,3 +225,7 @@
 .btn__arrayImage {
     display: none;
 }
+
+.name__product__admin {
+    width: 410px !important;
+}

@@ -241,33 +241,54 @@
                             <div class="oclock_time-right__banner">
                                 <div class="oclock__Flashsale_timeSlider_nav">
                                     <ul id="oclock__Flashsale_timeSlider_ul" class="oclock__Flashsale_timeSlider_ul">
-                                        <li class="oclock__Flashsale_timeSlider_li">
-                                            <div class="oclock__Flashsale_div">
-                                                <a href="./view/chitietsp.php?id=<?= $item['id_spBanChay'] ?>" class="oclock__Flashsale_timeSlider_a">
-                                                    <div class="Flashsale_timeSlider_BoxImageS">
-                                                        <img src="./img1/a1.jpg">
-                                                        <div class="Flashsale_timeSlider_textSpan">
-                                                            <span class="Flashsale_timeSlider_Span">Sale</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="Flashsale_timeSlider_BoxTextS">
-                                                        <div class="Flashsale_timeSlider_BoxTextS_price">
-                                                            đ 200.000
-                                                        </div>
-                                                        <div class="Flashsale_timeSlider_BoxTextS_updateSale">
-                                                            <div class="Flashsale_timeSlider_BoxTextS_updateSaleNumber">
-                                                                <div class="BoxTextS_Image_sendSuccess"></div>
-                                                                <div class="BoxTextS_sendSuccess_content">
-                                                                    Đã bán 23,2k
+                                        <?php
+                                            foreach($productSale as $proSale) {
+                                                ?>
+                                                    <li class="oclock__Flashsale_timeSlider_li">
+                                                        <div class="oclock__Flashsale_div">
+                                                            <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $proSale['product_id'] ?>" class="oclock__Flashsale_timeSlider_a">
+                                                                <div class="Flashsale_timeSlider_BoxImageS">
+                                                                    <div class="dEw30H">
+                                                                        <div class="L1k9wv T7s+N- hGTLQm">
+                                                                            <div class="HmlBrO ElZOUi">
+                                                                                <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path d="M9.23077 0H4.23077L0 7.82222L3.5 9.14286V16L10 5.68889L6.53846 4.62222L9.23077 0Z" fill="url(#paint0_linear_2216_10611)"></path>
+                                                                                    <defs>
+                                                                                        <linearGradient id="paint0_linear_2216_10611" x1="0" y1="0" x2="0" y2="16" gradientUnits="userSpaceOnUse">
+                                                                                            <stop stop-color="#EE4D2D"></stop>
+                                                                                            <stop offset="1" stop-color="#FF7337"></stop>
+                                                                                        </linearGradient>
+                                                                                    </defs>
+                                                                                </svg>
+                                                                            </div>-<?= $proSale['sale'] ?>%
+                                                                        </div>
+                                                                    </div>
+                                                                    <img src="./public/upload/image/product/<?= explode(",", $proSale['images'])[0] ?>">
+                                                                    <div class="Flashsale_timeSlider_textSpan">
+                                                                        <span class="Flashsale_timeSlider_Span">Sale</span>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="BoxTextS_sendSuccess_bg"></div>
-                                                                <div class="BoxTextS_sendSuccess_bg_2"></div>
-                                                            </div>
+                                                                <div class="Flashsale_timeSlider_BoxTextS">
+                                                                    <div class="Flashsale_timeSlider_BoxTextS_price">
+                                                                        ₫<?= number_format($proSale['price'], 0, ",", ".") ?>
+                                                                    </div>
+                                                                    <div class="Flashsale_timeSlider_BoxTextS_updateSale">
+                                                                        <div class="Flashsale_timeSlider_BoxTextS_updateSaleNumber">
+                                                                            <div class="BoxTextS_Image_sendSuccess"></div>
+                                                                            <div class="BoxTextS_sendSuccess_content">
+                                                                                Đã bán 23,2k
+                                                                            </div>
+                                                                            <div class="BoxTextS_sendSuccess_bg"></div>
+                                                                            <div class="BoxTextS_sendSuccess_bg_2"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
                                                         </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </li>
+                                                    </li>
+                                                <?php
+                                            }
+                                        ?>
                                     </ul>
                                 </div>
                                 <div class="carousel-arrow carousel-arrow--prev carousel-arrow--hint">
@@ -668,43 +689,49 @@
                                     </a>
                                 </div>
                                 <div class="productS-link-full-view viewOne">
-                                    <div class="productS-full-link-view">
-                                        <a href="index.php?url=chi-tiet-sanpham" class="">
-                                            <div class="prd-v2">
-                                                <div class="prd-v3">
-                                                    <div style="pointer-events: none;">
-                                                        <div class="prd-img-hv">
-                                                            <img src="./img1/a1.jpg" class="prd-img" alt="">
-                                                            <div class="yt-prd">
-                                                                <div class="yt-chill rgba-yt-chil">
-                                                                    <span class="span-yt-chil span-yt-prd">Hot</span>
+                                    <?php
+                                        foreach($listProsearchMax as $proSearchMax) {
+                                            ?>
+                                                <div class="productS-full-link-view">
+                                                    <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $proSearchMax['product_id'] ?>" class="">
+                                                        <div class="prd-v2">
+                                                            <div class="prd-v3">
+                                                                <div style="pointer-events: none;">
+                                                                    <div class="prd-img-hv">
+                                                                        <img src="./public/upload/image/product/<?= explode(",", $proSearchMax['images'])[0] ?>" class="prd-img" alt="">
+                                                                        <div class="yt-prd">
+                                                                            <div class="yt-chill rgba-yt-chil">
+                                                                                <span class="span-yt-chil span-yt-prd">Hot</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="prd-v3-chil">
+                                                                    <div class="prd-v3-title-text">
+                                                                        <div class="prd-v3-box-text">
+                                                                            <div class="prd-v3-text">
+                                                                                <?= $proSearchMax['product_name'] ?>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="prd-v3-price prd-v3-price-bv">
+                                                                        <div class="prd-v3-price-textChil">
+                                                                            <span class="prd-v3-price-textChil-span">
+                                                                                ₫<?= number_format($proSearchMax['price'], 0, ",", ".") ?>
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="check-sub-success">
+                                                                            đã bán 23.2k
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="prd-v3-chil">
-                                                        <div class="prd-v3-title-text">
-                                                            <div class="prd-v3-box-text">
-                                                                <div class="prd-v3-text">
-                                                                    Áo Thun Nam
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="prd-v3-price prd-v3-price-bv">
-                                                            <div class="prd-v3-price-textChil">
-                                                                <span class="prd-v3-price-textChil-span">
-                                                                    200.000đ
-                                                                </span>
-                                                            </div>
-                                                            <div class="check-sub-success">
-                                                                đã bán 23.2k
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    </a>
                                                 </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                                            <?php
+                                        }
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -721,45 +748,55 @@
                                         <ul class="stardust-tabs-header">
                                             <li class="stardust-tabs-header__tab stardust-tabs-header__tab--active">
                                                 <div class="rTmd0c zJaHI0"></div>
-                                                <div tabindex="0" class="span__stardust-tabs-header__tab"><span>SẢN PHẨM BÁN CHẠY</span></div>
+                                                <div tabindex="0" class="span__stardust-tabs-header__tab"><span>GỢI Ý HÔM NAY</span></div>
                                             </li>
                                         </ul>
                                     </nav>
                                     <div class="stardust-tabs-header-product">
                                         <section class="stardust-tabs-panels__panel" style="display: block;">
                                             <div class="stardust-tabs-panels__panel_navS">
-                                                <div class="stardust-tabs-panels__panel_navSChilrent">
-                                                    <a href="./view/chitietsp.php?id=<?= $itemSpBanChay['id_spBanChay'] ?>" class="stardust-tabs-panels__flexHref">
-                                                        <div class="stardust-tabs-panels__ColumFlex__div">
-                                                            <div class="stardust-tabs-panels__ColumFlex_img">
-                                                                <img src="./img1/a1.jpg" alt="">
-                                                                <div class="ColumFlex_img__spanSale">
-                                                                    <span class="ColumFlex_img__span">Sale</span>
-                                                                </div>
-                                                                <div class="ColumFlex_img__spanSalePt">
-                                                                    <span class="ColumFlex_img__textSaleContent">10</span>
-                                                                    <span class="ColumFlex_img__textSaleGiam">GIẢM</span>
-                                                                </div>
-                                                                <!-- <div class="ColumFlex_img__bgrImage">
-                                                                            <img src="../../img1/bgpr.png" alt="">
-                                                                        </div> -->
-                                                            </div>
-                                                            <div class="stardust-tabs-panels__ColumFlex_BoxText">
-                                                                <div class="stardust-ColumFlex_title">
-                                                                    Áo Thun
-                                                                </div>
-                                                                <div class="stardust-ColumFlex_Boxprice">
-                                                                    <div class="stardust-ColumFlex_Boxprice">
-                                                                        200.000 đ
+                                                <?php
+                                                    foreach($listProduct as $product) {
+                                                        ?>
+                                                            <div class="stardust-tabs-panels__panel_navSChilrent">
+                                                                <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $product['product_id'] ?>" class="stardust-tabs-panels__flexHref">
+                                                                    <div class="stardust-tabs-panels__ColumFlex__div">
+                                                                        <div class="stardust-tabs-panels__ColumFlex_img">
+                                                                            <img src="./public/upload/image/product/<?= explode(",", $product['images'])[0] ?>" alt="">
+                                                                            <div class="ColumFlex_img__spanSale">
+                                                                                <span class="ColumFlex_img__span">Sale</span>
+                                                                            </div>
+                                                                            <div class="ColumFlex_img__spanSalePt">
+                                                                                <span class="ColumFlex_img__textSaleContent"><?= $product['sale'] ?>%</span>
+                                                                                <span class="ColumFlex_img__textSaleGiam">GIẢM</span>
+                                                                            </div>
+                                                                            <div class="ColumFlex_img__bgrImage">
+                                                                                <img src="./img1/bgpr.png" alt="">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="stardust-tabs-panels__ColumFlex_BoxText">
+                                                                            <div class="stardust-ColumFlex_title">
+                                                                                <?= $product['product_name'] ?>
+                                                                            </div>
+                                                                            <div class="stardust-ColumFlex_Boxprice">
+                                                                                <div class="stardust-ColumFlex_Boxprice">
+                                                                                    ₫<?= number_format($product['price'], 0, ",",".") ?>
+                                                                                </div>
+                                                                                <div class="stardust-ColumFlex_clickPrice">
+                                                                                    đã bán 23.2k
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="vanhstore_product_item-cart prSt__cart">
+                                                                            <a href="">Tìm sản phẩm tương tự</a>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="stardust-ColumFlex_clickPrice">
-                                                                        đã bán 23.2k
-                                                                    </div>
-                                                                </div>
+                                                                </a>
                                                             </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
+                                                        <?php
+                                                    }
+                                                ?>
+                                                
 
                                                 <div class="btn__click_stardust__product">
                                                     <a class="btn btn-light btn--m btn--inline btn-light--link btn__click___productAhref" href="">Xem thêm</a>

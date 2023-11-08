@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" min="0" max="5" id="inputNumber">
+    <div id="err"></div>
+    <script>
+        const inputNumber = document.getElementById('inputNumber');
+        const errorText = document.getElementById('err');
+        const maxLimit = parseInt(inputNumber.getAttribute('max'));
+
+        inputNumber.addEventListener('input', function() {
+            const inputValue = parseInt(inputNumber.value);
+
+            if (inputValue > maxLimit) {
+                errorText.textContent = 'Giá trị không được vượt quá ' + maxLimit + '.';
+                inputNumber.value = maxLimit;
+            } else {
+                errorText.textContent = '';
+            }
+        });
+    </script>
+</body>
+</html>

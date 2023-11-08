@@ -266,11 +266,12 @@ form {
   display: flex;
   flex: 1;
   box-sizing: border-box;
-  padding: 0 0.625rem;
+  padding: 0 0.075rem 0 0.625rem;
   position: relative;
   background-color: #fff;
   border-color: #fff;
 }
+
 
 input {
   line-height: normal;
@@ -339,6 +340,25 @@ input {
   color: #fff;
   font-size: 17px;
 }
+
+.btn__click_view_search_pr {
+  position: relative;
+}
+
+.btn__click_view_search_pr input {
+  position: relative;
+}
+
+.btn__click_view_search_pr i {
+  position: absolute;
+  color: #fff;
+  font-size: 17px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+
 
 .btn-chil-icon:hover {
   background: #fb6445;
@@ -1072,6 +1092,41 @@ svg.active__checked_cate {
 
 .vanhstore-checkbox__label {
   padding-left: 22px;
+}
+
+._6o9eaa {
+  position: absolute;
+  width: 101%;
+  top: calc(100% - .125rem);
+  height: 1.875rem;
+  background-color: #ee4d2d;
+  color: #fff;
+  left: -.0625rem;
+  text-align: center;
+  line-height: 1.875rem;
+  border: 1px solid #ee4d2d;
+  border-bottom-left-radius: .125rem;
+  border-bottom-right-radius: .125rem;
+  z-index: 1;
+  opacity: 0;
+}
+
+.ZK4XOV .GnRhpE {
+  border: 1px solid transparent;
+}
+
+.ZK4XOV .GnRhpE:hover {
+  border: 1px solid #ee4d2d;
+  z-index: 2;
+}
+
+.ZK4XOV .GnRhpE:hover .vanhstore-item-card__hover-footer {
+  opacity: 1;
+  transition: opacity .1s;
+}
+
+._6o9eaa a {
+  color: #fff;
 }
 
 .vanhstore-filter-group__toggle-btn {

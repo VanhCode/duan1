@@ -22,7 +22,7 @@
                 FROM 
                     products
                 INNER JOIN
-                    categories ON products.category_id = categories.category_id WHERE 1 ORDER BY products.product_id ASC;
+                    categories ON products.category_id = categories.category_id WHERE 1 ORDER BY products.product_id DESC;
                 ";
         $result = pdo_query($sql);
         return $result;
