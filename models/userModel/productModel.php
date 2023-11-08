@@ -10,6 +10,13 @@
         return pdo_query($sql);
     }
 
+    // Select sản phẩm cùng danh mục mà khác id
+    function product_cungloai($category_id,$product_id) {
+        $sql = "SELECT * FROM products WHERE category_id = '$category_id' AND product_id <> '$product_id'";
+        return pdo_query($sql);
+    }
+
+    
 
     // Select sản phẩm được tìm kiếm nhiều nhất
     function listProSearchMax() {

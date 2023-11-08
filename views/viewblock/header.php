@@ -35,15 +35,7 @@
     ?>
 </head>
 <body>
-    <?php
-        if(!isset($_GET['user'])) {
-            ?>
-                <div id="loading-overlay">
-                    <div class="loader"></div>
-                </div>
-            <?php
-        }
-    ?>
+    
     <div class="wrapper">
         <!-- header -->
         <!-- <div class="thongBaoSuccess">

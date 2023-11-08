@@ -150,6 +150,9 @@
                     $chitiet_product = chitietSanpham($detail_product);
                     $listVariationColor = listVariationColor($detail_product);
                     $listVariationSize = listVariationSize($detail_product);
+
+                    $listSpCungloai = product_cungloai($chitiet_product['category_id'],$detail_product);
+
                     $sumAmout = countAmount($detail_product);
                 } else {
                     $detail_product = "";
