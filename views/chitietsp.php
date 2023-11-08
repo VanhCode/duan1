@@ -1,5 +1,6 @@
 <!-- Main -->
 
+
 <div class="main">
     <div class="container">
         <div class="flex items-center page-product__main">
@@ -7,7 +8,7 @@
             <i class="fa-solid fa-angle-right"></i>
             <a class="page-product__main_a" href="">Sản Phẩm Chi Tiết</a>
             <i class="fa-solid fa-angle-right"></i>
-            <span class="page-product__main_span">Áo Nỉ</span>
+            <span class="page-product__main_span"><?= $chitiet_product['product_name'] ?></span>
         </div>
         <div class="product-briefing_main">
             <div></div>
@@ -16,12 +17,22 @@
                     <div class="flex-column flex-column__chil">
                         <div class="flex-column__chil_pictur">
                             <div class="chil_pictur">
-                                <img id="onmouseoverImg" class="onmouseoverImg" src="./img1/a1.jpg" alt="">
+                                <img id="onmouseoverImg" class="onmouseoverImg" src="./public/upload/image/product/<?= explode(",", $chitiet_product['images'])[0] ?>" alt="">
                             </div>
                         </div>
                         <div class="flex-column__chil_img_hover">
                             <div class="flex-column__chil_img_transform">
-                                <div class="img__onmouseo">
+                                <?php
+                                    $giamgia = $chitiet_product['price'] * $chitiet_product['sale'] / 100;
+                                    foreach(explode(",", $chitiet_product['images']) as $key => $imageChil) {
+                                        ?>
+                                            <div class="img__onmouseo">
+                                                <img name="img_product" src="./public/upload/image/product/<?= $imageChil ?>" class="list-img <?= $key == 0 ? "img__onmouseo-border" : "" ?>" alt="">
+                                            </div>
+                                        <?php
+                                    }
+                                ?>
+                                <!-- <div class="img__onmouseo">
                                     <img name="img_product" src="./img1/a1.jpg" class="list-img img__onmouseo-border" alt="">
                                 </div>
                                 <div class="img__onmouseo">
@@ -41,7 +52,7 @@
                                 </div>
                                 <div class="img__onmouseo">
                                     <img src="./img1/a2.jpg" class="list-img" alt="">
-                                </div>
+                                </div> -->
                             </div>
                             <button id="back__onmouseo" class="back__onmouseo"><i class="fa-solid fa-angle-left"></i></button>
                             <button id="next__onmouseo" class="next__onmouseo"><i class="fa-solid fa-angle-right"></i></button>
@@ -61,7 +72,7 @@
                     <input type="hidden" name="id_sanpham" value="">
                     <div class="flex__product-text">
                         <div class="box-flex__product-text">
-                            <span class="nameSp" name="name">Áo Nỉ SWETTER</span>
+                            <span class="nameSp" name="name"><?= $chitiet_product['product_name'] ?></span>
                         </div>
                         <div class="box-flex__product-text_icon_star">
                             <div class="flex_assess_icon_star">
@@ -92,8 +103,14 @@
                                         Giá Bán:
                                     </div>
                                     <div class="flex_price__product_text">
-                                        <div class="flex_price__product_text_throw" name="priceThrow">200000đ</div>
-                                        <div class="flex_price__product_text" name="price">150000đ</div>
+                                        <?php
+                                            if($chitiet_product['sale'] > 0) {
+                                                ?>
+                                                    <div class="flex_price__product_text_throw" name="priceThrow">₫<?= number_format($chitiet_product['price'], 0, ",",".") ?></div>
+                                                <?php
+                                            }
+                                        ?>
+                                        <div class="flex_price__product_text" name="price">₫<?= ($chitiet_product['sale'] > 0) ? number_format($giamgia, 0, ",",".") : number_format($chitiet_product['price'], 0, ",",".") ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -104,45 +121,44 @@
                                     <div class="flex-column__Box__information">
                                         <div class="flex__column_color">
                                             <div class="flex__column_color_text">Màu Sắc</div>
-                                            <div class="flex__column_color_clickBox">
-                                                <label class="color_tee_product">
-                                                    <span style="font-size: 15px;">Áo Đen</span>
-                                                    <input type="checkbox" name="color" class="color">
-                                                </label>
-                                                <label class="color_tee_product">
-                                                    <span style="font-size: 15px;">Áo Trắng</span>
-                                                    <input type="checkbox" name="color" class="color">
-                                                </label>
-                                                <!-- <button class="color_tee_product" data-value="Áo Đen"></button>
-                                                <button class="color_tee_product" data-value="Áo Đen"></button> -->
-                                            </div>
+                                            <?php
+                                                foreach($listVariationColor as $variationColor) {
+                                                    ?>
+                                                        <div class="flex__column_color_clickBox">
+                                                            <label class="color_tee_product">
+                                                                <span style="font-size: 15px;"><?= $variationColor['color'] ?></span>
+                                                                <input type="radio" value="<?= $variationColor['color'] ?>" name="color" class="color">
+                                                            </label>
+                                                        </div>
+                                                    <?php
+                                                }
+                                            ?>
                                         </div>
                                         <div class="err-color__mau"></div>
-                                        <div class="flex__column_size">
-                                            <div class="flex__column_size_text">Size</div>
-                                            <div class="flex__column_size_clickBox">
-                                                <label class="size_tee_product">
-                                                    <span>S</span>
-                                                    <input type="checkbox" name="size" value="S" class="size">
-                                                </label>
-                                                <label class="size_tee_product">
-                                                    <span>M</span>
-                                                    <input type="checkbox" name="size" value="M" class="size">
-                                                </label>
-                                                <label class="size_tee_product">
-                                                    <span>L</span>
-                                                    <input type="checkbox" name="size" value="L" class="size">
-                                                </label>
-                                                <label class="size_tee_product">
-                                                    <span>XL</span>
-                                                    <input type="checkbox" name="size" value="XL" class="size">
-                                                </label>
-                                            </div>
-                                            <!-- <button class="size_tee_product" data-value="M">M</button>
-                                            <button class="size_tee_product" data-value="L">L</button>
-                                            <button class="size_tee_product" data-value="XL">XL</button> -->
-                                            <div class="errSize"></div>
-                                        </div>
+                                        <?php
+                                            foreach($listVariationColor as $variationSize) {
+                                                ?>
+                                                    <div class="flex__column_size sizetesst" id="play__size">
+                                                        <div class="flex__column_size_text">Size</div>
+                                                        <div class="flex__column_size_clickBox">
+                                                            <?php
+                                                                foreach(explode(",", $variationSize['size']) as $key => $size) {
+                                                                    ?>
+                                                                        <label class="size_tee_product" id="boxSize">
+                                                                            <span style="pointer-events: none;"><?= $size ?></span>
+                                                                            <input type="radio" style="pointer-events: none;" name="size" value="<?= $size ?>" class="size">
+                                                                            <input type="text" class="amount__boxSize" style="opacity: 0; position: absolute; pointer-events: none;" value="<?= explode(",", $variationSize['amount'])[$key] ?>">
+                                                                        </label>
+                                                                    <?php
+                                                                }
+                                                            ?>
+                                                        </div>
+                                                        <div class="errSize"></div>
+                                                    </div>
+                                                <?php
+                                            }
+                                        ?>
+                                        
 
                                         <div class="flex__column_amount">
                                             <div class="flex__column_size_text">Số Lượng</div>
@@ -150,7 +166,8 @@
                                                 <input type="number" name="amount__flex" placeholder="0" min="0" max="100" class="amount__flex" id="amount__flex">
                                             </div>
                                             <div class="flex__column_amount__span">
-                                                25000 sản phẩm có sẵn
+                                                <span id="value__amount"><?= $sumAmout['amount'] ?></span>
+                                                <span class="pro_new">Sản phẩm có sẵn</span>
                                             </div>
                                         </div>
                                     </div>

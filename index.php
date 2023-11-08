@@ -3,6 +3,7 @@
     include "./models/pdo.php";
     include "./models/userModel/accountModel.php";
     include "./models/userModel/categoryModel.php";
+    include "./models/userModel/productModel.php";
     include "./models/userModel/searchModel.php";
 
     
@@ -10,7 +11,10 @@
     $user = select__userByid($userID);
 
     $listCategory = listCategory();
+    $listcategoryLimit = listCategory__limit(5);
 
+    $productSale = productSale();
+    $listProsearchMax = listProSearchMax();
 
     if(isset($_GET['action']) && $_GET['action'] != "") {
         $action = $_GET['action'];
@@ -136,12 +140,25 @@
                 include "views/account/dangky.php";
                 break;
             case "chi-tiet-sanpham":
+                if(isset($_GET['detail_product']) && ($_GET['detail_product'] > 0)) {
+                    $detail_product = $_GET['detail_product'];
+                    $chitiet_product = chitietSanpham($detail_product);
+                    $listVariationColor = listVariationColor($detail_product);
+                    $listVariationSize = listVariationSize($detail_product);
+                    $sumAmout = countAmount($detail_product);
+                } else {
+                    $detail_product = "";
+                    $chitiet_product = "";
+                }
+                
                 include "views/chitietsp.php";
                 break;
             case "search":
                 if(isset($_POST['searchProduct'])) {
                     $keyword = $_POST['keyword'];
-                    // echo $listProdSearch;
+
+                    // Hàm này để tăng số lần tên nào được tìm kiếm nhiều nhất
+                    searchMax($keyword);
                 } else {
                     $keyword = "";
                 }

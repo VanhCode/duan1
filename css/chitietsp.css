@@ -1087,10 +1087,24 @@ button.color_tee_product:hover {
   color: var(--nc-bg-bd) !important;
 }
 
+.color_tee_product .color {
+  position: absolute;
+  opacity: 0;
+}
+
+.size_tee_product .size {
+  position: absolute;
+  opacity: 0;
+}
+
 .flex__column_size {
   display: flex;
   align-items: center;
   margin-top: 30px;
+}
+
+.sizetesst {
+  display: none;
 }
 
 .flex__column_size_text {

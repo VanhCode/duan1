@@ -1,3 +1,25 @@
+var colorS = document.querySelectorAll(".color_tee_product")
+var boxSizeS = document.querySelectorAll('.sizetesst')
+var sizeTee = document.querySelectorAll('.size_tee_product')
+var valueAmount = document.querySelector('#value__amount')
+
+sizeTee.forEach(function(sizeTeeChildrent) {
+    sizeTeeChildrent.onclick = function() {
+        // console.log(sizeTeeChildrent.querySelector('.amount__boxSize').value)
+        valueAmount.innerHTML = sizeTeeChildrent.querySelector('.amount__boxSize').value
+    }
+})
+
+boxSizeS[0].style.display = "flex"
+colorS.forEach(function(sizeChil, index) {
+    sizeChil.addEventListener('click', function() {
+        boxSizeS.forEach(function(sizeIndex) {
+            sizeIndex.style.display = "none"
+        })
+        boxSizeS[index].style.display = "flex"
+    })
+})
+
 function listOmouover () {
     var list = document.querySelectorAll(".list-img");
     var mainImg = document.querySelector("#onmouseoverImg");
@@ -241,3 +263,16 @@ if (message) {
 // };
 
 // xhr.send("amount=" + amount);
+
+
+// Box size and Color
+
+var colorS = document.querySelectorAll(".color_tee_product")
+var boxSizeS = document.querySelectorAll('.size_tee_product')
+
+colorS.forEach(function(sizeChil, index) {
+    boxSizeS[index].style.display = "none"
+    sizeChil.addEventListener('click', function() {
+        boxSizeS[index].style.display = "block"
+    })
+})

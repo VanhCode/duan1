@@ -358,6 +358,40 @@ input {
   pointer-events: none;
 }
 
+._6o9eaa {
+  position: absolute;
+  width: 101%;
+  top: calc(100% - .125rem);
+  height: 1.875rem;
+  background-color: #ee4d2d;
+  color: #fff;
+  left: -.0625rem;
+  text-align: center;
+  line-height: 1.875rem;
+  border: 1px solid #ee4d2d;
+  border-bottom-left-radius: .125rem;
+  border-bottom-right-radius: .125rem;
+  z-index: 1;
+  opacity: 0;
+}
+
+.ZK4XOV .GnRhpE {
+  border: 1px solid transparent;
+}
+
+.ZK4XOV .GnRhpE:hover {
+  border: 1px solid #ee4d2d;
+  z-index: 2;
+}
+
+.ZK4XOV .GnRhpE:hover .vanhstore-item-card__hover-footer {
+  opacity: 1;
+  transition: opacity .1s;
+}
+
+._6o9eaa a {
+  color: #fff;
+}
 
 .btn-chil-icon:hover {
   background: #fb6445;

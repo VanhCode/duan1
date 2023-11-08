@@ -15,13 +15,33 @@
                                             <?php
                                                 foreach($listcategoryLimit as $category) {
                                                     ?>
-                                                        <a href="" class="vanhstore-category-list__sub-category">
+                                                        <a href="" class="vanhstore-category-list__sub-category list-category__active">
                                                             <i class="fa-solid fa-play list-category__active"></i>
                                                             <?= $category['category_name'] ?>
                                                         </a>
                                                     <?php
                                                 }
                                             ?>
+                                           <!-- <a href="" class="vanhstore-category-list__sub-category list-category__active">
+                                               <i class="fa-solid fa-play list-category__active"></i>
+                                               Thời Trang Nam
+                                           </a>
+                                           <a href="" class="vanhstore-category-list__sub-category">
+                                               <i class="fa-solid fa-play"></i>
+                                               Thời Trang Nữ
+                                           </a>
+                                           <a href="" class="vanhstore-category-list__sub-category">
+                                               <i class="fa-solid fa-play"></i>
+                                               Thời Trang Trẻ
+                                           </a>
+                                           <a href="" class="vanhstore-category-list__sub-category">
+                                               <i class="fa-solid fa-play"></i>
+                                               Áo Sơ Mi
+                                           </a>
+                                           <a href="" class="vanhstore-category-list__sub-category">
+                                               <i class="fa-solid fa-play"></i>
+                                               Áo Thun
+                                           </a> -->
                                            <div class="stardust-dropdown folding-items__toggle">
                                                <div class="stardust-dropdown__item-header">
                                                    <div class="vanhstore-category-list__toggle-btn">
@@ -250,7 +270,7 @@
                                     } else {
                                         ?>
                                             <span class="shopee-search-result-header__text">
-                                                Chúng tôi không tìm thấy sản phẩm ' <span class="shopee-search-result-header__text-highlight" style="color: rgb(238, 77, 45); font-weight: 400;"><?= $keyword ?></span> ' nào
+                                                Chúng tôi không tìm thấy sản phẩm '<span class="shopee-search-result-header__text-highlight" style="color: rgb(238, 77, 45); font-weight: 400;"><?= $keyword ?></span>' nào
                                             </span>
                                         <?php
                                     }
@@ -299,7 +319,7 @@
                                         foreach($listProdSearch as $product) {
                                             ?>
                                                 <li class="col-xs-2-4 vanhstore-search-item-result__item">
-                                                    <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $product['product_id'] ?>">
+                                                    <a href="">
                                                         <div class="ZK4XOV">
                                                             <div class="GnRhpE">
                                                                 <div style="pointer-events: none;">
@@ -329,19 +349,16 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="cA9TT+">
-                                                                        <div class="bPcAVl FMvHxS H5ICvW" aria-hidden="true">₫599.000</div>
+                                                                        <div class="bPcAVl FMvHxS H5ICvW" aria-hidden="true">₫<?= $product['price'] ?></div>
                                                                         <div class="bPcAVl IWBsMB">
                                                                             <span aria-label="current price"></span>
                                                                             <span class="bx++ig">₫</span>
-                                                                            <span class="k9JZlv"><?= $product['price'] ?></span>
+                                                                            <span class="k9JZlv">99.000</span>
                                                                         </div>
                                                                     </div>
                                                                     <div class="DN6Jp1">
                                                                         <div class="OwmBnn eumuJJ">Đã bán 51</div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="vanhstore-item-card__hover-footer _6o9eaa">
-                                                                    <a href="">Tìm sản phẩm tương tự</a>
                                                                 </div>
                                                             </div>
                                                         </div>
