@@ -408,7 +408,7 @@ input {
   font-size: 17px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   cursor: pointer;
 }
 
@@ -596,11 +596,40 @@ input {
 }
 
 .HmlBrO {
-    position: absolute;
+  position: absolute;
 }
 
 .HmlBrO.ElZOUi {
   left: -0.23438rem;
+}
+
+.prSt__cart {
+  position: absolute;
+  width: 101%;
+  height: 1.875rem;
+  color: #fff;
+  left: -0.0665rem;
+  box-sizing: content-box;
+  border-bottom-left-radius: 0.125rem;
+  border-bottom-right-radius: 0.125rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgba(238, 77, 45, var(--tw-border-opacity));
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.875rem;
+  bottom: -31px;
+  transition-duration: 0.1s;
+  background-color: #ee4d2d;
+  opacity: 0;
+}
+
+.prSt__cart a {
+  color: #fff;
+}
+
+.stardust-tabs-panels__ColumFlex__div:hover .prSt__cart {
+  opacity: 1;
 }
 
 .vanh-navBarr__Ul-li {
@@ -2276,6 +2305,7 @@ li {
 }
 
 .stardust-tabs-panels__ColumFlex__div {
+  position: relative;
   display: flex;
   flex-direction: column;
   overflow: visible;
@@ -2397,6 +2427,15 @@ li {
   color: rgba(0, 0, 0, 0.87);
   flex-grow: 1;
   min-height: 2.75rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  max-height: 0.1rem;
+  overflow-wrap: break-word;
+  font-size: .875rem;
+  line-height: 1.30rem;
+  overflow: hidden;
+  margin-bottom: 10px;
 }
 
 .stardust-ColumFlex_Boxprice {

@@ -755,38 +755,48 @@
                                     <div class="stardust-tabs-header-product">
                                         <section class="stardust-tabs-panels__panel" style="display: block;">
                                             <div class="stardust-tabs-panels__panel_navS">
-                                                <div class="stardust-tabs-panels__panel_navSChilrent">
-                                                    <a href="./view/chitietsp.php?id=<?= $itemSpBanChay['id_spBanChay'] ?>" class="stardust-tabs-panels__flexHref">
-                                                        <div class="stardust-tabs-panels__ColumFlex__div">
-                                                            <div class="stardust-tabs-panels__ColumFlex_img">
-                                                                <img src="./img1/a1.jpg" alt="">
-                                                                <div class="ColumFlex_img__spanSale">
-                                                                    <span class="ColumFlex_img__span">Sale</span>
-                                                                </div>
-                                                                <div class="ColumFlex_img__spanSalePt">
-                                                                    <span class="ColumFlex_img__textSaleContent">10</span>
-                                                                    <span class="ColumFlex_img__textSaleGiam">GIẢM</span>
-                                                                </div>
-                                                                <div class="ColumFlex_img__bgrImage">
-                                                                    <img src="./img1/bgpr.png" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="stardust-tabs-panels__ColumFlex_BoxText">
-                                                                <div class="stardust-ColumFlex_title">
-                                                                    Áo Thun
-                                                                </div>
-                                                                <div class="stardust-ColumFlex_Boxprice">
-                                                                    <div class="stardust-ColumFlex_Boxprice">
-                                                                        200.000 đ
+                                                <?php
+                                                    foreach($listProduct as $product) {
+                                                        ?>
+                                                            <div class="stardust-tabs-panels__panel_navSChilrent">
+                                                                <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $product['product_id'] ?>" class="stardust-tabs-panels__flexHref">
+                                                                    <div class="stardust-tabs-panels__ColumFlex__div">
+                                                                        <div class="stardust-tabs-panels__ColumFlex_img">
+                                                                            <img src="./public/upload/image/product/<?= explode(",", $product['images'])[0] ?>" alt="">
+                                                                            <div class="ColumFlex_img__spanSale">
+                                                                                <span class="ColumFlex_img__span">Sale</span>
+                                                                            </div>
+                                                                            <div class="ColumFlex_img__spanSalePt">
+                                                                                <span class="ColumFlex_img__textSaleContent"><?= $product['sale'] ?>%</span>
+                                                                                <span class="ColumFlex_img__textSaleGiam">GIẢM</span>
+                                                                            </div>
+                                                                            <div class="ColumFlex_img__bgrImage">
+                                                                                <img src="./img1/bgpr.png" alt="">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="stardust-tabs-panels__ColumFlex_BoxText">
+                                                                            <div class="stardust-ColumFlex_title">
+                                                                                <?= $product['product_name'] ?>
+                                                                            </div>
+                                                                            <div class="stardust-ColumFlex_Boxprice">
+                                                                                <div class="stardust-ColumFlex_Boxprice">
+                                                                                    ₫<?= number_format($product['price'], 0, ",",".") ?>
+                                                                                </div>
+                                                                                <div class="stardust-ColumFlex_clickPrice">
+                                                                                    đã bán 23.2k
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="vanhstore_product_item-cart prSt__cart">
+                                                                            <a href="">Tìm sản phẩm tương tự</a>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="stardust-ColumFlex_clickPrice">
-                                                                        đã bán 23.2k
-                                                                    </div>
-                                                                </div>
+                                                                </a>
                                                             </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
+                                                        <?php
+                                                    }
+                                                ?>
+                                                
 
                                                 <div class="btn__click_stardust__product">
                                                     <a class="btn btn-light btn--m btn--inline btn-light--link btn__click___productAhref" href="">Xem thêm</a>

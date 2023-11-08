@@ -1,5 +1,10 @@
 <?php
     // Select sản phẩm
+    function listProduct() {
+        $sql = "SELECT * FROM products WHERE 1 ORDER BY product_id ASC";
+        return pdo_query($sql);
+    }
+
     function productSale() {
         $sql = "SELECT * FROM products WHERE sale > 0 ORDER BY product_id ASC LIMIT 16";
         return pdo_query($sql);

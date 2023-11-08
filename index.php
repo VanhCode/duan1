@@ -10,9 +10,14 @@
     $userID = $_SESSION['user_id'] ?? 0;
     $user = select__userByid($userID);
 
+
+    // Danh mục (category)
     $listCategory = listCategory();
     $listcategoryLimit = listCategory__limit(5);
 
+    
+    // Sản phẩm (product)
+    $listProduct = listProduct();
     $productSale = productSale();
     $listProsearchMax = listProSearchMax();
 
