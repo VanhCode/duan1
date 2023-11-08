@@ -1,3 +1,36 @@
+
+
+
+var colorS = document.querySelectorAll(".color_tee_product")
+var boxSizeS = document.querySelectorAll('.sizetesst')
+var sizeTee = document.querySelectorAll('.size_tee_product')
+var valueAmount = document.querySelector('#value__amount')
+var amountFlex = document.querySelector('.amount__flex')
+
+
+sizeTee.forEach(function(sizeTeeChildrent) {
+    sizeTeeChildrent.onclick = function() {
+        // console.log(sizeTeeChildrent.querySelector('.amount__boxSize').value)
+        valueAmount.innerHTML = sizeTeeChildrent.querySelector('.amount__boxSize').value
+        amountFlex.setAttribute('max', sizeTeeChildrent.querySelector('.amount__boxSize').value)
+    }
+})
+
+boxSizeS[0].style.display = "flex"
+colorS.forEach(function(sizeChil, index) {
+    sizeChil.addEventListener('click', function() {
+        boxSizeS.forEach(function(sizeIndex) {
+            sizeIndex.style.display = "none"
+        })
+        boxSizeS[index].style.display = "flex"
+    })
+})
+
+
+listOmouover();
+listClickImage();
+ProductAnimation();
+
 function listOmouover () {
     var list = document.querySelectorAll(".list-img");
     var mainImg = document.querySelector("#onmouseoverImg");
@@ -7,13 +40,27 @@ function listOmouover () {
             list.forEach(function(img) {
                 img.classList.remove('img__onmouseo-border');
             });
-
+            
             this.classList.add('img__onmouseo-border');
-
+            
             mainImg.src = this.src;
         });
     }
 }
+
+
+
+amountFlex.addEventListener('input', function() {
+
+    const inputValue = parseInt(amountFlex.value);
+    
+    if (inputValue > max) {
+        errAmount.innerHTML = 'Số lượng không được vượt quá ' + max;
+        amountFlex.value = max;
+    } else {
+        errAmount.innerHTML = '';
+    }
+});
 
 function listClickImage () {
     var prevBoxImg = document.querySelector('#back__onmouseo')
@@ -21,7 +68,7 @@ function listClickImage () {
     var transformBox = document.querySelector('.flex-column__chil_img_transform')
 
     var curenIndex = 0
-
+    
 
     nextBoxImg.addEventListener('click', function() {
         if (curenIndex > -180) {
@@ -87,7 +134,7 @@ function ProductAnimation () {
     //     });
 
     //     if (!hasClassColor) {
-    //         event.target.classList.add('selected__button');
+        //         event.target.classList.add('selected__button');
     //     }
     // }
 
@@ -95,8 +142,8 @@ function ProductAnimation () {
     //     button.addEventListener('click', handleButtonClickColor);
     // });
 
-
-
+    
+    
 
     // var sizeS = document.querySelectorAll('.size');
     // sizeS.forEach(function(radio) {
@@ -111,7 +158,7 @@ function ProductAnimation () {
     //         radio.parentElement.classList.add('selected__button');
     //     });
     // });
-
+    
     var checkboxes = document.querySelectorAll('.size');
     checkboxes.forEach(function(checkbox) {
         checkbox.addEventListener('click', function() {
@@ -153,7 +200,7 @@ function ProductAnimation () {
     //     event.preventDefault();
 
     //     var hasClassSize = event.target.classList.contains('selected__button');
-
+    
     //     buttonsSizeS.forEach(function(button) {
     //         button.classList.remove('selected__button');
     //     });
@@ -171,15 +218,11 @@ function ProductAnimation () {
     // var sizeS = document.querySelectorAll('.size');
 
     // sizeS.forEach(function(radio) {
-    //     radio.addEventListener('click', function() {
+        //     radio.addEventListener('click', function() {
     //         console.log(radio.value);
     //     });
     // });
 }
-
-listOmouover();
-listClickImage();
-ProductAnimation();
 
 document.getElementById("addTocart").addEventListener("click", function (event) {
     var amount = document.getElementById("amount__flex").value;
@@ -196,8 +239,8 @@ document.getElementById("addTocart").addEventListener("click", function (event) 
         boxAnimationSuccess.style.display = 'block';
 
         // setTimeout(function() {
-        //     boxAnimationSuccess.style.display = 'none';
-        // }, 3000);
+            //     boxAnimationSuccess.style.display = 'none';
+            // }, 3000);
     }
 })
 
@@ -217,7 +260,7 @@ var message = getParameterByName('message');
 if (message) {
     var boxAnimationSuccess = document.querySelector('.boxAnimationSuccess');
     boxAnimationSuccess.style.display = 'block';
-
+    
     setTimeout(function() {
         boxAnimationSuccess.style.display = 'none';
     }, 3000);
@@ -241,3 +284,17 @@ if (message) {
 // };
 
 // xhr.send("amount=" + amount);
+
+
+// Box size and Color
+
+var colorS = document.querySelectorAll(".color_tee_product")
+var boxSizeS = document.querySelectorAll('.size_tee_product')
+
+colorS.forEach(function(sizeChil, index) {
+    boxSizeS[index].style.display = "none"
+    sizeChil.addEventListener('click', function() {
+        boxSizeS[index].style.display = "block"
+    })
+})
+

@@ -3,13 +3,23 @@
     include "./models/pdo.php";
     include "./models/userModel/accountModel.php";
     include "./models/userModel/categoryModel.php";
+    include "./models/userModel/productModel.php";
+    include "./models/userModel/searchModel.php";
 
     
     $userID = $_SESSION['user_id'] ?? 0;
     $user = select__userByid($userID);
 
-    $listCategory = listCategory();
 
+    // Danh mục (category)
+    $listCategory = listCategory();
+    $listcategoryLimit = listCategory__limit(5);
+
+    
+    // Sản phẩm (product)
+    $listProduct = listProduct();
+    $productSale = productSale();
+    $listProsearchMax = listProSearchMax();
 
     if(isset($_GET['action']) && $_GET['action'] != "") {
         $action = $_GET['action'];
@@ -40,7 +50,7 @@
                 break;
             case "user":
                 $profile = $_GET['profile'] ?? "";
-                $user = $_GET['user'] ?? "";
+                $userAction = $_GET['user'] ?? "";
                 $order = $_GET['order'] ?? "";
                 include "views/user/user.php";
                 break;
@@ -135,7 +145,33 @@
                 include "views/account/dangky.php";
                 break;
             case "chi-tiet-sanpham":
+                if(isset($_GET['detail_product']) && ($_GET['detail_product'] > 0)) {
+                    $detail_product = $_GET['detail_product'];
+                    $chitiet_product = chitietSanpham($detail_product);
+                    $listVariationColor = listVariationColor($detail_product);
+                    $listVariationSize = listVariationSize($detail_product);
+
+                    $listSpCungloai = product_cungloai($chitiet_product['category_id'],$detail_product);
+
+                    $sumAmout = countAmount($detail_product);
+                } else {
+                    $detail_product = "";
+                    $chitiet_product = "";
+                }
+                
                 include "views/chitietsp.php";
+                break;
+            case "search":
+                if(isset($_POST['searchProduct'])) {
+                    $keyword = $_POST['keyword'];
+
+                    // Hàm này để tăng số lần tên nào được tìm kiếm nhiều nhất
+                    searchMax($keyword);
+                } else {
+                    $keyword = "";
+                }
+                $listProdSearch = searchModel($keyword);
+                include "views/viewSearch.php";
                 break;
             case "gio-hang":
                 include "views/giohang.php";

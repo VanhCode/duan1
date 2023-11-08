@@ -75,7 +75,7 @@
                                         <td class="img__productadd">
                                             <img src="../public/upload/image/product/<?= explode(",", $valueSanpham['images'])[0] ?>" alt="">
                                         </td>
-                                        <td><?= $valueSanpham['product_name'] ?></td>
+                                        <td class="name__product__admin"><?= $valueSanpham['product_name'] ?></td>
                                         <td><?= $valueSanpham['category_name'] ?></td>
                                         <td>
                                             <a class="btn btn-outline-success btn-sm" href="index.php?action=editProduct&id_product=<?= $valueSanpham['product_id'] ?>">Sửa</a>

@@ -2,35 +2,6 @@
 
            <main class="main__category">
                <div class="div__main__category__vanhstore">
-                   <div class="container category-banners">
-                       <div style="width: 100%;">
-                           <div class="category__banners__full">
-                               <div class="category__banners__flex">
-                                   <div class="category__banners__imgs" id="full-home-banners">
-                                       <a href="">
-                                           <img src="./img1/bgdm.png" alt="">
-                                       </a>
-                                       <a href="">
-                                           <img src="./img1/bgvch.png" alt="">
-                                       </a>
-                                       <a href="">
-                                           <img src="./img1/del.jfif" alt="">
-                                       </a>
-                                   </div>
-                               </div>
-                               <div class="btn__click__banners">
-                                   <button class="click-left">
-                                       <</button>
-                                           <button class="click-right">></button>
-                               </div>
-                               <div class="list-icdost__dostClick">
-                                   <div class="icdost icdost-0 active"></div>
-                                   <div class="icdost icdost-1"></div>
-                                   <div class="icdost icdost-2"></div>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
                    <div class="container category__product">
                        <div class="category__title__text">
                            <div class="category__list__text">
@@ -41,26 +12,16 @@
                                <div class="vanhstore-category__list__body">
                                    <div class="vanhstore-category-list__category">
                                        <div class="folding-items__list__category">
-                                           <a href="" class="vanhstore-category-list__sub-category list-category__active">
-                                               <i class="fa-solid fa-play list-category__active"></i>
-                                               Thời Trang Nam
-                                           </a>
-                                           <a href="" class="vanhstore-category-list__sub-category">
-                                               <i class="fa-solid fa-play"></i>
-                                               Thời Trang Nữ
-                                           </a>
-                                           <a href="" class="vanhstore-category-list__sub-category">
-                                               <i class="fa-solid fa-play"></i>
-                                               Thời Trang Trẻ
-                                           </a>
-                                           <a href="" class="vanhstore-category-list__sub-category">
-                                               <i class="fa-solid fa-play"></i>
-                                               Áo Sơ Mi
-                                           </a>
-                                           <a href="" class="vanhstore-category-list__sub-category">
-                                               <i class="fa-solid fa-play"></i>
-                                               Áo Thun
-                                           </a>
+                                            <?php
+                                                foreach($listcategoryLimit as $category) {
+                                                    ?>
+                                                        <a href="" class="vanhstore-category-list__sub-category">
+                                                            <i class="fa-solid fa-play list-category__active"></i>
+                                                            <?= $category['category_name'] ?>
+                                                        </a>
+                                                    <?php
+                                                }
+                                            ?>
                                            <div class="stardust-dropdown folding-items__toggle">
                                                <div class="stardust-dropdown__item-header">
                                                    <div class="vanhstore-category-list__toggle-btn">
@@ -261,6 +222,40 @@
                            </div>
                        </div>
                        <div class="category__list__product">
+                           <h1 class="shopee-search-result-header">
+                               <div aria-hidden="true">
+                                   <svg viewBox="0 0 18 24" class="shopee-svg-icon icon-hint-bulb">
+                                       <g transform="translate(-355 -149)">
+                                           <g transform="translate(355 149)">
+                                               <g fill-rule="nonzero" transform="translate(5.4 19.155556)">
+                                                   <path d="m1.08489412 1.77777778h5.1879153c.51164401 0 .92641344-.39796911.92641344-.88888889s-.41476943-.88888889-.92641344-.88888889h-5.1879153c-.51164402 0-.92641345.39796911-.92641345.88888889s.41476943.88888889.92641345.88888889z"></path>
+                                                   <g transform="translate(1.9 2.666667)">
+                                                       <path d="m .75 1.77777778h2.1c.41421356 0 .75-.39796911.75-.88888889s-.33578644-.88888889-.75-.88888889h-2.1c-.41421356 0-.75.39796911-.75.88888889s.33578644.88888889.75.88888889z"></path>
+                                                   </g>
+                                               </g>
+                                               <path d="m8.1 8.77777718v4.66666782c0 .4295545.40294373.7777772.9.7777772s.9-.3482227.9-.7777772v-4.66666782c0-.42955447-.40294373-.77777718-.9-.77777718s-.9.34822271-.9.77777718z" fill-rule="nonzero"></path>
+                                               <path d="m8.1 5.33333333v.88889432c0 .49091978.40294373.88888889.9.88888889s.9-.39796911.9-.88888889v-.88889432c0-.49091977-.40294373-.88888889-.9-.88888889s-.9.39796912-.9.88888889z" fill-rule="nonzero"></path>
+                                               <path d="m8.80092773 0c-4.86181776 0-8.80092773 3.97866667-8.80092773 8.88888889 0 1.69422221.47617651 3.26933331 1.295126 4.61333331l2.50316913 3.9768889c.30201078.4782222.84303623.7697778 1.42482388.7697778h7.17785139c.7077799 0 1.3618277-.368 1.7027479-.9617778l2.3252977-4.0213333c.7411308-1.2888889 1.1728395-2.7786667 1.1728395-4.37688891 0-4.91022222-3.9409628-8.88888889-8.80092777-8.88888889m0 1.77777778c3.82979317 0 6.94810087 3.18933333 6.94810087 7.11111111 0 1.24444441-.3168334 2.43022221-.9393833 3.51466671l-2.3252977 4.0213333c-.0166754.0284444-.0481735.0462222-.0833772.0462222h-7.07224026l-2.43461454-3.8648889c-.68184029-1.12-1.04128871-2.4053333-1.04128871-3.71733331 0-3.92177778 3.11645483-7.11111111 6.94810084-7.11111111"></path>
+                                           </g>
+                                       </g>
+                                   </svg>
+                               </div>
+                               <?php
+                                    if(!empty($keyword)) {
+                                        ?>
+                                            <span class="shopee-search-result-header__text">
+                                                Kết quả tìm kiếm cho từ khoá '<span class="shopee-search-result-header__text-highlight" style="color: rgb(238, 77, 45); font-weight: 400;"><?= $keyword ?></span>'
+                                            </span>
+                                        <?php
+                                    } else {
+                                        ?>
+                                            <span class="shopee-search-result-header__text">
+                                                Chúng tôi không tìm thấy sản phẩm ' <span class="shopee-search-result-header__text-highlight" style="color: rgb(238, 77, 45); font-weight: 400;"><?= $keyword ?></span> ' nào
+                                            </span>
+                                        <?php
+                                    }
+                               ?>
+                           </h1>
                            <section class="category-search__item-result">
                                <div class="vanhstore-sort-bar">
                                    <div class="flex__price_bost">
@@ -295,60 +290,66 @@
                                            <span class="vanhstore-mini-page-controller__total">17</span>
                                        </div>
                                        <a href="" class="vanhstore-mini_controller_left">
-                                           << /a>
-                                               <a href="" class="vanhstore-mini_controller_right">></a>
+                                           <</a>
+                                        <a href="" class="vanhstore-mini_controller_right">></a>
                                    </div>
                                </div>
                                <ul class="row vanhstore-search-item-result__items">
-                                   <li class="col-xs-2-4 vanhstore-search-item-result__item">
-                                       <a href="">
-                                           <div class="ZK4XOV">
-                                               <div class="GnRhpE">
-                                                   <div style="pointer-events: none;">
-                                                       <div class="Vd2yUl OI9tKN">
-                                                           <img src="./img1/a1.jpg" class="Fd4QmV KbUcCB" alt="">
-                                                           <div class="D3Hha7">
-                                                               <div class="JhPmwn rXAd6u" style="color: rgb(242, 82, 32);">
-                                                                   <div class="DqPlQB lGEnMK">Yêu thích</div>
-                                                               </div>
-                                                           </div>
-                                                           <div class="TS7wv2">
-                                                               <div class="JC9p5x">
-                                                                   <span class="FTxtVW">-35%</span>
-                                                               </div>
-                                                           </div>
-                                                           <div class="N+Ex9S">
-                                                               <div class="customized-overlay-image">
-                                                                   <img alt="overlay image" src="./img1/bg_sale.png" width="" height="">
-                                                               </div>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="JxvxgB">
-                                                       <div class="wuYpH6" data-sqe="name">
-                                                           <div class="efwNRW">
-                                                               <div aria-hidden="true" class="DgXDzJ rolr6k Zvjf4O">Áo Phông Cộc Tay Hè Nam Nữ Phối Họa Tiết Nhịp Đập Cá Tính, Chất Liệu Cotton Khô Mềm Mịn Thấm Hút Mồ Hối Tốt</div>
-                                                           </div>
-                                                       </div>
-                                                       <div class="cA9TT+">
-                                                           <div class="bPcAVl FMvHxS H5ICvW" aria-hidden="true">₫189.000</div>
-                                                           <div class="bPcAVl IWBsMB">
-                                                               <span aria-label="current price"></span>
-                                                               <span class="bx++ig">₫</span>
-                                                               <span class="k9JZlv">99.000</span>
-                                                           </div>
-                                                       </div>
-                                                       <div class="DN6Jp1">
-                                                           <div class="OwmBnn eumuJJ">Đã bán 51</div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="vanhstore-item-card__hover-footer _6o9eaa">
-                                                        <a href="">Tìm sản phẩm tương tự</a>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                       </a>
-                                   </li>
+                                    <?php
+                                        foreach($listProdSearch as $product) {
+                                            ?>
+                                                <li class="col-xs-2-4 vanhstore-search-item-result__item">
+                                                    <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $product['product_id'] ?>">
+                                                        <div class="ZK4XOV">
+                                                            <div class="GnRhpE">
+                                                                <div style="pointer-events: none;">
+                                                                    <div class="Vd2yUl OI9tKN">
+                                                                        <img src="./public/upload/image/product/<?= explode(",", $product['images'])[0] ?>" class="Fd4QmV KbUcCB" alt="">
+                                                                        <div class="D3Hha7">
+                                                                            <div class="JhPmwn rXAd6u" style="color: rgb(242, 82, 32);">
+                                                                                <div class="DqPlQB lGEnMK">Yêu thích</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="TS7wv2">
+                                                                            <div class="JC9p5x">
+                                                                                <span class="FTxtVW">-<?= $product['sale'] ?>%</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="N+Ex9S">
+                                                                            <div class="customized-overlay-image">
+                                                                                <img alt="overlay image" src="./img1/bg_sale.png" width="" height="">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="JxvxgB">
+                                                                    <div class="wuYpH6" data-sqe="name">
+                                                                        <div class="efwNRW">
+                                                                            <div aria-hidden="true" class="DgXDzJ rolr6k Zvjf4O"><?= $product['product_name'] ?></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="cA9TT+">
+                                                                        <div class="bPcAVl FMvHxS H5ICvW" aria-hidden="true">₫599.000</div>
+                                                                        <div class="bPcAVl IWBsMB">
+                                                                            <span aria-label="current price"></span>
+                                                                            <span class="bx++ig">₫</span>
+                                                                            <span class="k9JZlv"><?= $product['price'] ?></span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="DN6Jp1">
+                                                                        <div class="OwmBnn eumuJJ">Đã bán 51</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="vanhstore-item-card__hover-footer _6o9eaa">
+                                                                    <a href="">Tìm sản phẩm tương tự</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            <?php
+                                        }
+                                    ?>
                                </ul>
                            </section>
                        </div>

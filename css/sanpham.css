@@ -266,7 +266,7 @@ form {
   display: flex;
   flex: 1;
   box-sizing: border-box;
-  padding: 0 0.625rem;
+  padding: 0 0.075rem 0 0.625rem;
   position: relative;
   background-color: #fff;
   border-color: #fff;

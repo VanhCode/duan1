@@ -267,3 +267,21 @@ clickableLinks.forEach((link, index) => {
 //         localStorage.setItem('activeLink', index);
 //     });
 // });
+
+
+const inputNumber = document.getElementById('inputNumber');
+const errorText = document.getElementById('errorText');
+const maxLimit = parseInt(inputNumber.getAttribute('max'));
+
+inputNumber.addEventListener('input', function() {
+  const inputValue = parseInt(inputNumber.value);
+
+  if (inputValue > maxLimit) {
+    // Nếu giá trị nhập vào lớn hơn max, hiển thị thông báo lỗi và đặt giá trị trở lại max
+    errorText.textContent = 'Giá trị không được vượt quá ' + maxLimit + '.';
+    inputNumber.value = maxLimit;
+  } else {
+    // Nếu giá trị hợp lệ, xóa thông báo lỗi (nếu có) và tiếp tục
+    errorText.textContent = '';
+  }
+});

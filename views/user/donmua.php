@@ -15,22 +15,22 @@
 
             if (isset($_GET['action']) && isset($_GET['user']) && isset($_GET['order'])) {
                 $action = $_GET['action'];
-                $user = $_GET['user'];
+                $userAction = $_GET['user'];
                 $order = $_GET['order'];
 
-                if ($action == "user" && $user == "don-mua" && $order == "all") {
+                if ($action == "user" && $userAction == "don-mua" && $order == "all") {
                     include "donmua/fullbill.php";
-                } else if ($action == "user" && $user == "don-mua" && $order == "cho-thanh-toan") {
+                } else if ($action == "user" && $userAction == "don-mua" && $order == "cho-thanh-toan") {
                     include "donmua/chothanhtoan.php";
-                } else if ($action == "user" && $user == "don-mua" && $order == "van-chuyen") {
+                } else if ($action == "user" && $userAction == "don-mua" && $order == "van-chuyen") {
                     include "donmua/vanchuyen.php";
-                } else if ($action == "user" && $user == "don-mua" && $order == "dang-giao") {
+                } else if ($action == "user" && $userAction == "don-mua" && $order == "dang-giao") {
                     include "donmua/danggiao.php";
-                } else if ($action == "user" && $user == "don-mua" && $order == "hoan-thanh") {
+                } else if ($action == "user" && $userAction == "don-mua" && $order == "hoan-thanh") {
                     include "donmua/hoanthanh.php";
-                } else if ($action == "user" && $user == "don-mua" && $order == "da-huy") {
+                } else if ($action == "user" && $userAction == "don-mua" && $order == "da-huy") {
                     include "donmua/dahuy.php";
-                } else if ($action == "user" && $user == "don-mua" && $order == "tra-hang") {
+                } else if ($action == "user" && $userAction == "don-mua" && $order == "tra-hang") {
                     include "donmua/trahang.php";
                 }
             } else {
