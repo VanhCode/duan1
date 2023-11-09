@@ -22,6 +22,23 @@
     $listProduct = listProduct();
     $productSale = productSale();
     $listProsearchMax = listProSearchMax();
+    if(isset($_GET['detail_product']) && ($_GET['detail_product'] > 0)) {
+        $detail_product = $_GET['detail_product'];
+        $chitiet_product = chitietSanpham($detail_product);
+    } else {
+        $detail_product = "";
+        $chitiet_product = "";
+    }
+
+
+    
+    // Cart (Cart)
+    $countProduct_cart = countProductCart();
+    if(isset($userID)) {
+        $listCart = listCartHeader($userID);
+    }
+
+
 
     if(isset($_GET['action']) && $_GET['action'] != "") {
         $action = $_GET['action'];
@@ -43,6 +60,7 @@
                 include "views/home.php";
                 break;
             case "san-pham":
+                $listProduct_moiNhat = listProduct__moiNhat();
                 include "views/sanpham.php";
                 break;
             case "danh-muc":
@@ -125,6 +143,7 @@
                         $resultInsert = addAccount($firstname,$lastname,$phone,$hashed_password,$phone,$date,$gender);
             
                         if(!$resultInsert) {
+
                             $success = '
                                 <div style="display:flex;" class="group_content__succesS">
                                     <div class="group_content__Animation__success__icon">
@@ -135,6 +154,12 @@
                                     </div>
                                 </div>
                             ';
+
+                            if($success) {
+                                echo "<script>setTimeout(function() {window.location.href = 'index.php?action=login'}, 2000)</script>";
+                            }
+
+                            
                         } else {
                             echo '<script>alert("Lỗi truy vấn cơ sở dữ liệu.");</script>';
                         } 
@@ -187,7 +212,7 @@
                 if(isset($_POST['addTocart'])) {  
  
                     if ($user) {
-                        $stateCheck = checkProCartBySizeColor($_POST['id_sanpham'],'M',$_POST['color']);
+                        $stateCheck = checkProCartBySizeColor($_POST['id_sanpham'],$_POST['size'],$_POST['color']);
     
                         if ($stateCheck) {
                             $amount = $stateCheck['amount'] + $_POST['amount__flex'];
@@ -206,6 +231,15 @@
     
                 }
 
+                break;
+            case "deleteCart";
+                if(isset($_GET['cart_id']) && $_GET['cart_id'] > 0) {
+                    $cart_id = $_GET['cart_id'];
+                    delete_cart($cart_id);
+                    header('Location: index.php?action=gio-hang');
+                } else {
+                    $cart_id = "";
+                }
                 break;
             case "thanh-toan":
                 include "views/thanhtoan.php";

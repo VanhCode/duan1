@@ -1,4 +1,27 @@
+function sendAddtocart() {
+    var colors = document.querySelectorAll('.colorProduct');
+    var sizes = document.querySelectorAll('.size');
+    var err = document.querySelector('#errAmount');
 
+    let count = 0;
+
+    for(var i = 0; i < colors.length; i++) {
+        for(var j = 0; j < sizes.length; j++) {
+            if(colors[i].checked == "" || sizes[j].checked == "") {
+                err.innerHTML = "Vui lòng chọn phân loại";
+                count++;
+            } else {
+                err.innerHTML = "";
+                return true;
+            }
+        }
+    }
+
+    if(count > 0) {
+        return false;
+    }
+    
+}
 
 
 var colorS = document.querySelectorAll(".color_tee_product")
@@ -25,6 +48,9 @@ colorS.forEach(function(sizeChil, index) {
         boxSizeS[index].style.display = "flex"
     })
 })
+
+
+
 
 
 listOmouover();

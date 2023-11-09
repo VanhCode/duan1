@@ -542,25 +542,7 @@
                                         <div style="margin-top: 35px;">
                                             <div class="box-btn-add">
                                                 <div class="add__product">
-                                                    <?php
-                                                        if(isset($_SESSION['vanhstore'])) {
-                                                            ?>
-                                                                <button class="a_href_add_click_text btn__send" id="addTocart" name="addTocart">
-                                                                    <i class="fa-solid fa-cart-arrow-down"></i>
-                                                                    <span class="add_click_text">Thêm Vào Giỏ Hàng</span>
-                                                                </button>
-                                                                <a href="" class="click_send_new btn__send">Mua Ngay</a>
-                                                            <?php
-                                                        } else {
-                                                            ?>
-                                                                <button class="a_href_add_click_text btn__send" name="addTocart">
-                                                                    <i class="fa-solid fa-cart-arrow-down"></i>
-                                                                    <span class="add_click_text">Thêm Vào Giỏ Hàng</span>
-                                                                </button>
-                                                                <a href="" class="click_send_new btn__send">Mua Ngay</a>
-                                                            <?php
-                                                        }
-                                                    ?>
+                                                $countProduct_cart['countProduct_cart']
                                                 </div>
                                             </div>
                                         </div>

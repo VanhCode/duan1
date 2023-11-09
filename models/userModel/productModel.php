@@ -5,10 +5,19 @@
         return pdo_query($sql);
     }
 
+    
+    // Select sản phẩm mới đăng theo ngày
+    function listProduct__moiNhat() {
+        $sql = "SELECT * FROM products WHERE create_at >= DATE_SUB(NOW(), INTERVAL 3 DAY)";
+        return pdo_query($sql);
+    }
+
+
     function productSale() {
         $sql = "SELECT * FROM products WHERE sale > 0 ORDER BY product_id ASC LIMIT 16";
         return pdo_query($sql);
     }
+
 
     // Select sản phẩm cùng danh mục mà khác id
     function product_cungloai($category_id,$product_id) {

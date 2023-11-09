@@ -1674,7 +1674,6 @@ button.size_tee_product:hover {
 }
 
 .size_tee_product {
-  position: relative;
   overflow: visible;
   cursor: pointer;
   margin: 0 3px;

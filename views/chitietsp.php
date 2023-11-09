@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="flex_product-briefing_text flex-auto">
-                <form id="productForm" action="index.php?action=addTocart" method="post">
+                <form id="productForm" <?= $user ? 'onsubmit="return sendAddtocart()"' : '' ?> action="index.php?action=addTocart" method="post">
                     <input type="hidden" name="id_sanpham" value="<?= $detail_product ?>">
                     <div class="flex__product-text">
                         <div class="box-flex__product-text">
@@ -116,7 +116,7 @@
                                                         <div class="flex__column_color_clickBox">
                                                             <label class="color_tee_product">
                                                                 <span style="font-size: 15px;"><?= $variationColor['color'] ?></span>
-                                                                <input type="radio" value="<?= $variationColor['color'] ?>" name="color" class="color">
+                                                                <input type="radio" value="<?= $variationColor['color'] ?>" name="color" class="color colorProduct">
                                                             </label>
                                                         </div>
                                                     <?php
@@ -153,7 +153,6 @@
                                             <div class="flex__column_size_text">Số Lượng</div>
                                             <div class="flex__column_amount_input">
                                                 <button onclick="remote('-')" type="button" class="minus_icon"><i class="fa-solid fa-minus"></i></button>
-                                                <!-- <input type="number" name="amount__flex" placeholder="0" min="0" max="100" class="amount__flex" id="amount__flex"> -->
                                                 <input type="text" name="amount__flex" value="1" min="1" max="<?= $sumAmout['amount'] ?>" class="amount__flex" id="amount__flex">
                                                 <button onclick="remote('+')" type="button" class="plus_icon"><i class="fa-solid fa-plus"></i></button>
                                             </div>
@@ -307,6 +306,8 @@
         }).join('&');
         window.history.replaceState(null, null, urlWithoutMessage);
     }
+
+    
 
 
 </script>

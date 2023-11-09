@@ -709,6 +709,7 @@ user agent stylesheet a:-webkit-any-link {
   box-sizing: border-box;
   position: relative;
   flex-direction: column;
+  padding-right: 15px;
 }
 
 .box-img-product {
@@ -766,6 +767,22 @@ user agent stylesheet a:-webkit-any-link {
 
 .no__productCart__aClickProduct:hover {
   background: #dd3f1fcd;
+}
+
+.amount__flex {
+  border-radius: 1px;
+  cursor: pointer;
+  outline: 0;
+  background: #fff;
+  color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  height: 32px;
+  width: 50px;
+  border: none;
+  padding: 0 5px;
+  font-size: 19px;
 }
 
 .title-text-product,

@@ -106,7 +106,7 @@
                                                         <div class="amount-product">
                                                             <div class="amount-click-box">
                                                                 <a href="" class="clickAdd__deleteprice_right"><i class="fa-solid fa-minus"></i></a>
-                                                                <div class="amount__productCartItem"><?= $cart['amount'] ?></div>
+                                                                <input type="text" class="amount__flex" value="<?= $cart['amount'] ?>">
                                                                 <a href="" class="clickAdd__deleteprice_left"><i class="fa-solid fa-plus"></i></a>
                                                             </div>
                                                         </div>
@@ -121,7 +121,7 @@
 
                                                         <div class="delete-product">
                                                             <div>
-                                                                <a onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')" href="../php/deleteProduct.php?id=<?= $key['id_spgiohang'] ?>" class="delete-sp">
+                                                                <a onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')" href="index.php?action=deleteCart&cart_id=<?= $cart['cart_id'] ?>" class="delete-sp">
                                                                     Xóa
                                                                 </a>
                                                             </div>
@@ -188,7 +188,7 @@
                             <div class="total-payout">
                                 <div class="check-total-payout">
                                     <div class="flex-total-payout">
-                                        <div class="total-text-">Tổng thanh toán (1): </div>
+                                        <div class="total-text-">Tổng thanh toán (<?= $countProduct_cart['countProduct_cart'] ?>): </div>
                                         <div class="price-end-total">₫<?= number_format($tong, 0, ",", ".") ?></div>
                                     </div>
                                 </div>
@@ -206,7 +206,7 @@
                 <div class="no__productCart">
                     <div class="no__productCart__logo"></div>
                     <div class="no__productCart__text">Giỏ hàng của bạn còn trống</div>
-                    <a href="../view/sanpham.php" class="no__productCart__aClickProduct">Mua Ngay</a>
+                    <a href="index.php?action=san-pham" class="no__productCart__aClickProduct">Mua Ngay</a>
                 </div>
             <?php
         }
@@ -230,7 +230,7 @@
             </div>
             <div class="productS-link-full-view viewOne">
                 <div class="productS-full-link-view">
-                    <a href="../view/chitietsp.php?id=<?= $item['id_spBanChay'] ?>" class="">
+                    <a href="" class="">
                         <div class="prd-v2">
                             <div class="prd-v3">
                                 <div style="pointer-events: none;">
