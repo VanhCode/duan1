@@ -22,6 +22,7 @@
     $listProduct = listProduct();
     $productSale = productSale();
     $listProsearchMax = listProSearchMax();
+
     if(isset($_GET['detail_product']) && ($_GET['detail_product'] > 0)) {
         $detail_product = $_GET['detail_product'];
         $chitiet_product = chitietSanpham($detail_product);
@@ -31,7 +32,7 @@
     }
 
 
-    
+
     // Cart (Cart)
     $countProduct_cart = countProductCart();
     if(isset($userID)) {
@@ -83,7 +84,7 @@
                 
                     if ($isCheck) {
 
-                        $result = selectAllAccount($phone);
+                        $result = selectAllAccount($phone,$phone);
                         
                         if (!$result) {
                             
@@ -155,11 +156,12 @@
                                 </div>
                             ';
 
+
                             if($success) {
                                 echo "<script>setTimeout(function() {window.location.href = 'index.php?action=login'}, 2000)</script>";
                             }
 
-                            
+       
                         } else {
                             echo '<script>alert("Lỗi truy vấn cơ sở dữ liệu.");</script>';
                         } 

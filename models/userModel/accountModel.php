@@ -6,8 +6,8 @@
         return $result;
     }
 
-    function selectAllAccount($email) {
-        $sql = "SELECT * FROM users WHERE email = '$email'";
+    function selectAllAccount($email,$numberPhone) {
+        $sql = "SELECT * FROM users WHERE email = '$email' OR phone = '$numberPhone'";
         pdo_execute($sql);
     }
 
