@@ -1,10 +1,12 @@
 <?php
+    ob_start();
     session_start();
     include "./models/pdo.php";
     include "./models/userModel/accountModel.php";
     include "./models/userModel/categoryModel.php";
     include "./models/userModel/productModel.php";
     include "./models/userModel/searchModel.php";
+    include "./models/userModel/cartModel.php";
 
     
     $userID = $_SESSION['user_id'] ?? 0;
@@ -31,8 +33,6 @@
             include "views/header-cart/headerCart.php";
         } else if ($action == "thanh-toan") {
             include "views/header-thanhtoan/header-thanhtoan.php";
-        } else if ($action == "logout") {
-            logoutAccount();
         } else {
             include "views/viewblock/header.php";
         }
@@ -144,6 +144,9 @@
                 }  
                 include "views/account/dangky.php";
                 break;
+            case "logout":
+                logoutAccount();
+                break;
             case "chi-tiet-sanpham":
                 if(isset($_GET['detail_product']) && ($_GET['detail_product'] > 0)) {
                     $detail_product = $_GET['detail_product'];
@@ -174,7 +177,35 @@
                 include "views/viewSearch.php";
                 break;
             case "gio-hang":
+                if(isset($userID)) {
+                    $listCart = listCart($userID);
+                }
+
                 include "views/giohang.php";
+                break;
+            case "addTocart":
+                if(isset($_POST['addTocart'])) {  
+ 
+                    if ($user) {
+                        $stateCheck = checkProCartBySizeColor($_POST['id_sanpham'],'M',$_POST['color']);
+    
+                        if ($stateCheck) {
+                            $amount = $stateCheck['amount'] + $_POST['amount__flex'];
+                            updateCart($stateCheck['cart_id'], $amount);
+                        } else {
+                            add_cart($userID, $_POST['id_sanpham'], $_POST['amount__flex'], $_POST['size'], $_POST['color']);                   
+                        }
+    
+                        $message = $_POST['id_sanpham'];
+                        header("Location: index.php?action=chi-tiet-sanpham&detail_product={$_POST['id_sanpham']}&message=$message");
+                        exit();
+                    } else {
+                        header('Location: index.php?action=login');
+                        exit();
+                    }
+    
+                }
+
                 break;
             case "thanh-toan":
                 include "views/thanhtoan.php";

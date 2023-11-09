@@ -49,7 +49,6 @@ function listOmouover () {
 }
 
 
-
 amountFlex.addEventListener('input', function() {
 
     const inputValue = parseInt(amountFlex.value);
@@ -244,27 +243,10 @@ document.getElementById("addTocart").addEventListener("click", function (event) 
     }
 })
 
-function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
 
 
-var message = getParameterByName('message');
 
-if (message) {
-    var boxAnimationSuccess = document.querySelector('.boxAnimationSuccess');
-    boxAnimationSuccess.style.display = 'block';
-    
-    setTimeout(function() {
-        boxAnimationSuccess.style.display = 'none';
-    }, 3000);
-}
+
 
 // var xhr = new XMLHttpRequest();
 // xhr.open("POST", "../view/addProduct.php?id=<?= $result['id_spBanChay'] ?>", true);

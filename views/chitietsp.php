@@ -1,5 +1,15 @@
 <!-- Main -->
 
+<div class="boxAnimationSuccess">
+    <div class="thongBaoSuccess">
+        <div class="thongBaoSuccess_div__icon">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div class="thongBaoSuccess_div__ss">
+            Thêm Vào Giỏ Hàng Thành Công
+        </div>
+    </div>
+</div>
 
 <div class="main">
     <div class="container">
@@ -32,27 +42,6 @@
                                         <?php
                                     }
                                 ?>
-                                <!-- <div class="img__onmouseo">
-                                    <img name="img_product" src="./img1/a1.jpg" class="list-img img__onmouseo-border" alt="">
-                                </div>
-                                <div class="img__onmouseo">
-                                    <img src="./img1/a2.jpg" class="list-img" alt="">
-                                </div>
-                                <div class="img__onmouseo">
-                                    <img src="./img1/a18.jpg" class="list-img" alt="">
-                                </div>
-                                <div class="img__onmouseo">
-                                    <img src="./img1/a2.jpg" class="list-img" alt="">
-                                </div>
-                                <div class="img__onmouseo">
-                                    <img src="./img1/a2.jpg" class="list-img" alt="">
-                                </div>
-                                <div class="img__onmouseo">
-                                    <img src="./img1/a2.jpg" class="list-img" alt="">
-                                </div>
-                                <div class="img__onmouseo">
-                                    <img src="./img1/a2.jpg" class="list-img" alt="">
-                                </div> -->
                             </div>
                             <button id="back__onmouseo" class="back__onmouseo"><i class="fa-solid fa-angle-left"></i></button>
                             <button id="next__onmouseo" class="next__onmouseo"><i class="fa-solid fa-angle-right"></i></button>
@@ -68,8 +57,8 @@
                 </div>
             </div>
             <div class="flex_product-briefing_text flex-auto">
-                <form id="productForm" action="" method="post">
-                    <input type="hidden" name="id_sanpham" value="">
+                <form id="productForm" action="index.php?action=addTocart" method="post">
+                    <input type="hidden" name="id_sanpham" value="<?= $detail_product ?>">
                     <div class="flex__product-text">
                         <div class="box-flex__product-text">
                             <span class="nameSp" name="name"><?= $chitiet_product['product_name'] ?></span>
@@ -147,7 +136,7 @@
                                                                         <label class="size_tee_product" id="boxSize">
                                                                             <span style="pointer-events: none;"><?= $size ?></span>
                                                                             <input type="radio" style="pointer-events: none;" name="size" value="<?= $size ?>" class="size">
-                                                                            <input type="text" class="amount__boxSize" style="opacity: 0; position: absolute; pointer-events: none;" value="<?= explode(",", $variationSize['amount'])[$key] ?>">
+                                                                            <input type="radio" class="amount__boxSize" style="opacity: 0; position: absolute; pointer-events: none;" value="<?= explode(",", $variationSize['amount'])[$key] ?>">
                                                                         </label>
                                                                     <?php
                                                                 }
@@ -180,25 +169,11 @@
                                 <div style="margin-top: 35px;">
                                     <div class="box-btn-add">
                                         <div class="add__product">
-                                            <?php
-                                                if (isset($_SESSION['vanhstore'])) {
-                                                    ?>
-                                                        <button class="a_href_add_click_text btn__send" id="addTocart" name="addTocart">
-                                                            <i class="fa-solid fa-cart-arrow-down"></i>
-                                                            <span class="add_click_text">Thêm Vào Giỏ Hàng</span>
-                                                        </button>
-                                                        <a href="" class="click_send_new btn__send">Mua Ngay</a>
-                                                    <?php
-                                                } else {
-                                                    ?>
-                                                        <button class="a_href_add_click_text btn__send" name="addTocart">
-                                                            <i class="fa-solid fa-cart-arrow-down"></i>
-                                                            <span class="add_click_text">Thêm Vào Giỏ Hàng</span>
-                                                        </button>
-                                                        <a href="" class="click_send_new btn__send">Mua Ngay</a>
-                                                    <?php
-                                                }
-                                            ?>
+                                            <button class="a_href_add_click_text btn__send" name="addTocart">
+                                                <i class="fa-solid fa-cart-arrow-down"></i>
+                                                <span class="add_click_text">Thêm Vào Giỏ Hàng</span>
+                                            </button>
+                                            <a href="" class="click_send_new btn__send">Mua Ngay</a>
                                         </div>
                                     </div>
                                 </div>
@@ -222,8 +197,7 @@
             </div>
         </div>
     </div>
-
-
+                                  
 
     <!-- end chi tiết sản phẩm -->
 
@@ -301,3 +275,38 @@
 </div>
 
 <!-- End main -->
+
+<script>
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+
+    var message = getParameterByName('message');
+
+    if (message) {
+        var boxAnimationSuccess = document.querySelector('.boxAnimationSuccess');
+        boxAnimationSuccess.style.display = 'block';
+        
+        setTimeout(function() {
+            boxAnimationSuccess.style.display = 'none';
+        }, 3000);
+        
+    }
+
+    if (window.history.replaceState) {
+        var currentUrl = window.location.href;
+        var urlWithoutMessage = currentUrl.split('&').filter(function (item) {
+            return !item.includes('message');
+        }).join('&');
+        window.history.replaceState(null, null, urlWithoutMessage);
+    }
+
+
+</script>

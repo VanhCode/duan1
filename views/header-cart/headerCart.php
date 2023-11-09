@@ -11,6 +11,9 @@
 </head>
 
 <body>
+    <div id="loading-overlay">
+        <div class="loader"></div>
+    </div>
     <div class="wrapper">
         <header>
             <div class="header-top container">
@@ -25,66 +28,66 @@
                 </div>
                 <div class="btn-span">
                     <?php
-                    if (isset($_SESSION['vanhstore'])) {
-                    ?>
-                        <nav class="navTop">
-                            <ul class="userTop">
-                                <li class="boxUser">
-                                    <a href="index.php?url=announcement" class="nomation"><i class="fa-solid fa-bell"></i> Thông báo</a>
-                                </li>
-                                <li>
-                                    <div class="line-top"></div>
-                                </li>
-                                <li class="boxUser">
-                                    <a href="index.php?url=support" class="nomation"><i class="fa-regular fa-circle-question"></i> Hỗ trợ</a>
-                                </li>
-                                <li>
-                                    <div class="line-top"></div>
-                                </li>
-                                <li class="boxUser">
-                                    <a href="index.php?url=laguage" class="nomation"><i class="fa-solid fa-globe"></i> Tiếng việt</a>
-                                </li>
-                                <li>
-                                    <div class="line-top"></div>
-                                </li>
-                                <li class="boxUser">
-                                    <a href="index.php?url=user" class="userLog nomation"><i class="fa-solid fa-user"></i> <?= $_SESSION['vanhstore'] ?></a>
-                                    <ul class="userChil">
-                                        <li><a href="index.php?url=user">Tài khoản của tôi</a></li>
-                                        <li><a href="index.php?url=user">Hồ sơ</a></li>
+                        if($user) {
+                            ?>
+                                <nav class="navTop">
+                                    <ul class="userTop">
+                                        <li class="boxUser">
+                                            <a href="index.php?action=announcement" class="nomation"><i class="fa-solid fa-bell"></i> Thông báo</a>
+                                        </li>
                                         <li>
-                                            <a href="index.php?url=logout" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất hay không?')">Đăng xuất</a>
+                                            <div class="line-top"></div>
+                                        </li>
+                                        <li class="boxUser">
+                                            <a href="index.php?action=support" class="nomation"><i class="fa-regular fa-circle-question"></i> Hỗ trợ</a>
+                                        </li>
+                                        <li>
+                                            <div class="line-top"></div>
+                                        </li>
+                                        <li class="boxUser">
+                                            <a href="index.php?action=language" class="nomation"><i class="fa-solid fa-globe"></i> Tiếng việt</a>
+                                        </li>
+                                        <li>
+                                            <div class="line-top"></div>
+                                        </li>
+                                        <li class="boxUser">
+                                            <a href="index.php?action=user" class="userLog nomation"><i class="fa-solid fa-user"></i> <?= $user ? $user['firth_name']." ".$user['last_name'] : "" ?></a>
+                                            <ul class="userChil">
+                                                <li><a href="index.php?action=user">Tài khoản của tôi</a></li>
+                                                <li><a href="index.php?action=user">Hồ sơ</a></li>
+                                                <li>
+                                                    <a href="index.php?action=logout">Đăng xuất</a>
+                                                </li>
+                                            </ul>
                                         </li>
                                     </ul>
+                                </nav>
+                            <?php
+                        } else {
+                            ?>
+                                <li class="boxUser">
+                                    <a href="thongBao.php" class="nomation"><i class="fa-solid fa-bell"></i> Thông báo</a>
                                 </li>
-                            </ul>
-                        </nav>
-                    <?php
-                    } else {
-                    ?>
-                        <li class="boxUser">
-                            <a href="index.php?url=announcement" class="nomation"><i class="fa-solid fa-bell"></i> Thông báo</a>
-                        </li>
-                        <li>
-                            <div class="line-top"></div>
-                        </li>
-                        <li class="boxUser">
-                            <a href="index.php?url=support" class="nomation"><i class="fa-regular fa-circle-question"></i> Hỗ trợ</a>
-                        </li>
-                        <li>
-                            <div class="line-top"></div>
-                        </li>
-                        <li class="boxUser">
-                            <a href="index.php?url=language" class="nomation"><i class="fa-solid fa-globe"></i> Tiếng việt</a>
-                        </li>
-                        <li>
-                            <div class="line-top"></div>
-                        </li>
-                        <a class="signup nomation" href="index.php?url=login"><i class="fa fa-user-edit"></i> Đăng ký</a>
-                        <div class="line-top"></div>
-                        <a class="login nomation" href="index.php?url=signup"><i class="fa fa-sign-in"></i> Đăng nhập</a>
-                    <?php
-                    }
+                                <li>
+                                    <div class="line-top"></div>
+                                </li>
+                                <li class="boxUser">
+                                    <a href="support.php" class="nomation"><i class="fa-regular fa-circle-question"></i> Hỗ trợ</a>
+                                </li>
+                                <li>
+                                    <div class="line-top"></div>
+                                </li>
+                                <li class="boxUser">
+                                    <a href="language.php" class="nomation"><i class="fa-solid fa-globe"></i> Tiếng việt</a>
+                                </li>
+                                <li>
+                                    <div class="line-top"></div>
+                                </li>
+                                <a class="signup nomation" href="index.php?action=signup"><i class="fa fa-user-edit"></i> Đăng ký</a>
+                                <div class="line-top"></div>
+                                <a class="login nomation" href="index.php?action=login"><i class="fa fa-sign-in"></i> Đăng nhập</a>
+                            <?php
+                        }
                     ?>
                 </div>
             </div>

@@ -442,8 +442,11 @@
                         </div>
                     </div>
                     <div class="flex_product-briefing_text flex-auto">
+
                         <form id="productForm" action="../view/addProduct.php?id=<?= $result['id_spBanChay'] ?>" method="post">
+
                             <input type="hidden" name="id_sanpham" value="<?= $value['id_sanpham'] ?>">
+                            
                             <div class="flex__product-text">
                                 <div class="box-flex__product-text">
                                     <span class="nameSp" name="name"><?= $result['name'] ?></span>

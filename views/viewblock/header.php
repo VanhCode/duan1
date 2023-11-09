@@ -35,9 +35,21 @@
     ?>
 </head>
 <body>
-    
+
+    <?php
+        if(isset($_GET['detail_product']) || isset($_GET['user'])) {
+        
+        } else {
+            ?>
+                <div id="loading-overlay">
+                    <div class="loader"></div>
+                </div>
+            <?php
+        }
+    ?>
     <div class="wrapper">
         <!-- header -->
+
         <!-- <div class="thongBaoSuccess">
             <div class="animation__loadWeb">
                 <i class="fa-solid fa-xmark"></i>

@@ -60,6 +60,7 @@
                             <th>Ảnh</th>
                             <th>Tên sản phẩm</th>
                             <th>Danh mục</th>
+                            <th>Ngày đăng</th>
                             <th>Thao tác</th>
                             <th>Chi tiết</th>
                         </tr>
@@ -77,6 +78,7 @@
                                         </td>
                                         <td class="name__product__admin"><?= $valueSanpham['product_name'] ?></td>
                                         <td><?= $valueSanpham['category_name'] ?></td>
+                                        <td><?= date("d-m-Y H:i:s", strtotime($valueSanpham['create_at'])) ?></td>
                                         <td>
                                             <a class="btn btn-outline-success btn-sm" href="index.php?action=editProduct&id_product=<?= $valueSanpham['product_id'] ?>">Sửa</a>
                                             <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $valueSanpham['product_id'] ?>">Xoá</a>
