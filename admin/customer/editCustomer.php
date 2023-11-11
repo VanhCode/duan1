@@ -50,7 +50,7 @@
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>
-                <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" onsubmit="return sendUser()" enctype="multipart/form-data">
+                <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="" class="form-label">Firth Name</label>
                         <input type="text" class="form-control first blurinp" name="firth_name" value="<?=$user['firth_name']?>">
@@ -64,7 +64,7 @@
                     <div class="form-group">
                         <label for="" class="form-label">Ảnh</label>
                         <input type="file" class="upFile form-control" name="user_image">
-                        <img src="<?=$user['user_image']?>" width="100px" height="100px" style="border-radius: 50%;object-fit: cover" alt="">
+                        <img src="../public/upload/image/user/<?=$user['user_image']?>" width="100px" height="100px" style="border-radius: 50%;object-fit: cover" alt="">
                         <small class="error "></small>
                     </div>
                     <div class="form-group">
@@ -94,6 +94,6 @@
     </main>
     <!-- MAIN -->
 </section>
-<script src="../public/js/Admin_pro.js"></script>
+<!--<script src="../public/js/Admin_pro.js"></script>-->
 <script src="../js/customModel.js"></script>
 <!-- CONTENT -->

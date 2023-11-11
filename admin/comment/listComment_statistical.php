@@ -61,17 +61,20 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <?php $count=1;
+                    foreach ($listComment_statistical as $list):?>
                     <tr class="tr_td">
-                        <td>1</td>
+                        <td><?= $count++?></td>
                         <td>
                             <div class="pro">
-                                <img src="" alt="">
-                                <span>Giay</span>
+                                <img src="../public/upload/image/product/<?=explode(',',$list['images'])[0]?>" alt="">
+                                <span><?=$list['product_name']?></span>
                             </div>
                         </td>
-                        <td><span class="status completed">10</span></td>
-                        <td><a class="btn btn-success btn-sm" href="index.php?action=listComment">Chi tiết</a></td>
+                        <td><span class="status completed"><?=$list['count_comment']?></span></td>
+                        <td><a class="btn btn-success btn-sm" href="index.php?action=listComment&product_id=<?=$list['product_id']?>">Chi tiết</a></td>
                     </tr>
+                    <?php endforeach;?>
                     </tbody>
                 </table>
             </div>

@@ -21,7 +21,11 @@
         </a>
     </nav>
     <!-- NAVBAR -->
-
+    <style>
+        th, td, p {
+            text-align: left !important;
+        }
+    </style>
     <!-- MAIN -->
     <main>
         <div class="head-title">
@@ -47,15 +51,16 @@
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Recent Orders</h3>
+                    <h3>Danh sách đơn hàng</h3>
                     <i class='bx bx-search'></i>
                     <i class='bx bx-filter'></i>
                 </div>
                 <table>
                     <thead>
-                    <tr class="tr_th">
-                        <th>STT</th>
+                    <tr>
+                        <th style="padding-right: 20px">STT</th>
                         <th>Người đặt hàng</th>
+                        <th>Người nhận</th>
                         <th>Tổng cộng</th>
                         <th>Ngày đặt hàng</th>
                         <th>Thanh toán</th>
@@ -64,20 +69,25 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="tr_td">
-                        <td>1</td>
-                        <td>
-                            <div class="pro">
-                                <img src="" alt="">
-                                <span>Nguyễn Ngọc Duy</span>
-                            </div>
-                        </td>
-                        <td>3.000.000</td>
-                        <td>01-10-2021</td>
-                        <td><span class="status completed">Hoàn thành</span></td>
-                        <td><span class="status pending">Đang giao</span></td>
-                        <td><a class="btn btn-success btn-sm" href="index.php?action=order_detail">Chi tiết</a></td>
-                    </tr>
+                    <?php foreach ($listOrder as $key=>$value):?>
+                        <tr>
+                            <td style="margin-top: 45px"><?=$key+1?></td>
+                            <td>
+                                <img src="../public/upload/image/user/<?=$value['user_image']?>" alt="">
+                                <span><?=$value['fullName']?></span>
+                            </td>
+                            <td>
+                                <p><i>Nguyễn Văn B</i></p>
+                                <p style="width: 200px;"><b>DC: </b><?=$value['receiver_address']?></p>
+                                <p><b>SDT: </b><?=$value['receiver_phone']?></p>
+                            </td>
+                            <td><?=number_format($value['total'],2,',','.')?></td>
+                            <td><?=$value['create_at']?></td>
+                            <td><span class="status <?=$value['payment_status']?>"><?=$value['payment_status']?></span></td>
+                            <td><span class="status <?=$value['shipping_status']?>"><?=$value['shipping_status']?></span></td>
+                            <td><a class="btn btn-success btn-sm" href="index.php?action=listOrder_detail&order_id=<?=$value['order_id']?>">Chi tiết</a></td>
+                        </tr>
+                    <?php endforeach;?>
                     </tbody>
                 </table>
             </div>
@@ -85,20 +95,6 @@
     </main>
     <!-- MAIN -->
 </section>
-<script>
-    function remote(btn, move) {
-        let input = btn.parentElement.parentElement.querySelector("input");
-        if (move === "up") {
-            input.value++;
-        }
-        if (input.value > 0) {
-            if (move === "down") {
-                input.value--;
-            }
-        }
-
-    }
-</script>
 <!-- CONTENT -->
 <!--<div class="btn-block">-->
 <!--    <div class="stepper position-relative">-->

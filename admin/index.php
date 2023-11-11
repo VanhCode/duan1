@@ -4,6 +4,8 @@ include '../models/PDO_admin.php';
 include '../models/adminModel/categoryModel.php';
 include '../models/adminModel/productModel.php';
 include '../models/adminModel/varitionModel.php';
+include '../models/adminModel/commentModel.php';
+include '../models/adminModel/orderModel.php';
 
 $action = $_GET['action'] ?? 'dashboard';
 
@@ -30,16 +32,22 @@ switch ($action) {
         break;
 
     case 'listOrder':
+        $listOrder=listOrder();
         include 'order/listOrder.php';
         break;
 
     case 'listOrder_detail':
+        $order_id=$_GET['order_id']??0;
+        $listOrder_detail=listOrder_detail($order_id);
         include 'order/listOrder_detail.php';
         break;
     case 'listComment_statistical':
+        $listComment_statistical=listComment_statistical();
         include 'comment/listComment_statistical.php';
         break;
     case 'listComment':
+        $product_id=$_GET['product_id']??0;
+        $comments=listCommentByProduct_id($product_id);
         include 'comment/listComment.php';
         break;
 
@@ -111,9 +119,9 @@ switch ($action) {
             addData('users', [
                 'firth_name' => $_POST['firth_name'],
                 'last_name' => $_POST['last_name'],
-                'user_image' => $path . $_FILES['user_image']['name'],
+                'user_image' => $_FILES['user_image']['name'],
                 'email' => $_POST['email'],
-                'password' => $_POST['password'],
+                'password' => password_hash($_POST['password'],PASSWORD_DEFAULT),
                 'phone' => $_POST['phone'],
             ]);
             header("location: index.php?action=listCustomer");
@@ -242,9 +250,9 @@ switch ($action) {
             updateData('users', [
                 'firth_name' => $_POST['firth_name'],
                 'last_name' => $_POST['last_name'],
-                'user_image' => $path . $_FILES['user_image']['name'] | $user['user_image'],
+                'user_image' => $_FILES['user_image']['name'] !='' ? $_FILES['user_image']['name']:  $user['user_image'],
                 'email' => $_POST['email'],
-                'password' => $_POST['password'],
+                'password' => $_POST['password']==$user['password']?$_POST['password']:password_hash($_POST['password'],PASSWORD_DEFAULT),
                 'phone' => $_POST['phone'],
             ], "user_id=" . $_GET['user_id']);
             header("location: index.php?action=listCustomer");
@@ -296,7 +304,11 @@ switch ($action) {
             $categoryId = "";
             $selectImg_byId = "";
         }
-
+    case 'deleteComment':
+        $comment_id=$_GET['comment_id']??0;
+        deleteData('comments','comment_id='.$comment_id);
+        header("Location: ".$_SERVER['HTTP_REFERER']);
+        break;
 
     //other
     case 'order_detail':

@@ -50,8 +50,9 @@
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>
-                
-                <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" onsubmit="return sendUser()" enctype="multipart/form-data">
+
+                <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" onsubmit="return sendUser(this)"
+                      enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="" class="form-label">Họ</label>
                         <input type="text" class="form-control first blurinp" name="firth_name">
@@ -65,7 +66,6 @@
                     <div class="form-group">
                         <label for="" class="form-label">Ảnh</label>
                         <input type="file" class="upFile form-control" name="user_image">
-                        <small class="error"></small>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Email</label>
@@ -89,11 +89,37 @@
                     </div>
                 </form>
             </div>
+            <script>
+                let errPhone =document.querySelector('.er_phone');
+                let inputPhone=errPhone.previousElementSibling
+                var xhttp = new XMLHttpRequest();
+                inputPhone.onblur= function (e){
+                    xhttp.onreadystatechange = function() {
+                         if (this.readyState == 4 && this.status == 200) {
+                            errPhone.innerHTML = xhttp.responseText;
+                        }
+                    };
+                    xhttp.open("GET", "xmlHttpRequest/check.php?phone="+inputPhone.value, true);
+                    xhttp.send();
+                }
+                let errEmail = document.querySelector('.er_email');
+                let inputEmail=errEmail.previousElementSibling
+                inputEmail.onblur= function (e){
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            errEmail.innerHTML = xhttp.responseText;
+                        }
+                    };
+                    xhttp.open("GET", "xmlHttpRequest/check.php?email="+inputEmail.value);
+                    xhttp.send();
+                }
 
+
+            </script>
         </div>
     </main>
     <!-- MAIN -->
 </section>
-<script src="../public/js/Admin_pro.js"></script>
+<!--<script src="../public/js/Admin_pro.js"></script>-->
 <script src="../js/customModel.js"></script>
 <!-- CONTENT -->
