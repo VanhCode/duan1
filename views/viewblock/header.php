@@ -152,17 +152,17 @@
                         <img src="./img1/vanhstore.jpg" alt="">
                     </a>
                     <div class="header-with-search">
-                        <form action="index.php?action=search" method="POST" role="search" class="vanh-searchbar-form">
+                        <form action="index.php?action=search" autocomplete="off" method="POST" role="search" class="vanh-searchbar-form">
                             <div class="vanh-searchbar">
                                 <div class="vanh-searchbar__main">
                                     <?php
                                         if(isset($user)) {
                                             ?>
-                                                <input type="text" name="keyword" class="vanh-searchbar-form-input" placeholder="SALE TOÀN BỘ SẢN PHẨM LÊN ĐẾN 50%">
+                                                <input type="text" name="keyword" list="listSearch" class="vanh-searchbar-form-input" placeholder="SALE TOÀN BỘ SẢN PHẨM LÊN ĐẾN 50%">
                                             <?php
                                         } else {
                                             ?>
-                                                <input type="text" name="keyword" class="vanh-searchbar-form-input" placeholder="Miễn phí ship 0đ - Đăng ký ngay!">
+                                                <input type="text" name="keyword" list="listSearch" class="vanh-searchbar-form-input" placeholder="Miễn phí ship 0đ - Đăng ký ngay!">
                                             <?php
                                         }
                                     ?>  
@@ -310,7 +310,7 @@
                                             ?>
                                             
                                             <?php
-                                                if($countProduct_cart) {
+                                                if($countProduct_cart['countProduct_cart'] && $countProduct_cart['countProduct_cart'] > 0) {
                                                     ?>
                                                         <div class="hoverProduct__cart">
                                                             <div class="list__hoverProduct__cart">
@@ -357,7 +357,7 @@
                             } else {
                                 ?>
                                     <div class="header-with-search__cart_hoverProductCart">
-                                        <a href="./view/cart.php" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
+                                        <a href="index.php?action=gio-hang" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
                                         <div class="hoverProduct__cart">
                                             <div class="list__hoverProduct__cartNoProduct">
                                                 <div class="cart_boxContentProduct_flex__bg_img"></div>

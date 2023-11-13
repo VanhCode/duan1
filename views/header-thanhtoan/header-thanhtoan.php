@@ -5,11 +5,17 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Thanh Toán</title>
+    <link rel="shortcut icon" href="./img1/iconLogo.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/thanhtoan.css">
+    <link rel="stylesheet" href="./css/loadding.css">
 </head>
 
 <body>
+    <div id="loading-overlay">
+        <div class="loader"></div>
+    </div>
     <div class="wrapper">
         <header>
             <div class="header-top container">

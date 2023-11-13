@@ -89,19 +89,27 @@
 
 
 </body>
-<?php
-    if(isset($_GET['action'])) {
-        if($_GET['action'] == 'signup') {
-            ?>
-                <script src="./js/dangky.js"></script>
-            <?php
-        } else {
-            ?>
-                <script src="./js/dangnhap.js"></script>
-            <?php
+    <?php
+        if(isset($_GET['action'])) {
+            if($_GET['action'] == 'signup') {
+                ?>
+                    <script src="./js/dangky.js"></script>
+                <?php
+            } else {
+                ?>
+                    <script src="./js/dangnhap.js"></script>
+                <?php
+            }
         }
-    }
-?>
+
+        if(isset($_GET['profile'])) {
+            if($_GET['profile'] == 'change-page') {
+                ?>
+                    <script src="./js/account.js"></script>
+                <?php
+            }
+        }
+    ?>
 <script src="./js/trangchu2.js"></script>
 <script src="./js/checkAmount.js"></script>
 <script src="./js/chitietsanpham.js"></script>

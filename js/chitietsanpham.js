@@ -39,15 +39,23 @@ sizeTee.forEach(function(sizeTeeChildrent) {
     }
 })
 
-boxSizeS[0].style.display = "flex"
-colorS.forEach(function(sizeChil, index) {
-    sizeChil.addEventListener('click', function() {
-        boxSizeS.forEach(function(sizeIndex) {
-            sizeIndex.style.display = "none"
-        })
-        boxSizeS[index].style.display = "flex"
-    })
-})
+if (boxSizeS && colorS) {
+    colorS.forEach(function (sizeChil, index) {
+        // Kiểm tra xem boxSizeS[index] tồn tại
+        if (boxSizeS[index]) {
+            sizeChil.addEventListener('click', function () {
+                // Ẩn tất cả các phần tử trong boxSizeS
+                boxSizeS.forEach(function (sizeIndex) {
+                    sizeIndex.style.display = "none";
+                });
+                // Hiển thị phần tử tương ứng với index được click
+                boxSizeS[index].style.display = "flex";
+            });
+        } else {
+            console.error("boxSizeS[" + index + "] không tồn tại.");
+        }
+    });
+}
 
 
 

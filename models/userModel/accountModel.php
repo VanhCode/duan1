@@ -6,13 +6,14 @@
         return $result;
     }
 
-    function selectAllAccount($email,$numberPhone) {
-        $sql = "SELECT * FROM users WHERE email = '$email' OR phone = '$numberPhone'";
+    function selectAllAccount($email) {
+        $sql = "SELECT * FROM users WHERE email = '$email'";
         pdo_execute($sql);
+
     }
 
     function selectCheck($email) {
-        $sql = "SELECT * FROM users WHERE email = '$email'";
+        $sql = "SELECT * FROM users WHERE email = '$email' OR phone = '$email'";
         $result = pdo_query_one($sql);
         return $result;
     }
@@ -32,5 +33,19 @@
             unset($_SESSION["user_id"]);
             header('Location: index.php');
         }
+    }
+
+
+    // Đổi mật khẩu
+    function changePassword($user_id) {
+        $sql = "SELECT password FROM users WHERE user_id = $user_id";
+        return pdo_query_one($sql);
+    }
+
+    
+    // Cập nhật mật khẩu
+    function updatePassword($password) {
+        $sql = "UPDATE users SET password = '".$password."'";
+        pdo_execute($sql);
     }
 ?>

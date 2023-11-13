@@ -296,7 +296,7 @@
                             } else {
                                 ?>
                                     <div class="header-with-search__cart_hoverProductCart">
-                                        <a href="../view/cart.php" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
+                                        <a href="index.php?action" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
                                         <div class="hoverProduct__cart">
                                             <div class="list__hoverProduct__cartNoProduct">
                                                 <div class="cart_boxContentProduct_flex__bg_img"></div>

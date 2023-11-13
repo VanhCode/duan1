@@ -1677,7 +1677,7 @@ user agent stylesheet svg:not(:root) {
 .cl1-item {
   display: flex;
   justify-content: flex-end;
-  width: 20%;
+  width: 21.5%;
 }
 
 .cl1-text {
@@ -1748,7 +1748,7 @@ input {
 .cl2-text .fa-eye-slash,
 .cl2-text .fa-eye {
   position: absolute;
-  right: 354px;
+  right: 339px;
   font-size: 18px;
   color: #8b8b8b;
   cursor: pointer;
@@ -1790,6 +1790,38 @@ input {
   padding: 0px 20px;
 }
 
+/* Add class */
+
+.activeErr {
+  background: #ffe9eb !important;
+  border-color: #ff424f !important;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14) !important;
+}
+
+.activetb {
+  border-color: #ffd542 !important;
+}
+.activeManh {
+  border-color: #8ae7fe !important;
+}
+.bg__usertb {
+  background: #f8fcc5 !important;
+}
+.bg__usermanh {
+  background: #e1f3fb !important;
+}
+
+.bg__userErr {
+  background: #ffe9eb !important;
+}
+
+.curson-no-click {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* End add class */
+
 .btn-solid-primary.btn-solid-primary--disabled {
   /* cursor: not-allowed; */
   box-shadow: none;
@@ -1801,9 +1833,9 @@ input {
   box-shadow: none;
 }
 
-.btn-solid-primary.btn-solid-primary--disabled:hover {
+/* .btn-solid-primary.btn-solid-primary--disabled:hover {
   background: rgba(248, 94, 63, 0.922) !important;
-}
+} */
 
 /* .nomation-box {
   display: none;

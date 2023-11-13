@@ -25,19 +25,21 @@ function remote(move) {
 
 }
 
-var amountFlex = document.querySelector('.amount__flex')
-var errAmount = document.querySelector('#errAmount')
-var max = parseInt(amountFlex.getAttribute('max'))
+var amountFlex = document.querySelector('.amount__flex');
+var errAmount = document.querySelector('#errAmount');
 
+if (amountFlex) {
+    var max = parseInt(amountFlex.getAttribute('max'));
 
-amountFlex.addEventListener('input', function() {
-    max = parseInt(amountFlex.getAttribute('max'))
-    const inputValue = parseInt(amountFlex.value);
+    amountFlex.addEventListener('input', function() {
+        max = parseInt(amountFlex.getAttribute('max'));
+        const inputValue = parseInt(amountFlex.value);
 
-    if (inputValue > max) {
-        errAmount.innerHTML = 'Số lượng không được vượt quá ' + max;
-        inputNumber.value = max;
-    } else {
-        errAmount.innerHTML = '';
-    }
-});
+        if (inputValue > max) {
+            errAmount.innerHTML = 'Số lượng không được vượt quá ' + max;
+            amountFlex.value = max;  // Đã sửa lỗi ở đây, thay inputNumber thành amountFlex
+        } else {
+            errAmount.innerHTML = '';
+        }
+    });
+}

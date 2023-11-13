@@ -15,6 +15,7 @@
 
     // Danh mục (category)
     $listCategory = listCategory();
+    $listCategoryColum = listCategoryColum(6,10);
     $listcategoryLimit = listCategory__limit(5);
 
     
@@ -22,6 +23,8 @@
     $listProduct = listProduct();
     $productSale = productSale();
     $listProsearchMax = listProSearchMax();
+
+
 
     if(isset($_GET['detail_product']) && ($_GET['detail_product'] > 0)) {
         $detail_product = $_GET['detail_product'];
@@ -65,6 +68,23 @@
                 include "views/sanpham.php";
                 break;
             case "danh-muc":
+                if(isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
+                    $categoryId = $_GET['category_id'];
+                } else {
+                    $categoryId = "";
+                }
+                
+                $sapxep = "product_id ASC";
+
+                if(isset($_GET['gia-thap-cao'])) {
+                    $sapxep = "price ASC";
+                }
+
+                if(isset($_GET['gia-cao-thap'])) {
+                    $sapxep = "price DESC";
+                }
+
+                $listProduct_byIdcategory = listProduct_byCategory($categoryId,$sapxep);
                 include "views/danhmuc.php";
                 break;
             case "user":
@@ -84,7 +104,7 @@
                 
                     if ($isCheck) {
 
-                        $result = selectAllAccount($phone,$phone);
+                        $result = selectAllAccount($phone);
                         
                         if (!$result) {
                             
@@ -192,23 +212,41 @@
                 include "views/chitietsp.php";
                 break;
             case "search":
+                $keyword = "";
+
                 if(isset($_POST['searchProduct'])) {
-                    $keyword = $_POST['keyword'];
+                    $keyword = $_POST['keyword']??'';
 
                     // Hàm này để tăng số lần tên nào được tìm kiếm nhiều nhất
                     searchMax($keyword);
                 } else {
-                    $keyword = "";
+                    $keyword = $_GET['keyword']??'';
                 }
-                $listProdSearch = searchModel($keyword);
+
+                $sapxep = "product_id ASC";
+
+                if(isset($_GET['gia-thap-cao'])) {
+                    $sapxep = "price ASC";
+                }
+
+                if(isset($_GET['gia-cao-thap'])) {
+                    $sapxep = "price DESC";
+                }
+
+
+                $listProdSearch = searchModel($keyword,$sapxep);
                 include "views/viewSearch.php";
                 break;
             case "gio-hang":
-                if(isset($userID)) {
-                    $listCart = listCart($userID);
+                if(!isset($_SESSION['user_id'])) {
+                    header('Location: index.php?action=login');
+                    exit();
+                } else {
+                    if(isset($userID)) {
+                        $listCart = listCart($userID);
+                        include "views/giohang.php";
+                    }
                 }
-
-                include "views/giohang.php";
                 break;
             case "addTocart":
                 if(isset($_POST['addTocart'])) {  
