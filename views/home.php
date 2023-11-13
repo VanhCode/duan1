@@ -152,7 +152,7 @@
                                         foreach($listCategory as $category) {
                                             ?>
                                                 <li class="image-carousel__title">
-                                                    <a href="index.php?action=danh-muc?product_category=<?= $category['category_id'] ?>" class="image-carousel__contentA">
+                                                    <a href="index.php?action=danh-muc&category_id=<?= $category['category_id'] ?>" class="image-carousel__contentA">
                                                         <div class="image-carousel__image"><img src="./public/upload/image/category/<?= $category['image_cate'] ?>" alt=""></div>
                                                         <div class="image-carousel__image-text">
                                                             <?= $category['category_name'] ?>
@@ -699,6 +699,16 @@
                                                                 <div style="pointer-events: none;">
                                                                     <div class="prd-img-hv">
                                                                         <img src="./public/upload/image/product/<?= explode(",", $proSearchMax['images'])[0] ?>" class="prd-img" alt="">
+                                                                        <?php
+                                                                            if($proSearchMax['sale'] > 0) {
+                                                                                ?>
+                                                                                    <div class="ColumFlex_img__spanSalePt">
+                                                                                        <span class="ColumFlex_img__textSaleContent"><?= $proSearchMax['sale'] ?>%</span>
+                                                                                        <span class="ColumFlex_img__textSaleGiam">GIẢM</span>
+                                                                                    </div>
+                                                                                <?php
+                                                                            }
+                                                                        ?>  
                                                                         <div class="yt-prd">
                                                                             <div class="yt-chill rgba-yt-chil">
                                                                                 <span class="span-yt-chil span-yt-prd">Hot</span>
@@ -763,13 +773,19 @@
                                                                     <div class="stardust-tabs-panels__ColumFlex__div">
                                                                         <div class="stardust-tabs-panels__ColumFlex_img">
                                                                             <img src="./public/upload/image/product/<?= explode(",", $product['images'])[0] ?>" alt="">
-                                                                            <div class="ColumFlex_img__spanSale">
-                                                                                <span class="ColumFlex_img__span">Sale</span>
-                                                                            </div>
-                                                                            <div class="ColumFlex_img__spanSalePt">
-                                                                                <span class="ColumFlex_img__textSaleContent"><?= $product['sale'] ?>%</span>
-                                                                                <span class="ColumFlex_img__textSaleGiam">GIẢM</span>
-                                                                            </div>
+                                                                            <?php
+                                                                                if($product['sale'] > 0) {
+                                                                                    ?>
+                                                                                        <div class="ColumFlex_img__spanSale">
+                                                                                            <span class="ColumFlex_img__span">Sale</span>
+                                                                                        </div>
+                                                                                        <div class="ColumFlex_img__spanSalePt">
+                                                                                            <span class="ColumFlex_img__textSaleContent"><?= $product['sale'] ?>%</span>
+                                                                                            <span class="ColumFlex_img__textSaleGiam">GIẢM</span>
+                                                                                        </div>
+                                                                                    <?php
+                                                                                }
+                                                                            ?>
                                                                             <div class="ColumFlex_img__bgrImage">
                                                                                 <img src="./img1/bgpr.png" alt="">
                                                                             </div>

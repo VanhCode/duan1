@@ -442,8 +442,11 @@
                         </div>
                     </div>
                     <div class="flex_product-briefing_text flex-auto">
+
                         <form id="productForm" action="../view/addProduct.php?id=<?= $result['id_spBanChay'] ?>" method="post">
+
                             <input type="hidden" name="id_sanpham" value="<?= $value['id_sanpham'] ?>">
+                            
                             <div class="flex__product-text">
                                 <div class="box-flex__product-text">
                                     <span class="nameSp" name="name"><?= $result['name'] ?></span>
@@ -539,25 +542,7 @@
                                         <div style="margin-top: 35px;">
                                             <div class="box-btn-add">
                                                 <div class="add__product">
-                                                    <?php
-                                                        if(isset($_SESSION['vanhstore'])) {
-                                                            ?>
-                                                                <button class="a_href_add_click_text btn__send" id="addTocart" name="addTocart">
-                                                                    <i class="fa-solid fa-cart-arrow-down"></i>
-                                                                    <span class="add_click_text">Thêm Vào Giỏ Hàng</span>
-                                                                </button>
-                                                                <a href="" class="click_send_new btn__send">Mua Ngay</a>
-                                                            <?php
-                                                        } else {
-                                                            ?>
-                                                                <button class="a_href_add_click_text btn__send" name="addTocart">
-                                                                    <i class="fa-solid fa-cart-arrow-down"></i>
-                                                                    <span class="add_click_text">Thêm Vào Giỏ Hàng</span>
-                                                                </button>
-                                                                <a href="" class="click_send_new btn__send">Mua Ngay</a>
-                                                            <?php
-                                                        }
-                                                    ?>
+                                                $countProduct_cart['countProduct_cart']
                                                 </div>
                                             </div>
                                         </div>

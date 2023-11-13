@@ -1,21 +1,21 @@
-var icon1 = document.querySelector('.fa-eye');
-var icon2 = document.querySelector('.fa-eye-slash');
-var inputPass = document.querySelector('.password');
-
-icon2.addEventListener('click', () => {
-    icon2.style.display = 'none';
-    inputPass.setAttribute('type', 'password');
-    icon1.style.display = 'block';
-});
-
-icon1.addEventListener('click', () => {
-    icon1.style.display = 'none';
-    inputPass.setAttribute('type', 'text');
-    icon2.style.display = 'block';
-});
 
 
 $(document).ready(function () {
+    var icon1 = document.querySelector('.mat1');
+    var icon2 = document.querySelector('.mat2');
+    var inputPass = document.querySelector('.password');
+    
+    icon2.addEventListener('click', () => {
+        icon2.style.display = 'none';
+        inputPass.setAttribute('type', 'password');
+        icon1.style.display = 'block';
+    });
+    
+    icon1.addEventListener('click', () => {
+        icon1.style.display = 'none';
+        inputPass.setAttribute('type', 'text');
+        icon2.style.display = 'block';
+    });
 
     $("input[name='phone']").on("input change keyup", function () {
         var inputPhone = $(this).val();

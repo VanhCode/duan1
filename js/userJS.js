@@ -256,6 +256,17 @@ icon2[1].addEventListener('click', () => {
     inputs[1].setAttribute('type', 'password');
     icon1[1].style.display = 'block';
 });
+icon1[2].addEventListener('click', () => {
+    icon1[2].style.display = 'none';
+    inputs[2].setAttribute('type', 'text');
+    icon2[2].style.display = 'block';
+});
+
+icon2[2].addEventListener('click', () => {
+    icon2[2].style.display = 'none';
+    inputs[2].setAttribute('type', 'password');
+    icon1[2].style.display = 'block';
+});
 
 
 
