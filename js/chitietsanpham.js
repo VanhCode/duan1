@@ -38,24 +38,22 @@ sizeTee.forEach(function(sizeTeeChildrent) {
         amountFlex.setAttribute('max', sizeTeeChildrent.querySelector('.amount__boxSize').value)
     }
 })
-
-if (boxSizeS && colorS) {
-    colorS.forEach(function (sizeChil, index) {
-        // Kiểm tra xem boxSizeS[index] tồn tại
-        if (boxSizeS[index]) {
-            sizeChil.addEventListener('click', function () {
-                // Ẩn tất cả các phần tử trong boxSizeS
-                boxSizeS.forEach(function (sizeIndex) {
-                    sizeIndex.style.display = "none";
-                });
-                // Hiển thị phần tử tương ứng với index được click
-                boxSizeS[index].style.display = "flex";
+boxSizeS[0].style.display='flex';
+colorS.forEach(function (sizeChil, index) {
+    // Kiểm tra xem boxSizeS[index] tồn tại
+    if (boxSizeS[index]) {
+        sizeChil.addEventListener('click', function () {
+            // Ẩn tất cả các phần tử trong boxSizeS
+            boxSizeS.forEach(function (sizeIndex) {
+                sizeIndex.style.display = "none";
             });
-        } else {
-            console.error("boxSizeS[" + index + "] không tồn tại.");
-        }
-    });
-}
+            // Hiển thị phần tử tương ứng với index được click
+            boxSizeS[index].style.display = "flex";
+        });
+    } else {
+        console.error("boxSizeS[" + index + "] không tồn tại.");
+    }
+});
 
 
 
@@ -256,8 +254,9 @@ function ProductAnimation () {
     //     });
     // });
 }
+var cartCheck = document.getElementById("addTocart");
 
-document.getElementById("addTocart").addEventListener("click", function (event) {
+cartCheck.addEventListener("click", function (event) {
     var amount = document.getElementById("amount__flex").value;
     var errAmount = document.getElementById("errAmount");
     var boxAnimationSuccess = document.querySelector('.boxAnimationSuccess');

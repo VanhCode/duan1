@@ -305,6 +305,10 @@ header {
   flex: 1;
 }
 
+.wrp__chitiet {
+  margin-top: 2rem !important;
+}
+
 form {
   display: block;
   margin-top: 0em;
