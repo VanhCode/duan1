@@ -109,7 +109,7 @@
             e.innerHTML=xmlHttp.responseText;
             console.log(xmlHttp.responseText);
         }
-        xmlHttp.open('GET', "./xmlHttpRequest/statusOrder.php?action="+action+"&order_id="+id, true);
+        xmlHttp.open('GET', `./xmlHttpRequest/statusOrder.php?action=${action}&order_id=${id}`, true);
         xmlHttp.send();
         // setTimeout(function (){
         //     window.location.reload()
