@@ -118,6 +118,7 @@ switch ($action) {
             ]);
             header("location: index.php?action=listCustomer");
         }
+        
         include 'customer/addCustomer.php';
         break;
 

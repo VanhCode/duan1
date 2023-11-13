@@ -16,6 +16,7 @@
                     products.sale,
                     products.images,
                     products.product_gender,
+                    products.create_at,
                     products.category_id,
                     categories.category_id,
                     categories.category_name 
@@ -36,6 +37,7 @@
                     products.sale,
                     products.images,
                     products.product_gender,
+                    products.create_at,
                     products.category_id,
                     variants.product_id,
                     variants.variant_id,

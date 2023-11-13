@@ -1,4 +1,27 @@
+function sendAddtocart() {
+    var colors = document.querySelectorAll('.colorProduct');
+    var sizes = document.querySelectorAll('.size');
+    var err = document.querySelector('#errAmount');
 
+    let count = 0;
+
+    for(var i = 0; i < colors.length; i++) {
+        for(var j = 0; j < sizes.length; j++) {
+            if(colors[i].checked == "" || sizes[j].checked == "") {
+                err.innerHTML = "Vui lòng chọn phân loại";
+                count++;
+            } else {
+                err.innerHTML = "";
+                return true;
+            }
+        }
+    }
+
+    if(count > 0) {
+        return false;
+    }
+    
+}
 
 
 var colorS = document.querySelectorAll(".color_tee_product")
@@ -16,15 +39,26 @@ sizeTee.forEach(function(sizeTeeChildrent) {
     }
 })
 
-boxSizeS[0].style.display = "flex"
-colorS.forEach(function(sizeChil, index) {
-    sizeChil.addEventListener('click', function() {
-        boxSizeS.forEach(function(sizeIndex) {
-            sizeIndex.style.display = "none"
-        })
-        boxSizeS[index].style.display = "flex"
-    })
-})
+if (boxSizeS && colorS) {
+    colorS.forEach(function (sizeChil, index) {
+        // Kiểm tra xem boxSizeS[index] tồn tại
+        if (boxSizeS[index]) {
+            sizeChil.addEventListener('click', function () {
+                // Ẩn tất cả các phần tử trong boxSizeS
+                boxSizeS.forEach(function (sizeIndex) {
+                    sizeIndex.style.display = "none";
+                });
+                // Hiển thị phần tử tương ứng với index được click
+                boxSizeS[index].style.display = "flex";
+            });
+        } else {
+            console.error("boxSizeS[" + index + "] không tồn tại.");
+        }
+    });
+}
+
+
+
 
 
 listOmouover();
@@ -47,7 +81,6 @@ function listOmouover () {
         });
     }
 }
-
 
 
 amountFlex.addEventListener('input', function() {
@@ -244,27 +277,10 @@ document.getElementById("addTocart").addEventListener("click", function (event) 
     }
 })
 
-function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
 
 
-var message = getParameterByName('message');
 
-if (message) {
-    var boxAnimationSuccess = document.querySelector('.boxAnimationSuccess');
-    boxAnimationSuccess.style.display = 'block';
-    
-    setTimeout(function() {
-        boxAnimationSuccess.style.display = 'none';
-    }, 3000);
-}
+
 
 // var xhr = new XMLHttpRequest();
 // xhr.open("POST", "../view/addProduct.php?id=<?= $result['id_spBanChay'] ?>", true);

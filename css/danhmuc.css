@@ -1621,6 +1621,19 @@ svg.active__checked_cate {
   font-size: .75rem;
 }
 
+.section-recommend-products-wrapper__Box {
+  margin-top: -0.5rem !important;
+  padding: 0 !important;
+}
+
+.stardust-tabs-header-product {
+  padding: 5px !important;
+}
+
+.wpB2 {
+  margin-top: 14px !important;
+}
+
 /* end main */
 
 /* footer */

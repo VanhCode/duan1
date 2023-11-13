@@ -25,8 +25,8 @@
                         <div class="group_input_control">
                             <div class="group_input_box">
                                 <input type="password" placeholder="Mật khẩu" id="password" value="<?= $password ?>" name="password" class="password">
-                                <i class="fa-regular fa-eye-slash"></i>
-                                <i class="fa-sharp fa-regular fa-eye"></i>
+                                <i class="fa-regular fa-eye-slash mat1"></i>
+                                <i class="fa-sharp fa-regular fa-eye mat2"></i>
                             </div>
                             <div id="passwordErr" class="passwordErr"></div>
                         </div>
