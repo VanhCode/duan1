@@ -14,7 +14,9 @@
                 include "thongtin/address.php";
             } else if ($action == "user" && $user == "tai-khoan-cua-toi" && $profile == "change-page") {
                 if(isset($_POST['changePass'])) {
-                    // updatePassword($password);
+                    $newPassword = $_POST['newPassword'];
+                    $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
+                    updatePassword($newPasswordHash);
                 }
                 include "thongtin/changepass.php";
             }

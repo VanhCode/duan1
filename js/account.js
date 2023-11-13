@@ -8,7 +8,7 @@ function sendChangePass() {
     var errNewPass = document.getElementById('errNewPass');
     var errPass = document.getElementById('errNewPassLai');
     var errPassNewLai = document.getElementById('errPassNewLai');
-    var kitu = /^(?=.*[0-9])(?=.*[a-zA-Z]).{1,}$/;
+    var kitu = /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()-_+=<>?])[A-Za-z\d!@#$%^&*()-_+=<>?]{3,}$/;
     let globalCount = 0;
 
     newPass.classList.remove('activetb');
@@ -57,6 +57,13 @@ function sendChangePass() {
 
     if(globalCount > 0) {
         return false;
+    } else {
+        newPass.classList.remove('activetb');
+        newPass.classList.remove('activeManh');
+        inputPassNew.classList.remove('bg__usertb');
+        inputPassNew.classList.remove('bg__usermanh');
+        errNewPass.style.color = 'red'
+        return true;
     }
 }
 
