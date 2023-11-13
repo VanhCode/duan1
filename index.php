@@ -1,10 +1,12 @@
 <?php
+    ob_start();
     session_start();
     include "./models/pdo.php";
     include "./models/userModel/accountModel.php";
     include "./models/userModel/categoryModel.php";
     include "./models/userModel/productModel.php";
     include "./models/userModel/searchModel.php";
+    include "./models/userModel/cartModel.php";
 
     
     $userID = $_SESSION['user_id'] ?? 0;
@@ -13,6 +15,7 @@
 
     // Danh mục (category)
     $listCategory = listCategory();
+    $listCategoryColum = listCategoryColum(6,10);
     $listcategoryLimit = listCategory__limit(5);
 
     
@@ -20,6 +23,26 @@
     $listProduct = listProduct();
     $productSale = productSale();
     $listProsearchMax = listProSearchMax();
+
+
+
+    if(isset($_GET['detail_product']) && ($_GET['detail_product'] > 0)) {
+        $detail_product = $_GET['detail_product'];
+        $chitiet_product = chitietSanpham($detail_product);
+    } else {
+        $detail_product = "";
+        $chitiet_product = "";
+    }
+
+
+
+    // Cart (Cart)
+    $countProduct_cart = countProductCart();
+    if(isset($userID)) {
+        $listCart = listCartHeader($userID);
+    }
+
+
 
     if(isset($_GET['action']) && $_GET['action'] != "") {
         $action = $_GET['action'];
@@ -31,8 +54,6 @@
             include "views/header-cart/headerCart.php";
         } else if ($action == "thanh-toan") {
             include "views/header-thanhtoan/header-thanhtoan.php";
-        } else if ($action == "logout") {
-            logoutAccount();
         } else {
             include "views/viewblock/header.php";
         }
@@ -43,9 +64,27 @@
                 include "views/home.php";
                 break;
             case "san-pham":
+                $listProduct_moiNhat = listProduct__moiNhat();
                 include "views/sanpham.php";
                 break;
             case "danh-muc":
+                if(isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
+                    $categoryId = $_GET['category_id'];
+                } else {
+                    $categoryId = "";
+                }
+                
+                $sapxep = "product_id ASC";
+
+                if(isset($_GET['gia-thap-cao'])) {
+                    $sapxep = "price ASC";
+                }
+
+                if(isset($_GET['gia-cao-thap'])) {
+                    $sapxep = "price DESC";
+                }
+
+                $listProduct_byIdcategory = listProduct_byCategory($categoryId,$sapxep);
                 include "views/danhmuc.php";
                 break;
             case "user":
@@ -125,6 +164,7 @@
                         $resultInsert = addAccount($firstname,$lastname,$phone,$hashed_password,$phone,$date,$gender);
             
                         if(!$resultInsert) {
+
                             $success = '
                                 <div style="display:flex;" class="group_content__succesS">
                                     <div class="group_content__Animation__success__icon">
@@ -135,6 +175,13 @@
                                     </div>
                                 </div>
                             ';
+
+
+                            if($success) {
+                                echo "<script>setTimeout(function() {window.location.href = 'index.php?action=login'}, 2000)</script>";
+                            }
+
+       
                         } else {
                             echo '<script>alert("Lỗi truy vấn cơ sở dữ liệu.");</script>';
                         } 
@@ -143,6 +190,9 @@
                     }
                 }  
                 include "views/account/dangky.php";
+                break;
+            case "logout":
+                logoutAccount();
                 break;
             case "chi-tiet-sanpham":
                 if(isset($_GET['detail_product']) && ($_GET['detail_product'] > 0)) {
@@ -162,19 +212,74 @@
                 include "views/chitietsp.php";
                 break;
             case "search":
+                $keyword = "";
+
                 if(isset($_POST['searchProduct'])) {
-                    $keyword = $_POST['keyword'];
+                    $keyword = $_POST['keyword']??'';
 
                     // Hàm này để tăng số lần tên nào được tìm kiếm nhiều nhất
                     searchMax($keyword);
                 } else {
-                    $keyword = "";
+                    $keyword = $_GET['keyword']??'';
                 }
-                $listProdSearch = searchModel($keyword);
+
+                $sapxep = "product_id ASC";
+
+                if(isset($_GET['gia-thap-cao'])) {
+                    $sapxep = "price ASC";
+                }
+
+                if(isset($_GET['gia-cao-thap'])) {
+                    $sapxep = "price DESC";
+                }
+
+
+                $listProdSearch = searchModel($keyword,$sapxep);
                 include "views/viewSearch.php";
                 break;
             case "gio-hang":
-                include "views/giohang.php";
+                if(!isset($_SESSION['user_id'])) {
+                    header('Location: index.php?action=login');
+                    exit();
+                } else {
+                    if(isset($userID)) {
+                        $listCart = listCart($userID);
+                        include "views/giohang.php";
+                    }
+                }
+                break;
+            case "addTocart":
+                if(isset($_POST['addTocart'])) {  
+ 
+                    if ($user) {
+                        $stateCheck = checkProCartBySizeColor($_POST['id_sanpham'],$_POST['size'],$_POST['color']);
+    
+                        if ($stateCheck) {
+                            $amount = $stateCheck['amount'] + $_POST['amount__flex'];
+                            updateCart($stateCheck['cart_id'], $amount);
+                        } else {
+                            add_cart($userID, $_POST['id_sanpham'], $_POST['amount__flex'], $_POST['size'], $_POST['color']);                   
+                        }
+    
+                        $message = $_POST['id_sanpham'];
+                        header("Location: index.php?action=chi-tiet-sanpham&detail_product={$_POST['id_sanpham']}&message=$message");
+                        exit();
+                    } else {
+                        header('Location: index.php?action=login');
+                        exit();
+                    }
+    
+                }
+
+                break;
+            case "deleteCart";
+                if(isset($_GET['cart_id']) && $_GET['cart_id'] > 0) {
+                    $cart_id = $_GET['cart_id'];
+                    delete_cart($cart_id);
+                    header('Location: index.php?action=gio-hang');
+                } else {
+                    $cart_id = "";
+                }
                 break;
             case "thanh-toan":
                 include "views/thanhtoan.php";

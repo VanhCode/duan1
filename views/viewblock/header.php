@@ -6,7 +6,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>VanhStore | Mua và Bán Trên Ứng Dụng Hoặc Website</title>
+    <title>
+        <?php
+            if(!isset($action)) {
+                ?>
+                    VanhStore | Mua và Bán Trên Ứng Dụng Hoặc Website
+                <?php
+            } else if ($action == 'chi-tiet-sanpham') {
+                echo $chitiet_product['product_name'];
+            } else {
+                ?>
+                    VanhStore | Mua và Bán Trên Ứng Dụng Hoặc Website
+                <?php
+            }
+        ?>
+    </title>
     <link rel="shortcut icon" href="./img1/iconLogo.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/loadding.css">
     <link rel="stylesheet" href="./css/danhmuc.css">
@@ -35,9 +49,21 @@
     ?>
 </head>
 <body>
-    
+
+    <?php
+        if(isset($_GET['detail_product']) || isset($_GET['user'])) {
+        
+        } else {
+            ?>
+                <div id="loading-overlay">
+                    <div class="loader"></div>
+                </div>
+            <?php
+        }
+    ?>
     <div class="wrapper">
         <!-- header -->
+
         <!-- <div class="thongBaoSuccess">
             <div class="animation__loadWeb">
                 <i class="fa-solid fa-xmark"></i>
@@ -126,17 +152,17 @@
                         <img src="./img1/vanhstore.jpg" alt="">
                     </a>
                     <div class="header-with-search">
-                        <form action="index.php?action=search" method="POST" role="search" class="vanh-searchbar-form">
+                        <form action="index.php?action=search" autocomplete="off" method="POST" role="search" class="vanh-searchbar-form">
                             <div class="vanh-searchbar">
                                 <div class="vanh-searchbar__main">
                                     <?php
                                         if(isset($user)) {
                                             ?>
-                                                <input type="text" name="keyword" class="vanh-searchbar-form-input" placeholder="SALE TOÀN BỘ SẢN PHẨM LÊN ĐẾN 50%">
+                                                <input type="text" name="keyword" list="listSearch" class="vanh-searchbar-form-input" placeholder="SALE TOÀN BỘ SẢN PHẨM LÊN ĐẾN 50%">
                                             <?php
                                         } else {
                                             ?>
-                                                <input type="text" name="keyword" class="vanh-searchbar-form-input" placeholder="Miễn phí ship 0đ - Đăng ký ngay!">
+                                                <input type="text" name="keyword" list="listSearch" class="vanh-searchbar-form-input" placeholder="Miễn phí ship 0đ - Đăng ký ngay!">
                                             <?php
                                         }
                                     ?>  
@@ -268,47 +294,80 @@
                         </div>
                     </div>
                     <div class="header-with-search__cart-wrapper">
-                        <div class="header-with-search__cart_hoverProductCart">
-                            <a href="index.php?action=gio-hang" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
-                            <div class="amount__sessionCart">
-                                <span class="cart-item-count">1</span>
-                            </div>
-                                <div class="hoverProduct__cart">
-                                    <div class="list__hoverProduct__cart">
-                                        <div class="hoverProduct__cart_textTop">Sản phẩm mới thêm</div>
-                                        <div class="list_hoverProduct__cart_boxContentProduct">
-                                            <a href="./view/chitietsp.php?id=" class="cart_boxContentProduct_flex">
-                                                <div class="cart_boxContentProduct_img">
-                                                    <div class="cart_boxContentProduct_imgChil">
-                                                        <img src="./img1/" alt="">
-                                                    </div>
-                                                    <div class="cart_boxContentProduct_textContent">Áo Thun Siêu Đẹp</div>
-                                                </div>
-                                                <div class="cart_boxContentProduct_priceProduct">200.000đ</div>
-                                            </a>
-                                            <div class="cart_boxContentProduct_btnhrefProduct">
-                                                <a href="./view/cart.php" class="aViewProduct">Xem Giỏ Hàng</a>
+                        <?php
+                            if($user) {
+                                ?>
+                                    <div class="header-with-search__cart_hoverProductCart">
+                                        <a href="index.php?action=gio-hang" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
+                                            <?php
+                                                if($countProduct_cart['countProduct_cart']) {
+                                                    ?>
+                                                        <div class="amount__sessionCart">
+                                                            <span class="cart-item-count"><?= $countProduct_cart['countProduct_cart'] ?></span>
+                                                        </div>
+                                                    <?php
+                                                }
+                                            ?>
+                                            
+                                            <?php
+                                                if($countProduct_cart['countProduct_cart'] && $countProduct_cart['countProduct_cart'] > 0) {
+                                                    ?>
+                                                        <div class="hoverProduct__cart">
+                                                            <div class="list__hoverProduct__cart">
+                                                                <div class="hoverProduct__cart_textTop">Sản phẩm mới thêm</div>
+                                                                <div class="list_hoverProduct__cart_boxContentProduct">
+                                                                    <?php
+                                                                        foreach($listCart as $cartHeader) {
+                                                                            ?>
+                                                                                <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $cartHeader['product_id'] ?>" class="cart_boxContentProduct_flex">
+                                                                                    <div class="cart_boxContentProduct_img">
+                                                                                        <div class="cart_boxContentProduct_imgChil">
+                                                                                            <img src="./public/upload/image/product/<?= explode(",", $cartHeader['images'])[0] ?>" alt="">
+                                                                                        </div>
+                                                                                        <div class="cart_boxContentProduct_textContent"><?= $cartHeader['product_name'] ?></div>
+                                                                                    </div>
+                                                                                    <div class="cart_boxContentProduct_priceProduct">₫<?= number_format($cartHeader['price'], 0, ",", ".") ?></div>
+                                                                                </a>
+                                                                            <?php
+                                                                        }
+                                                                    ?>
+                                                                    
+                                                                    <div class="cart_boxContentProduct_btnhrefProduct">
+                                                                        <a href="index.php?action=gio-hang" class="aViewProduct">Xem Giỏ Hàng</a>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div> 
+                                                    <?php
+                                                } else {
+                                                    ?>
+                                                        <div class="hoverProduct__cart">
+                                                            <div class="list__hoverProduct__cartNoProduct">
+                                                                <div class="cart_boxContentProduct_flex__bg_img"></div>
+                                                                <div class="cart_boxContentProduct_textNoProduct">Chưa có sản phẩm</div>
+                                                            </div>
+                                                        </div>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </a>
+                                    </div>
+                                <?php
+                            } else {
+                                ?>
+                                    <div class="header-with-search__cart_hoverProductCart">
+                                        <a href="index.php?action=gio-hang" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
+                                        <div class="hoverProduct__cart">
+                                            <div class="list__hoverProduct__cartNoProduct">
+                                                <div class="cart_boxContentProduct_flex__bg_img"></div>
+                                                <div class="cart_boxContentProduct_textNoProduct">Chưa có sản phẩm</div>
                                             </div>
                                         </div>
-                                        
                                     </div>
-                                </div> 
-                                <!-- <div class="hoverProduct__cart">
-                                    <div class="list__hoverProduct__cartNoProduct">
-                                        <div class="cart_boxContentProduct_flex__bg_img"></div>
-                                        <div class="cart_boxContentProduct_textNoProduct">Chưa có sản phẩm</div>
-                                    </div>
-                                </div>
-                        </div> -->
-                        <!-- <div class="header-with-search__cart_hoverProductCart">
-                            <a href="./view/cart.php" class="header-with-search__cart_icon"><i class="fa-solid fa-cart-shopping"></i></a>
-                            <div class="hoverProduct__cart">
-                                <div class="list__hoverProduct__cartNoProduct">
-                                    <div class="cart_boxContentProduct_flex__bg_img"></div>
-                                    <div class="cart_boxContentProduct_textNoProduct">Chưa có sản phẩm</div>
-                                </div>
-                            </div>
-                        </div> -->
+                                <?php
+                            }
+                        ?>
                     </div>
                 </div>
             </div>

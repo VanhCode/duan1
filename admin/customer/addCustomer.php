@@ -51,8 +51,9 @@
                     <i class="bx bx-filter"></i>
                 </div>
 
-                <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" onsubmit="return sendUser(this)"
-                      enctype="multipart/form-data">
+                
+                <form action="<?= $_SERVER['REQUEST_URI'] ?>" autocomplete="off" method="post" onsubmit="return sendUser()" enctype="multipart/form-data">
+
                     <div class="form-group">
                         <label for="" class="form-label">Họ</label>
                         <input type="text" class="form-control first blurinp" name="firth_name">

@@ -14,5 +14,5 @@ $(document).ready(function() {
     
     setTimeout(function() {
         $("#loading-overlay").fadeOut();
-    }, 800);
+    }, 500);
 });
