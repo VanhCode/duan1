@@ -284,7 +284,7 @@
                                         foreach($listProduct_byIdcategory as $productByid) {
                                             ?>
                                                 <li class="col-xs-2-4 vanhstore-search-item-result__item">
-                                                    <a href="">
+                                                    <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $productByid['product_id'] ?>">
                                                         <div class="ZK4XOV">
                                                             <div class="GnRhpE">
                                                                 <div style="pointer-events: none;">

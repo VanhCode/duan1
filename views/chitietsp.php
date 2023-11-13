@@ -178,7 +178,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="margin-top: 86px; border-top: 1px solid rgba(0, 0, 0, 0.05);">
+                        <div style="margin-top: 127px; border-top: 1px solid rgba(0, 0, 0, 0.05);">
                             <div class="logo__dayS">
                                 <div class="logo__dayS_img">
                                     <img src="./img1/iconLogo.png" alt="">
@@ -205,7 +205,7 @@
     <div class="section-recommend-products-wrapper container">
         <div style="display: contents;">
             <div>
-                <div class="section-recommend-products-wrapper__Box">
+                <div class="section-recommend-products-wrapper__Box wrp__chitiet" style="margin-top: 1.5em">
                     <div class="stardust-tabs-header-anchor"></div>
                     <nav class="stardust-tabs-header-wrapper">
                         <ul class="stardust-tabs-header">
