@@ -59,6 +59,7 @@
                             <th>STT</th>
                             <th>Ảnh</th>
                             <th>Tên sản phẩm</th>
+                            <th>Giá</th>
                             <th>Danh mục</th>
                             <th>Ngày đăng</th>
                             <th>Thao tác</th>
@@ -77,6 +78,7 @@
                                             <img src="../public/upload/image/product/<?= explode(",", $valueSanpham['images'])[0] ?>" alt="">
                                         </td>
                                         <td class="name__product__admin"><?= $valueSanpham['product_name'] ?></td>
+                                        <td class="name__product__admin" style="color: #ff8080;font-weight: 500;width: 150px!important;"><?= $valueSanpham['price'] ?></td>
                                         <td><?= $valueSanpham['category_name'] ?></td>
                                         <td><?= date("d-m-Y H:i:s", strtotime($valueSanpham['create_at'])) ?></td>
                                         <td>

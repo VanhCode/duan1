@@ -51,6 +51,7 @@
                     <i class="bx bx-filter"></i>
                 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 
                 <form action="<?= $_SERVER['REQUEST_URI'] ?>" autocomplete="off" method="post" onsubmit="return sendUser()" enctype="multipart/form-data">
 =======
@@ -58,6 +59,12 @@
                 <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" onsubmit="return sendUser(this)"
                       enctype="multipart/form-data">
 >>>>>>> 86d5323b467b2d354937a08dee9ed4f96e20362f
+=======
+
+                
+                <form action="<?= $_SERVER['REQUEST_URI'] ?>" autocomplete="off" method="post" onsubmit="return sendUser()" enctype="multipart/form-data">
+
+>>>>>>> c40c6696c7d63a66d8f7c468f91c105c30cb95fc
                     <div class="form-group">
                         <label for="" class="form-label">Họ</label>
                         <input type="text" class="form-control first blurinp" name="firth_name">

@@ -78,10 +78,10 @@
                             </td>
                             <td>
                                 <p><i>Nguyễn Văn B</i></p>
-                                <p style="width: 200px;"><b>DC: </b><?= $value['receiver_address'] ?></p>
-                                <p><b>SDT: </b><?= $value['receiver_phone'] ?></p>
+                                <p style="width: 200px;"><b>ĐC: </b><?= $value['receiver_address'] ?></p>
+                                <p><b>SĐT: </b><?= $value['receiver_phone'] ?></p>
                             </td>
-                            <td><?= number_format($value['total'], 2, ',', '.') ?></td>
+                            <td style="color: #ff7d7d;font-weight: 500;"><?= number_format($value['total'], 0, ',', '.') ?></td>
                             <td><?= $value['create_at'] ?></td>
                             <td><span style="cursor: pointer" onclick="toggleStatus(this,'togglePayment','<?=$value['order_id']?>')"
                                       class="status <?= $value['payment_status'] ?>"><?= $value['payment_status'] ?></span>
@@ -111,8 +111,5 @@
         }
         xmlHttp.open('GET', `./xmlHttpRequest/statusOrder.php?action=${action}&order_id=${id}`, true);
         xmlHttp.send();
-        // setTimeout(function (){
-        //     window.location.reload()
-        // },200)
     }
 </script>
