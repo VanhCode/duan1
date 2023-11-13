@@ -29,7 +29,7 @@
                 <span class="text">Quản lí tài khoản</span>
             </a>
         </li>
-        <li class="<?=$action=='listOrder' ?'active':''?>">
+        <li class="<?=$action=='listOrder' || $action=='listOrder_detail' ?'active':''?>">
             <a href="index.php?action=listOrder">
                 <i class='bx bxs-shopping-bag-alt'></i>
                 <span class="text">Quản lí đơn hàng</span>

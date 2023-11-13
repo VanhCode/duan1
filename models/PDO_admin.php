@@ -50,13 +50,13 @@ function addDataReturnId($table, $data)
     return query_returnID($sql);
 }
 
-function updateData($table, $data, $id)
+function updateData($table, $data, $where)
 {
     foreach ($data as $key => $value) {
         $data[$key] = $key . "='" . $value . "'";
     }
     $data = implode(",", $data);
-    $sql = "UPDATE ${table} SET ${data} WHERE ${id}";
+    $sql = "UPDATE ${table} SET ${data} WHERE ${where}";
     return query($sql)->rowCount();
 }
 

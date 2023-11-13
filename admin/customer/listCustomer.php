@@ -71,7 +71,7 @@
                             <td><?= $keyuser + 1 ?></td>
                             <td>
                                 <div class="td_user_img">
-                                    <img src="<?= $user['user_image'] ?>">
+                                    <img src="../public/upload/image/user/<?= $user['user_image'] ?>">
                                     <p class="img__bg_user"><?= $user['firth_name'] . ' ' . $user['last_name'] ?></p>
                                 </div>
                             </td>
