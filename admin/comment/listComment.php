@@ -67,21 +67,23 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <?php $count=1;
+                    foreach ($comments as $comment):?>
                     <tr class="tr_td">
-                        <td>1</td>
+                        <td><?=$count++?></td>
                         <td>
                             <div class="pro">
-                                <img src="" alt="">
-                                <span>Nguyễn Ngọc Duy</span>
+                                <img src="../public/upload/image/user/<?=$comment['user_image']?>" alt="">
+                                <span><?=$comment['fullName']?></span>
                             </div>
                         </td>
-                        <td>Áo này rẻ quá</td>
-                        <td>05/11/2023</td>
+                        <td><?=$comment['content']?></td>
+                        <td><?=$comment['create_at']?></td>
                         <td>
-                            <a class="btn btn-outline-success btn-sm" href="index.php?action=editComment&comment_id=">Sửa</a>
-                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" href="index.php?action=deleteComment&comment_id=">Xoá</a>
+                            <a class="btn btn-outline-danger btn-sm" onclick="return confirm('bạn có chắc không')" href="index.php?action=deleteComment&comment_id=<?=$comment['comment_id']?>">Xoá</a>
                         </td>
                     </tr>
+                    <?php endforeach;?>
                     </tbody>
                 </table>
             </div>

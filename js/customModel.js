@@ -13,6 +13,12 @@ function sendUser() {
 
     let count = 0
 
+    if(er_phone.innerHTML!=''){
+        count++
+    }
+    if(er_email.innerHTML!=''){
+        count++
+    }
     if(firstname.value == "") {
         er_firstname.innerHTML = "Vui lòng nhập trường này"
         count++
@@ -47,7 +53,7 @@ function sendUser() {
     } else {
         er_pass.innerHTML = ""
     }
-
+    console.log(count);
     if(count > 0) {
         return false
     } else {
