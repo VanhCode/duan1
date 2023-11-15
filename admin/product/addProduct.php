@@ -50,10 +50,11 @@
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>
-                <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
+                <form onsubmit="return checkFormSubmit()" action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="" class="form-label">Tên</label>
                         <input type="text" name="namePro" class="form-control">
+                        <small></small>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Ảnh</label>
@@ -65,14 +66,17 @@
                     <div class="form-group">
                         <label for="" class="form-label">Giá sản phẩm</label>
                         <input type="text" class="form-control" name="pricePro">
+                        <small></small>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Giảm giá</label>
                         <input type="text" class="form-control" name="sale">
+                        <small></small>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Sản phẩm dành cho</label>
                         <input type="text" class="form-control" name="product_gender">
+                        <small></small>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Danh mục</label>
@@ -104,11 +108,43 @@
                     </div>
                 </form>
             </div>
+            <script>
+                function checkFormSubmit(){
+                    let status=true;
+                    let formGRS=document.querySelectorAll('.form-group');
+                    formGRS.forEach(function (formGR,index){
+                        let ip=formGR.querySelector('input[type=text]');
+                        if(ip&&index<6){
+                            if(ip.value===''){
+                                ip.nextElementSibling.innerHTML='Không được để trống';
+                                status=false;
+                            }else {
+                                ip.nextElementSibling.innerHTML='';
+                            }
+                        }
+                    });
+                    return status
+                }
+                let status=true;
+                let formGRS=document.querySelectorAll('.form-group');
+                formGRS.forEach(function (formGR,index){
+                    let ip=formGR.querySelector('input[type=text]');
+                    if(ip&&index<6){
+                        ip.onblur=function (e){
+                            if(ip.value===''){
+                                ip.nextElementSibling.innerHTML='Không được để trống';
+                            }else {
+                                ip.nextElementSibling.innerHTML='';
+                            }
+                        }
+                    }
+                });
+            </script>
 
         </div>
     </main>
     <!-- MAIN -->
 </section>
 <script src="../public/js/Admin_pro.js"></script>
-<script src="../public/js/script.js"></script>
+<!--<script src="../public/js/script.js"></script>-->
 <!-- CONTENT -->

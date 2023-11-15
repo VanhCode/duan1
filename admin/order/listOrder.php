@@ -77,7 +77,7 @@
                                 <span><?= $value['fullName'] ?></span>
                             </td>
                             <td>
-                                <p><i>Nguyễn Văn B</i></p>
+                                <p><i><?=$value['receiver_name']?></i></p>
                                 <p style="width: 200px;"><b>ĐC: </b><?= $value['receiver_address'] ?></p>
                                 <p><b>SĐT: </b><?= $value['receiver_phone'] ?></p>
                             </td>
