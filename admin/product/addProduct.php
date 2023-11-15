@@ -146,5 +146,5 @@
     <!-- MAIN -->
 </section>
 <script src="../public/js/Admin_pro.js"></script>
-<!--<script src="../public/js/script.js"></script>-->
+<script src="../public/js/script.js"></script>
 <!-- CONTENT -->
