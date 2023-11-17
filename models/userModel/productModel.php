@@ -7,20 +7,25 @@
 
     
     // Select sản phẩm mới đăng theo ngày
-    function listProduct__moiNhat() {
-        $sql = "SELECT * FROM products WHERE create_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)";
+    function CountlistProduct__moiNhat() {
+        $sql = "SELECT * FROM products WHERE 1 ORDER BY product_id DESC";
+        return pdo_query($sql);
+    }
+
+    function listProduct__moiNhat($price,$page) {
+        $sql = "SELECT * FROM products WHERE 1 ORDER BY $price LIMIT $page, 20";
         return pdo_query($sql);
     }
 
 
     // Sản phẩm sale
     function productSale() {
-        $sql = "SELECT * FROM products WHERE sale > 0 AND create_at >= DATE_SUB(NOW(), INTERVAL 3 DAY) ORDER BY product_id ASC LIMIT 16";
+        $sql = "SELECT * FROM products WHERE sale > 0 AND create_at ORDER BY product_id DESC LIMIT 16";
         return pdo_query($sql);
     }
 
 
-    // Select sản phẩm cùng danh mục mà khác id
+    // Select sản phẩm cùng danh mục mà khác id (Sản phẩm cùng loại)
     function product_cungloai($category_id,$product_id) {
         $sql = "SELECT * FROM products WHERE category_id = '$category_id' AND product_id <> '$product_id'";
         return pdo_query($sql);
@@ -36,8 +41,8 @@
 
 
     // Select sản phẩm theo danh mục
-    function listProduct_byCategory($category_id,$orderBy) {
-        $sql = "SELECT * FROM products WHERE category_id = '$category_id' ORDER BY $orderBy";
+    function listProduct_byCategory($category_id,$orderBy,$begin) {
+        $sql = "SELECT * FROM products WHERE category_id = '$category_id' ORDER BY $orderBy LIMIT $begin, 20";
         return pdo_query($sql);
     }
 

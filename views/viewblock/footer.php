@@ -91,26 +91,26 @@
 </body>
     <?php
         if(isset($_GET['action']) && $_GET['action'] == 'signup'){
-                ?>
-                    <script src="./js/dangky.js"></script>
-                <?php
+            ?>
+                <script src="./js/dangky.js"></script>
+            <?php
         }   else if(isset($_GET['action']) && $_GET['action'] == 'login'){
-                ?>
-                    <script src="./js/dangnhap.js"></script>
-                <?php
+            ?>
+                <script src="./js/dangnhap.js"></script>
+            <?php
         }   else if(isset($_GET['action']) && $_GET['action'] == 'chi-tiet-sanpham'){
-                ?>
-                    <script src="./js/chitietsanpham.js"></script>
-                    <script src="./js/checkAmount.js"></script>
-                <?php
-        }   else if(isset($_GET['action']) && $_GET['action'] == 'user'){
-                ?>
-                    <script src="./js/danhmuc.js"></script>
-                <?php
+            ?>
+                <script src="./js/chitietsanpham.js"></script>
+                <script src="./js/checkAmount.js"></script>
+            <?php
+        }   else if(isset($_GET['action']) && $_GET['action'] == 'danh-muc' || isset($_GET['action']) == 'san-pham'){
+            ?>
+                <script src="./js/danhmuc.js"></script>
+            <?php
         }   else if (isset($_GET['action']) == "") {
-                ?>
-                    <script src="./js/trangchu2.js"></script>
-                <?php
+            ?>
+                <script src="./js/trangchu2.js"></script>
+            <?php
         }
 
         if(isset($_GET['profile'])) {
@@ -121,11 +121,7 @@
             }
         }
     ?>
-
-
-
-
-
+    
 <script src="./js/loadding.js"></script>
 
 </html>

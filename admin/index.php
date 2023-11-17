@@ -180,21 +180,21 @@ switch ($action) {
                 $oldImage = $oldImage . ",";
             }
 
-
-
-
             $product_id = updateProduct($id, $namePro, $pricePro, $sale, $filename ? $oldImage . $filename : $oldImage, $product_gender, $selectCategory);
 
             $length=9999;
+
             for ($i = 0; $i < $length; $i++) {
                 //nếu cả 2 tồn tại
                 if (isset($variant_id[$i]) && isset($color[$i])) {
                     updateVation($variant_id[$i], $color[$i], $size[$i], $amount[$i]);
                 }
+
                 if (!isset($variant_id[$i]) && isset($color[$i])) {
                     addVation($id, $color[$i], $size[$i], $amount[$i]);
                     $length=count($color);
                 }
+                
                 if(!isset($color[$i])&&isset($variant_id[$i])) {
                     deleteVation($variant_id[$i]);
                     $length=count($variant_id);
