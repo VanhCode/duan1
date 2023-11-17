@@ -60,9 +60,9 @@ function updateData($table, $data, $where)
     return query($sql)->rowCount();
 }
 
-function deleteData($table, $id)
+function deleteData($table, $where)
 {
-    $sql = "DELETE FROM ${table} WHERE ${id}";
+    $sql = "DELETE FROM ${table} WHERE ${where}";
     return query($sql)->rowCount();
 }
 

@@ -22,6 +22,7 @@ switch ($action) {
         $totalSell=totalSell($day);
         $newOrder=newOrder($day);
         $totalUser=totalUser();
+        $todolist=getAll('todolist');
 
         include 'dashboard.php';
         break;
