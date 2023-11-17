@@ -79,18 +79,22 @@
 
                     $action = $_GET['action'];
                     $userAction = $_GET['user'];
-                    $profile = $_GET['profile'];
 
                     if ($action == "user" && $userAction == "sieu-sale") {
                         include "sale.php";
                     } else if($action == "user" && $userAction == "tai-khoan-cua-toi") {
 
-                        if($profile == 'ho-so') {
+                        if(isset($_GET['profile']) == 'ho-so') {
                             $userProfile = select__userByid($userID);
                         }
 
                         if($_SERVER['REQUEST_METHOD'] == "POST") {
-                            updateAccount($userID,$_POST['firth_name'],$_POST['last_name'],$_POST['email'],$_POST['phone'],$_POST['date'],$_POST['gender']);
+
+                            $filename = time().basename($_FILES['image']['name']);
+                            $target = "./public/upload/image/user/".$filename;
+                            move_uploaded_file($_FILES['image']['tmp_name'],$target);
+                            
+                            updateAccount($userID,$_POST['firth_name'],$_POST['last_name'],$_POST['email'],$filename,$_POST['phone'],$_POST['date'],$_POST['gender']);
                             header('Location:'.$_SERVER['HTTP_REFERER']);
                             die;
                         }

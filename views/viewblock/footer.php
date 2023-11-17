@@ -118,6 +118,10 @@
                 ?>
                     <script src="./js/account.js"></script>
                 <?php
+            } else if ($_GET['profile'] == 'ho-so') {
+                ?>
+                    <script src="./js/userJS.js"></script>
+                <?php
             }
         }
     ?>
