@@ -38,6 +38,7 @@ sizeTee.forEach(function(sizeTeeChildrent) {
         amountFlex.setAttribute('max', sizeTeeChildrent.querySelector('.amount__boxSize').value)
     }
 })
+
 boxSizeS[0].style.display='flex';
 colorS.forEach(function (sizeChil, index) {
     // Kiểm tra xem boxSizeS[index] tồn tại

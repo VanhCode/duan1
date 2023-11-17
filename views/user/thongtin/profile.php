@@ -9,7 +9,7 @@
             </div>
             <div class="edit-user">
                 <div class="box-form">
-                    <form action="">
+                    <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="POST">
                         <table class="table-user">
                             <tr>
                                 <td class="td-user td-user-bottom">
@@ -18,7 +18,7 @@
                                 <td class="suggest">
                                     <div>
                                         <div class="userLogin">
-                                            <input type="text" class="nameLogin" value="">
+                                            <input type="text" class="nameLogin" name="firth_name" value="<?= $userProfile['firth_name'] ?>">
                                         </div>
                                     </div>
                                 </td>
@@ -30,7 +30,7 @@
                                 <td class="suggest">
                                     <div>
                                         <div class="userLogin">
-                                            <input type="text" class="nameLogin" value="">
+                                            <input type="text" class="nameLogin" name="last_name" value="<?= $userProfile['last_name'] ?>">
                                         </div>
                                     </div>
                                 </td>
@@ -42,7 +42,7 @@
                                 <td class="suggest">
                                     <div class="td3">
                                         <div class="userLogin">
-                                            <input type="text" class="nameLogin" value="">
+                                            <input type="text" class="nameLogin" name="email" value="<?= $userProfile['email'] ?>">
                                         </div>
                                     </div>
                                 </td>
@@ -54,7 +54,7 @@
                                 <td class="suggest">
                                     <div class="td3">
                                         <div class="userLogin">
-                                            <input type="text" class="nameLogin" value="">
+                                            <input type="text" class="nameLogin" name="phone" value="<?= $userProfile['phone'] ?>">
                                         </div>
                                     </div>
                                 </td>
@@ -68,7 +68,7 @@
                                         <div class="start-radio-group" role="radiogroup">
                                             <div class="radio-group-item">
                                                 <div class="input-radio">
-                                                    <input type="radio" name="gender" id="">
+                                                    <input type="radio" name="gender" value="Nam" id="" <?= $userProfile['gender'] == "Nam" ? "checked" : "" ?>>
                                                 </div>
                                                 <div class="radio-text">
                                                     <span>Nam</span>
@@ -76,7 +76,7 @@
                                             </div>
                                             <div class="radio-group-item">
                                                 <div class="input-radio">
-                                                    <input type="radio" name="gender" id="">
+                                                    <input type="radio" name="gender" value="Nữ" id="" <?= $userProfile['gender'] == "Nữ" ? "checked" : "" ?>>
                                                 </div>
                                                 <div class="radio-text">
                                                     <span>Nữ</span>
@@ -84,7 +84,7 @@
                                             </div>
                                             <div class="radio-group-item">
                                                 <div class="input-radio">
-                                                    <input type="radio" name="gender" id="">
+                                                    <input type="radio" name="gender" value="Khác" id="" <?= $userProfile['gender'] == "Khác" ? "checked" : "" ?>>
                                                 </div>
                                                 <div class="radio-text">
                                                     <span>Khác</span>
@@ -101,7 +101,7 @@
                                 <td class="suggest">
                                     <div class="td-date">
                                         <div class="dateClass">
-                                            <input type="date" name="date" class="dateGroup">
+                                            <input type="date" name="date" value="<?= date('Y-m-d', strtotime($userProfile['date'])) ?>" class="dateGroup">
                                         </div>
                                         <div class="dateErr"></div>
                                     </div>
@@ -112,7 +112,7 @@
                                     <label></label>
                                 </td>
                                 <td class="suggest">
-                                    <button type="button" class="btn btn-solid-primary btn--m btn--inline" aria-disabled="false">Lưu</button>
+                                    <button type="submit" class="btn btn-solid-primary btn--m btn--inline" aria-disabled="false">Lưu</button>
                                 </td>
                             </tr>
                         </table>

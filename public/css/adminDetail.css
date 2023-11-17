@@ -84,7 +84,7 @@
 } */
 
 .add_vari {
-    width: 325px;
+    width: 270px;
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
     font-weight: 400;
@@ -227,5 +227,5 @@
 }
 
 .name__product__admin {
-    width: 410px !important;
+    width: 295px !important;
 }

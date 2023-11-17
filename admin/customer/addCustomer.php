@@ -50,9 +50,7 @@
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>
-
-                
-                <form action="<?= $_SERVER['REQUEST_URI'] ?>" autocomplete="off" method="post" onsubmit="return sendUser()" enctype="multipart/form-data">
+                <form action="<?= $_SERVER['REQUEST_URI'] ?>" autocomplete="off" method="post" onsubmit="return sendUser(this)" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <label for="" class="form-label">Họ</label>

@@ -832,7 +832,7 @@ input {
 }
 
 .stardust-tabs-panels__panel_navSChilrent {
-  width: 16.66667%;
+  width: 20% !important;
   padding: 0.3125rem;
   box-sizing: border-box;
 }
