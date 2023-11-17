@@ -86,7 +86,7 @@
                                             <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $valueSanpham['product_id'] ?>">Xoá</a>
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" href="index.php?action=editProduct">Xem</a>
+                                            <a class="btn btn-primary btn-sm" href="../index.php?action=chi-tiet-sanpham&detail_product=<?=$valueSanpham['product_id']?>">Xem</a>
                                         </td>
                                     </tr>
                                     <div class="modal fade" id="exampleModal<?= $valueSanpham['product_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

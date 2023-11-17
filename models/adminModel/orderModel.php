@@ -5,7 +5,8 @@ function listOrder(){
     JOIN users u
     ON u.user_id= o.user_id
     JOIN order_details od
-    ON od.order_id=o.order_id";
+    ON od.order_id=o.order_id
+    GROUP BY order_id";
     return query($sql)->fetchAll();
 }
 function listOrder_detail($order_id){

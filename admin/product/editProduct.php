@@ -1,3 +1,8 @@
+<style>
+    .form-group>span{
+        color: red;
+    }
+</style>
 <!-- CONTENT -->
 <section id="content">
     <!-- NAVBAR -->
@@ -50,17 +55,18 @@
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>
-                <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
+                <form onsubmit="return checkFormSubmit()" action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
 
                     <input type="hidden" name="id" value="<?= $productInfo['product_id'] ?>">
                     
                     <div class="form-group">
                         <label for="" class="form-label">Tên</label>
                         <input type="text" name="namePro" value="<?= $productInfo['product_name'] ?>" class="form-control">
+                        <span></span>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Ảnh</label>
-                        <input type="file" id="imageInput" class="upFile form-control" name="image[]" multiple multiple accept="image/*">
+                        <input type="file" id="imageInput" class="upFile form-control" name="image[]" multiple accept="image/*">
                         <!--  -->
                         <input type="hidden" width="1000px" id="oldImage" name="oldImage" value="<?= $productInfo['images'] ?>">
                         <!--  -->
@@ -84,14 +90,17 @@
                     <div class="form-group">
                         <label for="" class="form-label">Giá sản phẩm</label>
                         <input type="text" class="form-control" value="<?= $productInfo['price'] ?>" name="pricePro">
+                        <span></span>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Giảm giá</label>
                         <input type="text" class="form-control" value="<?= $productInfo['sale'] ?>" name="sale">
+                        <span></span>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Sản phẩm dành cho</label>
                         <input type="text" class="form-control" name="product_gender" value="<?= $productInfo['product_gender'] ?>">
+                        <span></span>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Danh mục</label>
@@ -152,7 +161,38 @@
                     </div>
                 </form>
             </div>
-
+            <script>
+                function checkFormSubmit(){
+                    let status=true;
+                    let formGRS=document.querySelectorAll('.form-group');
+                    formGRS.forEach(function (formGR,index){
+                        let ip=formGR.querySelector('input[type=text]');
+                        if(ip&&index<6){
+                            if(ip.value===''){
+                                ip.nextElementSibling.innerHTML='Không được để trống';
+                                status=false;
+                            }else {
+                                ip.nextElementSibling.innerHTML='';
+                            }
+                        }
+                    });
+                    return status
+                }
+                let status=true;
+                let formGRS=document.querySelectorAll('.form-group');
+                formGRS.forEach(function (formGR,index){
+                    let ip=formGR.querySelector('input[type=text]');
+                    if(ip&&index<6){
+                        ip.onblur=function (e){
+                            if(ip.value===''){
+                                ip.nextElementSibling.innerHTML='Không được để trống';
+                            }else {
+                                ip.nextElementSibling.innerHTML='';
+                            }
+                        }
+                    }
+                });
+            </script>
         </div>
     </main>
     <!-- MAIN -->

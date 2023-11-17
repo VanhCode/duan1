@@ -47,21 +47,21 @@
             <li>
                 <i class='bx bxs-calendar-check' ></i>
                 <span class="text">
-						<h3>1020</h3>
+						<h3><?=count($newOrder)?></h3>
 						<p>Đơn đặt hàng mới</p>
 					</span>
             </li>
             <li>
                 <i class='bx bxs-group' ></i>
                 <span class="text">
-						<h3>2834</h3>
+						<h3><?=$totalUser['total_user']?></h3>
 						<p>Khách hàng</p>
 					</span>
             </li>
             <li>
                 <i class='bx bxs-dollar-circle' ></i>
                 <span class="text">
-						<h3>$2543</h3>
+						<h3><?=number_format($totalSell['total_sell'],0,',','.')?></h3>
 						<p>Tổng doanh thu</p>
 					</span>
             </li>
@@ -78,52 +78,36 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>Người dùng</th>
-                        <th>Ngày mua</th>
-                        <th>Trạng thái</th>
+                        <th style="padding-right: 20px">STT</th>
+                        <th>Người đặt hàng</th>
+                        <th>Tổng cộng</th>
+                        <th>Ngày đặt hàng</th>
+                        <th>Thanh toán</th>
+                        <th>Vận chuyển</th>
+                        <th>Chi tiết</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>
-                            <img src="img/people.png">
-                            <p>John Doe</p>
-                        </td>
-                        <td>01-10-2021</td>
-                        <td><span class="status completed">Completed</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="img/people.png">
-                            <p>John Doe</p>
-                        </td>
-                        <td>01-10-2021</td>
-                        <td><span class="status pending">Pending</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="img/people.png">
-                            <p>John Doe</p>
-                        </td>
-                        <td>01-10-2021</td>
-                        <td><span class="status process">Process</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="img/people.png">
-                            <p>John Doe</p>
-                        </td>
-                        <td>01-10-2021</td>
-                        <td><span class="status pending">Pending</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="img/people.png">
-                            <p>John Doe</p>
-                        </td>
-                        <td>01-10-2021</td>
-                        <td><span class="status completed">Completed</span></td>
-                    </tr>
+                    <?php foreach ($newOrder as $key => $value): ?>
+                        <tr>
+                            <td style="margin-top: 7px"><?= $key + 1 ?></td>
+                            <td>
+                                <img src="../public/upload/image/user/<?= $value['user_image'] ?>" alt="">
+                                <span><?= $value['fullName'] ?></span>
+                            </td>
+                            <td style="color: #ff7d7d;font-weight: 500;"><?= number_format($value['total'], 0, ',', '.') ?></td>
+                            <td><?= $value['create_at'] ?></td>
+                            <td><span style="cursor: pointer" onclick="toggleStatus(this,'togglePayment','<?=$value['order_id']?>')"
+                                      class="status <?= $value['payment_status'] ?>"><?= $value['payment_status'] ?></span>
+                            </td>
+                            <td><span style="cursor: pointer" onclick="toggleStatus(this,'toggleShipping','<?=$value['order_id']?>')"
+                                      class="status <?= $value['shipping_status'] ?>"><?= $value['shipping_status'] ?></span>
+                            </td>
+                            <td><a class="btn btn-success btn-sm"
+                                   href="index.php?action=listOrder_detail&order_id=<?= $value['order_id'] ?>">Chi
+                                    tiết</a></td>
+                        </tr>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -160,4 +144,16 @@
     </main>
     <!-- MAIN -->
 </section>
+<script>
+    let xmlHttp = new XMLHttpRequest();
+    function toggleStatus(e,action,id) {
+        xmlHttp.onreadystatechange = function () {
+            e.setAttribute('class','status '+xmlHttp.responseText);
+            e.innerHTML=xmlHttp.responseText;
+            console.log(xmlHttp.responseText);
+        }
+        xmlHttp.open('GET', `./xmlHttpRequest/statusOrder.php?action=${action}&order_id=${id}`, true);
+        xmlHttp.send();
+    }
+</script>
 <!-- CONTENT -->

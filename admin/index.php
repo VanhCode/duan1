@@ -6,6 +6,7 @@ include '../models/adminModel/productModel.php';
 include '../models/adminModel/varitionModel.php';
 include '../models/adminModel/commentModel.php';
 include '../models/adminModel/orderModel.php';
+include '../models/adminModel/dashboardModel.php';
 
 $action = $_GET['action'] ?? 'dashboard';
 
@@ -17,6 +18,11 @@ $listCategory = listDanhmuc();
 
 switch ($action) {
     case 'dashboard':
+        $day=3;
+        $totalSell=totalSell($day);
+        $newOrder=newOrder($day);
+        $totalUser=totalUser();
+
         include 'dashboard.php';
         break;
 
