@@ -1,5 +1,5 @@
            <!-- main start -->
-
+           <link rel="stylesheet" href="./css/danhmuc.css">
            <main class="main__category">
                <div class="div__main__category__vanhstore">
                    <div class="container category-banners">

@@ -1,5 +1,5 @@
 <!-- Main -->
-
+<link rel="stylesheet" href="./css/chitietsp.css">
 <div class="boxAnimationSuccess">
     <div class="thongBaoSuccess">
         <div class="thongBaoSuccess_div__icon">

@@ -1,5 +1,6 @@
            <!-- main start -->
-
+           <link rel="stylesheet" href="./css/viewsearch.css">
+           <link rel="stylesheet" href="./css/viewsearch.css">
            <main class="main__category">
                <div class="div__main__category__vanhstore">
                    <div class="container category__product">

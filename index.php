@@ -130,6 +130,8 @@
                 $countTrang = ceil($count / 20); 
                 
 
+
+
                 include "views/danhmuc.php";
                 break;
             case "user":
@@ -269,31 +271,20 @@
                 include "views/chitietsp.php";
                 break;
             case "search":
-                $keyword = "";
-
-                if(isset($_POST['searchProduct'])) {
-                    $keyword = $_POST['keyword']??'';
-
-                    // Hàm này để tăng số lần tên nào được tìm kiếm nhiều nhất
-                    searchMax($keyword);
-                } else {
-                    $keyword = $_GET['keyword']??'';
-                }
-
+                $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+                
                 $sapxep = "product_id ASC";
 
-                if(isset($_GET['gia-thap-cao'])) {
+                if (isset($_GET['gia-thap-cao'])) {
                     $sapxep = "price ASC";
                 }
 
-                if(isset($_GET['gia-cao-thap'])) {
+                if (isset($_GET['gia-cao-thap'])) {
                     $sapxep = "price DESC";
                 }
 
-
-                $listProdSearch = searchModel($keyword,$sapxep);
+                $listProdSearch = searchModel($keyword, $sapxep);
                 include "views/viewSearch.php";
-                break;
             case "gio-hang":
                 if(!isset($_SESSION['user_id'])) {
                     header('Location: index.php?action=login');
@@ -353,6 +344,10 @@
                 include "views/404.php";
         }
 
+        include "views/viewblock/footer.php";
+    } else if(isset($_GET['keyword']) && ($_GET['keyword'] != "")) {
+        include "views/viewblock/header.php";
+        include "views/viewSearch.php";
         include "views/viewblock/footer.php";
     } else {
         include "views/viewblock/header.php";

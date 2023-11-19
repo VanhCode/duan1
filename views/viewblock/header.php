@@ -24,29 +24,7 @@
     <link rel="shortcut icon" href="./img1/iconLogo.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/loadding.css">
     <link rel="stylesheet" href="./css/danhmuc.css">
-    <?php
-        if(isset($_GET['action']) == "") {
-            ?>
-                <link rel="stylesheet" href="./css/index.css">
-            <?php
-        } else if($_GET['action'] == "user") {
-            ?>
-                <link rel="stylesheet" href="./css/user.css">
-            <?php
-        } else if($_GET['action'] == "search") {
-            ?>
-                <link rel="stylesheet" href="./css/viewsearch.css">
-            <?php
-        } else if($_GET['action'] == "danh-muc") {
-            ?>
-                <link rel="stylesheet" href="./css/danhmuc.css">
-            <?php
-        } else {
-            ?>
-                <link rel="stylesheet" href="./css/chitietsp.css">
-            <?php
-        }
-    ?>
+ 
 </head>
 <body>
 
@@ -152,7 +130,7 @@
                         <img src="./img1/vanhstore.jpg" alt="">
                     </a>
                     <div class="header-with-search">
-                        <form action="index.php?action=search" autocomplete="off" method="POST" role="search" class="vanh-searchbar-form">
+                        <form action="index.php" autocomplete="off" method="GET" role="search" class="vanh-searchbar-form">
                             <div class="vanh-searchbar">
                                 <div class="vanh-searchbar__main">
                                     <?php
@@ -168,8 +146,9 @@
                                     ?>  
                                 </div>
                                 <div class="btn__click_view_search_pr">
-                                    <input type="submit" name="searchProduct" value=" " class="btn btn-chil-icon btn-solid-primary btn--s btn--inline vanh-searchbar__search-button">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <button type="submit" value=" " class="btn btn-chil-icon btn-solid-primary btn--s btn--inline vanh-searchbar__search-button">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </button>
                                 </div>
                             </div>
                         </form>

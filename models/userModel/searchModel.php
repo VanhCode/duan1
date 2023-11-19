@@ -6,4 +6,10 @@
         $result = pdo_query($sql);
         return $result;
     }
+
+
+    // Tìm kiếm sản phẩm theo giá
+    function search__theogia() {
+        
+    }
 ?>
