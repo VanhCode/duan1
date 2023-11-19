@@ -590,3 +590,33 @@ body {
 		min-width: 420px;
 	}
 }
+
+
+.flex_page {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.click_right, .click_left {
+	padding: 0px 13px;
+	background-color: #ccc;
+	font-size: 28px;
+}
+
+.click_right {
+	margin-right: 18px;
+}
+
+.click_left {
+	margin-left: 18px;
+}
+
+.click_right:hover, .click_left:hover {
+	background-color: #e1e1e1;
+}
+
+.page__i {
+	padding: 0px 13px;
+	font-size: 21px;
+}

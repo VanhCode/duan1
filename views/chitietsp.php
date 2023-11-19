@@ -33,15 +33,15 @@
                         <div class="flex-column__chil_img_hover">
                             <div class="flex-column__chil_img_transform">
                                 <?php
-                                $giamgia = $chitiet_product['price'] * $chitiet_product['sale'] / 100;
+                                    $giamgia = $chitiet_product['price'] * $chitiet_product['sale'] / 100;
 
-                                foreach (explode(",", $chitiet_product['images']) as $key => $imageChil) {
-                                ?>
-                                    <div class="img__onmouseo">
-                                        <img name="img_product" src="./public/upload/image/product/<?= $imageChil ?>" class="list-img <?= $key == 0 ? "img__onmouseo-border" : "" ?>" alt="">
-                                    </div>
-                                <?php
-                                }
+                                    foreach (explode(",", $chitiet_product['images']) as $key => $imageChil) {
+                                        ?>
+                                            <div class="img__onmouseo">
+                                                <img name="img_product" src="./public/upload/image/product/<?= $imageChil ?>" class="list-img <?= $key == 0 ? "img__onmouseo-border" : "" ?>" alt="">
+                                            </div>
+                                        <?php
+                                    }
                                 ?>
                             </div>
                             <button id="back__onmouseo" class="back__onmouseo"><i class="fa-solid fa-angle-left"></i></button>
@@ -94,11 +94,11 @@
                                     </div>
                                     <div class="flex_price__product_text">
                                         <?php
-                                        if ($chitiet_product['sale'] > 0) {
-                                        ?>
-                                            <div class="flex_price__product_text_throw" name="priceThrow">₫<?= number_format($chitiet_product['price'], 0, ",", ".") ?></div>
-                                        <?php
-                                        }
+                                            if ($chitiet_product['sale'] > 0) {
+                                            ?>
+                                                <div class="flex_price__product_text_throw" name="priceThrow">₫<?= number_format($chitiet_product['price'], 0, ",", ".") ?></div>
+                                            <?php
+                                            }
                                         ?>
                                         <div class="flex_price__product_text" name="price">₫<?= ($chitiet_product['sale'] > 0) ? number_format($giamgia, 0, ",", ".") : number_format($chitiet_product['price'], 0, ",", ".") ?></div>
                                     </div>
@@ -153,9 +153,11 @@
                                         <div class="flex__column_amount">
                                             <div class="flex__column_size_text">Số Lượng</div>
                                             <div class="flex__column_amount_input">
+
                                                 <button onclick="remote('-')" type="button" class="minus_icon"><i class="fa-solid fa-minus"></i></button>
                                                 <input type="text" name="amount__flex" value="1" min="1" max="<?= $sumAmout['amount'] ?>" class="amount__flex" id="amount__flex">
                                                 <button onclick="remote('+')" type="button" class="plus_icon"><i class="fa-solid fa-plus"></i></button>
+                                            
                                             </div>
                                             <div class="flex__column_amount__span">
                                                 <span id="value__amount"><?= $sumAmout['amount'] ?></span>

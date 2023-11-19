@@ -2,8 +2,8 @@
     <div class="nav-form">
         <ul>
             <li class="abill <?= $order == 'all' ? 'activeNav' : "" ?>"><a class="<?= $order == 'all' ? 'sticky' : "" ?>" href="index.php?action=user&user=don-mua&order=all">Tất cả</a></li>
-            <li class="abill <?= $order == 'cho-thanh-toan' ? 'activeNav' : "" ?>"><a class="<?= $order == 'cho-thanh-toan' ? 'sticky' : "" ?>" href="index.php?action=user&user=don-mua&order=cho-thanh-toan">Chờ thanh toán</a></li>
-            <li class="abill <?= $order == 'van-chuyen' ? 'activeNav' : "" ?>"><a class="<?= $order == 'van-chuyen' ? 'sticky' : "" ?>" href="index.php?action=user&user=don-mua&order=van-chuyen">Vận chuyển</a></li>
+            <li class="abill <?= $order == 'cho-thanh-toan' ? 'activeNav' : "" ?>"><a class="<?= $order == 'cho-thanh-toan' ? 'sticky' : "" ?>" href="index.php?action=user&user=don-mua&order=cho-thanh-toan">Chờ xác nhận</a></li>
+            <li class="abill <?= $order == 'van-chuyen' ? 'activeNav' : "" ?>"><a class="<?= $order == 'van-chuyen' ? 'sticky' : "" ?>" href="index.php?action=user&user=don-mua&order=van-chuyen">Đã xác nhận</a></li>
             <li class="abill <?= $order == 'dang-giao' ? 'activeNav' : "" ?>"><a class="<?= $order == 'dang-giao' ? 'sticky' : "" ?>" href="index.php?action=user&user=don-mua&order=dang-giao">Đang giao</a></li>
             <li class="abill <?= $order == 'hoan-thanh' ? 'activeNav' : "" ?>"><a class="<?= $order == 'hoan-thanh' ? 'sticky' : "" ?>" href="index.php?action=user&user=don-mua&order=hoan-thanh">Hoàn thành</a></li>
             <li class="abill <?= $order == 'da-huy' ? 'activeNav' : "" ?>"><a class="<?= $order == 'da-huy' ? 'sticky' : "" ?>" href="index.php?action=user&user=don-mua&order=da-huy">Đã hủy</a></li>

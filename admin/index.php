@@ -29,7 +29,24 @@ switch ($action) {
 
     // list
     case 'listProduct':
-        $listProduct = listProduct();
+        if(isset($_GET['product_page']) && ($_GET['product_page'] > 0)) {
+            $product_page = $_GET['product_page'];
+        } else {
+            $product_page = 1;
+        }
+
+        if($product_page == "" || $product_page == 1) {
+            $begin = 0;
+        } else {
+            $begin = ($product_page - 1) * 5;
+        }
+
+        $listPageProduct = page_product();
+        $listProduct = listProduct($begin);
+
+        $count = count($listPageProduct);
+        $countTrang = ceil($count / 5);
+
         include 'product/listProduct.php';
         break;
 

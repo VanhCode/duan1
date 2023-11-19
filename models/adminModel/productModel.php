@@ -6,9 +6,14 @@
         return pdo_execute_returnLastInsertId($sql);
     }
 
+    function page_product() {
+        $sql = "SELECT * FROM products WHERE 1 ORDER BY product_id DESC"; 
+        $result = pdo_query($sql);
+        return $result;
+    }
 
     // Select sản phẩm
-    function listProduct() {
+    function listProduct($begin) {
         $sql = "SELECT 
                     products.product_id,
                     products.product_name,
@@ -23,7 +28,7 @@
                 FROM 
                     products
                 INNER JOIN
-                    categories ON products.category_id = categories.category_id WHERE 1 ORDER BY products.product_id DESC;
+                    categories ON products.category_id = categories.category_id WHERE 1 ORDER BY products.product_id DESC LIMIT $begin,5;
                 ";
         $result = pdo_query($sql);
         return $result;

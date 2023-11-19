@@ -191,38 +191,38 @@ function ProductAnimation () {
     //     });
     // });
     
-    var checkboxes = document.querySelectorAll('.size');
-    checkboxes.forEach(function(checkbox) {
-        checkbox.addEventListener('click', function() {
-            // Lấy tất cả các thẻ buttonsSizeS
-            var buttonsSizeS = document.querySelectorAll('.size_tee_product');
-            
-            // Lấy tất cả các checkbox
-            var allCheckboxes = document.querySelectorAll('.size');
+var checkboxes = document.querySelectorAll('.size');
+checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('click', function() {
+        // Lấy tất cả các thẻ buttonsSizeS
+        var buttonsSizeS = document.querySelectorAll('.size_tee_product');
+        
+        // Lấy tất cả các checkbox
+        var allCheckboxes = document.querySelectorAll('.size');
 
-            // Duyệt qua tất cả checkbox
-            allCheckboxes.forEach(function(checkbox) {
-                if (checkbox !== this) {
-                    // Xóa lớp "selected__button" và trạng thái "checked" của checkbox khác
-                    checkbox.parentElement.classList.remove('selected__button');
-                    checkbox.checked = false;
-                }
-            }, checkbox);
-
-            // Kiểm tra xem checkbox đã có class "selected__button" hay chưa
-            if (checkbox.parentElement.classList.contains('selected__button')) {
-                // Nếu đã có class "selected__button", xóa nó
+        // Duyệt qua tất cả checkbox
+        allCheckboxes.forEach(function(checkbox) {
+            if (checkbox !== this) {
+                // Xóa lớp "selected__button" và trạng thái "checked" của checkbox khác
                 checkbox.parentElement.classList.remove('selected__button');
-                // Loại bỏ trạng thái "checked" của checkbox
                 checkbox.checked = false;
-            } else {
-                // Nếu chưa có class "selected__button", thêm nó
-                checkbox.parentElement.classList.add('selected__button');
-                // Đặt trạng thái "checked" của checkbox
-                checkbox.checked = true;
             }
-        });
+        }, checkbox);
+
+        // Kiểm tra xem checkbox đã có class "selected__button" hay chưa
+        if (checkbox.parentElement.classList.contains('selected__button')) {
+            // Nếu đã có class "selected__button", xóa nó
+            checkbox.parentElement.classList.remove('selected__button');
+            // Loại bỏ trạng thái "checked" của checkbox
+            checkbox.checked = false;
+        } else {
+            // Nếu chưa có class "selected__button", thêm nó
+            checkbox.parentElement.classList.add('selected__button');
+            // Đặt trạng thái "checked" của checkbox
+            checkbox.checked = true;
+        }
     });
+});
 
 
 
