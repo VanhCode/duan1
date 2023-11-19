@@ -147,6 +147,7 @@ switch ($action) {
                 'email' => $_POST['email'],
                 'password' => password_hash($_POST['password'],PASSWORD_DEFAULT),
                 'phone' => $_POST['phone'],
+                'role'=>$_POST['role']??0
             ]);
             header("location: index.php?action=listCustomer");
         }
@@ -279,6 +280,7 @@ switch ($action) {
                 'email' => $_POST['email'],
                 'password' => $_POST['password']==$user['password']?$_POST['password']:password_hash($_POST['password'],PASSWORD_DEFAULT),
                 'phone' => $_POST['phone'],
+                'role'=>$_POST['role']??0
             ], "user_id=" . $_GET['user_id']);
             header("location: index.php?action=listCustomer");
         }

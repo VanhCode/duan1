@@ -81,6 +81,13 @@
                         <input type="text" class="form-control password blurinp" name="password">
                         <small class="error er_pass"></small>
                     </div>
+                    <div class="form-group">
+                        <label for="">Quyền hạn</label>
+                        <select class="form-select-sm" name="role" id="">
+                            <option value="0">User</option>
+                            <option value="1">Admin</option>
+                        </select>
+                    </div>
 
                     <div class="form-group">
                         <input class="btn btn-primary" type="submit" name="addUser" value="Thêm tài khoản">
