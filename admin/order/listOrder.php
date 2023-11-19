@@ -63,8 +63,7 @@
                         <th>Người nhận</th>
                         <th>Tổng cộng</th>
                         <th>Ngày đặt hàng</th>
-                        <th>Thanh toán</th>
-                        <th>Vận chuyển</th>
+                        <th>Trạng thái</th>
                         <th>Chi tiết</th>
                     </tr>
                     </thead>
@@ -77,39 +76,56 @@
                                 <span><?= $value['fullName'] ?></span>
                             </td>
                             <td>
-                                <p><i><?=$value['receiver_name']?></i></p>
-                                <p style="width: 200px;"><b>ĐC: </b><?= $value['receiver_address'] ?></p>
+                                <p><i><?= $value['receiver_name'] ?></i></p>
+                                <p style="width: 150px;"><b>ĐC: </b><?= $value['receiver_address'] ?></p>
                                 <p><b>SĐT: </b><?= $value['receiver_phone'] ?></p>
                             </td>
                             <td style="color: #ff7d7d;font-weight: 500;"><?= number_format($value['total'], 0, ',', '.') ?></td>
                             <td><?= $value['create_at'] ?></td>
-                            <td><span style="cursor: pointer" onclick="toggleStatus(this,'togglePayment','<?=$value['order_id']?>')"
-                                      class="status <?= $value['payment_status'] ?>"><?= $value['payment_status'] ?></span>
+
+                            <td>
+                                <select onchange="changeStatus(this,<?=$value['order_id']?>)"
+                                        class="form-select-sm selected_status" name="status"
+                                        <?=$value['status']=='completed'?'disabled':''?>
+                                >
+                                    <?php
+                                    $status = ['pending', 'confirmed', 'shipping', 'completed'];
+                                    foreach ($status as $s):?>
+                                        <option <?= $s == $value['status'] ? 'selected' : '' ?>
+                                                style="font-size: 14px; padding: 5px" class="status <?= $s ?>"
+                                                value="<?= $s ?>"><?= $s ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </td>
-                            <td><span style="cursor: pointer" onclick="toggleStatus(this,'toggleShipping','<?=$value['order_id']?>')"
-                                      class="status <?= $value['shipping_status'] ?>"><?= $value['shipping_status'] ?></span>
-                            </td>
-                            <td><a class="btn btn-success btn-sm"
+
+                            <td>
+                                <a class="btn btn-success btn-sm"
                                    href="index.php?action=listOrder_detail&order_id=<?= $value['order_id'] ?>">Chi
-                                    tiết</a></td>
+                                    tiết</a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
                 </table>
+                <script>
+                    function changeStatus(select,order_id) {
+                        if(select.disabled===false){
+                            let xmlHttp = new XMLHttpRequest();
+                            xmlHttp.onreadystatechange = function () {
+                                if (this.readyState === 4 && this.status === 200) {
+                                    select.value = this.responseText
+                                    if(this.responseText==='completed'){
+                                        select.disabled=true;
+                                    }
+                                }
+                            }
+                            xmlHttp.open('GET', `./xmlHttpRequest/statusOrder.php?status=${select.value}&order_id=${order_id}`, true);
+                            xmlHttp.send();
+                        }
+                    }
+                </script>
             </div>
         </div>
     </main>
     <!-- MAIN -->
 </section>
-<script>
-    let xmlHttp = new XMLHttpRequest();
-      function toggleStatus(e,action,id) {
-        xmlHttp.onreadystatechange = function () {
-            e.setAttribute('class','status '+xmlHttp.responseText);
-            e.innerHTML=xmlHttp.responseText;
-            console.log(xmlHttp.responseText);
-        }
-        xmlHttp.open('GET', `./xmlHttpRequest/statusOrder.php?action=${action}&order_id=${id}`, true);
-        xmlHttp.send();
-    }
-</script>
