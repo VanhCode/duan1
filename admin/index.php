@@ -12,10 +12,13 @@ $action = $_GET['action'] ?? 'dashboard';
 
 include 'partitions/header.php';
 include 'partitions/sideBar.php';
-
-
+session_start();
+$userID = $_SESSION['user_id'] ?? 0;
+$user = getDataBy('users',['user_id'=>$userID]);
+if(!$user['role']){
+    header('location: ../index.php');
+}
 $listCategory = listDanhmuc();
-
 switch ($action) {
     case 'dashboard':
         $day=3;

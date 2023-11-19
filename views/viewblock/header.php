@@ -52,7 +52,12 @@
             <div class="header-top container">
                 <div class="time">
                     <a href="" class="flex-header onl-ht">Mua Sắm Online</a>
-                    <a href="" class="flex-header ht1">Trở Thành Người Bán VanhStore</a>
+                    <?php if($user):?>
+                    <?php if($user['role']):?>
+                            <a href="admin" class="flex-header ht1">Vào trang quản trị</a>
+                    <?php endif?>
+                    <?php endif;?>
+
                     <a href="" class="flex-header ht1">Liên hệ</a>
                     <a href="" class="flex-header ht1">Kết nối</a>
                     <i class="fa-brands fa-facebook"></i>
