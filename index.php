@@ -130,8 +130,6 @@
                 $countTrang = ceil($count / 20); 
                 
 
-
-
                 include "views/danhmuc.php";
                 break;
             case "user":
@@ -270,21 +268,6 @@
                 
                 include "views/chitietsp.php";
                 break;
-            case "search":
-                $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
-                
-                $sapxep = "product_id ASC";
-
-                if (isset($_GET['gia-thap-cao'])) {
-                    $sapxep = "price ASC";
-                }
-
-                if (isset($_GET['gia-cao-thap'])) {
-                    $sapxep = "price DESC";
-                }
-
-                $listProdSearch = searchModel($keyword, $sapxep);
-                include "views/viewSearch.php";
             case "gio-hang":
                 if(!isset($_SESSION['user_id'])) {
                     header('Location: index.php?action=login');
@@ -346,6 +329,36 @@
 
         include "views/viewblock/footer.php";
     } else if(isset($_GET['keyword']) && ($_GET['keyword'] != "")) {
+
+        $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+
+        $search_page = isset($_GET['search_page']) ? $_GET['search_page'] : 1;
+        
+        if($search_page == "" || $search_page == 1) {
+            $begin = 0;
+        } else {
+            $begin = ($search_page - 1) * 20;
+        }
+
+
+        $sapxep = "product_id ASC";
+
+        if (isset($_GET['gia-thap-cao'])) {
+            $sapxep = "price ASC";
+        }
+
+        if (isset($_GET['gia-cao-thap'])) {
+            $sapxep = "price DESC";
+        }
+
+        $listProdSearch = searchModel($keyword,$sapxep,$begin);
+
+        $count = count($listProdSearch);
+
+        $countTrang = ceil($count / 20);
+
+
+
         include "views/viewblock/header.php";
         include "views/viewSearch.php";
         include "views/viewblock/footer.php";

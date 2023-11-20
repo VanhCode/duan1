@@ -247,8 +247,7 @@
                                                                 ?>
                                                                     Giá
                                                                 <?php
-                                                            }
-                                                            
+                                                            }                                                           
                                                         ?>
                                                     </span>
                                                     <svg viewBox="0 0 10 6" class="shopee-svg-icon icon-arrow-down-small">

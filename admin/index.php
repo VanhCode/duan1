@@ -16,7 +16,7 @@ session_start();
 $userID = $_SESSION['user_id'] ?? 0;
 $user = getDataBy('users',['user_id'=>$userID]);
 if(!$user['role']){
-    header('location: ../index.php');
+    header('location: ../index.php?action=login');
 }
 $listCategory = listDanhmuc();
 switch ($action) {
@@ -48,6 +48,7 @@ switch ($action) {
         $listProduct = listProduct($begin);
 
         $count = count($listPageProduct);
+
         $countTrang = ceil($count / 5);
 
         include 'product/listProduct.php';
