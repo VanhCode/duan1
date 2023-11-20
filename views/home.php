@@ -1,5 +1,5 @@
 <!-- Main start -->
-
+<link rel="stylesheet" href="./css/index.css">
 <div style="display: contents;">
     <div class="main__boxGroup main__boxGroup-product">
         <div class="bg_mainTop__prd">

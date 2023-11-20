@@ -40,6 +40,7 @@ a {
 }
 
 header {
+  z-index: 99;
   background-color: #cc3b1e;
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1357,9 +1358,9 @@ textarea {
   align-items: center;
 }
 
-.url-image-load {
-  background-image: url(https://down-vn.img.susercontent.com/file/vn-11134226-7qukw-lglyad3tn7si00);
-}
+/* .url-image-load {
+  background-image: url("./public/upload/image/user/<?= $userProfile['user_image'] ?>");
+} */
 
 .url-image-load {
   width: 100%;
@@ -1369,6 +1370,13 @@ textarea {
   background-repeat: no-repeat;
   cursor: pointer;
   border-radius: 50%;
+}
+
+.url-image-load__imagechill {
+  width: 100%;
+  border-radius: 50%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .imgUrl {

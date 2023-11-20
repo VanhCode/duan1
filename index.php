@@ -7,6 +7,7 @@
     include "./models/userModel/productModel.php";
     include "./models/userModel/searchModel.php";
     include "./models/userModel/cartModel.php";
+    include "./models/userModel/commentModel.php";
 
     
     $userID = $_SESSION['user_id'] ?? 0;
@@ -37,7 +38,7 @@
 
 
     // Cart (Cart)
-    $countProduct_cart = countProductCart();
+    $countProduct_cart = countProductCart($userID);
     if(isset($userID)) {
         $listCart = listCartHeader($userID);
     }
@@ -64,7 +65,33 @@
                 include "views/home.php";
                 break;
             case "san-pham":
-                $listProduct_moiNhat = listProduct__moiNhat();
+                if(isset($_GET['page']) && ($_GET['page'] > 0)) {
+                    $page = $_GET['page'];
+                } else {
+                    $page = 1;
+                }
+
+                if($page == "" || $page == 1) {
+                    $begin = 0;
+                } else {
+                    $begin = ($page - 1) * 20;
+                }
+
+                $price = "product_id DESC";
+
+                if(isset($_GET['gia-thap-cao'])) {
+                    $price = "price ASC";
+                }
+                if(isset($_GET['gia-cao-thap'])) {
+                    $price = "price DESC";
+                }
+
+                $countPage = CountlistProduct__moiNhat();
+                $listProduct_moiNhat = listProduct__moiNhat($price,$begin);
+
+                $count = count($countPage);
+                $countTrang = ceil($count / 20);                             
+        
                 include "views/sanpham.php";
                 break;
             case "danh-muc":
@@ -74,6 +101,19 @@
                     $categoryId = "";
                 }
                 
+                if(isset($_GET['page']) && ($_GET['page'] > 0)) {
+                    $page = $_GET['page'];
+                } else {
+                    $page = 1;
+                }
+
+                if($page == "" || $page == 1) {
+                    $begin = 0;
+                } else {
+                    $begin = ($page - 1) * 20;
+                }
+
+
                 $sapxep = "product_id ASC";
 
                 if(isset($_GET['gia-thap-cao'])) {
@@ -84,7 +124,12 @@
                     $sapxep = "price DESC";
                 }
 
-                $listProduct_byIdcategory = listProduct_byCategory($categoryId,$sapxep);
+                $listProduct_byIdcategory = listProduct_byCategory($categoryId,$sapxep,$begin);
+
+                $count = count($listProduct_byIdcategory);
+                $countTrang = ceil($count / 20); 
+                
+
                 include "views/danhmuc.php";
                 break;
             case "user":
@@ -109,12 +154,14 @@
                         if (!$result) {
                             
                             $row = selectCheck($phone);
-
+                            
                             if($row) {
                                 $hashed_password = $row['password'];
             
                                 if (password_verify($password, $hashed_password)) {
                                     $_SESSION['user_id'] = $row['user_id'];
+                                    // print_r($_SESSION['user_id']);
+                                    // die();
                                     header('location: index.php');
                                     exit();
                                 } else {
@@ -204,38 +251,22 @@
                     $listSpCungloai = product_cungloai($chitiet_product['category_id'],$detail_product);
 
                     $sumAmout = countAmount($detail_product);
+
+                    $listComment = loadall__comment__Byid($_GET['detail_product']);
+
                 } else {
                     $detail_product = "";
-                    $chitiet_product = "";
+                }
+
+                if($_SERVER['REQUEST_METHOD'] == "POST") {
+                    $productId = $_POST['idproduct'];
+                    $noidung = $_POST['noidung'];
+                    insert__comment($userID,$productId,$noidung);
+                    header('Location:'.$_SERVER['HTTP_REFERER']);
+                    die;
                 }
                 
                 include "views/chitietsp.php";
-                break;
-            case "search":
-                $keyword = "";
-
-                if(isset($_POST['searchProduct'])) {
-                    $keyword = $_POST['keyword']??'';
-
-                    // Hàm này để tăng số lần tên nào được tìm kiếm nhiều nhất
-                    searchMax($keyword);
-                } else {
-                    $keyword = $_GET['keyword']??'';
-                }
-
-                $sapxep = "product_id ASC";
-
-                if(isset($_GET['gia-thap-cao'])) {
-                    $sapxep = "price ASC";
-                }
-
-                if(isset($_GET['gia-cao-thap'])) {
-                    $sapxep = "price DESC";
-                }
-
-
-                $listProdSearch = searchModel($keyword,$sapxep);
-                include "views/viewSearch.php";
                 break;
             case "gio-hang":
                 if(!isset($_SESSION['user_id'])) {
@@ -247,6 +278,14 @@
                         include "views/giohang.php";
                     }
                 }
+
+                if($_SERVER['REQUEST_METHOD'] == "POST") {
+                    $idCart = $_POST['id_cart'];
+                    deleteCart_checkbox_mutiItem($idCart);
+                    header('Location: index.php?action=gio-hang');
+                    die;
+                }
+
                 break;
             case "addTocart":
                 if(isset($_POST['addTocart'])) {  
@@ -288,6 +327,40 @@
                 include "views/404.php";
         }
 
+        include "views/viewblock/footer.php";
+    } else if(isset($_GET['keyword']) && ($_GET['keyword'] != "")) {
+
+        $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+
+        $search_page = isset($_GET['search_page']) ? $_GET['search_page'] : 1;
+        
+        if($search_page == "" || $search_page == 1) {
+            $begin = 0;
+        } else {
+            $begin = ($search_page - 1) * 20;
+        }
+
+
+        $sapxep = "product_id ASC";
+
+        if (isset($_GET['gia-thap-cao'])) {
+            $sapxep = "price ASC";
+        }
+
+        if (isset($_GET['gia-cao-thap'])) {
+            $sapxep = "price DESC";
+        }
+
+        $listProdSearch = searchModel($keyword,$sapxep,$begin);
+
+        $count = count($listProdSearch);
+
+        $countTrang = ceil($count / 20);
+
+
+
+        include "views/viewblock/header.php";
+        include "views/viewSearch.php";
         include "views/viewblock/footer.php";
     } else {
         include "views/viewblock/header.php";

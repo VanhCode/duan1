@@ -48,6 +48,185 @@ body {
   }
 }
 
+
+#err__delete {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  display: none;
+  animation: opacitiDelete 0.1s ease-out;
+  pointer-events: none;
+}
+
+.ic__err {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #000000b5;
+  border-radius: 10px;
+  padding: 17px;
+}
+
+.ic__err i {
+  font-size: 25px;
+  color: #ffffffe6;
+}
+
+.ic__err h3 {
+  font-weight: 400;
+  font-weight: 500;
+  font-size: 15px;
+  margin-top: 10px;
+  color: #fff;
+}
+
+@keyframes opacitiDelete {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.center__er {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.vanhstore-popup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 600;
+  display: none;
+  flex-direction: column;
+}
+
+.vanhstore-popup__overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.4);
+}
+
+.vanhstore-popup__container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  overflow: visible;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.gLboXK {
+  flex-direction: column;
+  width: 440px;
+  font-size: 1rem;
+  padding: 30px;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0,0,0,.5);
+  padding: 2.75rem 2.5rem 1.5rem;
+  width: 27.5rem;
+}
+
+.hr7yn9 {
+  line-height: 1.125rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.rySPUB {
+  margin-top: 2.1875rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.vanhstore-button-solid {
+  outline: none;
+  cursor: pointer;
+  border: 0;
+  font-size: .875rem;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color .1s cubic-bezier(.4,0,.6,1);
+  position: relative;
+  background: rgba(0,0,0,.54);
+  color: #fff;
+  transition: opacity .2s ease;
+  border-radius: 2px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.09);
+}
+
+.vanhstore-button-solid--primary {
+  position: relative;
+  overflow: visible;
+  outline: 0;
+  background: #ee4d2d;
+}
+
+.rySPUB .vanhstore-button-solid--confirm-popup {
+  width: 6.5625rem;
+  min-height: 2.5rem;
+  font-size: .875rem;
+}
+
+.rySPUB .vanhstore-button-solid--confirm-popup {
+  text-transform: uppercase;
+  margin-right: 1.5rem;
+}
+
+.vanhstore-button-solid--primary:not(.vanhstore-button-solid--disabled):hover {
+  background: #f05d40;
+}
+
+.cancel-btn {
+  padding: 10px 0;
+  box-sizing: border-box;
+  width: 140px;
+  text-transform: uppercase;
+  font-size: .875rem;
+  font-weight: 400;
+  cursor: pointer;
+  color: #555;
+  margin-right: 6px;
+  line-height: 1;
+  background: none;
+  border: 0;
+  transition: background-color .1s cubic-bezier(.4,0,.6,1);
+}
+
+.rySPUB .cancel-btn {
+  width: 6.5625rem;
+  min-height: 2.5rem;
+  font-size: .875rem;
+}
+
+.cancel-btn:hover {
+  background: #f8f8f8;
+}
+
 .container {
   width: 1300px;
   margin: 0 auto;
@@ -712,6 +891,16 @@ user agent stylesheet a:-webkit-any-link {
   padding-right: 15px;
 }
 
+.delete__checkbox {
+  font-size: 17px;
+  cursor: pointer;
+  transition: 0.1s ease;
+}
+
+.delete__checkbox:hover {
+  color: var(--nc-bg-bd);
+}
+
 .box-img-product {
   display: flex;
 }
@@ -959,21 +1148,6 @@ user agent stylesheet a:-webkit-any-link {
   color: #05a;
 }
 
-.row-abate {
-  border-radius: 0;
-  transition: background 0.1s cubic-bezier(0.4, 0, 0.6, 1);
-}
-
-/* @supports 
-
-@supports ((position: -webkit-sticky) or (position: sticky)) {
-  .rnocow {
-    z-index: 2;
-    position: -webkit-sticky;
-    position: sticky;
-    bottom: 0;
-  }
-} */
 
 .abate {
   display: grid;
@@ -985,10 +1159,14 @@ user agent stylesheet a:-webkit-any-link {
   flex: 1;
   font-size: 1rem;
   position: relative;
-  margin-top: 0.75rem;
 }
 
-.uEhFYV:before {
+.row-abate {
+  border-radius: 0;
+  transition: background 0.1s cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.row-abate:before {
   content: "";
   position: absolute;
   top: -1.25rem;
@@ -996,6 +1174,14 @@ user agent stylesheet a:-webkit-any-link {
   height: 1.25rem;
   width: 100%;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.06));
+}
+
+@supports (position: sticky) {
+  .abate {
+    z-index: 2;
+    position: sticky;
+    bottom: 0;
+  }
 }
 
 .row1 {
@@ -1150,7 +1336,7 @@ iGlIrs,
 }
 
 .clear-abate {
-  margin: 0 8px;
+  margin: 0 19px;
 }
 
 .save-like {
@@ -1661,4 +1847,10 @@ footer {
 
 .form-footer .reset:hover {
   background-color: rgb(255, 0, 0);
+}
+
+
+
+.vanhstore-popup__overlay {
+  overflow: hidden;
 }

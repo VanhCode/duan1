@@ -6,23 +6,51 @@ include '../models/adminModel/productModel.php';
 include '../models/adminModel/varitionModel.php';
 include '../models/adminModel/commentModel.php';
 include '../models/adminModel/orderModel.php';
+include '../models/adminModel/dashboardModel.php';
 
 $action = $_GET['action'] ?? 'dashboard';
 
 include 'partitions/header.php';
 include 'partitions/sideBar.php';
-
-
+session_start();
+$userID = $_SESSION['user_id'] ?? 0;
+$user = getDataBy('users',['user_id'=>$userID]);
+if(!$user['role']){
+    header('location: ../index.php?action=login');
+}
 $listCategory = listDanhmuc();
-
 switch ($action) {
     case 'dashboard':
+        $day=3;
+        $totalSell=totalSell($day);
+        $newOrder=newOrder($day);
+        $totalUser=totalUser();
+        $todolist=getAll('todolist');
+
         include 'dashboard.php';
         break;
 
     // list
     case 'listProduct':
-        $listProduct = listProduct();
+        if(isset($_GET['product_page']) && ($_GET['product_page'] > 0)) {
+            $product_page = $_GET['product_page'];
+        } else {
+            $product_page = 1;
+        }
+
+        if($product_page == "" || $product_page == 1) {
+            $begin = 0;
+        } else {
+            $begin = ($product_page - 1) * 5;
+        }
+
+        $listPageProduct = page_product();
+        $listProduct = listProduct($begin);
+
+        $count = count($listPageProduct);
+
+        $countTrang = ceil($count / 5);
+
         include 'product/listProduct.php';
         break;
 
@@ -123,6 +151,7 @@ switch ($action) {
                 'email' => $_POST['email'],
                 'password' => password_hash($_POST['password'],PASSWORD_DEFAULT),
                 'phone' => $_POST['phone'],
+                'role'=>$_POST['role']??0
             ]);
             header("location: index.php?action=listCustomer");
         }
@@ -180,21 +209,21 @@ switch ($action) {
                 $oldImage = $oldImage . ",";
             }
 
-
-
-
             $product_id = updateProduct($id, $namePro, $pricePro, $sale, $filename ? $oldImage . $filename : $oldImage, $product_gender, $selectCategory);
 
             $length=9999;
+
             for ($i = 0; $i < $length; $i++) {
                 //nếu cả 2 tồn tại
                 if (isset($variant_id[$i]) && isset($color[$i])) {
                     updateVation($variant_id[$i], $color[$i], $size[$i], $amount[$i]);
                 }
+
                 if (!isset($variant_id[$i]) && isset($color[$i])) {
                     addVation($id, $color[$i], $size[$i], $amount[$i]);
                     $length=count($color);
                 }
+                
                 if(!isset($color[$i])&&isset($variant_id[$i])) {
                     deleteVation($variant_id[$i]);
                     $length=count($variant_id);
@@ -255,6 +284,7 @@ switch ($action) {
                 'email' => $_POST['email'],
                 'password' => $_POST['password']==$user['password']?$_POST['password']:password_hash($_POST['password'],PASSWORD_DEFAULT),
                 'phone' => $_POST['phone'],
+                'role'=>$_POST['role']??0
             ], "user_id=" . $_GET['user_id']);
             header("location: index.php?action=listCustomer");
         }

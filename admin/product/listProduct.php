@@ -86,7 +86,7 @@
                                             <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $valueSanpham['product_id'] ?>">Xoá</a>
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" href="index.php?action=editProduct">Xem</a>
+                                            <a class="btn btn-primary btn-sm" href="../index.php?action=chi-tiet-sanpham&detail_product=<?=$valueSanpham['product_id']?>">Xem</a>
                                         </td>
                                     </tr>
                                     <div class="modal fade" id="exampleModal<?= $valueSanpham['product_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,7 +111,24 @@
                         ?>
                     </tbody>
                 </table>
-                
+                <div class="flex_page">
+                    <a class="click_right" href="index.php?action=listProduct&product_page=<?= $product_page - 1 == 0 ? $product_page : $product_page - 1 ?>"><</a>
+                    <?php
+                        for ($i = 1; $i <= min(5, $countTrang); $i++) {
+                            ?>
+                                <a class="page__i" style="color: <?= $product_page == $i ? "#ee4d2d" : "" ?>;" href="index.php?action=listProduct&product_page=<?= $i ?>"><?= $i ?></a>
+                            <?php
+                        }
+
+                        if($i > 5) {
+                            ?>
+                                <span style="font-size: 26px;">. . .</span>
+                            <?php
+                        }
+                    ?>
+
+                    <a class="click_left" href="index.php?action=listProduct&product_page=<?= $product_page + 1 <= $countTrang ? $product_page + 1 : $product_page ?>">></a>
+                </div>
             </div>
 
         </div>

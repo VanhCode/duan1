@@ -48,4 +48,11 @@
         $sql = "UPDATE users SET password = '".$password."'";
         pdo_execute($sql);
     }
+
+    function updateAccount($user_id,$firth_name,$last_name,$email,$image,$phone,$date,$gender) {
+        $sql = "UPDATE users SET firth_name = '".$firth_name."', last_name = '".$last_name."', email = '".$email."', user_image = '".$image."', phone = '".$phone."', date = '".$date."', gender = '".$gender."' 
+                WHERE user_id = '".$user_id."'";
+        pdo_execute($sql);
+    }
 ?>
+

@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="./css/user.css">
 <main>
     <div class="main-user container">
         <div class="user-menu">
@@ -83,8 +84,23 @@
                     if ($action == "user" && $userAction == "sieu-sale") {
                         include "sale.php";
                     } else if($action == "user" && $userAction == "tai-khoan-cua-toi") {
+
+                        if(isset($_GET['profile']) == 'ho-so') {
+                            $userProfile = select__userByid($userID);
+                        }
+
+                        if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+                            $filename = time().basename($_FILES['image']['name']);
+                            $target = "./public/upload/image/user/".$filename;
+                            move_uploaded_file($_FILES['image']['tmp_name'],$target);
+                            
+                            updateAccount($userID,$_POST['firth_name'],$_POST['last_name'],$_POST['email'],$filename,$_POST['phone'],$_POST['date'],$_POST['gender']);
+                            header('Location:'.$_SERVER['HTTP_REFERER']);
+                            die;
+                        }
+
                         include "thongtin.php";
-                        // echo '<style>.account-content { display: block; }</style>';
                     } else if($action == "user" && $userAction == "don-mua") {
                         include "donmua.php";
                     } else if($action == "user" && $userAction == "thong-bao") {

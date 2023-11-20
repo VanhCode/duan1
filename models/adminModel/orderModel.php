@@ -1,11 +1,12 @@
 <?php
 function listOrder(){
-    $sql="SELECT u.user_id,o.order_id,CONCAT(u.firth_name,' ',u.last_name) AS fullName,u.user_image,o.receiver_name,o.receiver_address,o.receiver_phone,o.shipping_status,o.payment_status,o.create_at,SUM(od.price * od.amount) AS total
+    $sql="SELECT u.user_id,o.order_id,CONCAT(u.firth_name,' ',u.last_name) AS fullName,u.user_image,o.receiver_name,o.receiver_address,o.receiver_phone,o.status,o.create_at,SUM(od.price * od.amount) AS total
     FROM `orders` o
     JOIN users u
     ON u.user_id= o.user_id
     JOIN order_details od
-    ON od.order_id=o.order_id";
+    ON od.order_id=o.order_id
+    GROUP BY order_id";
     return query($sql)->fetchAll();
 }
 function listOrder_detail($order_id){

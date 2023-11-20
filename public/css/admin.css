@@ -17,17 +17,17 @@ li {
 :root {
 	--poppins: 'Poppins', sans-serif;
 	--lato: 'Lato', sans-serif;
-
 	--light: #F9F9F9;
-	--blue: #3C91E6;
+	--green: #66ffb2;
+	--blue: #66afff;
 	--light-blue: #CFE8FF;
 	--grey: #eee;
 	--dark-grey: #AAAAAA;
 	--dark: #342E37;
 	--red: #DB504A;
-	--yellow: #FFCE26;
+	--yellow: #ffdd68;
 	--light-yellow: #FFF2C6;
-	--orange: #FD7238;
+	--orange: #ff9367;
 	--light-orange: #FFE0D3;
 }
 
@@ -475,15 +475,19 @@ body {
 	border-radius: 20px;
 	font-weight: 700;
 }
-#content main .table-data .order table tr td .status.completed {
-	background: var(--blue);
-}
-#content main .table-data .order table tr td .status.process {
-	background: var(--yellow);
-}
 #content main .table-data .order table tr td .status.pending {
 	background: var(--orange);
 }
+#content main .table-data .order table tr td .status.confirmed {
+	background: var(--yellow);
+}
+#content main .table-data .order table tr td .status.shipping {
+	background: var(--green);
+}
+#content main .table-data .order table tr td .status.completed {
+	background: var(--blue);
+}
+
 
 
 #content main .table-data .todo {
@@ -589,4 +593,34 @@ body {
 	#content main .table-data .todo .todo-list {
 		min-width: 420px;
 	}
+}
+
+
+.flex_page {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.click_right, .click_left {
+	padding: 0px 13px;
+	background-color: #ccc;
+	font-size: 28px;
+}
+
+.click_right {
+	margin-right: 18px;
+}
+
+.click_left {
+	margin-left: 18px;
+}
+
+.click_right:hover, .click_left:hover {
+	background-color: #e1e1e1;
+}
+
+.page__i {
+	padding: 0px 13px;
+	font-size: 21px;
 }

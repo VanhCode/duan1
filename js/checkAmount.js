@@ -38,8 +38,6 @@ if (amountFlex) {
         if (inputValue > max) {
             errAmount.innerHTML = 'Số lượng không được vượt quá ' + max;
             amountFlex.value = max;  // Đã sửa lỗi ở đây, thay inputNumber thành amountFlex
-        } else {
-            errAmount.innerHTML = '';
         }
     });
 }

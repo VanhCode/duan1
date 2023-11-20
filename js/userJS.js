@@ -141,6 +141,19 @@
 // // phần click khi chuyển tab menu
 
 document.addEventListener("DOMContentLoaded", function () {
+  const urlImageLoad = document.querySelector(".url-image-load__imagechill");
+  const upFileInput = document.querySelector(".upFile");
+  // const file=upFileInput.files[0];
+
+  // Khi input file thay đổi
+  upFileInput.addEventListener("change", function () {
+      urlImageLoad.src = URL.createObjectURL(upFileInput.files[0]);
+      console.log(urlImageLoad.src);
+
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
   const urlImageLoad = document.querySelector(".url-image-load");
   const upFileInput = document.querySelector(".upFile");
   const subFileButton = document.querySelector(".subFile");
@@ -176,23 +189,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const urlImageLoad = document.querySelector(".url-image-load");
-  const upFileInput = document.querySelector(".upFile");
-
-  // Khi input file thay đổi
-  upFileInput.addEventListener("change", function () {
-    if (upFileInput.files && upFileInput.files[0]) {
-      const reader = new FileReader();
-
-      reader.onload = function (e) {
-        urlImageLoad.style.backgroundImage = `url(${e.target.result})`;
-      };
-
-      reader.readAsDataURL(upFileInput.files[0]);
-    }
-  });
-});
 
 
 

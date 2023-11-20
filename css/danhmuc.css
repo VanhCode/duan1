@@ -40,6 +40,8 @@ li {
 }
 
 header {
+  position: sticky;
+  z-index: 5;
   background-color: #cc3b1e;
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1344,7 +1346,7 @@ svg.active__checked_cate {
 
 .vanhstore-mini_controller_left:hover,
 .vanhstore-mini_controller_right:hover {
-  background-color: #fff;
+  background-color: #dddddd;
 }
 
 .vanhstore-search-item-result__items {
@@ -1622,7 +1624,7 @@ svg.active__checked_cate {
 }
 
 .section-recommend-products-wrapper__Box {
-  margin-top: -0.5rem !important;
+  margin-top: 0rem !important;
   padding: 0 !important;
 }
 
@@ -1632,6 +1634,64 @@ svg.active__checked_cate {
 
 .wpB2 {
   margin-top: 14px !important;
+}
+
+.std__sanpham {
+  width: 20% !important;
+  padding: 0.3125rem;
+  box-sizing: border-box;
+}
+
+.stardust-tabs-panels__ColumFlex__div:hover ._6o9eaa {
+  opacity: 1;
+  z-index: 5;
+}
+
+.page__product {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.25rem !important;
+  margin: 50px 0 25px 0;
+}
+
+.page__url {
+  margin: 0 10px !important;
+  display: flex;
+  align-items: center;
+}
+
+.ctl__left,
+.ctl__right {
+  background-color: #ececec;
+}
+
+.curent__page {
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+  width: 2.25rem;
+  height: 2.125rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.1s cubic-bezier(0.4, 0, 0.6, 1);
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  border-radius: 2px;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.8);
+  margin: 0 3px;
+}
+
+.activePage {
+  background-color: #ff5802;
+  color: #fff;
+}
+
+.bar__loc {
+  margin-top: 15px;
 }
 
 /* end main */

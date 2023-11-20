@@ -59,8 +59,14 @@
     }
 
     
-    function countProductCart() {
-        $sql = "SELECT COUNT(*) as countProduct_cart FROM cart";
+    function countProductCart($userid) {
+        $sql = "SELECT COUNT(*) as countProduct_cart FROM cart WHERE user_id = '$userid'";
+        return pdo_query_one($sql);
+    }
+
+
+    function getCartByid($cartId) {
+        $sql = "SELECT * FROM cart WHERE cart_id = '$cartId'";
         return pdo_query_one($sql);
     }
 
@@ -75,6 +81,13 @@
     // Delete cart
     function delete_cart($cart_id) {
         $sql = "DELETE FROM cart WHERE cart_id = '$cart_id'";
+        pdo_execute($sql);
+    }
+
+    // Delete cart_Byid__checkbox
+    function deleteCart_checkbox_mutiItem($idCart) {
+        $idCart = implode(',', $idCart);
+        $sql = "DELETE FROM cart WHERE cart_id IN ($idCart)";
         pdo_execute($sql);
     }
 ?>

@@ -50,9 +50,7 @@
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>
-
-                
-                <form action="<?= $_SERVER['REQUEST_URI'] ?>" autocomplete="off" method="post" onsubmit="return sendUser()" enctype="multipart/form-data">
+                <form action="<?= $_SERVER['REQUEST_URI'] ?>" autocomplete="off" method="post" onsubmit="return sendUser(this)" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <label for="" class="form-label">Họ</label>
@@ -82,6 +80,13 @@
                         <label for="" class="form-label">Mật khẩu</label>
                         <input type="text" class="form-control password blurinp" name="password">
                         <small class="error er_pass"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Quyền hạn</label>
+                        <select class="form-select-sm" name="role" id="">
+                            <option value="0">User</option>
+                            <option value="1">Admin</option>
+                        </select>
                     </div>
 
                     <div class="form-group">

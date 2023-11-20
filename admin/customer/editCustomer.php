@@ -82,6 +82,16 @@
                         <input type="text" class="form-control password blurinp" name="password" value="<?=$user['password']?>">
                         <small class="error er_pass"></small>
                     </div>
+                    <div class="form-group">
+                        <label for="">Quyền hạn</label>
+                        <select class="form-select-sm" name="role" id="">
+                            <?php
+                            $role=['User','Admin'];
+                            foreach($role as $key=>$value):?>
+                                <option <?=$user['role']==$key? 'selected':''?> value="<?=$key?>"><?=$value?></option>
+                            <?php endforeach;?>
+                        </select>
+                    </div>
 
                     <div class="form-group">
                         <input class="btn btn-primary" type="submit" value="Sửa tài khoản">

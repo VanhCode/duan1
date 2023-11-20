@@ -39,23 +39,22 @@ sizeTee.forEach(function(sizeTeeChildrent) {
     }
 })
 
-if (boxSizeS && colorS) {
-    colorS.forEach(function (sizeChil, index) {
-        // Kiểm tra xem boxSizeS[index] tồn tại
-        if (boxSizeS[index]) {
-            sizeChil.addEventListener('click', function () {
-                // Ẩn tất cả các phần tử trong boxSizeS
-                boxSizeS.forEach(function (sizeIndex) {
-                    sizeIndex.style.display = "none";
-                });
-                // Hiển thị phần tử tương ứng với index được click
-                boxSizeS[index].style.display = "flex";
+boxSizeS[0].style.display='flex';
+colorS.forEach(function (sizeChil, index) {
+    // Kiểm tra xem boxSizeS[index] tồn tại
+    if (boxSizeS[index]) {
+        sizeChil.addEventListener('click', function () {
+            // Ẩn tất cả các phần tử trong boxSizeS
+            boxSizeS.forEach(function (sizeIndex) {
+                sizeIndex.style.display = "none";
             });
-        } else {
-            console.error("boxSizeS[" + index + "] không tồn tại.");
-        }
-    });
-}
+            // Hiển thị phần tử tương ứng với index được click
+            boxSizeS[index].style.display = "flex";
+        });
+    } else {
+        console.error("boxSizeS[" + index + "] không tồn tại.");
+    }
+});
 
 
 
@@ -192,38 +191,38 @@ function ProductAnimation () {
     //     });
     // });
     
-    var checkboxes = document.querySelectorAll('.size');
-    checkboxes.forEach(function(checkbox) {
-        checkbox.addEventListener('click', function() {
-            // Lấy tất cả các thẻ buttonsSizeS
-            var buttonsSizeS = document.querySelectorAll('.size_tee_product');
-            
-            // Lấy tất cả các checkbox
-            var allCheckboxes = document.querySelectorAll('.size');
+var checkboxes = document.querySelectorAll('.size');
+checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('click', function() {
+        // Lấy tất cả các thẻ buttonsSizeS
+        var buttonsSizeS = document.querySelectorAll('.size_tee_product');
+        
+        // Lấy tất cả các checkbox
+        var allCheckboxes = document.querySelectorAll('.size');
 
-            // Duyệt qua tất cả checkbox
-            allCheckboxes.forEach(function(checkbox) {
-                if (checkbox !== this) {
-                    // Xóa lớp "selected__button" và trạng thái "checked" của checkbox khác
-                    checkbox.parentElement.classList.remove('selected__button');
-                    checkbox.checked = false;
-                }
-            }, checkbox);
-
-            // Kiểm tra xem checkbox đã có class "selected__button" hay chưa
-            if (checkbox.parentElement.classList.contains('selected__button')) {
-                // Nếu đã có class "selected__button", xóa nó
+        // Duyệt qua tất cả checkbox
+        allCheckboxes.forEach(function(checkbox) {
+            if (checkbox !== this) {
+                // Xóa lớp "selected__button" và trạng thái "checked" của checkbox khác
                 checkbox.parentElement.classList.remove('selected__button');
-                // Loại bỏ trạng thái "checked" của checkbox
                 checkbox.checked = false;
-            } else {
-                // Nếu chưa có class "selected__button", thêm nó
-                checkbox.parentElement.classList.add('selected__button');
-                // Đặt trạng thái "checked" của checkbox
-                checkbox.checked = true;
             }
-        });
+        }, checkbox);
+
+        // Kiểm tra xem checkbox đã có class "selected__button" hay chưa
+        if (checkbox.parentElement.classList.contains('selected__button')) {
+            // Nếu đã có class "selected__button", xóa nó
+            checkbox.parentElement.classList.remove('selected__button');
+            // Loại bỏ trạng thái "checked" của checkbox
+            checkbox.checked = false;
+        } else {
+            // Nếu chưa có class "selected__button", thêm nó
+            checkbox.parentElement.classList.add('selected__button');
+            // Đặt trạng thái "checked" của checkbox
+            checkbox.checked = true;
+        }
     });
+});
 
 
 
@@ -256,8 +255,9 @@ function ProductAnimation () {
     //     });
     // });
 }
+var cartCheck = document.getElementById("addTocart");
 
-document.getElementById("addTocart").addEventListener("click", function (event) {
+cartCheck.addEventListener("click", function (event) {
     var amount = document.getElementById("amount__flex").value;
     var errAmount = document.getElementById("errAmount");
     var boxAnimationSuccess = document.querySelector('.boxAnimationSuccess');

@@ -44,9 +44,9 @@
     </ul>
     <ul class="side-menu px-0">
         <li>
-            <a href="#">
+            <a href="../index.php">
                 <i class='bx bxs-cog' ></i>
-                <span class="text">Cài đặt</span>
+                <span class="text">Quay lại giao diện người dùng</span>
             </a>
         </li>
         <li>

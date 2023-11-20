@@ -1,5 +1,5 @@
            <!-- main start -->
-
+           <link rel="stylesheet" href="./css/danhmuc.css">
            <main class="main__category">
                <div class="div__main__category__vanhstore">
                    <div class="container category-banners">
@@ -270,13 +270,12 @@
                                    </div>
                                    <div class="vanhstore-mini-page-controller">
                                        <div class="vanhstore-mini-page-controller__state">
-                                           <span class="vanhstore-mini-page-controller__current">1</span>
+                                           <span class="vanhstore-mini-page-controller__current" style="color:#ee4d2d;"><?= $page ?></span>
                                            /
-                                           <span class="vanhstore-mini-page-controller__total">17</span>
+                                           <span class="vanhstore-mini-page-controller__total"><?= $countTrang ?></span>
                                        </div>
-                                       <a href="" class="vanhstore-mini_controller_left">
-                                           <</a>
-                                               <a href="" class="vanhstore-mini_controller_right">></a>
+                                       <a href="index.php?action=danh-muc&category_id=<?= $_GET['category_id'] ?>&page=<?= $page - 1 >= 1 ? $page - 1 : $page ?>" class="vanhstore-mini_controller_left"><</a>
+                                        <a href="index.php?action=danh-muc&category_id=<?= $_GET['category_id'] ?>&page=<?= $page + 1 <= $countTrang ? $page + 1 : $page ?>" class="vanhstore-mini_controller_right">></a>
                                    </div>
                                </div>
                                <ul class="row vanhstore-search-item-result__items">
@@ -284,7 +283,7 @@
                                         foreach($listProduct_byIdcategory as $productByid) {
                                             ?>
                                                 <li class="col-xs-2-4 vanhstore-search-item-result__item">
-                                                    <a href="">
+                                                    <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $productByid['product_id'] ?>">
                                                         <div class="ZK4XOV">
                                                             <div class="GnRhpE">
                                                                 <div style="pointer-events: none;">
@@ -336,8 +335,23 @@
                                         }
                                     ?>                                   
                                </ul>
-                           </section>
-                       </div>
+                            </section>
+                            <div class="btn__click_stardust__product page__product">
+                                <div class="vanhstore-mini-page-controller">
+                                    <a href="index.php?action=danh-muc&category_id=<?= $_GET['category_id'] ?>&page=<?= $page - 1 >= 1 ? $page - 1 : $page ?>" class="vanhstore-mini_controller_left ctl__left">&lt;</a>
+                                    <div class="vanhstore-mini-page-controller__state page__url">
+                                        <?php
+                                            for($i = 1; $i <= $countTrang; $i++) {
+                                                ?>
+                                                    <a href="index.php?action=danh-muc&category_id=<?= $_GET['category_id'] ?>&page=<?= $i; ?>" class="curent__page <?= $page == $i ? "activePage" : "" ?>"><?= $i ?></a>
+                                                <?php
+                                            }
+                                        ?>
+                                    </div>
+                                    <a href="index.php?action=danh-muc&category_id=<?= $_GET['category_id'] ?>&page=<?= $page + 1 <= $countTrang ? $page + 1 : $page ?>" class="vanhstore-mini_controller_right ctl__right">&gt;</a>
+                                </div>
+                            </div>
+                        </div>
                    </div>
                </div>
            </main>

@@ -8,17 +8,17 @@ try {
 } catch (PDOException $e) {
     echo 'Kết nối thất bại ' . $e->getMessage() . '<br>';
 }
-function getDataBy($table, $data)
+function getDataBy($table, $where)
 {
-    if($data==[]){
-        $data=1;
+    if($where==[]){
+        $where=1;
     }else{
-        foreach ($data as $key => $value) {
-            $data[$key] = $key . "='" . $value . "'";
+        foreach ($where as $key => $value) {
+            $where[$key] = $key . "='" . $value . "'";
         }
     }
-    $data = implode(" AND ", $data);
-    $sql = "SELECT * FROM ${table} WHERE ${data}";
+    $where = implode(" AND ", $where);
+    $sql = "SELECT * FROM ${table} WHERE ${where}";
     return query($sql)->fetch();
 }
 
@@ -50,18 +50,34 @@ function addDataReturnId($table, $data)
     return query_returnID($sql);
 }
 
-function updateData($table, $data, $where)
+function updateData($table, $data, $where=[])
 {
     foreach ($data as $key => $value) {
         $data[$key] = $key . "='" . $value . "'";
     }
+    if($where==[]){
+        $where=1;
+    }else{
+        foreach ($where as $key => $value) {
+            $where[$key] = $key . "='" . $value . "'";
+        }
+    }
+    $where = implode(" AND ", $where);
     $data = implode(",", $data);
     $sql = "UPDATE ${table} SET ${data} WHERE ${where}";
     return query($sql)->rowCount();
 }
 
-function deleteData($table, $where)
+function deleteData($table, $where=[])
 {
+    if($where==[]){
+        $where=1;
+    }else{
+        foreach ($where as $key => $value) {
+            $where[$key] = $key . "='" . $value . "'";
+        }
+    }
+    $where = implode(" AND ", $where);
     $sql = "DELETE FROM ${table} WHERE ${where}";
     return query($sql)->rowCount();
 }
