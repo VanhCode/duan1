@@ -2,7 +2,23 @@
     <?php
         if(!empty($listCart)) {
             ?>
-                <form action="<?= $_SERVER['REQUEST_URI'] ?>" onsubmit="return sendDeleteCart()" method="POST">
+                <form action="index.php?action=gio-hang" id="formSendCart" onsubmit="return sendDeleteCart()" method="POST">
+                    <!-- Model delete Cart checkbox -->
+
+                    <div class="vanhstore-popup vanhstore-modal__transition-enter-done" id="confirmModal">
+                        <div class="vanhstore-popup__overlay" id="BackgrountNone"></div>
+                        <div class="vanhstore-popup__container">
+                            <div id="confirmModalChil" class="gLboXK">
+                                <div class="hr7yn9">Bạn có muốn bỏ 1 sản phẩm?</div>
+                                <div class="rySPUB">
+                                    <button id="confirmBackBtn" class="vanhstore-button-solid vanhstore-button-solid--primary vanhstore-button-solid--confirm-popup">Trở Lại</button>
+                                    <button name="deleteCart" id="confirmYesBtn" class="cancel-btn">có</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- End model delete Cart checkbox -->
                     <div class="cheked__product">
                         <main>
                             <div class="if-swd">
@@ -123,7 +139,7 @@
 
                                                                         <div class="delete-product">
                                                                             <div>
-                                                                                <a onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')" href="index.php?action=deleteCart&cart_id=<?= $cart['cart_id'] ?>" class="delete-sp">
+                                                                                <a href="index.php?action=deleteCart&cart_id=<?= $cart['cart_id'] ?>" class="delete-sp">
                                                                                     Xóa
                                                                                 </a>
                                                                             </div>
@@ -184,7 +200,7 @@
                                     </label>
                                 </div>
                                 <a href="" class="iGlIrs clear-btn-style">Chọn Tất Cả</a>
-                                <a><input type="submit" class="clear-btn-style clear-abate delete__checkbox" value="Xóa"></a>
+                                <a class="delete__bycheckbox"><input type="button" class="clear-btn-style clear-abate delete__checkbox" value="Xóa"></a>
                                 <div class=""></div>
                                 <a href="" class="clear-btn-style save-like">Lưu vào mục Đã thích</a>
                                 <div class="save-line"></div>
@@ -197,9 +213,9 @@
                                     </div>
                                     <div class="line-end-total-payout"></div>
                                 </div>
-                                <a href="index.php?action=thanh-toan" class="vanh-button-solid vanh-button-solid--primary">
+                                <button id="thanhtoan__order" name="muahang" class="vanh-button-solid vanh-button-solid--primary">
                                     <span class="send-end-total">Mua hàng</span>
-                                </a>
+                                </button>
                             </div>
                         </section>
                     </div>

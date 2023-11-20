@@ -25,14 +25,15 @@
         </div>
     </div>
 
-    <div class="vanhstore-popup vanhstore-modal__transition-enter-done" id="confirmModal">
-        <div class="vanhstore-popup__overlay" id="BackgrountNone"></div>
+    <div id="err__sendCart">
+        <div class="vanhstore-popup__overlay"></div>
         <div class="vanhstore-popup__container">
-            <div id="confirmModalChil" class="gLboXK">
-                <div class="hr7yn9">Bạn có muốn bỏ 1 sản phẩm?</div>
-                <div class="rySPUB">
-                    <button id="confirmBackBtn" class="vanhstore-button-solid vanhstore-button-solid--primary vanhstore-button-solid--confirm-popup">Trở Lại</button>
-                    <button id="confirmYesBtn" class="cancel-btn">có</button>
+            <div class="vanhstore-alert-popup card">
+                <div class="vanhstore-alert-popup__message">Bạn vẫn chưa chọn sản phẩm nào để mua.
+                    <div class="vanhstore-alert-popup__message-list"></div>
+                </div>
+                <div class="vanhstore-alert-popup__button-horizontal-layout">
+                    <button id="button__request__confirm" class="button__request__confirm">OK</button>
                 </div>
             </div>
         </div>

@@ -52,6 +52,27 @@
         return pdo_query($sql);
     }
 
+    function listCart__bill($cart_id) {
+        $sql = "SELECT
+                    cart.cart_id,
+                    cart.amount,
+                    cart.size,
+                    cart.color,
+                    cart.product_id,
+                    products.product_id,
+                    products.product_name,
+                    products.price,
+                    products.images,
+                    products.sale
+                FROM
+                    cart
+                INNER JOIN
+                    products ON cart.product_id = products.product_id
+                WHERE
+                    cart.cart_id = '$cart_id'";
+        return pdo_query_one($sql);
+    }
+
 
     function checkProCartBySizeColor($productId, $size, $color) {
         $sql = "SELECT * FROM cart WHERE product_id = '$productId' AND size = '$size' AND color = '$color'";
