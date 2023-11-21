@@ -6,4 +6,9 @@
         pdo_execute($sql);
 
     }
+    function insert_orderDetail($order_id,$product_id,$amount,$size,$color,$price){
+        $sql="INSERT INTO
+        `order_details` (`order_id`, `product_id`, `amount`, `size`, `color`, `price`)
+        VALUES ('', '', '', '', '', '')";
+    }
 ?>

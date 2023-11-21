@@ -365,8 +365,6 @@
                 // End đặt hàng
 
                 if(isset($_POST['dathang'])) {
-                    print_r($_POST);
-                    die;
                     $data = [];
 
                     foreach($_POST['id_cart'] as $cart) {
