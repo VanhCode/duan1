@@ -37,23 +37,24 @@ amountClickBoxS.forEach(function (amountClickBox) {
     });
 });
 
-function sendDeleteCart() {
-    var checkBoxCarts = document.querySelectorAll(".stardust-checkbox__input:checked");
-    var errItem = document.querySelector("#err__delete");
-    var confirmModal = document.getElementById('confirmModal');
 
-    let count = 0;
+var formSendCart = document.querySelector('#formSendCart');
 
-    if (checkBoxCarts.length === 0) {
+
+// Check nút xóa khi chưa chọn sản phẩm
+
+var checkBoxCarts = document.querySelectorAll(".stardust-checkbox__input:checked");
+var errItem = document.querySelector("#err__delete");
+var delete__bycheckbox = document.querySelector(".delete__checkbox");
+var confirmModal = document.getElementById('confirmModal');
+
+delete__bycheckbox.addEventListener('click', function () {   
+    formSendCart.setAttribute('action', 'index.php?action=gio-hang');
+    if(!box_checkbox()) {
         errItem.style.display = "block";
         setTimeout(function () {
             errItem.style.display = "none";
         }, 2000);
-        count++;
-    }
-
-    if (count > 0) {
-        return false;
     } else {
         confirmModal.style.display = 'block';
 
@@ -64,10 +65,67 @@ function sendDeleteCart() {
                 enableMouseScroll();
             }
         });
+    }
 
+})
+
+// End check nút xóa khi chưa chọn sản phẩm
+
+
+// Gửi form đi để mua hàng
+function sendDeleteCart() {
+    
+    var checkBoxCarts = document.querySelectorAll(".stardust-checkbox__input:checked");
+    var err__sendCart = document.querySelector("#err__sendCart");
+    var button__request__confirm = document.querySelector(".button__request__confirm");
+    var confirmModal = document.getElementById('confirmModal');
+
+    let count = 0;
+
+    if (!box_checkbox()) {
+        err__sendCart.style.display = "block";
+        count++;
+    }
+
+    button__request__confirm.addEventListener('click', function() {
+        err__sendCart.style.display = "none";
+    }) 
+
+    if (count > 0) {
         return false;
     }
 }
+
+
+// Set attribute cho form gửi đi
+
+
+var thanhtoan__order = document.querySelector('#thanhtoan__order');
+thanhtoan__order.addEventListener('click', function () {
+    formSendCart.setAttribute('action', 'index.php?action=thanh-toan');
+})
+
+// End Set attribute cho form gửi đi
+
+
+
+
+function box_checkbox() {
+    var checkBoxCarts = document.querySelectorAll(".stardust-checkbox__input:checked");
+
+    for(var i = 0; i < checkBoxCarts.length; i++) {
+        if(checkBoxCarts[i].checked == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+}
+
+// End Gửi form đi để mua hàng
+
+
 
 var confirmModal = document.getElementById('confirmModal');
 var BackgrountNone = document.getElementById('BackgrountNone');

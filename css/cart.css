@@ -4,6 +4,7 @@
   --nc-cl-hd: #cc3b1e;
   --nc-cl-hd2-dost: #dd3f1f;
   --nc-bg-bd: #ee4d2d;
+  --nc-cl-hd2-dost_hover: #dd3f1fc8;
 }
 
 * {
@@ -50,11 +51,13 @@ body {
 
 
 #err__delete {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: transparent;
   display: flex;
   justify-content: center;
@@ -103,6 +106,92 @@ body {
   align-items: center;
   width: 100%;
   height: 100vh;
+}
+
+#err__sendCart {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 600;
+  display: none;
+}
+
+.vanhstore-popup__overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.4);
+}
+
+.vanhstore-popup__container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  overflow: visible;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.vanhstore-alert-popup {
+  width: 31.25rem;
+  padding: 1.25rem;
+  overflow: visible;
+}
+
+.card {
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
+}
+
+.vanhstore-alert-popup__message-list {
+  margin-top: 1.875rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.vanhstore-alert-popup {
+  background-color: #fff;
+}
+
+.vanhstore-alert-popup__message {
+  margin-top: 2.5rem;
+  font-size: 1rem;
+}
+
+.vanhstore-alert-popup__button-horizontal-layout {
+  display: flex;
+  margin-top: 6.25rem;
+}
+
+.button__request__confirm {
+  flex: 1;
+  padding: 0.75rem 0;
+  text-transform: capitalize;
+  position: relative;
+  overflow: visible;
+  outline: 0;
+  background: var(--nc-cl-hd2-dost);
+  cursor: pointer;
+  border: 0;
+  font-size: .875rem;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: opacity .2s ease;
+  border-radius: 2px;
+  user-select: none;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.09);
+}
+
+.button__request__confirm:hover {
+  background-color: var(--nc-cl-hd2-dost_hover);
 }
 
 .vanhstore-popup {
