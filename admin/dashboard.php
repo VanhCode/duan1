@@ -165,12 +165,19 @@
                                     <?=$value['status']=='completed'?'disabled':''?>
                                 >
                                     <?php
-                                    $status = ['pending', 'confirmed', 'shipping', 'completed'];
-                                    foreach ($status as $s):?>
-                                        <option <?= $s == $value['status'] ? 'selected' : '' ?>
-                                                style="font-size: 14px; padding: 5px" class="status <?= $s ?>"
-                                                value="<?= $s ?>"><?= $s ?></option>
-                                    <?php endforeach; ?>
+                                        $status = 
+                                                [
+                                                    'pending' => 'Chờ xác nhận',
+                                                    'confirmed' => 'Đã xác nhận', 
+                                                    'shipping' => 'Đang vận chuyển', 
+                                                    'completed' => 'Hoàn thành'
+                                                ];
+                                        foreach ($status as $key => $value):?>
+                                            <option <?= $key == $order['status'] ? 'selected' : '' ?>
+                                                    style="font-size: 14px; padding: 5px" class="status"
+                                                    value="<?= $key ?>"><?= $value ?>    
+                                            </option>
+                                        <?php endforeach; ?>
                                 </select>
                             </td>
                             <td><a class="btn btn-success btn-sm"
