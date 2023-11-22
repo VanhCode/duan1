@@ -21,7 +21,7 @@ if(!$user['role']){
 $listCategory = listDanhmuc();
 switch ($action) {
     case 'dashboard':
-        $day=3;
+        $day=$_GET['day']??3;
         $totalSell=totalSell($day);
         $newOrder=newOrder($day);
         $totalUser=totalUser();
