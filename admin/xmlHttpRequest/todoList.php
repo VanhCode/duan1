@@ -38,12 +38,14 @@ switch ($action) {
             break;
         }
         case 'editContentTodolist':
-        {
-            $id = $_GET['todolist_id'] ?? 0;
-            $content = $_GET['content']??'';
-            updateData('todolist', [
-                'content' => $content
-            ], 'todolist_id=' . $id);
-            break;
-        }
+            {
+                $id = $_GET['todolist_id'] ?? 0;
+                $content = $_GET['content']??'';
+                updateData('todolist', [
+                    'content' => $content
+                ], 'todolist_id=' . $id);
+                break;
+            }
+
+           
 }
