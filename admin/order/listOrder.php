@@ -89,19 +89,19 @@
                                         <?=$value['status']=='completed'?'disabled':''?>
                                 >
                                     <?php
-                                        $status = 
-                                                [
-                                                    'pending' => 'Chờ xác nhận',
-                                                    'confirmed' => 'Đã xác nhận', 
-                                                    'shipping' => 'Đang vận chuyển', 
-                                                    'completed' => 'Hoàn thành'
-                                                ];
-                                        foreach ($status as $key => $value):?>
-                                            <option <?= $key == $order['status'] ? 'selected' : '' ?>
-                                                    style="font-size: 14px; padding: 5px" class="status"
-                                                    value="<?= $key ?>"><?= $value ?>    
-                                            </option>
-                                        <?php endforeach; ?>
+                                    $status =
+                                        [
+                                            'pending' => 'Chờ xác nhận',
+                                            'confirmed' => 'Đã xác nhận',
+                                            'shipping' => 'Đang vận chuyển',
+                                            'completed' => 'Hoàn thành'
+                                        ];
+                                    foreach ($status as $key => $order):?>
+                                        <option <?= $key == $value['status'] ? 'selected' : '' ?>
+                                                style="font-size: 14px; padding: 5px"
+                                                value="<?= $key ?>"><?= $order ?>
+                                        </option>
+                                    <?php endforeach; ?>
                                 </select>
                             </td>
 

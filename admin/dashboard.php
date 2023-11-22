@@ -45,7 +45,8 @@
         transition: 0.3s;
         font-size: 20px;
     }
-    .todo-list>li>i{
+
+    .todo-list > li > i {
         font-size: 30px;
     }
 
@@ -57,6 +58,7 @@
         background: #eeeeee !important;
         color: red;
     }
+
     .menu_option > ul > li:first-child:hover {
         color: #0d6efd;
     }
@@ -160,24 +162,24 @@
                             <td style="color: #ff7d7d;font-weight: 500;"><?= number_format($value['total'], 0, ',', '.') ?></td>
                             <td><?= $value['create_at'] ?></td>
                             <td>
-                                <select onchange="changeStatus(this,<?=$value['order_id']?>)"
+                                <select onchange="changeStatus(this,<?= $value['order_id'] ?>)"
                                         class="form-select-sm selected_status" name="status"
-                                    <?=$value['status']=='completed'?'disabled':''?>
+                                    <?= $value['status'] == 'completed' ? 'disabled' : '' ?>
                                 >
                                     <?php
-                                        $status = 
-                                                [
-                                                    'pending' => 'Chờ xác nhận',
-                                                    'confirmed' => 'Đã xác nhận', 
-                                                    'shipping' => 'Đang vận chuyển', 
-                                                    'completed' => 'Hoàn thành'
-                                                ];
-                                        foreach ($status as $key => $value):?>
-                                            <option <?= $key == $order['status'] ? 'selected' : '' ?>
-                                                    style="font-size: 14px; padding: 5px" class="status"
-                                                    value="<?= $key ?>"><?= $value ?>    
-                                            </option>
-                                        <?php endforeach; ?>
+                                    $status =
+                                        [
+                                            'pending' => 'Chờ xác nhận',
+                                            'confirmed' => 'Đã xác nhận',
+                                            'shipping' => 'Đang vận chuyển',
+                                            'completed' => 'Hoàn thành'
+                                        ];
+                                    foreach ($status as $key => $order):?>
+                                        <option <?= $key == $value['status'] ? 'selected' : '' ?>
+                                                style="font-size: 14px; padding: 5px"
+                                                value="<?= $key ?>"><?= $order ?>
+                                        </option>
+                                    <?php endforeach; ?>
                                 </select>
                             </td>
                             <td><a class="btn btn-success btn-sm"
@@ -214,14 +216,14 @@
     <!-- MAIN -->
 </section>
 <script>
-    function changeStatus(select,order_id) {
-        if(select.disabled===false){
+    function changeStatus(select, order_id) {
+        if (select.disabled === false) {
             let xmlHttp = new XMLHttpRequest();
             xmlHttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
                     select.value = this.responseText
-                    if(this.responseText==='completed'){
-                        select.disabled=true;
+                    if (this.responseText === 'completed') {
+                        select.disabled = true;
                     }
                 }
             }
@@ -240,7 +242,7 @@
         let li = document.createElement('li');
         xmlHttp.onreadystatechange = function (e) {
             if (this.readyState === 4 && this.status === 200) {
-                li.setAttribute('todoList_id',this.responseText);
+                li.setAttribute('todoList_id', this.responseText);
                 li.setAttribute('class', 'not-completed');
                 li.innerHTML = `    <p contenteditable="true"></p>
                                     <i class='bx bx-dots-vertical-rounded menu_option'>
@@ -258,8 +260,9 @@
         todoList.appendChild(li);
     }
     CRUD();
+
     // ẩn hiện option
-    function CRUD(){
+    function CRUD() {
         let Btn_menuOption = todoList.querySelectorAll('.menu_option');
         Btn_menuOption.forEach(function (option) {
             let menu = option.querySelector('ul');
@@ -322,7 +325,6 @@
             }
         });
     }
-
 
 
 </script>
