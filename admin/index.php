@@ -18,6 +18,7 @@ $user = getDataBy('users',['user_id'=>$userID]);
 if(!$user['role']){
     header('location: ../index.php?action=login');
 }
+
 $listCategory = listDanhmuc();
 switch ($action) {
     case 'dashboard':

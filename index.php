@@ -317,6 +317,7 @@
                 if(isset($_POST['addTocart'])) {  
  
                     if ($user) {
+                        
                         $stateCheck = checkProCartBySizeColor($_POST['id_sanpham'],$_POST['size'],$_POST['color']);
     
                         if ($stateCheck) {
@@ -353,15 +354,11 @@
                 }
 
                 // Đặt hàng
-
                 $data = [];
 
                 foreach($_POST['id_cart'] as $cart) {
                     $data[] = listCart__bill($cart);
                 }
-
-                
-
                 // End đặt hàng
 
                 if(isset($_POST['dathang'])) {
@@ -370,6 +367,8 @@
                     foreach($_POST['id_cart'] as $cart) {
                         $data[] = listCart__bill($cart);
                     }
+
+                    $_SESSION['cart'] = $_POST;
 
                     $_SESSION['ma_don_hang'] = generateRandomOrderCode();
                     $vnp_TxnRef = $_SESSION['ma_don_hang']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
@@ -457,20 +456,22 @@
                     date_default_timezone_set('Asia/Ho_Chi_Minh');
                     $ngaymua = date("Y-m-d H:i:s");
                     
-                    
-
+                
                     if (isset($user)) {
-
                         $ma_donhang = $_SESSION['ma_don_hang'];
                         $loai_thanhtoan = "Vnpay";
                         
-                        insert_bill($userID,$ma_donhang,$_GET['vnp_Fullname'],$_GET['vnp_Phone'],$_GET['vnp_Address'],$_GET['vnp_OrderType']);
+                        $id_order = insert_bill($userID,$ma_donhang,$_SESSION['cart']['fullname'],$_SESSION['cart']['phone'],$_SESSION['cart']['address'],$_SESSION['cart']['payment']);
 
-                        // insert_bill($id, $ma_donhang, $ngaymua, $id_trangthai = 1, $loai_thanhtoan);
-                        // foreach ($_SESSION["cart"] as $key => $value) {
-                        //     extract($value);
-                        //     insert_bill_detail($ma_donhang, $id_monan, $soluongmua);
-                        // }
+                        $data = [];
+
+                        foreach($_SESSION['cart']['id_cart'] as $cart) {
+                            $data[] = listCart__bill($cart);
+                        }
+
+                        foreach($data as $oder_detail) {
+                            insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['price']);
+                        }
                     }
     
                     $vnp_BankCode = $_GET["vnp_BankCode"];
@@ -480,21 +481,22 @@
                     $vnp_PayDate = $_GET["vnp_PayDate"];
                     $vnp_TmnCode = $_GET["vnp_TmnCode"];
                     $vnp_TransactionNo = $_GET["vnp_TransactionNo"];
-                    $ma_donhang = $_SESSION["madonhang"];
+                    $ma_donhang = $_SESSION["ma_don_hang"];
+                    
+                    echo "<pre>";
+                    print_r($_SESSION["cart"]);
+                    // die;
     
-                    $i = 0;
-                    $tongtien = 0;
-                    foreach ($_SESSION["cart"] as $key => $value) {
-                        extract($value);
-                        $thanhtien = $value['soluongmua'] * $value['gia_monan'];
-                        $tongtien = $tongtien + $thanhtien;
-                        $i++;
+                    foreach ($_SESSION["cart"]['id_cart'] as $value) {
+                        delete_cart($value);
                     }
+
+                    
     
                     // insert_vnpay($tongtien, $ma_donhang, $vnp_BankCode, $vnp_BankTranNo, $vnp_CardType, $vnp_OrderInfo, $vnp_PayDate, $vnp_TmnCode, $vnp_TransactionNo);
-    
+                    
                     unset($_SESSION["cart"]);
-                    unset($_SESSION["madonhang"]);
+                    unset($_SESSION["ma_don_hang"]);
                     include("./views/main/camon.php");
                 } else {
                     echo "<script>alert('Đã hủy thanh toán');</script>";
