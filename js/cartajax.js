@@ -1,6 +1,7 @@
 let httpRequest = new XMLHttpRequest();
 
 var amountClickBoxS = document.querySelectorAll(".amount-click-box");
+
 amountClickBoxS.forEach(function (amountClickBox) {
     let id__cart = amountClickBox.querySelector('.id__cart');
     let amount__cartItem = amountClickBox.querySelector('.amount__cartItem');
@@ -8,6 +9,7 @@ amountClickBoxS.forEach(function (amountClickBox) {
     let click_right = amountClickBox.querySelector('.click_right');
 
     click_left.addEventListener('click', function () {
+
         if (amount__cartItem.value > 1) {
             amount__cartItem.value--;
         }
@@ -48,9 +50,9 @@ var errItem = document.querySelector("#err__delete");
 var delete__bycheckbox = document.querySelector(".delete__checkbox");
 var confirmModal = document.getElementById('confirmModal');
 
-delete__bycheckbox.addEventListener('click', function () {   
+delete__bycheckbox.addEventListener('click', function () {
     formSendCart.setAttribute('action', 'index.php?action=gio-hang');
-    if(!box_checkbox()) {
+    if (!box_checkbox()) {
         errItem.style.display = "block";
         setTimeout(function () {
             errItem.style.display = "none";
@@ -74,7 +76,7 @@ delete__bycheckbox.addEventListener('click', function () {
 
 // Gửi form đi để mua hàng
 function sendDeleteCart() {
-    
+
     var checkBoxCarts = document.querySelectorAll(".stardust-checkbox__input:checked");
     var err__sendCart = document.querySelector("#err__sendCart");
     var button__request__confirm = document.querySelector(".button__request__confirm");
@@ -87,9 +89,9 @@ function sendDeleteCart() {
         count++;
     }
 
-    button__request__confirm.addEventListener('click', function() {
+    button__request__confirm.addEventListener('click', function () {
         err__sendCart.style.display = "none";
-    }) 
+    })
 
     if (count > 0) {
         return false;
@@ -113,8 +115,8 @@ thanhtoan__order.addEventListener('click', function () {
 function box_checkbox() {
     var checkBoxCarts = document.querySelectorAll(".stardust-checkbox__input:checked");
 
-    for(var i = 0; i < checkBoxCarts.length; i++) {
-        if(checkBoxCarts[i].checked == true) {
+    for (var i = 0; i < checkBoxCarts.length; i++) {
+        if (checkBoxCarts[i].checked == true) {
             return true;
         } else {
             return false;
@@ -135,17 +137,17 @@ var mainElement = document.documentElement;
 
 // Hàm xử lý sự kiện cuộn chuột
 function disableScroll(event) {
-  event.preventDefault();
+    event.preventDefault();
 }
 
 // Bắt đầu vô hiệu hóa cuộn chuột
 function disableMouseScroll() {
-  mainElement.addEventListener('wheel', disableScroll, { passive: false });
+    mainElement.addEventListener('wheel', disableScroll, { passive: false });
 }
 
 // Hủy bỏ vô hiệu hóa cuộn chuột
 function enableMouseScroll() {
-  mainElement.removeEventListener('wheel', disableScroll);
+    mainElement.removeEventListener('wheel', disableScroll);
 }
 
 
