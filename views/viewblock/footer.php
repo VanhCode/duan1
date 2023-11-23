@@ -98,6 +98,10 @@
             ?>
                 <script src="./js/dangnhap.js"></script>
             <?php
+        }   else if(isset($_GET['action']) && $_GET['action'] == 'reset_pass'){
+            ?>
+                <script src="./js/quenmk.js"></script>
+            <?php
         }   else if(isset($_GET['action']) && $_GET['action'] == 'chi-tiet-sanpham'){
             ?>
                 <script src="./js/chitietsanpham.js"></script>

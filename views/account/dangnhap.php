@@ -32,7 +32,7 @@
                         </div>
                         <button type="submit" name="submitClick" class="btn btn_submit_send curson-no-click" disabled>Đăng nhập</button>
                         <div class="tRiWov">
-                            <a class="anLGcx" href="">Quên mật khẩu</a>
+                            <a class="anLGcx" href="index.php?action=reset_pass">Quên mật khẩu</a>
                             <a class="anLGcx" href="">Đăng nhập với SMS</a>
                         </div>
                         <div>
