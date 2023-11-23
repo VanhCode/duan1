@@ -76,8 +76,13 @@ switch ($action) {
         include 'comment/listComment_statistical.php';
         break;
     case 'listComment':
+        $limit=2;
+        $_GET['page']=$_GET['page']??1;
+        $startIndex=($_GET['page']-1)*$limit;
         $product_id=$_GET['product_id']??0;
-        $comments=listCommentByProduct_id($product_id);
+        $countCmt=count($comments=listCommentByProduct_id($product_id,0,9999999));
+        $pageSL=ceil($countCmt/$limit);
+        $comments=listCommentByProduct_id($product_id,$startIndex,$limit);
         include 'comment/listComment.php';
         break;
 
