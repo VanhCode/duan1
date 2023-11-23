@@ -1,5 +1,3 @@
-
-
 $(document).ready(function () {
     var icon1 = document.querySelector('.mat1');
     var icon2 = document.querySelector('.mat2');

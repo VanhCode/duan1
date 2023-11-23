@@ -52,7 +52,7 @@
         $action = $_GET['action'];
 
 
-        if ($action == "login" || $action == "signup") {
+        if ($action == "login" || $action == "signup" || $action == "reset_pass" || $action == "success_reset") {
             include "views/header-account/header-account.php";
         } else if ($action == "gio-hang") {
             include "views/header-cart/headerCart.php";
@@ -266,6 +266,26 @@
                 break;
             case "logout":
                 logoutAccount();
+                break;
+            case "reset_pass":
+
+                if(isset($_POST['guimail'])) {
+                    $email = $_POST['phone'];
+                    $mailFogot = check_email_quenmk($email);
+                    $fullname = $mailFogot['firth_name']." ".$mailFogot['last_name'];
+                    if($mailFogot) {
+                        $hashedPassword = $mailFogot['password'];
+                        
+                        // Giải mã mật khẩu
+                        $decodedPassword = decodePassword($hashedPassword);
+                        
+                        checkemailPass($mailFogot['email'], $fullname, $decodedPassword);
+                        
+                    }
+                    $_SESSION['form_reset'] = true;
+                }
+
+                include "views/account/quenmk.php";
                 break;
             case "chi-tiet-sanpham":
                 if(isset($_GET['detail_product']) && ($_GET['detail_product'] > 0)) {

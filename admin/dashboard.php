@@ -13,7 +13,7 @@
         position: relative;
     }
 
-    .menu_option > ul {
+    .menu_option>ul {
         top: -50px;
         right: -34px;
         opacity: 0;
@@ -36,7 +36,7 @@
         pointer-events: auto !important;
     }
 
-    .menu_option > ul > li {
+    .menu_option>ul>li {
         border-radius: unset !important;
         padding: 10px !important;
         margin: 0 !important;
@@ -50,11 +50,11 @@
         font-size: 30px;
     }
 
-    .menu_option > ul > li:first-child {
+    .menu_option>ul>li:first-child {
         border-right: 1px solid #cbcbcb;
     }
 
-    .menu_option > ul > li:hover {
+    .menu_option>ul>li:hover {
         background: #eeeeee !important;
         color: red;
     }
@@ -104,16 +104,17 @@
             </div>
             <div style="width: 200px;">
                 <select class="form-select select-day" name="" id="">
-                    <option <?=$day==1?'selected':''?> value="1">1 ngày</option>
-                    <option <?=$day==7?'selected':''?> value="7">7 ngày</option>
-                    <option <?=$day==30?'selected':''?> value="30">30 ngày</option>
+                    <option <?= $day == 1 ? 'selected' : '' ?> value="1">1 ngày</option>
+                    <option <?= $day == 7 ? 'selected' : '' ?> value="7">7 ngày</option>
+                    <option <?= $day == 30 ? 'selected' : '' ?> value="30">30 ngày</option>
                 </select>
             </div>
         </div>
         <script>
-            let select_day=document.querySelector('.select-day');
-            select_day.onchange=function (e){
-                window.location.href=`index.php?action=dashboard&day=${this.value}`;
+
+            let select_day = document.querySelector('.select-day');
+            select_day.onchange = function(e) {
+                window.location.href = `index.php?action=dashboard&day=${this.value}`;
             }
         </script>
 
@@ -121,23 +122,23 @@
             <li>
                 <i class='bx bxs-calendar-check'></i>
                 <span class="text">
-						<h3><?= count($newOrder) ?></h3>
-						<p>Đơn đặt hàng mới</p>
-					</span>
+                    <h3><?= count($newOrder) ?></h3>
+                    <p>Đơn đặt hàng mới</p>
+                </span>
             </li>
             <li>
                 <i class='bx bxs-group'></i>
                 <span class="text">
-						<h3><?= $totalUser['total_user'] ?></h3>
-						<p>Khách hàng</p>
-					</span>
+                    <h3><?= $totalUser['total_user'] ?></h3>
+                    <p>Khách hàng</p>
+                </span>
             </li>
             <li>
                 <i class='bx bxs-dollar-circle'></i>
                 <span class="text">
-						<h3><?= number_format($totalSell['total_sell'], 0, ',', '.') ?></h3>
-						<p>Tổng doanh thu</p>
-					</span>
+                    <h3><?= number_format($totalSell['total_sell'], 0, ',', '.') ?></h3>
+                    <p>Tổng doanh thu</p>
+                </span>
             </li>
         </ul>
 
@@ -220,14 +221,14 @@
                     </tbody>
                 </table>
             </div>
-            <div class="todo">
+            <div class="todo" style="flex-basis: 56px;">
                 <div class="head">
                     <h3>Việc cần làm</h3>
                     <i class='bx bx-plus'></i>
                     <i class='bx bx-filter'></i>
                 </div>
                 <ul class="todo-list">
-                    <?php foreach ($todolist as $todo): ?>
+                    <?php foreach ($todolist as $todo) : ?>
                         <li todoList_id="<?= $todo['todolist_id'] ?>" class="<?= $todo['status'] ?>">
                             <p contenteditable="true"><?= $todo['content'] ?></p>
                             <i class='bx bx-dots-vertical-rounded menu_option'>
@@ -249,7 +250,7 @@
     function changeStatus(select, order_id, action = 'status') {
         if (select.disabled === false) {
             let xmlHttp = new XMLHttpRequest();
-            xmlHttp.onreadystatechange = function () {
+            xmlHttp.onreadystatechange = function() {
                 if (this.readyState === 4 && this.status === 200) {
                     select.value = this.responseText
                     if (this.responseText === 'completed') {
@@ -275,7 +276,7 @@
     let toggle_status = document.querySelectorAll('.toggle_status');
     btnAdd.onclick = function (e) {
         let li = document.createElement('li');
-        xmlHttp.onreadystatechange = function (e) {
+        xmlHttp.onreadystatechange = function(e) {
             if (this.readyState === 4 && this.status === 200) {
                 li.setAttribute('todoList_id', this.responseText);
                 li.setAttribute('class', 'not-completed');
@@ -359,7 +360,6 @@
         let paragraphElements = todoList.querySelectorAll('p');
         let toggle_status = document.querySelectorAll('.toggle_status');
     }
-
 
 </script>
 <script src="../js/scriptDashboard.js"></script>

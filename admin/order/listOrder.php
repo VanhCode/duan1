@@ -22,7 +22,9 @@
     </nav>
     <!-- NAVBAR -->
     <style>
-        th, td, p {
+        th,
+        td,
+        p {
             text-align: left !important;
         }
     </style>
@@ -69,20 +71,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($listOrder as $key => $value): ?>
-                        <tr>
-                            <td style="margin-top: 45px"><?= $key + 1 ?></td>
-                            <td>
-                                <img src="../public/upload/image/user/<?= $value['user_image'] ?>" alt="">
-                                <span><?= $value['fullName'] ?></span>
-                            </td>
-                            <td>
-                                <p><i><?= $value['receiver_name'] ?></i></p>
-                                <p style="width: 150px;"><b>ĐC: </b><?= $value['receiver_address'] ?></p>
-                                <p><b>SĐT: </b><?= $value['receiver_phone'] ?></p>
-                            </td>
-                            <td style="color: #ff7d7d;font-weight: 500;"><?= number_format($value['total'], 0, ',', '.') ?></td>
-                            <td><?= $value['create_at'] ?></td>
+                        <?php foreach ($listOrder as $key => $value) : ?>
+                            <tr>
+                                <td style="margin-top: 45px"><?= $key + 1 ?></td>
+                                <td>
+                                    <img src="../public/upload/image/user/<?= $value['user_image'] ?>" alt="">
+                                    <span><?= $value['fullName'] ?></span>
+                                </td>
+                                <td>
+                                    <p><i><?= $value['receiver_name'] ?></i></p>
+                                    <p style="width: 150px;"><b>ĐC: </b><?= $value['receiver_address'] ?></p>
+                                    <p><b>SĐT: </b><?= $value['receiver_phone'] ?></p>
+                                </td>
+                                <td style="color: #ff7d7d;font-weight: 500;"><?= number_format($value['total'], 0, ',', '.') ?></td>
+                                <td><?= $value['create_at'] ?></td>
 
                             <td>
                                 <select onchange="changeStatus(this,<?=$value['order_id']?>)"
@@ -126,25 +128,24 @@
                                 </select>
                             </td>
 
-                            <td>
-                                <a class="btn btn-success btn-sm"
-                                   href="index.php?action=listOrder_detail&order_id=<?= $value['order_id'] ?>">Chi
-                                    tiết</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
+                                <td>
+                                    <a class="btn btn-success btn-sm" href="index.php?action=listOrder_detail&order_id=<?= $value['order_id'] ?>">Chi
+                                        tiết</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
                 <script>
                     function changeStatus(select,order_id,action='status') {
                         console.log("Sending request with status:", select.value, "and order_id:", order_id);
-                        if(select.disabled===false){
+                        if (select.disabled === false) {
                             let xmlHttp = new XMLHttpRequest();
-                            xmlHttp.onreadystatechange = function () {
+                            xmlHttp.onreadystatechange = function() {
                                 if (this.readyState === 4 && this.status === 200) {
                                     select.value = this.responseText
-                                    if(this.responseText==='completed'){
-                                        select.disabled=true;
+                                    if (this.responseText === 'completed') {
+                                        select.disabled = true;
                                     }
                                 }
                             }

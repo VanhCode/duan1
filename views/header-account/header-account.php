@@ -13,9 +13,13 @@
                 ?>
                     Đăng nhập tài khoản - Mua sắm Online | VanhStore
                 <?php
-            } else {
+            } else if($_GET['action'] == 'signup') {
                 ?>
                     Đăng ký ngay | VanhStore Việt Nam
+                <?php
+            } else {
+                ?>
+                    Quên mật khẩu | VanhStore Việt Nam
                 <?php
             }
         ?>
@@ -26,9 +30,13 @@
             ?>
                 <link rel="stylesheet" href="./css/dangnhap.css">
                 <?php
-        } else {
+        } else if ($_GET['action'] == 'signup') {
             ?>
                 <link rel="stylesheet" href="./css/dangky.css">
+            <?php
+        } else {
+            ?>
+                <link rel="stylesheet" href="./css/quenmk.css">
             <?php
         }
     ?>
@@ -54,9 +62,13 @@
                                 ?>
                                     Đăng nhập
                                 <?php
-                            } else {
+                            } else if($_GET['action'] == 'signup') {
                                 ?>
                                     Đăng ký
+                                <?php
+                            } else {
+                                ?>
+                                    Đặt lại mật khẩu
                                 <?php
                             }
                         ?>
