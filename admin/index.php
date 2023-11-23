@@ -22,7 +22,8 @@ if(!$user['role']){
 $listCategory = listDanhmuc();
 switch ($action) {
     case 'dashboard':
-        $day=3;
+        $_GET['day']=$_GET['day']??1;
+        $day=$_GET['day'];
         $totalSell=totalSell($day);
         $newOrder=newOrder($day);
         $totalUser=totalUser();
@@ -75,8 +76,13 @@ switch ($action) {
         include 'comment/listComment_statistical.php';
         break;
     case 'listComment':
+        $limit=2;
+        $_GET['page']=$_GET['page']??1;
+        $startIndex=($_GET['page']-1)*$limit;
         $product_id=$_GET['product_id']??0;
-        $comments=listCommentByProduct_id($product_id);
+        $countCmt=count($comments=listCommentByProduct_id($product_id,0,9999999));
+        $pageSL=ceil($countCmt/$limit);
+        $comments=listCommentByProduct_id($product_id,$startIndex,$limit);
         include 'comment/listComment.php';
         break;
 

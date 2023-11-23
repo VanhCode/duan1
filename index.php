@@ -368,7 +368,6 @@
                 }
                 break;
             case "thanh-toan":
-                
                 if(!isset($_SESSION['user_id'])) {
                     header('Location: index.php?action=login');
                     exit();
@@ -383,10 +382,6 @@
                 // End đặt hàng
 
                 if(isset($_POST['dathang'])) {
-
-                    // print_r($_POST);
-                    // die;
-                    
                     $data = [];
 
                     foreach($_POST['id_cart'] as $cart) {

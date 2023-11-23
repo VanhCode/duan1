@@ -86,6 +86,16 @@
                     <?php endforeach;?>
                     </tbody>
                 </table>
+                <div class="flex_page">
+                    <a class="click_right" href="index.php?action=listComment&product_id=<?=$_GET['product_id']?>&page=<?=$_GET['page']>1?$_GET['page']-1:1?>">&lt;</a>
+                    <?php for($i=1;$i<=$pageSL;$i++):?>
+                    <?php if($i<=5):?>
+                            <a class="page__i" <?=$_GET['page']==$i?'style="color: #ee4d2d;"':''?> href="index.php?action=listComment&product_id=<?=$_GET['product_id']?>&page=<?=$i?>"><?=$i?></a>
+                        <?php endif;?>
+                    <?php endfor;?>
+                    <span style="font-size: 26px;">. . .</span>
+                    <a class="click_left" href="index.php?action=listComment&product_id=<?=$_GET['product_id']?>&page=<?=$_GET['page']+1?>">&gt;</a>
+                </div>
             </div>
         </div>
     </main>
