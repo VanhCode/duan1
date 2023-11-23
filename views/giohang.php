@@ -241,51 +241,57 @@
                 <div class="tile-like-headerMay">
                     <div>Có thể bạn cũng thích</div>
                 </div>
-                <a href="" class="view-full-product-link">
+                <a href="index.php?action=san-pham" class="view-full-product-link">
                     <button class="icon-next-view-link">
                         Xem Tất Cả
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </a>
             </div>
-            <div class="productS-link-full-view viewOne">
-                <div class="productS-full-link-view">
-                    <a href="" class="">
-                        <div class="prd-v2">
-                            <div class="prd-v3">
-                                <div style="pointer-events: none;">
-                                    <div class="prd-img-hv">
-                                        <img src="./img1/a1.jpg" class="prd-img" alt="">
-                                        <div class="yt-prd">
-                                            <div class="yt-chill rgba-yt-chil">
-                                                <span class="span-yt-chil span-yt-prd">Yêu thích</span>
+            <div class="productS-link-full-view viewOne">  
+                <?php
+                    foreach($listProduct as $productCart) {
+                        ?>
+                            <div class="productS-full-link-view">
+                                <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $productCart['product_id'] ?>" class="">
+                                    <div class="prd-v2">
+                                        <div class="prd-v3">
+                                            <div style="pointer-events: none;">
+                                                <div class="prd-img-hv">
+                                                    <img src="./public/upload/image/product/<?= explode(",", $productCart['images'])[0] ?>" class="prd-img" alt="">
+                                                    <div class="yt-prd">
+                                                        <div class="yt-chill rgba-yt-chil">
+                                                            <span class="span-yt-chil span-yt-prd">Yêu thích</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="prd-v3-chil">
+                                                <div class="prd-v3-title-text">
+                                                    <div class="prd-v3-box-text">
+                                                        <div class="prd-v3-text">
+                                                            <?= $productCart['product_name'] ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="prd-v3-price prd-v3-price-bv">
+                                                    <div class="prd-v3-price-textChil">
+                                                        <span class="prd-v3-price-textChil-span">
+                                                            ₫<?= number_format($productCart['price'], 0,',','.') ?>
+                                                        </span>
+                                                    </div>
+                                                    <div class="check-sub-success">
+                                                        Đã bán 2k5
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="prd-v3-chil">
-                                    <div class="prd-v3-title-text">
-                                        <div class="prd-v3-box-text">
-                                            <div class="prd-v3-text">
-                                                Áo thun
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="prd-v3-price prd-v3-price-bv">
-                                        <div class="prd-v3-price-textChil">
-                                            <span class="prd-v3-price-textChil-span">
-                                                200.000đ
-                                            </span>
-                                        </div>
-                                        <div class="check-sub-success">
-                                            Đã bán 2k5
-                                        </div>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        <?php
+                    }
+                ?>
             </div>
         </div>
     </div>

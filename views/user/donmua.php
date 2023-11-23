@@ -1,9 +1,9 @@
 <div class="single-box">
     <div class="nav-form">
         <ul>
-            <li class="abill <?= $order == 'all' ? 'activeNav' : "" ?>"><a class="<?= $order == 'all' ? 'sticky' : "" ?>" href="index.php?action=user&user=don-mua&order=all">Tất cả</a></li>
-            <li class="abill <?= $order == 'cho-thanh-toan' ? 'activeNav' : "" ?>"><a class="<?= $order == 'cho-thanh-toan' ? 'sticky' : "" ?>" href="index.php?action=user&user=don-mua&order=cho-thanh-toan">Chờ xác nhận</a></li>
-            <li class="abill <?= $order == 'van-chuyen' ? 'activeNav' : "" ?>"><a class="<?= $order == 'van-chuyen' ? 'sticky' : "" ?>" href="index.php?action=user&user=don-mua&order=van-chuyen">Đã xác nhận</a></li>
+            <li class="abill <?= $order == 'all' ? 'activeNav' : "" ?>"><a class="<?= $order == 'all' ? 'sticky' : "" ?>" href="index.php?action=user&user=don-mua&order=all">Tất cả <?= !empty($load_order_all) ? "(".count($load_order_all).")" : "" ?></a></li>
+            <li class="abill <?= $order == 'cho-xac-nhan' ? 'activeNav' : "" ?>"><a class="<?= $order == 'cho-xac-nhan' ? 'sticky' : "" ?>" href="index.php?action=user&user=don-mua&order=cho-xac-nhan">Chờ xác nhận <?= !empty($load_order_choxacnhan) ? "(".count($load_order_choxacnhan).")" : "" ?></a></li>
+            <li class="abill <?= $order == 'da-xac-nhan' ? 'activeNav' : "" ?>"><a class="<?= $order == 'da-xac-nhan' ? 'sticky' : "" ?>" href="index.php?action=user&user=don-mua&order=da-xac-nhan">Đã xác nhận <?= !empty($load_order_daxacnhan) ? "(".count($load_order_daxacnhan).")" : "" ?></a></li>
             <li class="abill <?= $order == 'dang-giao' ? 'activeNav' : "" ?>"><a class="<?= $order == 'dang-giao' ? 'sticky' : "" ?>" href="index.php?action=user&user=don-mua&order=dang-giao">Đang giao</a></li>
             <li class="abill <?= $order == 'hoan-thanh' ? 'activeNav' : "" ?>"><a class="<?= $order == 'hoan-thanh' ? 'sticky' : "" ?>" href="index.php?action=user&user=don-mua&order=hoan-thanh">Hoàn thành</a></li>
             <li class="abill <?= $order == 'da-huy' ? 'activeNav' : "" ?>"><a class="<?= $order == 'da-huy' ? 'sticky' : "" ?>" href="index.php?action=user&user=don-mua&order=da-huy">Đã hủy</a></li>
@@ -20,10 +20,10 @@
 
                 if ($action == "user" && $userAction == "don-mua" && $order == "all") {
                     include "donmua/fullbill.php";
-                } else if ($action == "user" && $userAction == "don-mua" && $order == "cho-thanh-toan") {
-                    include "donmua/chothanhtoan.php";
-                } else if ($action == "user" && $userAction == "don-mua" && $order == "van-chuyen") {
-                    include "donmua/vanchuyen.php";
+                } else if ($action == "user" && $userAction == "don-mua" && $order == "cho-xac-nhan") {
+                    include "donmua/choxacnhan.php";
+                } else if ($action == "user" && $userAction == "don-mua" && $order == "da-xac-nhan") {
+                    include "donmua/daxacnhan.php";
                 } else if ($action == "user" && $userAction == "don-mua" && $order == "dang-giao") {
                     include "donmua/danggiao.php";
                 } else if ($action == "user" && $userAction == "don-mua" && $order == "hoan-thanh") {

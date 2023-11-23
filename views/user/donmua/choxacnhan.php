@@ -1,10 +1,6 @@
-<div id="tab-1" class="tab-content-item">
-    <div class="search-form">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" name="submit" placeholder="Bạn có thể tìm kiếm theo tên Shop, ID đơn hàng hoặc Tên Sản Phẩm">
-    </div>
+<div id="tab-2" class="tab-content-item">
     <?php
-        if(empty($load_order_all)) {
+        if(empty($load_order_choxacnhan)) {
             ?>
                 <div class="form-single">
                     <div class="no-single"></div>
@@ -15,7 +11,7 @@
             ?>
                 <main>
                     <?php
-                        foreach($load_order_all as $orderdetail) {
+                        foreach($load_order_choxacnhan as $orderdetail) {
                             ?>
                                 <div>
                                     <div class="hiXKxx">
@@ -29,11 +25,11 @@
                                                         <div class="EQko8g">
                                                             <div class="qP6Mvo">
                                                                 <a class="KmBIg2" href="/user/purchase/order/153763972270819?type=8">
-                                                                    <span class="nkmfr2">Đơn hàng đã đặt</span>
+                                                                    <span class="nkmfr2">Đơn hàng mới đặt</span>
                                                                 </a>
                                                                 <div class="shopee-drawer" id="pc-drawer-id-8" tabindex="0"></div>
                                                             </div>
-                                                            <div class="V+w7Xs cho_giao" tabindex="0">Đã đặt</div>
+                                                            <div class="V+w7Xs cho_giao" tabindex="0">Chờ xác nhận</div>
                                                         </div>
                                                     </div>
                                                 </section>

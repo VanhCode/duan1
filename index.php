@@ -113,9 +113,10 @@
                         $begin = ($page_gia - 1) * 20;
                     }
 
-                    $listProduct_khoanggia = search__khoanggia($min_price,$max_price,$price,$begin);
+                    $itemsPerPage = 20; 
+                    $listProduct_khoanggia = search__khoanggia($min_price, $max_price, $price, $begin, $itemsPerPage);
                     $count_minMax = count($listProduct_khoanggia);
-                    $count_price_min_max = ceil($count_minMax / 20);
+                    $count_price_min_max = ceil($count_minMax / $itemsPerPage);
                 }
 
                 include "views/sanpham.php";
@@ -233,8 +234,18 @@
                         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                         $date = $_POST['date'];
                         $gender = $_POST['gender'];
-            
-                        $resultInsert = addAccount($firstname,$lastname,$phone,$hashed_password,$phone,$date,$gender);
+
+                        $hinh = "";
+
+                        if($gender == 'Nam') {
+                            $hinh = "nam.png";
+                        } else if($gender == 'Nữ') {
+                            $hinh = "nu.jpg";
+                        } else {
+                            $hinh = "user.jpg";
+                        }
+
+                        $resultInsert = addAccount($firstname,$lastname,$phone,$hinh,$hashed_password,$phone,$date,$gender);
             
                         if(!$resultInsert) {
 
@@ -495,7 +506,8 @@
                         }
 
                         foreach($data as $oder_detail) {
-                            insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['price']);
+                            $tongdon = $oder_detail['amount'] * $oder_detail['price'];
+                            insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $tongdon);
                         }
                     }
     

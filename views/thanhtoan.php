@@ -14,14 +14,17 @@
                     </div>
                 </div>
                 <div class="title__location_edit">
-                    <div class="NYnMjH">
-                        <div>
+                    <div class="group__location_edit">
+                        <div class="group_location_ip">
+                            <h4>Họ và tên..*</h4>
                             <input type="text" value="<?= $user['firth_name']." ".$user['last_name'] ?>" name="fullname">
                         </div>
-                        <div>
+                        <div class="group_location_ip">
+                            <h4>Số điện thoại..*</h4>
                             <input type="text" value="<?= $user['phone'] ?>" name="phone">
                         </div>
-                        <div>
+                        <div class="group_location_ip">
+                            <h4>Địa chỉ..*</h4>
                             <input type="text" value="<?= $user['address'] ?>" name="address">
                         </div>
                     </div>
@@ -94,13 +97,37 @@
                 <h2 class="a11y-visually-hidden">Phương thức thanh toán</h2>
                 <div class="_2qsKTk">
                     <div class="SzEjHI zDPGhr">Phương thức thanh toán</div>
-                    <div class="KoRB7y">
-                        <select name="payment" id="">
-                            <option value="tienmat">Thanh toán khi nhận hàng</option>
-                            <option value="vnpay">Thanh toán VNPAY</option>
-                        </select>
+                    <div class="KoRB7y payment">
+                        <div class="vanhstore_payment_box_radio">
+                            <label class="box_payment_radio">
+                                <span style="pointer-events: none;">Thanh toán khi nhận hàng</span>
+                                <input style="pointer-events: none;" type="radio" class="payment_radio" name="payment_radio" value="Thanh toán khi nhận hàng">
+                            </label>
+                        </div>
+                        <div class="vanhstore_payment_box_radio">
+                            <label class="box_payment_radio">
+                                <span style="pointer-events: none;">Thanh toán VNPAY</span>
+                                <input style="pointer-events: none;" type="radio" class="payment_radio" name="payment_radio" value="Thanh toán VNPAY">
+                            </label>
+                        </div>
+                        <script>
+                            var paymentRadio = document.querySelectorAll('.payment_radio');
+                            var box_payment_radio = document.querySelectorAll('.box_payment_radio');
+
+                            paymentRadio.forEach(function(radio) {
+                                radio.addEventListener('change', function() {
+                                    box_payment_radio.forEach(function(box) {
+                                        box.classList.remove('bgPaymentClick');
+                                    });
+
+                                    if (this.checked) {
+                                        this.closest('.box_payment_radio').classList.add('bgPaymentClick');
+                                    }
+                                });
+                            });
+                        </script>
                     </div>
-                    <a href="" class="FooGkf div-style">Thay đổi</a>
+                    <!-- <a href="" class="FooGkf div-style">Thay đổi</a> -->
                 </div>
             </div>
             <div class="KQyCj0">
