@@ -52,7 +52,7 @@
         $action = $_GET['action'];
 
 
-        if ($action == "login" || $action == "signup" || $action == "reset_pass") {
+        if ($action == "login" || $action == "signup" || $action == "reset_pass" || $action == "success_reset") {
             include "views/header-account/header-account.php";
         } else if ($action == "gio-hang") {
             include "views/header-cart/headerCart.php";
@@ -280,8 +280,9 @@
                         $decodedPassword = decodePassword($hashedPassword);
                         
                         checkemailPass($mailFogot['email'], $fullname, $decodedPassword);
-                        echo "<script>xac_minh.style.display='block'</script>";
+                        
                     }
+                    $_SESSION['form_reset'] = true;
                 }
 
                 include "views/account/quenmk.php";

@@ -5,8 +5,8 @@
         <div class="vtexOX">
             <div>
                 <div class="_3M9lzn">
-                    <form id="resetForm" action="index.php?action=reset_pass" method="POST">
-                        <div class="_9ZCM-m J1i6cp reset_box" id="reset_box">
+                    <form action="index.php?action=reset_pass" method="POST">
+                        <div class="_9ZCM-m J1i6cp <?= isset($_SESSION['form_reset']) ? 'xac_minh' : '' ?>" id="reset_box">
                             <div class="gZNAGg">
                                 <div class="ZqWCFj">
                                     <button class="qbdGVt">
@@ -33,7 +33,7 @@
                                 <button type="submit" name="guimail" class="wyhvVD _1EApiB hq6WM5 L-VL8Q cepDQ1 _7w24N1 btn_forgotpass curson-no-click" disabled>Tiếp theo</button>
                             </div>
                         </div>
-                        <div class="atca8+ J1i6cp xac_minh" id="xac_minh">
+                        <div class="atca8+ J1i6cp <?= isset($_SESSION['form_reset']) ? '' : 'xac_minh' ?>" id="xac_minh">
                             <div class="gZNAGg">
                                 <div class="ZqWCFj">
                                     <button class="qbdGVt">
@@ -53,11 +53,12 @@
                                         <rect stroke="none" x="63" y="38" width="3" height="6" viewBox="0 0 3 6" rx="1.5" fill-opacity=".87"></rect>
                                     </svg></div>
                                 <div class="RwFd1y">
-                                    <div>Mã xác minh đã được gửi đến địa chỉ email <span class="NK8v-e">tranvanh2k4@gmail.com</span>.</div>
+                                    <div>Mã xác minh đã được gửi đến địa chỉ email <span class="NK8v-e"><?= $_POST['phone'] ?></span>.</div>
                                     <div>Vui lòng xác minh.</div>
-                                </div><button class="wyhvVD _1EApiB hq6WM5 L-VL8Q Xz8eUb cepDQ1 _7w24N1">OK</button>
+                                </div><a href="index.php?action=login" class="wyhvVD _1EApiB hq6WM5 L-VL8Q Xz8eUb cepDQ1 _7w24N1">OK</a>
                             </div>
                         </div>
+                        <?php unset($_SESSION['form_reset']) ?>
                     </form>
                 </div>
             </div>
