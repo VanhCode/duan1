@@ -172,10 +172,10 @@
                                                     'shipping' => 'Đang vận chuyển', 
                                                     'completed' => 'Hoàn thành'
                                                 ];
-                                        foreach ($status as $key => $value):?>
+                                        foreach ($status as $key => $order):?>
                                             <option <?= $key == $order['status'] ? 'selected' : '' ?>
                                                     style="font-size: 14px; padding: 5px" class="status"
-                                                    value="<?= $key ?>"><?= $value ?>    
+                                                    value="<?= $key ?>"><?= $order ?>    
                                             </option>
                                         <?php endforeach; ?>
                                 </select>
