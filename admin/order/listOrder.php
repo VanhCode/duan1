@@ -64,6 +64,7 @@
                         <th>Tổng cộng</th>
                         <th>Ngày đặt hàng</th>
                         <th>Trạng thái</th>
+                        <th>Thanh toán</th>
                         <th>Chi tiết</th>
                     </tr>
                     </thead>
@@ -104,6 +105,26 @@
                                     <?php endforeach; ?>
                                 </select>
                             </td>
+                            <td>
+                                <select onchange="changeStatus(this,<?= $value['order_id'] ?>,'payment_status')"
+                                        class="form-select-sm selected_status" name="status"
+                                    <?= $value['payment_status'] == 'completed' ? 'disabled' : '' ?>
+                                >
+                                    <?php
+                                    $status =
+                                        [
+                                            'unpaid' => 'Chưa thanh toán',
+                                            'paid' => 'Đã thanh toán',
+                                            'repaid' => 'Yêu cầu hoàn tiền'
+                                        ];
+                                    foreach ($status as $key => $order):?>
+                                        <option <?= $key == $value['payment_status'] ? 'selected' : '' ?>
+                                                style="font-size: 14px; padding: 5px"
+                                                value="<?= $key ?>"><?= $order ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
 
                             <td>
                                 <a class="btn btn-success btn-sm"
@@ -115,7 +136,7 @@
                     </tbody>
                 </table>
                 <script>
-                    function changeStatus(select,order_id) {
+                    function changeStatus(select,order_id,action='status') {
                         console.log("Sending request with status:", select.value, "and order_id:", order_id);
                         if(select.disabled===false){
                             let xmlHttp = new XMLHttpRequest();
@@ -127,7 +148,7 @@
                                     }
                                 }
                             }
-                            xmlHttp.open('GET', `./xmlHttpRequest/statusOrder.php?status=${select.value}&order_id=${order_id}`, true);
+                            xmlHttp.open('GET', `./xmlHttpRequest/statusOrder.php?${action}=${select.value}&order_id=${order_id}`, true);
                             xmlHttp.send();
                         }
                     }

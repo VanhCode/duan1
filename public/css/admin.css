@@ -438,7 +438,7 @@ body {
 
 #content main .table-data .order {
 	flex-grow: 1;
-	flex-basis: 500px;
+	flex-basis: 850px;
 }
 #content main .table-data .order table {
 	width: 100%;

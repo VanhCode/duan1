@@ -102,11 +102,20 @@
                     </li>
                 </ul>
             </div>
-            <a href="#" class="btn-download">
-                <i class='bx bxs-cloud-download'></i>
-                <span class="text">Tải xuống PDF</span>
-            </a>
+            <div style="width: 200px;">
+                <select class="form-select select-day" name="" id="">
+                    <option <?=$day==1?'selected':''?> value="1">1 ngày</option>
+                    <option <?=$day==7?'selected':''?> value="7">7 ngày</option>
+                    <option <?=$day==30?'selected':''?> value="30">30 ngày</option>
+                </select>
+            </div>
         </div>
+        <script>
+            let select_day=document.querySelector('.select-day');
+            select_day.onchange=function (e){
+                window.location.href=`index.php?action=dashboard&day=${this.value}`;
+            }
+        </script>
 
         <ul class="box-info">
             <li>
@@ -148,6 +157,7 @@
                         <th>Tổng cộng</th>
                         <th>Ngày đặt hàng</th>
                         <th>Trạng thái</th>
+                        <th>Thanh toán</th>
                         <th>Chi tiết</th>
                     </tr>
                     </thead>
@@ -176,6 +186,26 @@
                                         ];
                                     foreach ($status as $key => $order):?>
                                         <option <?= $key == $value['status'] ? 'selected' : '' ?>
+                                                style="font-size: 14px; padding: 5px"
+                                                value="<?= $key ?>"><?= $order ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
+                            <td>
+                                <select onchange="changeStatus(this,<?= $value['order_id'] ?>,'payment_status')"
+                                        class="form-select-sm selected_status" name="status"
+                                    <?= $value['payment_status'] == 'completed' ? 'disabled' : '' ?>
+                                >
+                                    <?php
+                                    $status =
+                                        [
+                                            'unpaid' => 'Chưa thanh toán',
+                                            'paid' => 'Đã thanh toán',
+                                            'repaid' => 'Yêu cầu hoàn tiền'
+                                        ];
+                                    foreach ($status as $key => $order):?>
+                                        <option <?= $key == $value['payment_status'] ? 'selected' : '' ?>
                                                 style="font-size: 14px; padding: 5px"
                                                 value="<?= $key ?>"><?= $order ?>
                                         </option>
@@ -216,7 +246,7 @@
     <!-- MAIN -->
 </section>
 <script>
-    function changeStatus(select, order_id) {
+    function changeStatus(select, order_id, action = 'status') {
         if (select.disabled === false) {
             let xmlHttp = new XMLHttpRequest();
             xmlHttp.onreadystatechange = function () {
@@ -227,7 +257,7 @@
                     }
                 }
             }
-            xmlHttp.open('GET', `./xmlHttpRequest/statusOrder.php?status=${select.value}&order_id=${order_id}`, true);
+            xmlHttp.open('GET', `./xmlHttpRequest/statusOrder.php?${action}=${select.value}&order_id=${order_id}`, true);
             xmlHttp.send();
         }
     }
@@ -238,6 +268,11 @@
     let btnAdd = head.querySelectorAll("i")[0];
     let btnFilter = head.querySelectorAll("i")[1];
     let todoList = document.querySelector(".todo-list");
+
+    let Btn_menuOption = todoList.querySelectorAll('.menu_option');
+    let Btn_deleteTodolist = document.querySelectorAll('.delete_todolist');
+    let paragraphElements = todoList.querySelectorAll('p');
+    let toggle_status = document.querySelectorAll('.toggle_status');
     btnAdd.onclick = function (e) {
         let li = document.createElement('li');
         xmlHttp.onreadystatechange = function (e) {
@@ -260,70 +295,69 @@
         todoList.appendChild(li);
     }
     CRUD();
+    Btn_menuOption.forEach(function (option) {
+        let menu = option.querySelector('ul');
+        let li = menu.querySelectorAll('li');
 
+        document.addEventListener('click', function (e) {
+            if (e.target === option) {
+                menu.classList.add('show');
+            } else if (e.target !== li[0] && e.target !== li[1]) {
+                menu.classList.remove('show');
+            }
+        });
+    });
+
+    // xoá content
+    Btn_deleteTodolist.forEach(function (btn_delete) {
+        btn_delete.onclick = function (e) {
+            let id = this.parentElement.parentElement.parentElement.getAttribute('todoList_id');
+            xmlHttp.onreadystatechange = function (e) {
+                if (this.readyState === 4 && this.status === 200) {
+                    if (this.responseText === 'success') {
+                        btn_delete.parentElement.parentElement.parentElement.remove();
+                        console.log('remove');
+                    }
+                }
+            }
+            xmlHttp.open('GET', `./xmlHttpRequest/todoList.php?action=deleteTodolist&todolist_id=${id}`, true);
+            xmlHttp.send();
+        }
+    });
+    //edit content
+    paragraphElements.forEach(function (paragraphElement) {
+        paragraphElement.oninput = function () {
+            let id = this.parentElement.getAttribute('todoList_id');
+            let content = this.innerHTML;
+            console.log('edit content');
+            xmlHttp.open('GET', `./xmlHttpRequest/todoList.php?action=editContentTodolist&content=${content}&todolist_id=${id}`, true);
+            xmlHttp.send();
+        }
+    });
+
+    //thay đổi trạng thái
+    toggle_status.forEach(function (btnToggle) {
+        btnToggle.onclick = function () {
+            let id = this.parentElement.parentElement.parentElement.getAttribute('todoList_id');
+            let status = this.parentElement.parentElement.parentElement.getAttribute('class');
+            xmlHttp.onreadystatechange = function (e) {
+                if (this.readyState === 4 && this.status === 200) {
+                    if (this.responseText === 'not-completed' || this.responseText === 'completed') {
+                        btnToggle.parentElement.parentElement.parentElement.setAttribute('class', this.responseText);
+                        console.log('toggle status');
+                    }
+                }
+            }
+            xmlHttp.open('GET', `./xmlHttpRequest/todoList.php?action=toggleStatus&status=${status}&todolist_id=${id}`, true);
+            xmlHttp.send();
+        }
+    });
     // ẩn hiện option
     function CRUD() {
         let Btn_menuOption = todoList.querySelectorAll('.menu_option');
-        Btn_menuOption.forEach(function (option) {
-            let menu = option.querySelector('ul');
-            let li = menu.querySelectorAll('li');
-
-            document.addEventListener('click', function (e) {
-                if (e.target === option) {
-                    menu.classList.add('show');
-                } else if (e.target !== li[0] && e.target !== li[1]) {
-                    menu.classList.remove('show');
-                }
-            });
-        });
-
-        // xoá content
         let Btn_deleteTodolist = document.querySelectorAll('.delete_todolist');
-        Btn_deleteTodolist.forEach(function (btn_delete) {
-            btn_delete.onclick = function (e) {
-                let id = this.parentElement.parentElement.parentElement.getAttribute('todoList_id');
-                xmlHttp.onreadystatechange = function (e) {
-                    if (this.readyState === 4 && this.status === 200) {
-                        if (this.responseText === 'success') {
-                            btn_delete.parentElement.parentElement.parentElement.remove();
-                            console.log('remove');
-                        }
-                    }
-                }
-                xmlHttp.open('GET', `./xmlHttpRequest/todoList.php?action=deleteTodolist&todolist_id=${id}`, true);
-                xmlHttp.send();
-            }
-        });
-        //edit content
         let paragraphElements = todoList.querySelectorAll('p');
-        paragraphElements.forEach(function (paragraphElement) {
-            paragraphElement.oninput = function () {
-                let id = this.parentElement.getAttribute('todoList_id');
-                let content = this.innerHTML;
-                console.log('edit content');
-                xmlHttp.open('GET', `./xmlHttpRequest/todoList.php?action=editContentTodolist&content=${content}&todolist_id=${id}`, true);
-                xmlHttp.send();
-            }
-        });
-
-        //thay đổi trạng thái
         let toggle_status = document.querySelectorAll('.toggle_status');
-        toggle_status.forEach(function (btnToggle) {
-            btnToggle.onclick = function () {
-                let id = this.parentElement.parentElement.parentElement.getAttribute('todoList_id');
-                let status = this.parentElement.parentElement.parentElement.getAttribute('class');
-                xmlHttp.onreadystatechange = function (e) {
-                    if (this.readyState === 4 && this.status === 200) {
-                        if (this.responseText === 'not-completed' || this.responseText === 'completed') {
-                            btnToggle.parentElement.parentElement.parentElement.setAttribute('class', this.responseText);
-                            console.log('toggle status');
-                        }
-                    }
-                }
-                xmlHttp.open('GET', `./xmlHttpRequest/todoList.php?action=toggleStatus&status=${status}&todolist_id=${id}`, true);
-                xmlHttp.send();
-            }
-        });
     }
 
 
