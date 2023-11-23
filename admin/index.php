@@ -162,7 +162,7 @@ switch ($action) {
             ]);
             header("location: index.php?action=listCustomer");
         }
-        
+
         include 'customer/addCustomer.php';
         break;
 
@@ -230,7 +230,7 @@ switch ($action) {
                     addVation($id, $color[$i], $size[$i], $amount[$i]);
                     $length=count($color);
                 }
-                
+
                 if(!isset($color[$i])&&isset($variant_id[$i])) {
                     deleteVation($variant_id[$i]);
                     $length=count($variant_id);
