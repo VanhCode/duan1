@@ -49,6 +49,16 @@ header {
   align-items: center;
 }
 
+.information_Err {
+  padding-top: 6px;
+  font-size: 14px;
+  color: red;
+}
+
+.radio_vnpay {
+  display: none;
+}
+
 .time {
   display: flex;
   align-items: center;
@@ -875,6 +885,90 @@ button.stardust-button {
 
 button.stardust-button:hover {
   background: #ee4d2dc9;
+}
+
+.group__location_edit {
+  display: flex;
+  flex-direction: column;
+}
+
+.group_location_ip {
+  margin: 5px 0;
+}
+
+.group_location_ip input {
+  width: 500px;
+  border: 1px solid #ccc;
+  height: 35px;
+  outline: none;
+  padding-left: 5px;
+}
+
+.group_location_ip h4 {
+  font-weight: 500;
+  margin: 6px 0;
+  color: #000000d2;
+}
+
+
+.box_payment_radio {
+  overflow: visible;
+  cursor: pointer;
+  margin: 0 3px;
+  min-width: 5rem;
+  min-height: 2.125rem;
+  box-sizing: border-box;
+  padding: 0.25rem 0.75rem;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: left;
+  border-radius: 1px;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  background: #fff;
+  outline: 0;
+  word-break: break-word;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box_payment_radio span {
+  pointer-events: none;
+}
+
+.payment {
+  display: flex;
+  align-items: center;
+}
+
+.box_payment_radio {
+  overflow: visible;
+  cursor: pointer;
+  margin: 0 3px;
+  min-width: 5rem;
+  min-height: 2.125rem;
+  box-sizing: border-box;
+  padding: 0.25rem 0.75rem;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: left;
+  border-radius: 1px;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  background: #fff;
+  outline: 0;
+  word-break: break-word;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.payment_radio {
+  position: absolute;
+  opacity: 0;
+}
+
+.bgPaymentClick {
+  color: #ee4d2d;
+  border-color: #ee4d2d;
 }
 
 /* End main css */

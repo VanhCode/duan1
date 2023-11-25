@@ -14,8 +14,8 @@
 
 
     // Thêm danh mục
-    function addCategory($name,$image) {
-        $sql = "INSERT INTO categories (`category_name`,`image_cate`) VALUES ('$name','$image')";
+    function addCategory($name,$image,$trangthai) {
+        $sql = "INSERT INTO categories (`category_name`,`image_cate`,`status_category`) VALUES ('$name','$image','$trangthai')";
         pdo_execute($sql);
     }
 
@@ -37,8 +37,8 @@
 
     
     // Update danh mục
-    function updateCategory($id,$name,$image) {
-        $sql = "UPDATE categories SET category_name = '".$name."',image_cate = '".$image."' WHERE category_id = '".$id."'";
+    function updateCategory($id,$name,$image,$trangthai) {
+        $sql = "UPDATE categories SET category_name = '".$name."',image_cate = '".$image."', status_category = '".$trangthai."' WHERE category_id = '".$id."'";
         pdo_execute($sql);
     }
 ?>

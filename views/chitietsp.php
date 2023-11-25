@@ -33,7 +33,7 @@
                         <div class="flex-column__chil_img_hover">
                             <div class="flex-column__chil_img_transform">
                                 <?php
-                                    $giamgia = $chitiet_product['price'] * $chitiet_product['sale'] / 100;
+                                    $giamgia = $chitiet_product['price'] * (100 - $chitiet_product['sale']) / 100;
 
                                     foreach (explode(",", $chitiet_product['images']) as $key => $imageChil) {
                                         ?>

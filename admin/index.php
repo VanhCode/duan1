@@ -7,6 +7,7 @@ include '../models/adminModel/varitionModel.php';
 include '../models/adminModel/commentModel.php';
 include '../models/adminModel/orderModel.php';
 include '../models/adminModel/dashboardModel.php';
+include '../models/adminModel/voucherModel.php';
 
 $action = $_GET['action'] ?? 'dashboard';
 
@@ -33,6 +34,11 @@ switch ($action) {
         break;
 
     // list
+    case 'listVoucher':
+        $allVoucher=getAll('voucher');
+        include 'voucher/listVoucher.php';
+        break;
+
     case 'listProduct':
         if(isset($_GET['product_page']) && ($_GET['product_page'] > 0)) {
             $product_page = $_GET['product_page'];
@@ -93,6 +99,30 @@ switch ($action) {
 
 
     //add
+    case 'addVoucher':
+        $_POST['del_price']=$_POST['del_price']??0;
+        $_POST['del_percent']=$_POST['del_percent']??0;
+        if(isset($_POST['addVoucher'])){
+            $voucher_id=addDataReturnId('voucher',[
+                'content_voucher'=>$_POST['content_voucher'],
+                'del_price'=>$_POST['del_price'],
+                'del_percent'=>$_POST['del_percent'],
+                'from_price'=>$_POST['from_price'],
+                'to_price'=>$_POST['to_price'],
+                'expiration_date'=>$_POST['expiration_date'],
+            ]);
+            if(isset($_POST['addForAll'])){
+                addVoucherForAllUser($voucher_id);
+            }
+            if(isset($_POST['onlineDay'])){
+                addVoucherForNewUser($voucher_id,$_POST['onlineDay']);
+            }
+            if(isset($_POST['paymentLimit'])){
+                addVoucherForUserWithPaymentLimit($voucher_id,$_POST['paymentLimit']);
+            }
+        }
+        include 'voucher/addVoucher.php';
+        break;
     case 'addProduct':
         if (isset($_POST['addProduct'])) {
             $namePro = $_POST['namePro'];
@@ -134,12 +164,14 @@ switch ($action) {
         if (isset($_POST['addcategory'])) {
             $errCategory = "";
             $namecate = $_POST['danhmuc'];
+            $trangthai = $_POST['checkshow'];
+
 
             $filename = time().basename($_FILES['imageCate']['name']);
             $target = "../public/upload/image/category/".$filename;
             move_uploaded_file($_FILES['imageCate']['tmp_name'],$target);
 
-            addCategory($namecate,$filename);
+            addCategory($namecate,$filename,$trangthai);
             header('location: index.php?action=listCategory');
         }
 
@@ -168,6 +200,27 @@ switch ($action) {
 
 
     //edit
+    case 'editVoucher':
+        $voucher_id=$_GET['voucher_id']??0;
+        $voucher=getDataBy('voucher',[
+            'voucher_id'=>$voucher_id
+        ]);
+//        echo "<pre>";
+//        print_r($voucher);
+        if(isset($_POST['editVoucher'])){
+            updateData('voucher',[
+                'content_voucher'=>$_POST['content_voucher'],
+                'del_price'=>$_POST['del_price'],
+                'del_percent'=>$_POST['del_percent'],
+                'from_price'=>$_POST['from_price'],
+                'to_price'=>$_POST['to_price'],
+                'expiration_date'=>$_POST['expiration_date'],
+            ],"voucher_id=$voucher_id");
+            header("location: index.php?action=listVoucher");
+        }
+        include 'voucher/editVoucher.php';
+        break;
+
     case 'editProduct':
         if (isset($_GET['id_product']) && ($_GET['id_product'] > 0)) {
             $idProduct = $_GET['id_product'];
@@ -244,8 +297,6 @@ switch ($action) {
 
         include 'product/editProduct.php';
         break;
-
-
     case 'editCategory':
         if (isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
             $categoryId = $_GET['category_id'];
@@ -258,6 +309,7 @@ switch ($action) {
         if (isset($_POST['updateCate'])) {
             $id = $_POST['id'];
             $namecate = $_POST['danhmuc'];
+            $trangthai = $_POST['checkshow'];
             $oldCate = $_POST['oldCate'];
 
             if(!empty($_FILES['imageCate']['name'])) {
@@ -266,7 +318,7 @@ switch ($action) {
                 move_uploaded_file($_FILES['imageCate']['tmp_name'],$target);
             }
 
-            updateCategory($id,$namecate,$filename ? $filename : $oldCate);
+            updateCategory($id,$namecate,$filename ? $filename : $oldCate,$trangthai);
             header('location: index.php?action=listCategory');
         }
 
@@ -300,6 +352,11 @@ switch ($action) {
         break;
 
     // Delete
+    case 'deleteVoucher':
+        $voucher_id=$_GET['voucher_id']??0;
+        deleteData('voucher','voucher_id='.$voucher_id);
+        header('location:'.$_SERVER['HTTP_REFERER']);
+        break;
     case 'deleteCustomer':
         deleteData("users", "user_id=" . $_GET['user_id']);
         header("location:index.php?action=listCustomer");

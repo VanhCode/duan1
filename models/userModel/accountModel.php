@@ -28,9 +28,9 @@
     }
 
     // Insert tài khoản 
-    function addAccount($firstname,$lastname,$email,$password,$phone,$date,$gender) {
-        $sql = "INSERT INTO users (`firth_name`, `last_name`, `email`,`password`, `phone`, `date`, `gender`)
-                VALUES ('$firstname','$lastname','$email','$password','$phone','$date','$gender')
+    function addAccount($firstname,$lastname,$email,$user_image,$password,$phone,$date,$gender) {
+        $sql = "INSERT INTO users (`firth_name`, `last_name`, `email`,`user_image`,`password`, `phone`, `date`, `gender`)
+                VALUES ('$firstname','$lastname','$email','$user_image','$password','$phone','$date','$gender')
         ";
         pdo_execute($sql);
     }

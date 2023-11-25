@@ -41,6 +41,13 @@
                 <span class="text">Quản lí bình luận</span>
             </a>
         </li>
+        <li class="<?=$action=='listVoucher' || $action=='addVoucher' || $action=='editVoucher' ?'active':''?>">
+            <a href="index.php?action=listVoucher">
+                <i class='bx bxs-comment'></i>
+                <span class="text">Quản lí voucher</span>
+            </a>
+        </li>
+
     </ul>
     <ul class="side-menu px-0">
         <li>

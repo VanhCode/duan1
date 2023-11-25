@@ -1,5 +1,5 @@
 <main class="container main__bill">
-    <form action="index.php?action=thanh-toan" method="POST">
+    <form onsubmit="return sendThanhToan()" action="index.php?action=thanh-toan" method="POST">
         <div class="bill__location">
             <div class="bill__bg_location"></div>
             <div class="bill__location_text">
@@ -14,15 +14,21 @@
                     </div>
                 </div>
                 <div class="title__location_edit">
-                    <div class="NYnMjH">
-                        <div>
-                            <input type="text" value="<?= $user['firth_name']." ".$user['last_name'] ?>" name="fullname">
+                    <div class="group__location_edit">
+                        <div class="group_location_ip">
+                            <h4>Họ và tên..*</h4>
+                            <input type="text" class="information_ip ip_name_thanhtoan" value="<?= $user['firth_name']." ".$user['last_name'] ?>" name="fullname">
+                            <div class="information_Err information_Errname"></div>
                         </div>
-                        <div>
-                            <input type="text" value="<?= $user['phone'] ?>" name="phone">
+                        <div class="group_location_ip">
+                            <h4>Số điện thoại..*</h4>
+                            <input type="text" class="information_ip ip_phone_thanhtoan" value="<?= $user['phone'] ?>" name="phone">
+                            <div class="information_Err information_Errphone"></div>
                         </div>
-                        <div>
-                            <input type="text" value="<?= $user['address'] ?>" name="address">
+                        <div class="group_location_ip">
+                            <h4>Địa chỉ..*</h4>
+                            <input type="text" class="information_ip ip_address_thanhtoan" value="<?= $user['address'] ?>" name="address">
+                            <div class="information_Err information_Erraddress"></div>
                         </div>
                     </div>
                 </div>
@@ -94,13 +100,21 @@
                 <h2 class="a11y-visually-hidden">Phương thức thanh toán</h2>
                 <div class="_2qsKTk">
                     <div class="SzEjHI zDPGhr">Phương thức thanh toán</div>
-                    <div class="KoRB7y">
-                        <select name="payment" id="">
-                            <option value="tienmat">Thanh toán khi nhận hàng</option>
-                            <option value="vnpay">Thanh toán VNPAY</option>
-                        </select>
+                    <div class="KoRB7y payment">
+                        <div class="vanhstore_payment_box_radio">
+                            <label class="box_payment_radio bgPaymentClick">
+                                <span style="pointer-events: none;">Thanh toán khi nhận hàng</span>
+                                <input style="pointer-events: none;" type="radio" class="payment_radio" name="payment_radio" value="tienmat" checked>
+                            </label>
+                        </div>
+                        <div class="vanhstore_payment_box_radio radio_vnpay">
+                            <label class="box_payment_radio">
+                                <span style="pointer-events: none;">Thanh toán VNPAY</span>
+                                <input style="pointer-events: none;" type="radio" class="payment_radio" name="payment_radio" value="VNPAY">
+                            </label>
+                        </div>
                     </div>
-                    <a href="" class="FooGkf div-style">Thay đổi</a>
+                    <a class="FooGkf div-style box_style_radio">Thay đổi</a>
                 </div>
             </div>
             <div class="KQyCj0">
@@ -123,3 +137,70 @@
 </main>
 
 <!-- End main -->
+
+<script>
+    function sendThanhToan() {
+        var ip_name_thanhtoan = document.querySelector('.ip_name_thanhtoan');
+        var ip_phone_thanhtoan = document.querySelector('.ip_phone_thanhtoan');
+        var ip_address_thanhtoan = document.querySelector('.ip_address_thanhtoan');
+        var paymentRadio = document.querySelectorAll('.payment_radio');
+
+        var information_Errname = document.querySelector('.information_Errname');
+        var information_Errphone = document.querySelector('.information_Errphone');
+        var information_Erraddress = document.querySelector('.information_Erraddress');
+        let count = 0; // Khởi   tạo biến count
+
+        if(ip_name_thanhtoan.value == "") {
+            information_Errname.innerHTML = "Vui lòng nhập trường này";
+            count++;
+        } else {
+            information_Errname.innerHTML = "";
+        }
+
+        if(ip_phone_thanhtoan.value == "") {
+            information_Errphone.innerHTML = "Vui lòng nhập trường này";
+            count++;
+        } else {
+            information_Errphone.innerHTML = "";
+        }
+
+        if(ip_address_thanhtoan.value == "") {
+            information_Erraddress.innerHTML = "Vui lòng nhập trường này";
+            count++;
+        } else {
+            information_Erraddress.innerHTML = "";
+        }
+
+        if(paymentRadio.checked == false) {
+            count++;
+        }
+
+        if (count > 0) {
+            return false;
+        }
+    }
+
+    var paymentRadio = document.querySelectorAll('.payment_radio');
+    var box_payment_radio = document.querySelectorAll('.box_payment_radio');
+
+    paymentRadio.forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            box_payment_radio.forEach(function(box) {
+                box.classList.remove('bgPaymentClick');
+            });
+
+            if (this.checked) {
+                this.closest('.box_payment_radio').classList.add('bgPaymentClick');
+            }
+        });
+    });
+
+    var radio_vnpay = document.querySelector('.radio_vnpay');
+    var box_style_radio = document.querySelector('.box_style_radio');
+
+    box_style_radio.addEventListener('click', function() {
+        box_style_radio.style.display = "none";
+        radio_vnpay.style.display = "block";
+    })
+
+</script>
