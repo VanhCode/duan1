@@ -62,6 +62,17 @@
                             <label class="form-label">Ảnh danh mục</label>
                             <input type="file" name="imageCate" class="form-control danhmuc" multiple>
                         </div>
+                        <div class="form-group cate_img">
+                            <label class="form-label">Trạng thái</label><br>
+                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                <input type="radio" class="btn-check" name="checkshow" id="btncheck1" autocomplete="off" checked>
+                                <label class="btn btn-outline-success" for="btncheck1">Hiển thị</label>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                <input type="radio" class="btn-check" name="checkshow" id="btncheck2" autocomplete="off">
+                                <label class="btn btn-outline-danger" for="btncheck2">Ẩn</label>
+                            </div>
+                        </div>
                         <div class="form-group mg_tb">
                             <input class="btn btn-primary" type="submit" name="addcategory" value="Thêm danh mục">
                             <a href="index.php?action=listCategory" class="btn btn-dark">Danh sách</a>

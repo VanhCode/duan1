@@ -4,9 +4,9 @@
         <div class="user-menu">
             <div class="img-user">
                 <div class="updateForm">
-                    <img src="./img1/lgeditimg.png" alt="">
+                    <img src="./public/upload/image/user/<?= $user['user_image'] ?>" alt="">
                     <div class="update-userImg">
-                        <h5>Vanh</h5>
+                        <h5><?= $user['firth_name']." ".$user['last_name'] ?></h5>
                         <a href=""><i class="fa-solid fa-pen"></i> Sửa Hồ Sơ</a>
                     </div>
                 </div>
@@ -85,9 +85,7 @@
                         include "sale.php";
                     } else if($action == "user" && $userAction == "tai-khoan-cua-toi") {
 
-                        if(isset($_GET['profile']) == 'ho-so') {
-                            $userProfile = select__userByid($userID);
-                        }
+                        $userProfile = select__userByid($userID);
 
                         if($_SERVER['REQUEST_METHOD'] == "POST") {
 
@@ -102,6 +100,11 @@
 
                         include "thongtin.php";
                     } else if($action == "user" && $userAction == "don-mua") {
+                        $load_order_all = load_all_order($userID);
+                        $load_order_choxacnhan = load_bill_choxacnhan($userID);
+                        $load_order_daxacnhan = load_bill_daxacnhan($userID);
+                        $load_order_danggiao = load_bill_danggiao($userID);
+                        $load_order_hoanthanh = load_bill_hoanthanh($userID);
                         include "donmua.php";
                     } else if($action == "user" && $userAction == "thong-bao") {
                         include "thongbao.php";
@@ -112,7 +115,8 @@
                     }
 
                 } else {
-                    include "donmua.php";
+                    $userProfile = select__userByid($userID);
+                    include "thongtin.php";
                 }
             ?>
             

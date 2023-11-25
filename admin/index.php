@@ -164,12 +164,14 @@ switch ($action) {
         if (isset($_POST['addcategory'])) {
             $errCategory = "";
             $namecate = $_POST['danhmuc'];
+            $trangthai = $_POST['checkshow'];
+
 
             $filename = time().basename($_FILES['imageCate']['name']);
             $target = "../public/upload/image/category/".$filename;
             move_uploaded_file($_FILES['imageCate']['tmp_name'],$target);
 
-            addCategory($namecate,$filename);
+            addCategory($namecate,$filename,$trangthai);
             header('location: index.php?action=listCategory');
         }
 
@@ -307,6 +309,7 @@ switch ($action) {
         if (isset($_POST['updateCate'])) {
             $id = $_POST['id'];
             $namecate = $_POST['danhmuc'];
+            $trangthai = $_POST['checkshow'];
             $oldCate = $_POST['oldCate'];
 
             if(!empty($_FILES['imageCate']['name'])) {
@@ -315,7 +318,7 @@ switch ($action) {
                 move_uploaded_file($_FILES['imageCate']['tmp_name'],$target);
             }
 
-            updateCategory($id,$namecate,$filename ? $filename : $oldCate);
+            updateCategory($id,$namecate,$filename ? $filename : $oldCate,$trangthai);
             header('location: index.php?action=listCategory');
         }
 

@@ -68,7 +68,21 @@
                         <div class="form-group cate_img">
                             <label class="form-label">Ảnh danh mục</label>
                             <input type="file" name="imageCate" class="form-control danhmuc">
-                            <input type="text" name="oldCate" value="<?= $image_cate ?>" class="form-control danhmuc">
+                            <input type="hidden" name="oldCate" value="<?= $image_cate ?>" class="form-control danhmuc">
+                        </div>
+                        <div class="form-group">
+                            <img width="100px" src="../public/upload/image/category/<?= $image_cate ?>" alt="">
+                        </div>
+                        <div class="form-group cate_img">
+                            <label class="form-label">Trạng thái</label><br>
+                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                <input type="radio" class="btn-check" name="checkshow" id="btncheck1" value="show" autocomplete="off" <?= $status_category == 'show' ? 'checked' : '' ?>>
+                                <label class="btn btn-outline-success" for="btncheck1">Hiển thị</label>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                <input type="radio" class="btn-check" name="checkshow" id="btncheck2" value="hidden" autocomplete="off" <?= $status_category == 'hidden' ? 'checked' : '' ?>>
+                                <label class="btn btn-outline-danger" for="btncheck2">Ẩn</label>
+                            </div>
                         </div>
                         <div class="form-group mg_tb">
                             <input class="btn btn-primary" type="submit" name="updateCate" value="Cập nhật danh mục">
