@@ -2,8 +2,10 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/admin/xmlHttpRequest/todoList.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/admin/xmlHttpRequest/voucher.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/models/adminModel/commentModel.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/models/adminModel/dashboardModel.php" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/models/adminModel/orderModel.php" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/models/adminModel/voucherModel.php" dialect="GenericSQL" />
   </component>
 </project>

@@ -77,7 +77,7 @@
                             </td>
                             <td><?=$user['email']?></td>
                             <td><?=$user['phone']?></td>
-                            <td><?=$user['password']?></td>
+                            <td>********</td>
                             <td>
                                 <a class="btn btn-outline-success btn-sm" href="index.php?action=editCustomer&user_id=<?=$user['user_id']?>">Sửa</a>
                                 <a data-bs-toggle="modal" data-bs-target="#exampleModal<?=$user['user_id']?>" class="btn btn-outline-danger btn-sm">Xoá</a>
