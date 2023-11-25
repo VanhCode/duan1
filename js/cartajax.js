@@ -1,6 +1,5 @@
-let httpRequest = new XMLHttpRequest();
-
 var amountClickBoxS = document.querySelectorAll(".amount-click-box");
+var httpRequest = new XMLHttpRequest();
 
 amountClickBoxS.forEach(function (amountClickBox) {
     let id__cart = amountClickBox.querySelector('.id__cart');
@@ -8,40 +7,59 @@ amountClickBoxS.forEach(function (amountClickBox) {
     let click_left = amountClickBox.querySelector('.click_left');
     let click_right = amountClickBox.querySelector('.click_right');
 
-    click_left.addEventListener('click', function () {
+    var tongtien = amountClickBox.parentElement.nextElementSibling.querySelector('.moneysend');
+    var price__cart = amountClickBox.querySelector('.price__cart');
 
+    var total_pricefull = document.querySelector('.price_full');
+    var amountCart = document.querySelectorAll('.amount__cartItem');
+    var priceCartAll = document.querySelectorAll('.price__cart');
+
+    click_left.addEventListener('click', function () {
         if (amount__cartItem.value > 1) {
             amount__cartItem.value--;
+            updateProductTotal();
         }
-
-        httpRequest.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                amount__cartItem.value = this.responseText;
-            }
-        }
-
-        httpRequest.open("GET", "./php/ajaxCart.php?cart_id=" + id__cart.value + "&amount=" + amount__cartItem.value, true);
-        httpRequest.send();
-
     });
 
     click_right.addEventListener('click', function () {
         amount__cartItem.value++;
+        updateProductTotal();
+    });
 
+    function updateProductTotal() {
+        let result = price__cart.value * amount__cartItem.value;
+        let formattedTotal = result.toLocaleString('vi-VN').replace(/,/g, '.');
+        tongtien.innerHTML = formattedTotal;
+
+        updateTotalPayment(); // Cập nhật tổng thanh toán
+        updateCart(id__cart.value, amount__cartItem.value); // Gửi yêu cầu AJAX để cập nhật số lượng
+    }
+
+    function updateTotalPayment() {
+        var totalPrice = 0;
+        amountCart.forEach(function (amount, index) {
+            totalPrice += amount.value * priceCartAll[index].value;
+        });
+        total_pricefull.innerHTML = '₫' + totalPrice.toLocaleString('vi-VN');
+    }
+
+    function updateCart(cartId, newAmount) {
         httpRequest.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                amount__cartItem.value = this.responseText;
+                // Xử lý kết quả nếu cần
             }
         }
 
-        httpRequest.open("GET", "./php/ajaxCart.php?cart_id=" + id__cart.value + "&amount=" + amount__cartItem.value, true);
+        httpRequest.open("GET", "./php/ajaxCart.php?cart_id=" + cartId + "&amount=" + newAmount, true);
         httpRequest.send();
-    });
+    }
 });
 
 
-var formSendCart = document.querySelector('#formSendCart');
 
+
+
+var formSendCart = document.querySelector('#formSendCart');
 
 // Check nút xóa khi chưa chọn sản phẩm
 

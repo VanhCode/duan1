@@ -49,6 +49,16 @@ header {
   align-items: center;
 }
 
+.information_Err {
+  padding-top: 6px;
+  font-size: 14px;
+  color: red;
+}
+
+.radio_vnpay {
+  display: none;
+}
+
 .time {
   display: flex;
   align-items: center;

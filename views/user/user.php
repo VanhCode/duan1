@@ -103,6 +103,8 @@
                         $load_order_all = load_all_order($userID);
                         $load_order_choxacnhan = load_bill_choxacnhan($userID);
                         $load_order_daxacnhan = load_bill_daxacnhan($userID);
+                        $load_order_danggiao = load_bill_danggiao($userID);
+                        $load_order_hoanthanh = load_bill_hoanthanh($userID);
                         include "donmua.php";
                     } else if($action == "user" && $userAction == "thong-bao") {
                         include "thongbao.php";
@@ -113,7 +115,8 @@
                     }
 
                 } else {
-                    include "donmua.php";
+                    $userProfile = select__userByid($userID);
+                    include "thongtin.php";
                 }
             ?>
             

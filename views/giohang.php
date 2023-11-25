@@ -66,7 +66,7 @@
                                                 <?php
                                                     $tong = 0;
                                                     foreach($listCart as $cart) {
-                                                        $giamgia = $cart['price'] * $cart['sale'] / 100;
+                                                        $giamgia = $cart['price'] * (100 - $cart['sale']) / 100;
                                                         $sotien = $cart['price'] * $cart['amount'];
                                                         $tong += $sotien;
                                                         ?>
@@ -75,7 +75,7 @@
                                                                     <div class="zoXdNN">
                                                                         <div class="lgcEHJ">
                                                                             <label class="stardust-checkbox">
-                                                                                <input class="stardust-checkbox__input" id="checkBox__productCart" type="checkbox" name="id_cart[]" value="<?= $cart['cart_id'] ?>">
+                                                                                <input class="stardust-checkbox__input checkbox_productcart" id="checkBox__productCart" type="checkbox" name="id_cart[]" value="<?= $cart['cart_id'] ?>">
                                                                                 <div class="stardust-checkbox__box"></div>
                                                                             </label>
                                                                         </div>
@@ -111,28 +111,65 @@
 
                                                                         <div class="price-product">
                                                                             <div class="price-flex flex__price2">
-                                                                                <span id="price-throwChange" class="price-money price-chil">
-                                                                                    ₫<?= number_format($giamgia, 0, ",", ".") ?>
-                                                                                </span>
-                                                                                <span id="price-click" class="price-money">
-                                                                                    ₫<?= number_format($cart['price'], 0, ",", ".") ?>
-                                                                                </span>
+                                                                                <?php
+                                                                                    if($cart['sale'] > 0) {
+                                                                                        ?>
+                                                                                            <span id="price-throwChange" class="price-money price-chil">
+                                                                                                ₫<?= number_format($cart['price'], 0, ",", ".") ?>
+                                                                                            </span>
+                                                                                            <span id="price-click" class="price-money">
+                                                                                                ₫<?= number_format($giamgia, 0, ",", ".") ?>
+                                                                                            </span>
+                                                                                        <?php
+                                                                                    } else {
+                                                                                        ?>
+                                                                                            <span id="price-click" class="price-money">
+                                                                                                ₫<?= number_format($cart['price'], 0, ",", ".") ?>
+                                                                                            </span>
+                                                                                        <?php
+                                                                                    }
+                                                                                ?>
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="amount-product">
                                                                             <div class="amount-click-box">
+                                                                                
                                                                                 <input type="hidden" name="" class="id__cart" value="<?= $cart['cart_id'] ?>">
-                                                                                <a id="" class="clickAdd__deleteprice_right click_left"><i class="fa-solid fa-minus"></i></a>
+                                                                                
+                                                                                <a id="" class="clickAdd__deleteprice_right click_left"><i style="pointer-events: none;" class="fa-solid fa-minus"></i></a>
                                                                                 <input disabled type="text" id="" class="amount__flex amount__cartItem" value="<?= $cart['amount'] ?>">
-                                                                                <a id="" class="clickAdd__deleteprice_left click_right"><i class="fa-solid fa-plus"></i></a>
+                                                                                <a id="" class="clickAdd__deleteprice_left click_right"><i style="pointer-events: none;" class="fa-solid fa-plus"></i></a>
+
+                                                                                <?php
+                                                                                    if($cart['sale'] > 0) {
+                                                                                        ?>
+                                                                                            <input type="hidden" name="" class="price__cart" value="<?= $giamgia ?>">
+                                                                                        <?php
+                                                                                    } else {
+                                                                                        ?>
+                                                                                            <input type="hidden" name="" class="price__cart" value="<?= $cart['price'] ?>">            
+                                                                                        <?php
+                                                                                    }
+                                                                                ?>
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="money-product">
-                                                                            <div>
-                                                                                <span id="money-send" class="money-send">
-                                                                                    ₫<?= number_format($sotien, 0, ",", ".") ?>
+                                                                            <div class="money_price">
+                                                                                ₫ <span id="money-send" class="money-send moneysend">
+                                                                                    <?php
+                                                                                        if($cart['sale'] > 0) {
+                                                                                            ?>
+                                                                                                <?= number_format($giamgia, 0, ",", ".") ?>
+                                                                                            <?php
+                                                                                        } else {
+                                                                                            ?>
+                                                                                                <?= number_format($sotien, 0, ",", ".") ?>
+                                                                                            <?php
+                                                                                        }
+                                                                                    ?>
+                                                                                    
                                                                                 </span>
                                                                             </div>
                                                                         </div>
@@ -208,7 +245,8 @@
                                     <div class="check-total-payout">
                                         <div class="flex-total-payout">
                                             <div class="total-text-">Tổng thanh toán (<?= $countProduct_cart['countProduct_cart'] ?>): </div>
-                                            <div class="price-end-total">₫<?= number_format($tong, 0, ",", ".") ?></div>
+                                            <div class="price-end-total price_full">₫<?= number_format($tong, 0, ",", ".") ?></div>
+                                            <input type="hidden" class="total_pricefull" value="<?= $tong ?>">
                                         </div>
                                     </div>
                                     <div class="line-end-total-payout"></div>

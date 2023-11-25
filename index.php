@@ -380,10 +380,10 @@
                 break;
             case "thanh-toan":
                 
-                if(!isset($_SESSION['user_id'])) {
-                    header('Location: index.php?action=login');
-                    exit();
-                }
+                // if(!isset($_SESSION['user_id'])) {
+                //     header('Location: index.php?action=login');
+                //     exit();
+                // }
 
                 // Đặt hàng
                 $data = [];
@@ -397,149 +397,198 @@
 
                     // print_r($_POST);
                     // die;
-                    
-                    $data = [];
 
-                    foreach($_POST['id_cart'] as $cart) {
-                        $data[] = listCart__bill($cart);
-                    }
+                    $_SESSION['payment_session'] = $_POST['payment_radio'];
 
-                    $_SESSION['cart'] = $_POST;
+                    if(isset($_POST['payment_radio']) && ($_POST['payment_radio'] == "VNPAY")) {
+                        $data = [];
 
-                    $_SESSION['ma_don_hang'] = generateRandomOrderCode();
-                    $vnp_TxnRef = $_SESSION['ma_don_hang']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-
-                    $tongtien = 0;
-                    foreach ($data as $key => $value) {
-                        $thanhtien = $value['amount'] * $value['price'];
-                        $tongtien = $tongtien + $thanhtien;
-                    }
-
-
-                    $vnp_OrderInfo = "Thanh toán đơn hàng tại VanhStore";
-                    $vnp_OrderType = "VNPAY";
-                    $vnp_Amount = $tongtien * 100; //Giá tiền
-                    $vnp_Locale = "VN";
-                    $vnp_BankCode = "NCB";
-                    $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
-                    $vnp_ExpireDate = $expire;
-                    $vnp_Bill_Address=$_POST['address'];
-
-                    $inputData = array(
-                        "vnp_Version" => "2.1.0",
-                        "vnp_TmnCode" => $vnp_TmnCode,
-                        "vnp_Amount" => $vnp_Amount,
-                        "vnp_Command" => "pay",
-                        "vnp_CreateDate" => date('YmdHis'),
-                        "vnp_CurrCode" => "VND",
-                        "vnp_IpAddr" => $vnp_IpAddr,
-                        "vnp_Locale" => $vnp_Locale,
-                        "vnp_OrderInfo" => $vnp_OrderInfo,
-                        "vnp_OrderType" => $vnp_OrderType,
-                        "vnp_ReturnUrl" => $vnp_Returnurl,
-                        "vnp_TxnRef" => $vnp_TxnRef,
-                        "vnp_ExpireDate" => $vnp_ExpireDate,
-                        "vnp_Bill_FirstName" => $_POST['fullname'],
-                        "vnp_Inv_Phone" => $_POST['phone'],
-                        "vnp_Bill_Address" => $_POST['address']
-                    );
-
-                    if (isset($vnp_BankCode) && $vnp_BankCode != "") {
-                        $inputData['vnp_BankCode'] = $vnp_BankCode;
-                    }
-
-                    // var_dump($inputData);
-                    // die();
-
-                    ksort($inputData);
-
-                    $query = "";
-                    $i = 0;
-                    $hashdata = "";
-                    foreach ($inputData as $key => $value) {
-                        if ($i == 1) {
-                            $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
-                        } else {
-                            $hashdata .= urlencode($key) . "=" . urlencode($value);
-                            $i = 1;
+                        foreach($_POST['id_cart'] as $cart) {
+                            $data[] = listCart__bill($cart);
                         }
-                        $query .= urlencode($key) . "=" . urlencode($value) . '&';
-                    }
 
-                    $vnp_Url = $vnp_Url . "?" . $query;
-                    if (isset($vnp_HashSecret)) {
-                        $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret); //  
-                        $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
-                    }
-                    $returnData = array(
-                        'code' => '00',
-                        'message' => 'success',
-                        'data' => $vnp_Url
-                    );
+                        $_SESSION['cart'] = $_POST;
 
-                    if (isset($_POST['dathang'])) {
-                        echo '<script>window.location.href = "' . $vnp_Url . '";</script>';
-                        die();
+                        $_SESSION['ma_don_hang'] = generateRandomOrderCode();
+                        $vnp_TxnRef = $_SESSION['ma_don_hang']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+
+                        $tongtien = 0;
+                        foreach ($data as $key => $value) {
+                            $thanhtien = $value['amount'] * $value['price'];
+                            $tongtien = $tongtien + $thanhtien;
+                        }
+
+                        $vnp_OrderInfo = "Thanh toán đơn hàng tại VanhStore";
+                        $vnp_OrderType = "VNPAY";
+                        $vnp_Amount = $tongtien * 100; //Giá tiền
+                        $vnp_Locale = "VN";
+                        $vnp_BankCode = "NCB";
+                        $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+                        $vnp_ExpireDate = $expire;
+                        $vnp_Bill_Address=$_POST['address'];
+
+                        $inputData = array(
+                            "vnp_Version" => "2.1.0",
+                            "vnp_TmnCode" => $vnp_TmnCode,
+                            "vnp_Amount" => $vnp_Amount,
+                            "vnp_Command" => "pay",
+                            "vnp_CreateDate" => date('YmdHis'),
+                            "vnp_CurrCode" => "VND",
+                            "vnp_IpAddr" => $vnp_IpAddr,
+                            "vnp_Locale" => $vnp_Locale,
+                            "vnp_OrderInfo" => $vnp_OrderInfo,
+                            "vnp_OrderType" => $vnp_OrderType,
+                            "vnp_ReturnUrl" => $vnp_Returnurl,
+                            "vnp_TxnRef" => $vnp_TxnRef,
+                            "vnp_ExpireDate" => $vnp_ExpireDate,
+                            "vnp_Bill_FirstName" => $_POST['fullname'],
+                            "vnp_Inv_Phone" => $_POST['phone'],
+                            "vnp_Bill_Address" => $_POST['address']
+                        );
+
+                        if (isset($vnp_BankCode) && $vnp_BankCode != "") {
+                            $inputData['vnp_BankCode'] = $vnp_BankCode;
+                        }
+
+                        // var_dump($inputData);
+                        // die();
+
+                        ksort($inputData);
+
+                        $query = "";
+                        $i = 0;
+                        $hashdata = "";
+                        foreach ($inputData as $key => $value) {
+                            if ($i == 1) {
+                                $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
+                            } else {
+                                $hashdata .= urlencode($key) . "=" . urlencode($value);
+                                $i = 1;
+                            }
+                            $query .= urlencode($key) . "=" . urlencode($value) . '&';
+                        }
+
+                        $vnp_Url = $vnp_Url . "?" . $query;
+                        if (isset($vnp_HashSecret)) {
+                            $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret); //  
+                            $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+                        }
+                        $returnData = array(
+                            'code' => '00',
+                            'message' => 'success',
+                            'data' => $vnp_Url
+                        );
+
+                        if (isset($_POST['dathang']) && isset($_POST['payment_radio']) && ($_POST['payment_radio'] == "VNPAY")) {
+                            echo '<script>window.location.href = "' . $vnp_Url . '";</script>';
+                            die();
+                        } else {
+                            echo json_encode($returnData);
+                        }
                     } else {
-                        echo json_encode($returnData);
+                        $data = [];
+
+                        foreach($_POST['id_cart'] as $cart) {
+                            $data[] = listCart__bill($cart);
+                        }
+
+                        $_SESSION['cart'] = $_POST;
+
+                        $_SESSION['ma_don_hang'] = generateRandomOrderCode();
+                        $vnp_TxnRef = $_SESSION['ma_don_hang']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+
+                        $tongtien = 0;
+                        foreach ($data as $key => $value) {
+                            $thanhtien = $value['amount'] * $value['price'];
+                            $tongtien = $tongtien + $thanhtien;
+                        }
+
+                        header('Location: index.php?action=cam-on');
+
                     }
+
+                    
                 }
 
                 include "views/thanhtoan.php";
                 break;
             case "cam-on":
-                if (isset($_GET["vnp_Amount"]) && $_GET['vnp_ResponseCode'] == '00') {
-                    date_default_timezone_set('Asia/Ho_Chi_Minh');
-                    $ngaymua = date("Y-m-d H:i:s");
-                    
-                
-                    if (isset($user)) {
-                        $ma_donhang = $_SESSION['ma_don_hang'];
-                        $loai_thanhtoan = "Vnpay";
+                if($_SESSION['payment_session'] == "VNPAY") {
+                    if (isset($_GET["vnp_Amount"]) && $_GET['vnp_ResponseCode'] == '00') {
+                        date_default_timezone_set('Asia/Ho_Chi_Minh');
+                        $ngaymua = date("Y-m-d H:i:s");
+    
                         
-                        $id_order = insert_bill($userID,$ma_donhang,$_SESSION['cart']['fullname'],$_SESSION['cart']['phone'],$_SESSION['cart']['address'],$_SESSION['cart']['payment']);
-
-                        $data = [];
-
-                        foreach($_SESSION['cart']['id_cart'] as $cart) {
-                            $data[] = listCart__bill($cart);
+                        if (isset($user)) {
+                            $ma_donhang = $_SESSION['ma_don_hang'];
+                            $loai_thanhtoan = "Vnpay";
+                            
+                            $id_order = insert_bill($userID,$ma_donhang,$_SESSION['cart']['fullname'],$_SESSION['cart']['phone'],$_SESSION['cart']['address'],$loai_thanhtoan);
+    
+                            $data = [];
+    
+                            foreach($_SESSION['cart']['id_cart'] as $cart) {
+                                $data[] = listCart__bill($cart);
+                            }
+    
+                            foreach($data as $oder_detail) {
+                                $tongdon = $oder_detail['amount'] * $oder_detail['price'];
+                                insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $tongdon);
+                            }
                         }
-
-                        foreach($data as $oder_detail) {
-                            $tongdon = $oder_detail['amount'] * $oder_detail['price'];
-                            insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $tongdon);
+        
+                        $vnp_BankCode = $_GET["vnp_BankCode"];
+                        $vnp_BankTranNo = $_GET["vnp_BankTranNo"];
+                        $vnp_CardType = $_GET["vnp_CardType"];
+                        $vnp_OrderInfo = $_GET["vnp_OrderInfo"];
+                        $vnp_PayDate = $_GET["vnp_PayDate"];
+                        $vnp_TmnCode = $_GET["vnp_TmnCode"];
+                        $vnp_TransactionNo = $_GET["vnp_TransactionNo"];
+                        $ma_donhang = $_SESSION["ma_don_hang"];
+                        
+                        echo "<pre>";
+                        print_r($_SESSION["cart"]);
+                        // die;
+        
+                        foreach ($_SESSION["cart"]['id_cart'] as $value) {
+                            delete_cart($value);
                         }
+        
+                        // insert_vnpay($tongtien, $ma_donhang, $vnp_BankCode, $vnp_BankTranNo, $vnp_CardType, $vnp_OrderInfo, $vnp_PayDate, $vnp_TmnCode, $vnp_TransactionNo);
+                        
+                        unset($_SESSION["cart"]);
+                        unset($_SESSION["ma_don_hang"]);
+                        include("./views/main/camon.php");
+                    } else {
+                        echo "<script>alert('Đã hủy thanh toán');</script>";
+                        echo '<script>window.location.href = "index.php?action=thanh-toan";</script>';
                     }
-    
-                    $vnp_BankCode = $_GET["vnp_BankCode"];
-                    $vnp_BankTranNo = $_GET["vnp_BankTranNo"];
-                    $vnp_CardType = $_GET["vnp_CardType"];
-                    $vnp_OrderInfo = $_GET["vnp_OrderInfo"];
-                    $vnp_PayDate = $_GET["vnp_PayDate"];
-                    $vnp_TmnCode = $_GET["vnp_TmnCode"];
-                    $vnp_TransactionNo = $_GET["vnp_TransactionNo"];
-                    $ma_donhang = $_SESSION["ma_don_hang"];
+                } else {
+                    $ma_donhang = $_SESSION['ma_don_hang'];
+                    $loai_thanhtoan = "tienmat";
                     
-                    echo "<pre>";
-                    print_r($_SESSION["cart"]);
-                    // die;
-    
+                    $id_order = insert_bill($userID,$ma_donhang,$_SESSION['cart']['fullname'],$_SESSION['cart']['phone'],$_SESSION['cart']['address'],$loai_thanhtoan);
+
+                    $data = [];
+
+                    foreach($_SESSION['cart']['id_cart'] as $cart) {
+                        $data[] = listCart__bill($cart);
+                    }
+
+                    foreach($data as $oder_detail) {
+                        $tongdon = $oder_detail['amount'] * $oder_detail['price'];
+                        insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $tongdon);
+                    }
+
                     foreach ($_SESSION["cart"]['id_cart'] as $value) {
                         delete_cart($value);
                     }
-
-                    
-    
-                    // insert_vnpay($tongtien, $ma_donhang, $vnp_BankCode, $vnp_BankTranNo, $vnp_CardType, $vnp_OrderInfo, $vnp_PayDate, $vnp_TmnCode, $vnp_TransactionNo);
                     
                     unset($_SESSION["cart"]);
                     unset($_SESSION["ma_don_hang"]);
                     include("./views/main/camon.php");
-                } else {
-                    echo "<script>alert('Đã hủy thanh toán');</script>";
-                    echo '<script>window.location.href = "index.php?action=thanh-toan";</script>';
-    
                 }
+                
                 break;
             default:
                 include "views/404.php";
