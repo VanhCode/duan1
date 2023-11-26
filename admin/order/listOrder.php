@@ -59,16 +59,16 @@
                 </div>
                 <table>
                     <thead>
-                        <tr>
-                            <th style="padding-right: 20px">STT</th>
-                            <th>Người đặt hàng</th>
-                            <th>Người nhận</th>
-                            <th>Tổng cộng</th>
-                            <th>Ngày đặt hàng</th>
-                            <th>Trạng thái</th>
-                            <th>Thanh toán</th>
-                            <th>Chi tiết</th>
-                        </tr>
+                    <tr>
+                        <th style="padding-right: 20px">STT</th>
+                        <th>Người đặt hàng</th>
+                        <th>Người nhận</th>
+                        <th>Tổng cộng</th>
+                        <th>Ngày đặt hàng</th>
+                        <th>Trạng thái</th>
+                        <th>Thanh toán</th>
+                        <th>Chi tiết</th>
+                    </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($listOrder as $key => $value) : ?>
@@ -86,37 +86,47 @@
                                 <td style="color: #ff7d7d;font-weight: 500;"><?= number_format($value['total'], 0, ',', '.') ?></td>
                                 <td><?= $value['create_at'] ?></td>
 
-                                <td>
-                                    <select onchange="changeStatus(this,<?= $value['order_id'] ?>)" class="form-select-sm selected_status" name="status" <?= $value['status'] == 'completed' ? 'disabled' : '' ?>>
-                                        <?php
-                                        $status =
-                                            [
-                                                'pending' => 'Chờ xác nhận',
-                                                'confirmed' => 'Đã xác nhận',
-                                                'shipping' => 'Đang vận chuyển',
-                                                'completed' => 'Hoàn thành'
-                                            ];
-                                        foreach ($status as $key => $order) : ?>
-                                            <option <?= $key == $value['status'] ? 'selected' : '' ?> style="font-size: 14px; padding: 5px" value="<?= $key ?>"><?= $order ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select onchange="changeStatus(this,<?= $value['order_id'] ?>,'payment_status')" class="form-select-sm selected_status" name="status" <?= $value['payment_status'] == 'completed' ? 'disabled' : '' ?>>
-                                        <?php
-                                        $status =
-                                            [
-                                                'unpaid' => 'Chưa thanh toán',
-                                                'paid' => 'Đã thanh toán',
-                                                'repaid' => 'Yêu cầu hoàn tiền'
-                                            ];
-                                        foreach ($status as $key => $order) : ?>
-                                            <option <?= $key == $value['payment_status'] ? 'selected' : '' ?> style="font-size: 14px; padding: 5px" value="<?= $key ?>"><?= $order ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </td>
+                            <td>
+                                <select onchange="changeStatus(this,<?=$value['order_id']?>)"
+                                        class="form-select-sm selected_status" name="status"
+                                        <?=$value['status']=='completed'?'disabled':''?>
+                                >
+                                    <?php
+                                    $status =
+                                        [
+                                            'pending' => 'Chờ xác nhận',
+                                            'confirmed' => 'Đã xác nhận',
+                                            'shipping' => 'Đang vận chuyển',
+                                            'completed' => 'Hoàn thành'
+                                        ];
+                                    foreach ($status as $key => $order):?>
+                                        <option <?= $key == $value['status'] ? 'selected' : '' ?>
+                                                style="font-size: 14px; padding: 5px"
+                                                value="<?= $key ?>"><?= $order ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
+                            <td>
+                                <select onchange="changeStatus(this,<?= $value['order_id'] ?>,'payment_status')"
+                                        class="form-select-sm selected_status" name="status"
+                                    <?= $value['payment_status'] == 'completed' ? 'disabled' : '' ?>
+                                >
+                                    <?php
+                                    $status =
+                                        [
+                                            'unpaid' => 'Chưa thanh toán',
+                                            'paid' => 'Đã thanh toán',
+                                            'repaid' => 'Yêu cầu hoàn tiền'
+                                        ];
+                                    foreach ($status as $key => $order):?>
+                                        <option <?= $key == $value['payment_status'] ? 'selected' : '' ?>
+                                                style="font-size: 14px; padding: 5px"
+                                                value="<?= $key ?>"><?= $order ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
 
                                 <td>
                                     <a class="btn btn-success btn-sm" href="index.php?action=listOrder_detail&order_id=<?= $value['order_id'] ?>">Chi
@@ -127,7 +137,7 @@
                     </tbody>
                 </table>
                 <script>
-                    function changeStatus(select, order_id, action = 'status') {
+                    function changeStatus(select,order_id,action='status') {
                         console.log("Sending request with status:", select.value, "and order_id:", order_id);
                         if (select.disabled === false) {
                             let xmlHttp = new XMLHttpRequest();

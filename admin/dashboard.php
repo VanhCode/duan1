@@ -46,7 +46,7 @@
         font-size: 20px;
     }
 
-    .todo-list>li>i {
+    .todo-list > li > i {
         font-size: 30px;
     }
 
@@ -59,7 +59,7 @@
         color: red;
     }
 
-    .menu_option>ul>li:first-child:hover {
+    .menu_option > ul > li:first-child:hover {
         color: #0d6efd;
     }
 </style>
@@ -111,6 +111,7 @@
             </div>
         </div>
         <script>
+
             let select_day = document.querySelector('.select-day');
             select_day.onchange = function(e) {
                 window.location.href = `index.php?action=dashboard&day=${this.value}`;
@@ -151,61 +152,72 @@
                 </div>
                 <table>
                     <thead>
-                        <tr>
-                            <th style="padding-right: 20px">STT</th>
-                            <th>Người đặt hàng</th>
-                            <th>Tổng cộng</th>
-                            <th>Ngày đặt hàng</th>
-                            <th>Trạng thái</th>
-                            <th>Thanh toán</th>
-                            <th>Chi tiết</th>
-                        </tr>
+                    <tr>
+                        <th style="padding-right: 20px">STT</th>
+                        <th>Người đặt hàng</th>
+                        <th>Tổng cộng</th>
+                        <th>Ngày đặt hàng</th>
+                        <th>Trạng thái</th>
+                        <th>Thanh toán</th>
+                        <th>Chi tiết</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($newOrder as $key => $value) : ?>
-                            <tr>
-                                <td style="margin-top: 7px"><?= $key + 1 ?></td>
-                                <td>
-                                    <img src="../public/upload/image/user/<?= $value['user_image'] ?>" alt="">
-                                    <span><?= $value['fullName'] ?></span>
-                                </td>
-                                <td style="color: #ff7d7d;font-weight: 500;"><?= number_format($value['total'], 0, ',', '.') ?></td>
-                                <td><?= $value['create_at'] ?></td>
-                                <td>
-                                    <select onchange="changeStatus(this,<?= $value['order_id'] ?>)" class="form-select-sm selected_status" name="status" <?= $value['status'] == 'completed' ? 'disabled' : '' ?>>
-                                        <?php
-                                        $status =
-                                            [
-                                                'pending' => 'Chờ xác nhận',
-                                                'confirmed' => 'Đã xác nhận',
-                                                'shipping' => 'Đang vận chuyển',
-                                                'completed' => 'Hoàn thành'
-                                            ];
-                                        foreach ($status as $key => $order) : ?>
-                                            <option <?= $key == $value['status'] ? 'selected' : '' ?> style="font-size: 14px; padding: 5px" value="<?= $key ?>"><?= $order ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select onchange="changeStatus(this,<?= $value['order_id'] ?>,'payment_status')" class="form-select-sm selected_status" name="status" <?= $value['payment_status'] == 'completed' ? 'disabled' : '' ?>>
-                                        <?php
-                                        $status =
-                                            [
-                                                'unpaid' => 'Chưa thanh toán',
-                                                'paid' => 'Đã thanh toán',
-                                                'repaid' => 'Yêu cầu hoàn tiền'
-                                            ];
-                                        foreach ($status as $key => $order) : ?>
-                                            <option <?= $key == $value['payment_status'] ? 'selected' : '' ?> style="font-size: 14px; padding: 5px" value="<?= $key ?>"><?= $order ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </td>
-                                <td><a class="btn btn-success btn-sm" href="index.php?action=listOrder_detail&order_id=<?= $value['order_id'] ?>">Chi
-                                        tiết</a></td>
-                            </tr>
-                        <?php endforeach; ?>
+                    <?php foreach ($newOrder as $key => $value): ?>
+                        <tr>
+                            <td style="margin-top: 7px"><?= $key + 1 ?></td>
+                            <td>
+                                <img src="../public/upload/image/user/<?= $value['user_image'] ?>" alt="">
+                                <span><?= $value['fullName'] ?></span>
+                            </td>
+                            <td style="color: #ff7d7d;font-weight: 500;"><?= number_format($value['total'], 0, ',', '.') ?></td>
+                            <td><?= $value['create_at'] ?></td>
+                            <td>
+                                <select onchange="changeStatus(this,<?= $value['order_id'] ?>)"
+                                        class="form-select-sm selected_status" name="status"
+                                    <?= $value['status'] == 'completed' ? 'disabled' : '' ?>
+                                >
+                                    <?php
+                                    $status =
+                                        [
+                                            'pending' => 'Chờ xác nhận',
+                                            'confirmed' => 'Đã xác nhận',
+                                            'shipping' => 'Đang vận chuyển',
+                                            'completed' => 'Hoàn thành'
+                                        ];
+                                    foreach ($status as $key => $order):?>
+                                        <option <?= $key == $value['status'] ? 'selected' : '' ?>
+                                                style="font-size: 14px; padding: 5px"
+                                                value="<?= $key ?>"><?= $order ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
+                            <td>
+                                <select onchange="changeStatus(this,<?= $value['order_id'] ?>,'payment_status')"
+                                        class="form-select-sm selected_status" name="status"
+                                    <?= $value['payment_status'] == 'completed' ? 'disabled' : '' ?>
+                                >
+                                    <?php
+                                    $status =
+                                        [
+                                            'unpaid' => 'Chưa thanh toán',
+                                            'paid' => 'Đã thanh toán',
+                                            'repaid' => 'Yêu cầu hoàn tiền'
+                                        ];
+                                    foreach ($status as $key => $order):?>
+                                        <option <?= $key == $value['payment_status'] ? 'selected' : '' ?>
+                                                style="font-size: 14px; padding: 5px"
+                                                value="<?= $key ?>"><?= $order ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
+                            <td><a class="btn btn-success btn-sm"
+                                   href="index.php?action=listOrder_detail&order_id=<?= $value['order_id'] ?>">Chi
+                                    tiết</a></td>
+                        </tr>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -262,7 +274,7 @@
     let Btn_deleteTodolist = document.querySelectorAll('.delete_todolist');
     let paragraphElements = todoList.querySelectorAll('p');
     let toggle_status = document.querySelectorAll('.toggle_status');
-    btnAdd.onclick = function(e) {
+    btnAdd.onclick = function (e) {
         let li = document.createElement('li');
         xmlHttp.onreadystatechange = function(e) {
             if (this.readyState === 4 && this.status === 200) {
@@ -284,11 +296,11 @@
         todoList.appendChild(li);
     }
     CRUD();
-    Btn_menuOption.forEach(function(option) {
+    Btn_menuOption.forEach(function (option) {
         let menu = option.querySelector('ul');
         let li = menu.querySelectorAll('li');
 
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (e.target === option) {
                 menu.classList.add('show');
             } else if (e.target !== li[0] && e.target !== li[1]) {
@@ -298,10 +310,10 @@
     });
 
     // xoá content
-    Btn_deleteTodolist.forEach(function(btn_delete) {
-        btn_delete.onclick = function(e) {
+    Btn_deleteTodolist.forEach(function (btn_delete) {
+        btn_delete.onclick = function (e) {
             let id = this.parentElement.parentElement.parentElement.getAttribute('todoList_id');
-            xmlHttp.onreadystatechange = function(e) {
+            xmlHttp.onreadystatechange = function (e) {
                 if (this.readyState === 4 && this.status === 200) {
                     if (this.responseText === 'success') {
                         btn_delete.parentElement.parentElement.parentElement.remove();
@@ -314,8 +326,8 @@
         }
     });
     //edit content
-    paragraphElements.forEach(function(paragraphElement) {
-        paragraphElement.oninput = function() {
+    paragraphElements.forEach(function (paragraphElement) {
+        paragraphElement.oninput = function () {
             let id = this.parentElement.getAttribute('todoList_id');
             let content = this.innerHTML;
             console.log('edit content');
@@ -325,11 +337,11 @@
     });
 
     //thay đổi trạng thái
-    toggle_status.forEach(function(btnToggle) {
-        btnToggle.onclick = function() {
+    toggle_status.forEach(function (btnToggle) {
+        btnToggle.onclick = function () {
             let id = this.parentElement.parentElement.parentElement.getAttribute('todoList_id');
             let status = this.parentElement.parentElement.parentElement.getAttribute('class');
-            xmlHttp.onreadystatechange = function(e) {
+            xmlHttp.onreadystatechange = function (e) {
                 if (this.readyState === 4 && this.status === 200) {
                     if (this.responseText === 'not-completed' || this.responseText === 'completed') {
                         btnToggle.parentElement.parentElement.parentElement.setAttribute('class', this.responseText);
@@ -348,6 +360,7 @@
         let paragraphElements = todoList.querySelectorAll('p');
         let toggle_status = document.querySelectorAll('.toggle_status');
     }
+
 </script>
 <script src="../js/scriptDashboard.js"></script>
 <!-- CONTENT -->
