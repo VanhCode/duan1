@@ -95,7 +95,6 @@
                             
                             updateAccount($userID,$_POST['firth_name'],$_POST['last_name'],$_POST['email'],$filename,$_POST['phone'],$_POST['date'],$_POST['gender']);
                             header('Location:'.$_SERVER['HTTP_REFERER']);
-                            die;
                         }
 
                         include "thongtin.php";

@@ -43,6 +43,7 @@
                     products ON order_details.product_id = products.product_id
                 WHERE
                     user_id = $user_id
+                ORDER BY orders.order_id DESC
                 
         ";
         return pdo_query($sql);
@@ -78,6 +79,7 @@
                     orders.status = 'pending'
                 AND
                     user_id = $user_id
+                ORDER BY orders.order_id DESC
                 
         ";
         return pdo_query($sql);
@@ -113,6 +115,7 @@
                     orders.status = 'confirmed'
                 AND
                     user_id = $user_id
+                ORDER BY orders.order_id DESC
                 
         ";
         return pdo_query($sql);
@@ -148,6 +151,7 @@
                     orders.status = 'shipping'
                 AND
                     user_id = $user_id
+                ORDER BY orders.order_id DESC
                 
         ";
         return pdo_query($sql);
@@ -182,6 +186,7 @@
                     orders.status = 'completed'
                 AND
                     user_id = $user_id
+                ORDER BY orders.order_id DESC
                 
         ";
         return pdo_query($sql);
