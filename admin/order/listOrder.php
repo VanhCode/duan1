@@ -89,7 +89,7 @@
                             <td>
                                 <select onchange="changeStatus(this,<?=$value['order_id']?>)"
                                         class="form-select-sm selected_status" name="status"
-                                        <?=$value['status']=='completed'?'disabled':''?>
+                                        <?=$value['status']=='completed'||$value['status']=='canceled'?'disabled':''?>
                                 >
                                     <?php
                                     $status =
@@ -97,7 +97,8 @@
                                             'pending' => 'Chờ xác nhận',
                                             'confirmed' => 'Đã xác nhận',
                                             'shipping' => 'Đang vận chuyển',
-                                            'completed' => 'Hoàn thành'
+                                            'completed' => 'Hoàn thành',
+                                            'canceled' => 'Đã huỷ'
                                         ];
                                     foreach ($status as $key => $order):?>
                                         <option <?= $key == $value['status'] ? 'selected' : '' ?>
@@ -144,7 +145,7 @@
                             xmlHttp.onreadystatechange = function() {
                                 if (this.readyState === 4 && this.status === 200) {
                                     select.value = this.responseText
-                                    if (this.responseText === 'completed') {
+                                    if (this.responseText === 'completed'||this.responseText === 'canceled') {
                                         select.disabled = true;
                                     }
                                 }
