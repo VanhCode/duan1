@@ -29,7 +29,7 @@
                                 <div class="BjIo5w">
                                     <div class="mcsiKT">
                                         <label class="stardust-checkbox">
-                                            <input class="stardust-checkbox__input" type="checkbox" aria-checked="false" aria-disabled="false" tabindex="0" role="checkbox" aria-label="Click here to select all products">
+                                            <input class="stardust-checkbox__input access__color" type="checkbox" aria-checked="false" aria-disabled="false" tabindex="0" role="checkbox" aria-label="Click here to select all products">
                                             <div class="stardust-checkbox__box"></div>
                                         </label>
                                     </div>
@@ -46,7 +46,7 @@
                                                 <div class="xP1eaK">
                                                     <div class="_5sTIHk">
                                                         <label class="stardust-checkbox">
-                                                            <input class="stardust-checkbox__input" type="checkbox" aria-checked="false" aria-disabled="false" tabindex="0" role="checkbox" aria-label="Click here to select all products">
+                                                            <input class="stardust-checkbox__input access__color" type="checkbox" aria-checked="false" aria-disabled="false" tabindex="0" role="checkbox" aria-label="Click here to select all products">
                                                             <div class="stardust-checkbox__box"></div>
                                                         </label>
                                                     </div>
@@ -75,7 +75,7 @@
                                                                     <div class="zoXdNN">
                                                                         <div class="lgcEHJ">
                                                                             <label class="stardust-checkbox">
-                                                                                <input class="stardust-checkbox__input checkbox_productcart" id="checkBox__productCart" type="checkbox" name="id_cart[]" value="<?= $cart['cart_id'] ?>">
+                                                                                <input class="stardust-checkbox__input checkbox_productcart access__color" id="checkBox__productCart" type="checkbox" name="id_cart[]" value="<?= $cart['cart_id'] ?>">
                                                                                 <div class="stardust-checkbox__box"></div>
                                                                             </label>
                                                                         </div>
@@ -216,7 +216,7 @@
                             <div class="line-row-abate line-bottom-abate"></div>
                             <div class="row-left-abate left-abate-checkbox">
                                 <label class="stardust-checkbox">
-                                    <input class="stardust-checkbox__input" type="checkbox" aria-checked="false" aria-disabled="false" tabindex="0" role="checkbox" aria-label="Click here to select all products">
+                                    <input class="stardust-checkbox__input access__color" type="checkbox" aria-checked="false" aria-disabled="false" tabindex="0" role="checkbox" aria-label="Click here to select all products">
                                     <div class="stardust-checkbox__box"></div>
                                 </label>
                             </div>
@@ -232,7 +232,7 @@
                             <div class="s1Gxkq c2pfrq">
                                 <div class="wqjloc">
                                     <label class="stardust-checkbox">
-                                        <input class="stardust-checkbox__input" type="checkbox" aria-checked="false" aria-disabled="false" tabindex="0" role="checkbox" aria-label="Click here to select all products">
+                                        <input class="stardust-checkbox__input access__color" type="checkbox" aria-checked="false" aria-disabled="false" tabindex="0" role="checkbox" aria-label="Click here to select all products">
                                         <div class="stardust-checkbox__box"></div>
                                     </label>
                                 </div>

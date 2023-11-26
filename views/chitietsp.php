@@ -316,7 +316,7 @@
                                 <form id="commentForm" action="<?= $_SERVER['REQUEST_URI'] ?>" method="post">
                                     <div class="comment__product">
                                         <div class="comment__product__header">
-                                            <img src="./img1/imgac.png" alt="">    
+                                            <img src="./public/upload/image/user/<?= $user['user_image'] ?>" alt="">    
                                         </div>
                                         <div class="comment__product__content__btn">
                                             <input type="hidden" id="idproduct" name="idproduct" value="<?= $chitiet_product['product_id'] ?>">

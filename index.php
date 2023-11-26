@@ -164,6 +164,18 @@
                 $profile = $_GET['profile'] ?? "";
                 $userAction = $_GET['user'] ?? "";
                 $order = $_GET['order'] ?? "";
+                $userProfile = select__userByid($userID);
+
+                if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+                    $filename = time().basename($_FILES['image']['name']);
+                    $target = "./public/upload/image/user/".$filename;
+                    move_uploaded_file($_FILES['image']['tmp_name'],$target);
+                    
+                    updateAccount($userID,$_POST['firth_name'],$_POST['last_name'],$_POST['email'],$filename,$_POST['phone'],$_POST['date'],$_POST['gender']);
+                    header('Location:'.$_SERVER['HTTP_REFERER']);
+                    die;
+                }
                 include "views/user/user.php";
                 break;
             case "login":
@@ -648,7 +660,7 @@
                         
                         unset($_SESSION["cart"]);
                         unset($_SESSION["ma_don_hang"]);
-                        include("./views/main/camon.php");
+                        header("Location: index.php?action=user&user=don-mua&order=cho-xac-nhan");
                     } else {
                         echo "<script>alert('Đã hủy thanh toán');</script>";
                         echo '<script>window.location.href = "index.php?action=thanh-toan";</script>';
@@ -690,7 +702,7 @@
                     
                     unset($_SESSION["cart"]);
                     unset($_SESSION["ma_don_hang"]);
-                    include("./views/main/camon.php");
+                    header("Location: index.php?action=user&user=don-mua&order=cho-xac-nhan");
                 }
                 
                 break;
