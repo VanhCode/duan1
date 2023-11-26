@@ -281,7 +281,7 @@
                                     </div>
                                 </div>
                                 <div class="product-ratings__list" style="opacity: 1;">
-                                    <div class="vanhstore-product-comment-list">
+                                    <div class="vanhstore-product-comment-list" id="comment">
                                         <?php
                                             foreach($listComment as $commnent) {
                                                 ?>
@@ -313,14 +313,15 @@
                                         ?>
                                     </div>
                                 </div>
-                                <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post">
+                                <form id="commentForm" action="<?= $_SERVER['REQUEST_URI'] ?>" method="post">
                                     <div class="comment__product">
                                         <div class="comment__product__header">
                                             <img src="./img1/imgac.png" alt="">    
                                         </div>
                                         <div class="comment__product__content__btn">
-                                            <input type="hidden" name="idproduct" value="<?= $chitiet_product['product_id'] ?>">
-                                            <input type="text" class="vanhstore__input__comments" name="noidung" placeholder="Viết bình luận...">
+                                            <input type="hidden" id="idproduct" name="idproduct" value="<?= $chitiet_product['product_id'] ?>">
+                                            <input type="hidden" id="iduser" name="iduser" value="<?= $userID ?>">
+                                            <input type="text" class="vanhstore__input__comments" id="noidung" name="noidung" placeholder="Viết bình luận...">
                                             <input type="submit" class="vanhstore__input__buttons" name="submitComment" value="Gửi">
                                         </div>
                                     </div>
@@ -474,6 +475,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- End main -->
 

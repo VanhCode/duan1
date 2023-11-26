@@ -102,10 +102,15 @@
             ?>
                 <script src="./js/quenmk.js"></script>
             <?php
+        }   else if(isset($_GET['action']) && $_GET['action'] == 'user'){
+            ?>
+                <script src="./js/userJS.js"></script>
+            <?php
         }   else if(isset($_GET['action']) && $_GET['action'] == 'chi-tiet-sanpham'){
             ?>
                 <script src="./js/chitietsanpham.js"></script>
                 <script src="./js/checkAmount.js"></script>
+                <script src="./js/ajaxcomment.js"></script>
             <?php
         }   else if(isset($_GET['action']) && $_GET['action'] == 'danh-muc' || isset($_GET['action']) == 'san-pham'){
             ?>
@@ -114,6 +119,12 @@
         }   else if (isset($_GET['action']) == "") {
             ?>
                 <script src="./js/trangchu2.js"></script>
+            <?php
+        }
+
+        if(isset($_GET['keyword'])) {
+            ?>
+                <script src="./js/danhmuc.js"></script>
             <?php
         }
 
