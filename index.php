@@ -163,6 +163,18 @@
                 $profile = $_GET['profile'] ?? "";
                 $userAction = $_GET['user'] ?? "";
                 $order = $_GET['order'] ?? "";
+                $userProfile = select__userByid($userID);
+
+                if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+                    $filename = time().basename($_FILES['image']['name']);
+                    $target = "./public/upload/image/user/".$filename;
+                    move_uploaded_file($_FILES['image']['tmp_name'],$target);
+                    
+                    updateAccount($userID,$_POST['firth_name'],$_POST['last_name'],$_POST['email'],$filename,$_POST['phone'],$_POST['date'],$_POST['gender']);
+                    header('Location:'.$_SERVER['HTTP_REFERER']);
+                    die;
+                }
                 include "views/user/user.php";
                 break;
             case "login":
@@ -315,13 +327,13 @@
                     $detail_product = "";
                 }
 
-                if($_SERVER['REQUEST_METHOD'] == "POST") {
-                    $productId = $_POST['idproduct'];
-                    $noidung = $_POST['noidung'];
-                    insert__comment($userID,$productId,$noidung);
-                    header('Location:'.$_SERVER['HTTP_REFERER']);
-                    die;
-                }
+                // if($_SERVER['REQUEST_METHOD'] == "POST") {
+                //     $productId = $_POST['idproduct'];
+                //     $noidung = $_POST['noidung'];
+                //     insert__comment($userID,$productId,$noidung);
+                //     header('Location:'.$_SERVER['HTTP_REFERER']);
+                //     die;
+                // }
                 
                 include "views/chitietsp.php";
                 break;
@@ -397,6 +409,8 @@
 
                     // print_r($_POST);
                     // die;
+
+            
 
                     $_SESSION['payment_session'] = $_POST['payment_radio'];
 
@@ -522,7 +536,8 @@
                         if (isset($user)) {
                             $ma_donhang = $_SESSION['ma_don_hang'];
                             $loai_thanhtoan = "Vnpay";
-                            
+                            $fullname = $user['firth_name']." ".$user['last_name'];
+
                             $id_order = insert_bill($userID,$ma_donhang,$_SESSION['cart']['fullname'],$_SESSION['cart']['phone'],$_SESSION['cart']['address'],$loai_thanhtoan);
     
                             $data = [];
@@ -532,11 +547,19 @@
                             }
     
                             foreach($data as $oder_detail) {
+                                // $_SESSION['image'] = explode(",",$oder_detail['images'])[0];
+                                // $_GET['image'] = $_SESSION['image'];
+                                $ngaydathang = date("d-m-Y H:i:s");
                                 $tongdon = $oder_detail['amount'] * $oder_detail['price'];
                                 insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $tongdon);
                             }
+
+                            $_GET['image'] = explode(",", $data[0]['images']);
+                            sendMail_bil($data, $_GET['image'], $ngaydathang, $ma_donhang, $user['email'], $fullname);
+                            
                         }
         
+
                         $vnp_BankCode = $_GET["vnp_BankCode"];
                         $vnp_BankTranNo = $_GET["vnp_BankTranNo"];
                         $vnp_CardType = $_GET["vnp_CardType"];
@@ -566,6 +589,7 @@
                 } else {
                     $ma_donhang = $_SESSION['ma_don_hang'];
                     $loai_thanhtoan = "tienmat";
+                    $fullname = $user['firth_name']." ".$user['last_name'];
                     
                     $id_order = insert_bill($userID,$ma_donhang,$_SESSION['cart']['fullname'],$_SESSION['cart']['phone'],$_SESSION['cart']['address'],$loai_thanhtoan);
 
@@ -575,10 +599,18 @@
                         $data[] = listCart__bill($cart);
                     }
 
-                    foreach($data as $oder_detail) {
+                    foreach($data as $key => $oder_detail) {
+                        // $_SESSION['image'] = explode(",",$oder_detail['images']);
+                        // $_GET['image'] = $_SESSION['image'];
+                        $ngaydathang = date("d-m-Y H:i:s");
                         $tongdon = $oder_detail['amount'] * $oder_detail['price'];
                         insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $tongdon);
                     }
+
+                    $_GET['image'] = explode(",", $data[0]['images']);
+                    sendMail_bil($data, $_GET['image'], $ngaydathang, $ma_donhang, $user['email'], $fullname);
+
+                    
 
                     foreach ($_SESSION["cart"]['id_cart'] as $value) {
                         delete_cart($value);
