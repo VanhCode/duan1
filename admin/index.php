@@ -111,13 +111,13 @@ switch ($action) {
                 'to_price'=>$_POST['to_price'],
                 'expiration_date'=>$_POST['expiration_date'],
             ]);
-            if(isset($_POST['addForAll'])&&$_POST['addForAll']){
+            if(isset($_POST['addForAll'])){
                 addVoucherForAllUser($voucher_id);
             }
-            if(isset($_POST['onlineDay'])&&$_POST['onlineDay']){
+            if(isset($_POST['onlineDay'])){
                 addVoucherForNewUser($voucher_id,$_POST['onlineDay']);
             }
-            if(isset($_POST['paymentLimit'])&&$_POST['paymentLimit']){
+            if(isset($_POST['paymentLimit'])){
                 addVoucherForUserWithPaymentLimit($voucher_id,$_POST['paymentLimit']);
             }
             header("location: index.php?action=listVoucher");
@@ -218,13 +218,13 @@ switch ($action) {
                 'expiration_date'=>$_POST['expiration_date'],
             ],"voucher_id=$voucher_id");
 
-            if(isset($_POST['addForAll'])&&$_POST['addForAll']){
+            if(isset($_POST['addForAll'])){
                 addVoucherForAllUser($voucher_id);
             }
-            if(isset($_POST['onlineDay'])&&$_POST['onlineDay']){
+            if(isset($_POST['onlineDay'])){
                 addVoucherForNewUser($voucher_id,$_POST['onlineDay']);
             }
-            if(isset($_POST['paymentLimit'])&&$_POST['paymentLimit']){
+            if(isset($_POST['paymentLimit'])){
                 addVoucherForUserWithPaymentLimit($voucher_id,$_POST['paymentLimit']);
             }
             header("location: index.php?action=listVoucher");
