@@ -122,6 +122,12 @@
             <?php
         }
 
+        if(isset($_GET['keyword'])) {
+            ?>
+                <script src="./js/danhmuc.js"></script>
+            <?php
+        }
+
         if(isset($_GET['profile'])) {
             if($_GET['profile'] == 'change-page') {
                 ?>
