@@ -219,22 +219,6 @@
                     <button name="dathang" class="stardust-button stardust-button--primary stardust-button--large apLZEG">Đặt hàng</button>
                 </div>
             </div>
-            <script>
-                var voucherHtml = document.querySelector('.voucher_html');
-                var priceVchHtml = document.querySelector('.priceVch_html');
-                var tongtien = document.querySelector('.tongtien');
-                var voucherRadioS = document.querySelectorAll('.voucher_radio');
-
-                voucherRadioS.forEach(function(radioIndex) {
-                    radioIndex.addEventListener('click', function() {
-                        radioIndex.nextElementSibling.checked = true;
-                        voucherHtml.innerHTML = this.value;
-                        let result = (Number(tongtien.value) + Number(this.value));
-                        let formattedTotal = result.toLocaleString('vi-VN').replace(/,/g, '.');
-                        priceVchHtml.innerHTML = "₫" + formattedTotal;
-                    })
-                })
-            </script>
         </div>
     </form>
 </main>
@@ -242,6 +226,20 @@
 <!-- End main -->
 
 <script>
+    var voucherHtml = document.querySelector('.voucher_html');
+    var priceVchHtml = document.querySelector('.priceVch_html');
+    var tongtien = document.querySelector('.tongtien');
+    var voucherRadioS = document.querySelectorAll('.voucher_radio');
+
+    voucherRadioS.forEach(function(radioIndex) {
+        radioIndex.addEventListener('click', function() {
+            radioIndex.nextElementSibling.checked = true;
+            voucherHtml.innerHTML = this.value;
+            let result = (Number(tongtien.value) + Number(this.value));
+            let formattedTotal = result.toLocaleString('vi-VN').replace(/,/g, '.');
+            priceVchHtml.innerHTML = "₫" + formattedTotal;
+        })
+    })
     function sendThanhToan() {
         var ip_name_thanhtoan = document.querySelector('.ip_name_thanhtoan');
         var ip_phone_thanhtoan = document.querySelector('.ip_phone_thanhtoan');

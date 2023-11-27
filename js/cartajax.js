@@ -10,9 +10,12 @@ amountClickBoxS.forEach(function (amountClickBox) {
     var tongtien = amountClickBox.parentElement.nextElementSibling.querySelector('.moneysend');
     var price__cart = amountClickBox.querySelector('.price__cart');
 
+
+    var checkBoxProductCart = document.querySelectorAll('.checkBox__productCart');
     var total_pricefull = document.querySelector('.price_full');
     var amountCart = document.querySelectorAll('.amount__cartItem');
     var priceCartAll = document.querySelectorAll('.price__cart');
+
 
     click_left.addEventListener('click', function () {
         if (amount__cartItem.value > 1) {
@@ -34,6 +37,12 @@ amountClickBoxS.forEach(function (amountClickBox) {
         updateTotalPayment(); // Cập nhật tổng thanh toán
         updateCart(id__cart.value, amount__cartItem.value); // Gửi yêu cầu AJAX để cập nhật số lượng
     }
+
+    checkBoxProductCart.forEach(function (checkBoxProductCart) {
+        if (checkBoxProductCart.checked == true) {
+            updateTotalPayment();
+        }
+    })
 
     function updateTotalPayment() {
         var totalPrice = 0;
@@ -60,7 +69,6 @@ amountClickBoxS.forEach(function (amountClickBox) {
 
 
 var formSendCart = document.querySelector('#formSendCart');
-
 // Check nút xóa khi chưa chọn sản phẩm
 
 var checkBoxCarts = document.querySelectorAll(".stardust-checkbox__input:checked");
