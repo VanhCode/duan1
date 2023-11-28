@@ -82,6 +82,7 @@
                                <ul class="row vanhstore-search-item-result__items">
                                     <?php
                                         foreach($listProdSearch as $product) {
+                                            $sales = 100 - (($product['sale'] / $product['price']) * 100);
                                             ?>
                                                 <li class="col-xs-2-4 vanhstore-search-item-result__item">
                                                     <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $product['product_id'] ?>">
@@ -97,7 +98,7 @@
                                                                         </div>
                                                                         <div class="TS7wv2">
                                                                             <div class="JC9p5x">
-                                                                                <span class="FTxtVW">-<?= $product['sale'] ?>%</span>
+                                                                                <span class="FTxtVW">-<?= ceil($sales) ?>%</span>
                                                                             </div>
                                                                         </div>
                                                                         <div class="N+Ex9S">
@@ -114,11 +115,11 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="cA9TT+">
-                                                                        <div class="bPcAVl FMvHxS H5ICvW" aria-hidden="true">₫599.000</div>
+                                                                        <div class="bPcAVl FMvHxS H5ICvW" aria-hidden="true">₫<?= number_format($product['price'], 0, ',','.') ?></div>
                                                                         <div class="bPcAVl IWBsMB">
                                                                             <span aria-label="current price"></span>
                                                                             <span class="bx++ig">₫</span>
-                                                                            <span class="k9JZlv"><?= $product['price'] ?></span>
+                                                                            <span class="k9JZlv"><?= number_format($product['sale'], 0, ',','.') ?></span>
                                                                         </div>
                                                                     </div>
                                                                     <div class="DN6Jp1">

@@ -1795,6 +1795,10 @@ iGlIrs,
   overflow: hidden;
 }
 
+.access__color {
+  accent-color: #ee4d2d;
+}
+
 /* footer */
 
 footer {

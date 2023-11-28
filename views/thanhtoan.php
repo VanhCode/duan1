@@ -17,17 +17,17 @@
                     <div class="group__location_edit">
                         <div class="group_location_ip">
                             <h4>Họ và tên..*</h4>
-                            <input type="text" class="information_ip ip_name_thanhtoan" value="<?= $user['firth_name']." ".$user['last_name'] ?>" name="fullname">
+                            <input type="text" class="information_ip ip_name_thanhtoan" placeholder="Nhập tên của bạn..." value="<?= $user['firth_name'] . " " . $user['last_name'] ?>" name="fullname">
                             <div class="information_Err information_Errname"></div>
                         </div>
                         <div class="group_location_ip">
                             <h4>Số điện thoại..*</h4>
-                            <input type="text" class="information_ip ip_phone_thanhtoan" value="<?= $user['phone'] ?>" name="phone">
+                            <input type="text" class="information_ip ip_phone_thanhtoan" placeholder="Nhập số điện thoại..." value="<?= $user['phone'] ?>" name="phone">
                             <div class="information_Err information_Errphone"></div>
                         </div>
                         <div class="group_location_ip">
                             <h4>Địa chỉ..*</h4>
-                            <input type="text" class="information_ip ip_address_thanhtoan" value="<?= $user['address'] ?>" name="address">
+                            <input type="text" class="information_ip ip_address_thanhtoan" placeholder="Nhập địa chỉ..." value="<?= $user['address'] ?>" name="address">
                             <div class="information_Err information_Erraddress"></div>
                         </div>
                     </div>
@@ -48,41 +48,41 @@
                 </div>
             </div>
             <div>
-                
+
                 <div class="product_full_bill">
                     <?php
-                        $tong = 0;
-                        foreach($data as $key => $product_bill) {
-                            $thanhtien = $product_bill['price'] * $product_bill['amount'];
-                            $tong += $thanhtien;
-                            ?>
+                    $tong = 0;
+                    foreach ($data as $key => $product_bill) {
+                        $thanhtien = $product_bill['price'] * $product_bill['amount'];
+                        $tong += $thanhtien;
+                    ?>
 
-                                <input type="hidden" name="product_id[]" value="<?= $product_bill['product_id'] ?>">
-                                <input type="hidden" name="id_cart[]" value="<?= $_POST['id_cart'][$key] ?>">
+                        <input type="hidden" name="product_id[]" value="<?= $product_bill['product_id'] ?>">
+                        <input type="hidden" name="id_cart[]" value="<?= $_POST['id_cart'][$key] ?>">
 
-                                <div>
-                                    <div class="product_one_bill">
-                                        <div class="KxX-H6">
-                                            <div class="_2OGC7L xBI6Zm">
-                                                <div class="h3ONzh EOqcX3">
-                                                    <img class="rTOisL" alt="product image" src="./public/upload/image/product/<?= explode(",", $product_bill['images'])[0] ?>" width="40" height="40">
-                                                    <span class="oEI3Ln">
-                                                        <span class="gHbVhc"><?= $product_bill['product_name'] ?></span>
-                                                    </span>
-                                                </div>
-                                                <div class="h3ONzh Le31ox">
-                                                    <span class="dVLwMH">Loại: <?= $product_bill['color'] ?></span>
-                                                </div>
-                                                <div class="h3ONzh"><?= $product_bill['size'] ?></div>
-                                                <div class="h3ONzh">₫<?= number_format($product_bill['price'], 0, ",", ".") ?></div>
-                                                <div class="h3ONzh"><?= $product_bill['amount'] ?></div>
-                                                <div class="h3ONzh fHRPUO">₫<?= number_format($thanhtien, 0, ",", ".") ?></div>
-                                            </div>
+                        <div>
+                            <div class="product_one_bill">
+                                <div class="KxX-H6">
+                                    <div class="_2OGC7L xBI6Zm">
+                                        <div class="h3ONzh EOqcX3">
+                                            <img class="rTOisL" alt="product image" src="./public/upload/image/product/<?= explode(",", $product_bill['images'])[0] ?>" width="40" height="40">
+                                            <span class="oEI3Ln">
+                                                <span class="gHbVhc"><?= $product_bill['product_name'] ?></span>
+                                            </span>
                                         </div>
+                                        <div class="h3ONzh Le31ox">
+                                            <span class="dVLwMH">Loại: <?= $product_bill['color'] ?></span>
+                                        </div>
+                                        <div class="h3ONzh"><?= $product_bill['size'] ?></div>
+                                        <div class="h3ONzh">₫<?= number_format($product_bill['price'], 0, ",", ".") ?></div>
+                                        <div class="h3ONzh"><?= $product_bill['amount'] ?></div>
+                                        <div class="h3ONzh fHRPUO">₫<?= number_format($thanhtien, 0, ",", ".") ?></div>
                                     </div>
                                 </div>
-                            <?php   
-                        }
+                            </div>
+                        </div>
+                    <?php
+                    }
                     ?>
                     <div class="Nivkv-">
                         <div class="ULZMSb">
@@ -93,6 +93,92 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="+w8dNn">
+            <div class="At3Wkr">
+                <div class="W-XOpk">
+                    <div class="kKkbFa">
+                        <div class="jeFLq1"><svg fill="none" viewBox="0 -2 23 22" class="shopee-svg-icon icon-voucher-line">
+                                <g filter="url(#voucher-filter0_d)">
+                                    <mask id="a" fill="#fff">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1 2h18v2.32a1.5 1.5 0 000 2.75v.65a1.5 1.5 0 000 2.75v.65a1.5 1.5 0 000 2.75V16H1v-2.12a1.5 1.5 0 000-2.75v-.65a1.5 1.5 0 000-2.75v-.65a1.5 1.5 0 000-2.75V2z"></path>
+                                    </mask>
+                                    <path d="M19 2h1V1h-1v1zM1 2V1H0v1h1zm18 2.32l.4.92.6-.26v-.66h-1zm0 2.75h1v-.65l-.6-.26-.4.91zm0 .65l.4.92.6-.26v-.66h-1zm0 2.75h1v-.65l-.6-.26-.4.91zm0 .65l.4.92.6-.26v-.66h-1zm0 2.75h1v-.65l-.6-.26-.4.91zM19 16v1h1v-1h-1zM1 16H0v1h1v-1zm0-2.12l-.4-.92-.6.26v.66h1zm0-2.75H0v.65l.6.26.4-.91zm0-.65l-.4-.92-.6.26v.66h1zm0-2.75H0v.65l.6.26.4-.91zm0-.65l-.4-.92-.6.26v.66h1zm0-2.75H0v.65l.6.26.4-.91zM19 1H1v2h18V1zm1 3.32V2h-2v2.32h2zm-.9 1.38c0-.2.12-.38.3-.46l-.8-1.83a2.5 2.5 0 00-1.5 2.29h2zm.3.46a.5.5 0 01-.3-.46h-2c0 1.03.62 1.9 1.5 2.3l.8-1.84zm.6 1.56v-.65h-2v.65h2zm-.9 1.38c0-.2.12-.38.3-.46l-.8-1.83a2.5 2.5 0 00-1.5 2.29h2zm.3.46a.5.5 0 01-.3-.46h-2c0 1.03.62 1.9 1.5 2.3l.8-1.84zm.6 1.56v-.65h-2v.65h2zm-.9 1.38c0-.2.12-.38.3-.46l-.8-1.83a2.5 2.5 0 00-1.5 2.29h2zm.3.46a.5.5 0 01-.3-.46h-2c0 1.03.62 1.9 1.5 2.3l.8-1.84zM20 16v-2.13h-2V16h2zM1 17h18v-2H1v2zm-1-3.12V16h2v-2.12H0zm1.4.91a2.5 2.5 0 001.5-2.29h-2a.5.5 0 01-.3.46l.8 1.83zm1.5-2.29a2.5 2.5 0 00-1.5-2.3l-.8 1.84c.18.08.3.26.3.46h2zM0 10.48v.65h2v-.65H0zM.9 9.1a.5.5 0 01-.3.46l.8 1.83A2.5 2.5 0 002.9 9.1h-2zm-.3-.46c.18.08.3.26.3.46h2a2.5 2.5 0 00-1.5-2.3L.6 8.65zM0 7.08v.65h2v-.65H0zM.9 5.7a.5.5 0 01-.3.46l.8 1.83A2.5 2.5 0 002.9 5.7h-2zm-.3-.46c.18.08.3.26.3.46h2a2.5 2.5 0 00-1.5-2.3L.6 5.25zM0 2v2.33h2V2H0z" mask="url(#a)"></path>
+                                </g>
+                                <path clip-rule="evenodd" d="M6.49 14.18h.86v-1.6h-.86v1.6zM6.49 11.18h.86v-1.6h-.86v1.6zM6.49 8.18h.86v-1.6h-.86v1.6zM6.49 5.18h.86v-1.6h-.86v1.6z"></path>
+                                <defs>
+                                    <filter id="voucher-filter0_d" x="0" y="1" width="20" height="16" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                        <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                                        <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix>
+                                        <feOffset></feOffset>
+                                        <feGaussianBlur stdDeviation=".5"></feGaussianBlur>
+                                        <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"></feColorMatrix>
+                                        <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"></feBlend>
+                                        <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"></feBlend>
+                                    </filter>
+                                </defs>
+                            </svg>
+                            <h2 class="Pd8fbQ">VanhStore Voucher</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="a+7foE pd_vch">
+                <?php
+
+                    foreach($listvoucher as $voucher) {
+                        $tinhtien = ($tong * $voucher['del_percent'] / 100) - $voucher['del_price'];
+                        ?>
+                            <div class="vc_Card_card">
+                                <div class="vc_Card_left">
+                                    <div class="vc_Card_sawtooth"></div>
+                                </div>
+                                <div class="vc_Card_right"></div>
+                                <div class="vc_VoucherStandardTemplate_hideOverflow"></div>
+                                <div data-testid="voucher-card" class="vc_VoucherStandardTemplate_template" role="presentation">
+                                    <div class="vc_VoucherStandardTemplate_left" role="presentation">
+                                        <div data-testid="vcLogo" class="vc_Logo_imageLogo" data-target="shop_icon"><img class="vc_Logo_logo" src="./img1/vch.png" alt="Logo"></div>
+                                        <div data-testid="vcIconText" class="vc_IconText_iconText vc_IconText_oneLine" data-cy="voucher_card_icon_text" style="color: white;">Mã vận chuyển</div>
+                                        <div data-testid="vcIconSubText" class="vc_IconSubText_iconSubText vc_IconSubText_white" data-cy="voucher_card_sub_icon_text">Tất cả hình thức thanh toán</div>
+                                    </div>
+                                    <div class="vc_VoucherStandardTemplate_middle" role="presentation" tabindex="0">
+                                        <div class="vc_A11yAriaText_A11yContent"><span aria-label="voucher #"></span><span aria-label=" Vui lòng mua hàng trên ứng dụng Shopee để sử dụng ưu đãi."></span></div>
+                                        <div data-testid="vcMainTitle" class="vc_MainTitle_mainTitle">
+                                            <div class="vc_MainTitle_text vc_MainTitle_fsvLine"><?= $voucher['content_voucher'] ?></div>
+                                        </div>
+                                        <div data-testid="vcSubtitle" class="vc_Subtitle_subTitle vc_Subtitle_oneLine">Đơn Tối Thiểu ₫0</div>
+                                        <div data-testid="vcLabel" class="vc_Label_label">
+                                            <div class="vc_Label_shopeeWalletLabel" data-cy="voucher_card_label">
+                                                <div class="vc_Label_shopeeWalletLabelContent" data-cy="voucher_card_label_content" aria-label="Freeship Cyber Monday" style="color: red;">Voucher giảm giá</div>
+                                            </div>
+                                        </div>
+                                        <div data-testid="vcProgressBarExpiry" class="vc_ProgressBarExpiry_progressBarExpiry">
+                                            <div data-testid="vcProgressBar" class="vc_ProgressBar_progressBar vc_ProgressBarExpiry_progressBar" style="--vc-progress-bar-percentage: 99%;"></div>
+                                            <div class="vc_ProgressBarExpiry_usageLimitedText vc_ProgressBarExpiry_twoRowsLimitText"><span class="vc_ProgressBarExpiry_isRunningOutSoon">Đã dùng 99%, </span><span class="vc_ProgressBarExpiry_isEndingSoon">Sắp hết hạn: Còn 1 ngày</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="vc_VoucherStandardTemplate_right" role="presentation">
+                                        <div></div>
+                                        <div class="vc_VoucherStandardTemplate_center">
+                                            <input type="radio" class="vc_RadioButton_radio vc_RadioButton_radioDisabled voucher_radio" value="<?= $tinhtien ?>" name="voucher" id="">
+                                            <input type="radio"style="opacity: 0;" class="" value="<?= $voucher['voucher_id'] ?>" name="id_voucher" id="">
+                                        </div>
+                                        <div>
+                                            <div data-testid="vcTNCLink" class="vc_TNCLink_tncLink" role="navigation">
+                                                <a>
+                                                    <span>Điều Kiện</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        <?php
+                    }
+                ?>
+                <input type="hidden" class="tongtien" name="tongtien" value="<?= $tong ?>">
             </div>
         </div>
         <div class="product__send_bill">
@@ -118,11 +204,12 @@
                 </div>
             </div>
             <div class="KQyCj0">
-                <h2 class="a11y-visually-hidden">Tổng thanh toán:</h2>
-                <h3 class="bwwaGp iL6wsx BcITa9">Tổng tiền hàng</h3>
+                <h3 class="bwwaGp iL6wsx BcITa9">Tổng tiền:</h3>
                 <div class="bwwaGp R3a05f BcITa9">₫<?= number_format($tong, 0, ",", ".") ?></div>
+                <h3 class="bwwaGp iL6wsx BcITa9">Voucher giảm giá:</h3>
+                <div class="bwwaGp R3a05f BcITa9 voucher_html">₫0</div>
                 <h3 class="bwwaGp iL6wsx _5y8V6a">Tổng thanh toán:</h3>
-                <div class="bwwaGp l2Nmnm R3a05f _5y8V6a">₫<?= number_format($tong, 0, ",", ".") ?></div>
+                <div class="bwwaGp l2Nmnm R3a05f _5y8V6a priceVch_html">₫<?= number_format($tong, 0, ",", ".") ?></div>
                 <div class="uTFqRt">
                     <div class="k4VpYA">
                         <div class="C-NSr-">
@@ -139,6 +226,20 @@
 <!-- End main -->
 
 <script>
+    var voucherHtml = document.querySelector('.voucher_html');
+    var priceVchHtml = document.querySelector('.priceVch_html');
+    var tongtien = document.querySelector('.tongtien');
+    var voucherRadioS = document.querySelectorAll('.voucher_radio');
+
+    voucherRadioS.forEach(function(radioIndex) {
+        radioIndex.addEventListener('click', function() {
+            radioIndex.nextElementSibling.checked = true;
+            voucherHtml.innerHTML = this.value;
+            let result = (Number(tongtien.value) + Number(this.value));
+            let formattedTotal = result.toLocaleString('vi-VN').replace(/,/g, '.');
+            priceVchHtml.innerHTML = "₫" + formattedTotal;
+        })
+    })
     function sendThanhToan() {
         var ip_name_thanhtoan = document.querySelector('.ip_name_thanhtoan');
         var ip_phone_thanhtoan = document.querySelector('.ip_phone_thanhtoan');
@@ -150,28 +251,28 @@
         var information_Erraddress = document.querySelector('.information_Erraddress');
         let count = 0; // Khởi   tạo biến count
 
-        if(ip_name_thanhtoan.value == "") {
+        if (ip_name_thanhtoan.value == "") {
             information_Errname.innerHTML = "Vui lòng nhập trường này";
             count++;
         } else {
             information_Errname.innerHTML = "";
         }
 
-        if(ip_phone_thanhtoan.value == "") {
+        if (ip_phone_thanhtoan.value == "") {
             information_Errphone.innerHTML = "Vui lòng nhập trường này";
             count++;
         } else {
             information_Errphone.innerHTML = "";
         }
 
-        if(ip_address_thanhtoan.value == "") {
+        if (ip_address_thanhtoan.value == "") {
             information_Erraddress.innerHTML = "Vui lòng nhập trường này";
             count++;
         } else {
             information_Erraddress.innerHTML = "";
         }
 
-        if(paymentRadio.checked == false) {
+        if (paymentRadio.checked == false) {
             count++;
         }
 
@@ -202,5 +303,4 @@
         box_style_radio.style.display = "none";
         radio_vnpay.style.display = "block";
     })
-
 </script>

@@ -55,7 +55,7 @@
                     <thead>
                     <tr class="tr_th">
                         <th>STT</th>
-                        <th>Sản phẩm</th>
+                        <th style="text-align: left!important; padding-left: 50px">Sản phẩm</th>
                         <th>Tổng số bình luận</th>
                         <th>Chi tiết</th>
                     </tr>
@@ -66,9 +66,9 @@
                     <tr class="tr_td">
                         <td><?= $count++?></td>
                         <td>
-                            <div class="pro">
-                                <img src="../public/upload/image/product/<?=explode(',',$list['images'])[0]?>" alt="">
-                                <span><?=$list['product_name']?></span>
+                            <div align="left" style="padding-left: 50px; display: flex" class="pro">
+                                <img style="border-radius: unset; width: 75px; height: 50px" src="../public/upload/image/product/<?=explode(',',$list['images'])[0]?>" alt="">
+                                <p style="width: 500px;"><?=$list['product_name']?></p>
                             </div>
                         </td>
                         <td><span class="status completed"><?=$list['count_comment']?></span></td>
