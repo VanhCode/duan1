@@ -243,6 +243,7 @@
                                     <ul id="oclock__Flashsale_timeSlider_ul" class="oclock__Flashsale_timeSlider_ul">
                                         <?php
                                             foreach($productSale as $proSale) {
+                                                $sales = 100 - (($proSale['sale'] / $proSale['price']) * 100);
                                                 ?>
                                                     <li class="oclock__Flashsale_timeSlider_li">
                                                         <div class="oclock__Flashsale_div">
@@ -260,7 +261,7 @@
                                                                                         </linearGradient>
                                                                                     </defs>
                                                                                 </svg>
-                                                                            </div>-<?= $proSale['sale'] ?>%
+                                                                            </div>-<?= ceil($sales) ?>%
                                                                         </div>
                                                                     </div>
                                                                     <img src="./public/upload/image/product/<?= explode(",", $proSale['images'])[0] ?>">
@@ -270,7 +271,7 @@
                                                                 </div>
                                                                 <div class="Flashsale_timeSlider_BoxTextS">
                                                                     <div class="Flashsale_timeSlider_BoxTextS_price">
-                                                                        ₫<?= number_format($proSale['price'], 0, ",", ".") ?>
+                                                                        ₫<?= number_format($proSale['sale'], 0, ",", ".") ?>
                                                                     </div>
                                                                     <div class="Flashsale_timeSlider_BoxTextS_updateSale">
                                                                         <div class="Flashsale_timeSlider_BoxTextS_updateSaleNumber">
@@ -691,6 +692,7 @@
                                 <div class="productS-link-full-view viewOne">
                                     <?php
                                         foreach($listProsearchMax as $proSearchMax) {
+                                            $sales = 100 - (($proSearchMax['sale'] / $proSearchMax['price']) * 100);
                                             ?>
                                                 <div class="productS-full-link-view">
                                                     <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $proSearchMax['product_id'] ?>" class="">
@@ -703,7 +705,7 @@
                                                                             if($proSearchMax['sale'] > 0) {
                                                                                 ?>
                                                                                     <div class="ColumFlex_img__spanSalePt">
-                                                                                        <span class="ColumFlex_img__textSaleContent"><?= $proSearchMax['sale'] ?>%</span>
+                                                                                        <span class="ColumFlex_img__textSaleContent"><?= ceil($sales) ?>%</span>
                                                                                         <span class="ColumFlex_img__textSaleGiam">GIẢM</span>
                                                                                     </div>
                                                                                 <?php
@@ -727,7 +729,7 @@
                                                                     <div class="prd-v3-price prd-v3-price-bv">
                                                                         <div class="prd-v3-price-textChil">
                                                                             <span class="prd-v3-price-textChil-span">
-                                                                                ₫<?= number_format($proSearchMax['price'], 0, ",", ".") ?>
+                                                                                ₫<?= number_format($proSearchMax['sale'], 0, ",", ".") ?>
                                                                             </span>
                                                                         </div>
                                                                         <div class="check-sub-success">
@@ -767,25 +769,20 @@
                                             <div class="stardust-tabs-panels__panel_navS">
                                                 <?php
                                                     foreach($listProduct as $product) {
+                                                        $sales = 100 - (($product['sale'] / $product['price']) * 100);
                                                         ?>
                                                             <div class="stardust-tabs-panels__panel_navSChilrent">
                                                                 <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $product['product_id'] ?>" class="stardust-tabs-panels__flexHref">
                                                                     <div class="stardust-tabs-panels__ColumFlex__div">
                                                                         <div class="stardust-tabs-panels__ColumFlex_img">
                                                                             <img src="./public/upload/image/product/<?= explode(",", $product['images'])[0] ?>" alt="">
-                                                                            <?php
-                                                                                if($product['sale'] > 0) {
-                                                                                    ?>
-                                                                                        <div class="ColumFlex_img__spanSale">
-                                                                                            <span class="ColumFlex_img__span">Sale</span>
-                                                                                        </div>
-                                                                                        <div class="ColumFlex_img__spanSalePt">
-                                                                                            <span class="ColumFlex_img__textSaleContent"><?= $product['sale'] ?>%</span>
-                                                                                            <span class="ColumFlex_img__textSaleGiam">GIẢM</span>
-                                                                                        </div>
-                                                                                    <?php
-                                                                                }
-                                                                            ?>
+                                                                            <div class="ColumFlex_img__spanSale">
+                                                                                <span class="ColumFlex_img__span">Sale</span>
+                                                                            </div>
+                                                                            <div class="ColumFlex_img__spanSalePt">
+                                                                                <span class="ColumFlex_img__textSaleContent"><?= ceil($sales) ?>%</span>
+                                                                                <span class="ColumFlex_img__textSaleGiam">GIẢM</span>
+                                                                            </div>
                                                                             <div class="ColumFlex_img__bgrImage">
                                                                                 <img src="./img1/bgpr.png" alt="">
                                                                             </div>
@@ -796,7 +793,7 @@
                                                                             </div>
                                                                             <div class="stardust-ColumFlex_Boxprice">
                                                                                 <div class="stardust-ColumFlex_Boxprice">
-                                                                                    ₫<?= number_format($product['price'], 0, ",",".") ?>
+                                                                                    ₫<?= number_format($product['sale'], 0, ",",".") ?>
                                                                                 </div>
                                                                                 <div class="stardust-ColumFlex_clickPrice">
                                                                                     đã bán 23.2k

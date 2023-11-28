@@ -82,15 +82,17 @@
                         <td><p style="text-align: left; padding-left:50px"><?=$voucher['content_voucher']?></p></td>
                         <td><?php if($voucher['del_price']!=0){echo number_format($voucher['del_price'],0,',','.');}if($voucher['del_percent']!=0){echo number_format($voucher['del_percent'],0,',','.').'%';}?></td>
                         <td><?php
-                            if($voucher['from_price']==0&&$voucher['to_price']==99999999.99){
+                            if($voucher['from_price']==0&&$voucher['to_price']==99999999){
                                 echo 'Không giới hạn';
-                            }else if($voucher['to_price']==99999999.99){
+                            }else if($voucher['to_price']==99999999){
                                 echo number_format($voucher['from_price'],0,',','.').' trở lên';
+                            }else{
+                                echo number_format($voucher['from_price'],0,',','.').'->'.number_format($voucher['from_price'],0,',','.');
                             }
                             ?>
                         </td>
                         <td><?=$voucher['voucher_create_at']?></td>
-                        <td class="d-flex justify-content-center align-items-center"><p voucher_id="<?=$voucher['voucher_id']?>" class="timeCL">0 ngày 0 giờ 0 phút 0 giây</p></td>
+                        <td class="d-flex justify-content-center align-items-center"><p style="padding-top: 10px;" voucher_id="<?=$voucher['voucher_id']?>" class="timeCL">0 ngày 0 giờ 0 phút 0 giây</p></td>
                         <td>
                             <a href="index.php?action=deleteVoucher&voucher_id=<?=$voucher['voucher_id']?>" class="btn btn-outline-danger btn-sm">Xoá</a>
                             <a href="index.php?action=editVoucher&voucher_id=<?=$voucher['voucher_id']?>" class="btn btn-outline-success btn-sm">Sửa</a>
@@ -137,24 +139,6 @@
                     </script>
                     </tbody>
                 </table>
-                <div class="flex_page">
-                    <a class="click_right" href="index.php?action=listProduct&product_page=<?= $product_page??2 - 1 == 0 ? $product_page : $product_page - 1 ?>"><</a>
-                    <?php
-                    for ($i = 1; $i <= min(5, $countTrang??1); $i++) {
-                        ?>
-                        <a class="page__i" style="color: <?= $product_page == $i ? "#ee4d2d" : "" ?>;" href="index.php?action=listProduct&page=<?= $i ?>"><?= $i ?></a>
-                        <?php
-                    }
-
-                    if($i > 5) {
-                        ?>
-                        <span style="font-size: 26px;">. . .</span>
-                        <?php
-                    }
-                    ?>
-
-                    <a class="click_left" href="index.php?action=listProduct&product_page=<?= $product_page + 1 <= $countTrang??1 ? $product_page + 1 : $product_page ?>">></a>
-                </div>
             </div>
 
         </div>

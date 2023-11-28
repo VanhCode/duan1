@@ -33,7 +33,6 @@
                         <div class="flex-column__chil_img_hover">
                             <div class="flex-column__chil_img_transform">
                                 <?php
-                                    $giamgia = $chitiet_product['price'] * (100 - $chitiet_product['sale']) / 100;
 
                                     foreach (explode(",", $chitiet_product['images']) as $key => $imageChil) {
                                         ?>
@@ -93,14 +92,8 @@
                                         Giá Bán:
                                     </div>
                                     <div class="flex_price__product_text">
-                                        <?php
-                                            if ($chitiet_product['sale'] > 0) {
-                                            ?>
-                                                <div class="flex_price__product_text_throw" name="priceThrow">₫<?= number_format($chitiet_product['price'], 0, ",", ".") ?></div>
-                                            <?php
-                                            }
-                                        ?>
-                                        <div class="flex_price__product_text" name="price">₫<?= ($chitiet_product['sale'] > 0) ? number_format($giamgia, 0, ",", ".") : number_format($chitiet_product['price'], 0, ",", ".") ?></div>
+                                        <div class="flex_price__product_text_throw" name="priceThrow">₫<?= number_format($chitiet_product['price'], 0, ",", ".") ?></div>
+                                        <div class="flex_price__product_text" name="price">₫<?= number_format($chitiet_product['sale'], 0, ",", ".") ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -281,7 +274,7 @@
                                     </div>
                                 </div>
                                 <div class="product-ratings__list" style="opacity: 1;">
-                                    <div class="vanhstore-product-comment-list">
+                                    <div class="vanhstore-product-comment-list" id="comment">
                                         <?php
                                             foreach($listComment as $commnent) {
                                                 ?>
@@ -313,14 +306,15 @@
                                         ?>
                                     </div>
                                 </div>
-                                <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post">
+                                <form id="commentForm" action="<?= $_SERVER['REQUEST_URI'] ?>" method="post">
                                     <div class="comment__product">
                                         <div class="comment__product__header">
-                                            <img src="./img1/imgac.png" alt="">    
+                                            <img src="./public/upload/image/user/<?= $user['user_image'] ?>" alt="">    
                                         </div>
                                         <div class="comment__product__content__btn">
-                                            <input type="hidden" name="idproduct" value="<?= $chitiet_product['product_id'] ?>">
-                                            <input type="text" class="vanhstore__input__comments" name="noidung" placeholder="Viết bình luận...">
+                                            <input type="hidden" id="idproduct" name="idproduct" value="<?= $chitiet_product['product_id'] ?>">
+                                            <input type="hidden" id="iduser" name="iduser" value="<?= $userID ?>">
+                                            <input type="text" class="vanhstore__input__comments" id="noidung" name="noidung" placeholder="Viết bình luận...">
                                             <input type="submit" class="vanhstore__input__buttons" name="submitComment" value="Gửi">
                                         </div>
                                     </div>
@@ -423,6 +417,7 @@
                                 
                                 <?php
                                 foreach ($listSpCungloai as $sp_cungloai) {
+                                    $sales = 100 - (($sp_cungloai['sale'] / $sp_cungloai['price']) * 100);
                                 ?>
                                             <div class="stardust-tabs-panels__panel_navSChilrent">
                                                 <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $sp_cungloai['product_id'] ?>" class="stardust-tabs-panels__flexHref">
@@ -433,7 +428,7 @@
                                                                 <span class="ColumFlex_img__span">Sale</span>
                                                             </div>
                                                             <div class="ColumFlex_img__spanSalePt">
-                                                                <span class="ColumFlex_img__textSaleContent"><?= $sp_cungloai['sale'] ?>%</span>
+                                                                <span class="ColumFlex_img__textSaleContent"><?= ceil($sales) ?>%</span>
                                                                 <span class="ColumFlex_img__textSaleGiam">GIẢM</span>
                                                             </div>
                                                             <div class="ColumFlex_img__bgrImage">
@@ -446,7 +441,7 @@
                                                             </div>
                                                             <div class="stardust-ColumFlex_Boxprice">
                                                                 <div class="stardust-ColumFlex_Boxprice">
-                                                                    ₫<?= number_format($sp_cungloai['price'], 0, ",", ".") ?>
+                                                                    ₫<?= number_format($sp_cungloai['sale'], 0, ",", ".") ?>
                                                                 </div>
                                                                 <div class="stardust-ColumFlex_clickPrice">
                                                                     đã bán 23.2k
@@ -474,6 +469,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- End main -->
 

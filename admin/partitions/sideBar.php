@@ -43,7 +43,7 @@
         </li>
         <li class="<?=$action=='listVoucher' || $action=='addVoucher' || $action=='editVoucher' ?'active':''?>">
             <a href="index.php?action=listVoucher">
-                <i class='bx bxs-comment'></i>
+                <i class='bx bxl-sketch'></i>
                 <span class="text">Quản lí voucher</span>
             </a>
         </li>

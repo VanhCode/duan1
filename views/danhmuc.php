@@ -76,6 +76,7 @@
                                <ul class="row vanhstore-search-item-result__items">
                                     <?php
                                         foreach($listProduct_byIdcategory as $productByid) {
+                                            $sales = 100 - (($productByid['sale'] / $productByid['price']) * 100);
                                             ?>
                                                 <li class="col-xs-2-4 vanhstore-search-item-result__item">
                                                     <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $productByid['product_id'] ?>">
@@ -91,7 +92,7 @@
                                                                         </div>
                                                                         <div class="TS7wv2">
                                                                             <div class="JC9p5x">
-                                                                                <span class="FTxtVW">-<?= $productByid['sale'] ?>%</span>
+                                                                                <span class="FTxtVW">-<?= ceil($sales) ?>%</span>
                                                                             </div>
                                                                         </div>
                                                                         <div class="N+Ex9S">
@@ -112,7 +113,7 @@
                                                                         <div class="bPcAVl IWBsMB">
                                                                             <span aria-label="current price"></span>
                                                                             <span class="bx++ig">₫</span>
-                                                                            <span class="k9JZlv"><?= number_format($productByid['price'], 0,",",".") ?></span>
+                                                                            <span class="k9JZlv"><?= number_format($productByid['sale'], 0,",",".") ?></span>
                                                                         </div>
                                                                     </div>
                                                                     <div class="DN6Jp1">

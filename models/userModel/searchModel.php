@@ -11,8 +11,8 @@
 
 
     // Tìm kiếm sản phẩm theo giá
-    function search__khoanggia($min,$max,$sapxep,$begin,$itemsPerPage) {
-        $sql = "SELECT * FROM products WHERE price >= $min AND price <= $max ORDER BY $sapxep LIMIT $begin, $itemsPerPage";
+    function search__khoanggia($min,$max,$sapxep,$begin) {
+        $sql = "SELECT * FROM products WHERE price >= $min AND price <= $max ORDER BY $sapxep LIMIT $begin, 20";
         $result = pdo_query($sql);
         return $result;
     }
