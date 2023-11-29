@@ -80,9 +80,15 @@
                         }
                     </script>
                     <div class="form-group">
+                        <label for="" class="form-label">Ngày bắt đầu</label>
+                        <div class="input-group flex-nowrap w-25">
+                            <input type="datetime-local" name="start_date" class="form-control" value="<?=$voucher['start_date']?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="" class="form-label">Ngày hết hạn</label>
                         <div class="input-group flex-nowrap w-25">
-                            <input type="datetime-local" name="expiration_date" class="form-control" value="<?=$voucher['expiration_date']?>">
+                            <input type="datetime-local" name="end_date" class="form-control" value="<?=$voucher['end_date']?>">
                         </div>
                     </div>
                     <script>
@@ -96,7 +102,7 @@
                         <small></small>
                     </div>
                     <div class="form-group">
-                        <label for="" class="form-label">Áp dụng</label>
+                        <label for="" class="form-label">Đối tượng áp dụng</label>
                         <div class="input-group mb-3 w-25">
                             <div class="input-group-text">
                                 <input class="form-check-input mt-0" type="checkbox" value="" name="addForAll">
@@ -116,6 +122,62 @@
                             <input oninput="this.parentElement.querySelector('input').value=this.value" type="number" class="form-control" placeholder="Chi tiêu tối thiểu">
                         </div>
                     </div>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Áp dụng cho sản phẩm
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div style="max-width: 800px!important;" class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body overflow-auto" style="height: 700px">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th colspan="2">Sản phẩm</th>
+                                            <th>Giá</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php foreach ($products as $product):?>
+                                            <tr class="" onclick="checkedPro(this)">
+                                                <td class="mt-5 border-0"><input class="form-check-input" type="checkbox" name="product_id[]" value="<?=$product['product_id']?>"></td>
+                                                <td class="img__productadd">
+                                                    <img src="../public/upload/image/product/<?= explode(",", $product['images'])[0] ?>" alt="">
+                                                </td>
+                                                <td><p style="width: 400px;"><?=$product['product_name']?></p></td>
+                                                <td style="color: red"><?=$product['price']?></td>
+                                            </tr>
+                                        <?php endforeach;?>
+                                        </tbody>
+                                    </table>
+                                    <script>
+                                        function checkedPro(tr){
+                                            let ip=tr.querySelector('input');
+                                            if(ip.checked===false){
+                                                ip.checked=true;
+                                                tr.classList.add('checkedPro');
+                                            }else {
+                                                ip.checked=false;
+                                                tr.classList.remove('checkedPro');
+                                            }
+                                        }
+                                    </script>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="form-group">
                         <input class="btn btn-primary" type="submit" name="editVoucher" value="Sửa voucher">

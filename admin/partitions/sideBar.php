@@ -47,6 +47,12 @@
                 <span class="text">Quản lí voucher</span>
             </a>
         </li>
+        <li class="<?=$action=='statistical'?'active':''?>">
+            <a href="index.php?action=statistical">
+                <i class='bx bxs-bar-chart-alt-2'></i>
+                <span class="text">Thống kê</span>
+            </a>
+        </li>
 
     </ul>
     <ul class="side-menu px-0">

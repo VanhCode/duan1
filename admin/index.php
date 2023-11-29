@@ -32,7 +32,9 @@ switch ($action) {
 
         include 'dashboard.php';
         break;
-
+    case 'statistical':
+        include 'statistical.php';
+        break;
     // list
     case 'listVoucher':
         $allVoucher=getAll('voucher');
@@ -100,6 +102,7 @@ switch ($action) {
 
     //add
     case 'addVoucher':
+        $products=getAll('products');
         $_POST['del_price']=$_POST['del_price']??0;
         $_POST['del_percent']=$_POST['del_percent']??0;
         if(isset($_POST['addVoucher'])){
@@ -109,16 +112,35 @@ switch ($action) {
                 'del_percent'=>$_POST['del_percent'],
                 'from_price'=>$_POST['from_price'],
                 'to_price'=>$_POST['to_price'],
-                'expiration_date'=>$_POST['expiration_date'],
+                'start_date'=>$_POST['start_date'],
+                'end_date'=>$_POST['end_date'],
             ]);
             if(isset($_POST['addForAll'])){
-                addVoucherForAllUser($voucher_id);
+                if(isset($_POST['product_id'])){
+                    foreach ($_POST['product_id'] as $product_id){
+                        addVoucherForAllUser($voucher_id,$product_id);
+                    }
+                }else{
+                    addVoucherForAllUser($voucher_id);
+                }
             }
             if(isset($_POST['onlineDay'])){
-                addVoucherForNewUser($voucher_id,$_POST['onlineDay']);
+                if(isset($_POST['product_id'])){
+                    foreach ($_POST['product_id'] as $product_id){
+                        addVoucherForNewUser($voucher_id, $_POST['onlineDay'],$product_id);
+                    }
+                }else {
+                    addVoucherForNewUser($voucher_id, $_POST['onlineDay']);
+                }
             }
             if(isset($_POST['paymentLimit'])){
-                addVoucherForUserWithPaymentLimit($voucher_id,$_POST['paymentLimit']);
+                if(isset($_POST['product_id'])){
+                    foreach ($_POST['product_id'] as $product_id){
+                        addVoucherForUserWithPaymentLimit($voucher_id, $_POST['paymentLimit'],$product_id);
+                    }
+                }else {
+                    addVoucherForUserWithPaymentLimit($voucher_id, $_POST['paymentLimit']);
+                }
             }
             header("location: index.php?action=listVoucher");
         }
@@ -202,6 +224,7 @@ switch ($action) {
 
     //edit
     case 'editVoucher':
+        $products=getAll('products');
         $voucher_id=$_GET['voucher_id']??0;
         $voucher=getDataBy('voucher',[
             'voucher_id'=>$voucher_id
@@ -215,17 +238,36 @@ switch ($action) {
                 'del_percent'=>$_POST['del_percent'],
                 'from_price'=>$_POST['from_price'],
                 'to_price'=>$_POST['to_price'],
-                'expiration_date'=>$_POST['expiration_date'],
+                'start_date'=>$_POST['start_date'],
+                'end_date'=>$_POST['end_date'],
             ],"voucher_id=$voucher_id");
 
             if(isset($_POST['addForAll'])){
-                addVoucherForAllUser($voucher_id);
+                if(isset($_POST['product_id'])){
+                    foreach ($_POST['product_id'] as $product_id){
+                        addVoucherForAllUser($voucher_id,$product_id);
+                    }
+                }else{
+                    addVoucherForAllUser($voucher_id);
+                }
             }
             if(isset($_POST['onlineDay'])){
-                addVoucherForNewUser($voucher_id,$_POST['onlineDay']);
+                if(isset($_POST['product_id'])){
+                    foreach ($_POST['product_id'] as $product_id){
+                        addVoucherForNewUser($voucher_id, $_POST['onlineDay'],$product_id);
+                    }
+                }else {
+                    addVoucherForNewUser($voucher_id, $_POST['onlineDay']);
+                }
             }
             if(isset($_POST['paymentLimit'])){
-                addVoucherForUserWithPaymentLimit($voucher_id,$_POST['paymentLimit']);
+                if(isset($_POST['product_id'])){
+                    foreach ($_POST['product_id'] as $product_id){
+                        addVoucherForUserWithPaymentLimit($voucher_id, $_POST['paymentLimit'],$product_id);
+                    }
+                }else {
+                    addVoucherForUserWithPaymentLimit($voucher_id, $_POST['paymentLimit']);
+                }
             }
             header("location: index.php?action=listVoucher");
         }
