@@ -33,7 +33,6 @@
                         <div class="flex-column__chil_img_hover">
                             <div class="flex-column__chil_img_transform">
                                 <?php
-                                    $giamgia = $chitiet_product['price'] * (100 - $chitiet_product['sale']) / 100;
 
                                     foreach (explode(",", $chitiet_product['images']) as $key => $imageChil) {
                                         ?>
@@ -93,14 +92,8 @@
                                         Giá Bán:
                                     </div>
                                     <div class="flex_price__product_text">
-                                        <?php
-                                            if ($chitiet_product['sale'] > 0) {
-                                            ?>
-                                                <div class="flex_price__product_text_throw" name="priceThrow">₫<?= number_format($chitiet_product['price'], 0, ",", ".") ?></div>
-                                            <?php
-                                            }
-                                        ?>
-                                        <div class="flex_price__product_text" name="price">₫<?= ($chitiet_product['sale'] > 0) ? number_format($giamgia, 0, ",", ".") : number_format($chitiet_product['price'], 0, ",", ".") ?></div>
+                                        <div class="flex_price__product_text_throw" name="priceThrow">₫<?= number_format($chitiet_product['price'], 0, ",", ".") ?></div>
+                                        <div class="flex_price__product_text" name="price">₫<?= number_format($chitiet_product['sale'], 0, ",", ".") ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -424,6 +417,7 @@
                                 
                                 <?php
                                 foreach ($listSpCungloai as $sp_cungloai) {
+                                    $sales = 100 - (($sp_cungloai['sale'] / $sp_cungloai['price']) * 100);
                                 ?>
                                             <div class="stardust-tabs-panels__panel_navSChilrent">
                                                 <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $sp_cungloai['product_id'] ?>" class="stardust-tabs-panels__flexHref">
@@ -434,7 +428,7 @@
                                                                 <span class="ColumFlex_img__span">Sale</span>
                                                             </div>
                                                             <div class="ColumFlex_img__spanSalePt">
-                                                                <span class="ColumFlex_img__textSaleContent"><?= $sp_cungloai['sale'] ?>%</span>
+                                                                <span class="ColumFlex_img__textSaleContent"><?= ceil($sales) ?>%</span>
                                                                 <span class="ColumFlex_img__textSaleGiam">GIẢM</span>
                                                             </div>
                                                             <div class="ColumFlex_img__bgrImage">
@@ -447,7 +441,7 @@
                                                             </div>
                                                             <div class="stardust-ColumFlex_Boxprice">
                                                                 <div class="stardust-ColumFlex_Boxprice">
-                                                                    ₫<?= number_format($sp_cungloai['price'], 0, ",", ".") ?>
+                                                                    ₫<?= number_format($sp_cungloai['sale'], 0, ",", ".") ?>
                                                                 </div>
                                                                 <div class="stardust-ColumFlex_clickPrice">
                                                                     đã bán 23.2k

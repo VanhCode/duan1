@@ -17,17 +17,17 @@
                     <div class="group__location_edit">
                         <div class="group_location_ip">
                             <h4>Họ và tên..*</h4>
-                            <input type="text" class="information_ip ip_name_thanhtoan" value="<?= $user['firth_name'] . " " . $user['last_name'] ?>" name="fullname">
+                            <input type="text" class="information_ip ip_name_thanhtoan" placeholder="Nhập tên của bạn..." value="<?= $user['firth_name'] . " " . $user['last_name'] ?>" name="fullname">
                             <div class="information_Err information_Errname"></div>
                         </div>
                         <div class="group_location_ip">
                             <h4>Số điện thoại..*</h4>
-                            <input type="text" class="information_ip ip_phone_thanhtoan" value="<?= $user['phone'] ?>" name="phone">
+                            <input type="text" class="information_ip ip_phone_thanhtoan" placeholder="Nhập số điện thoại..." value="<?= $user['phone'] ?>" name="phone">
                             <div class="information_Err information_Errphone"></div>
                         </div>
                         <div class="group_location_ip">
                             <h4>Địa chỉ..*</h4>
-                            <input type="text" class="information_ip ip_address_thanhtoan" value="<?= $user['address'] ?>" name="address">
+                            <input type="text" class="information_ip ip_address_thanhtoan" placeholder="Nhập địa chỉ..." value="<?= $user['address'] ?>" name="address">
                             <div class="information_Err information_Erraddress"></div>
                         </div>
                     </div>
@@ -125,45 +125,60 @@
                 </div>
             </div>
             <div class="a+7foE pd_vch">
-                <div class="vc_Card_card">
-                    <div class="vc_Card_left">
-                        <div class="vc_Card_sawtooth"></div>
-                    </div>
-                    <div class="vc_Card_right"></div>
-                    <div class="vc_VoucherStandardTemplate_hideOverflow"></div>
-                    <div data-testid="voucher-card" class="vc_VoucherStandardTemplate_template" role="presentation">
-                        <div class="vc_VoucherStandardTemplate_left" role="presentation">
-                            <div data-testid="vcLogo" class="vc_Logo_imageLogo" data-target="shop_icon"><img class="vc_Logo_logo" src="./img1/vch.png" alt="Logo"></div>
-                            <div data-testid="vcIconText" class="vc_IconText_iconText vc_IconText_oneLine" data-cy="voucher_card_icon_text" style="color: white;">Mã vận chuyển</div>
-                            <div data-testid="vcIconSubText" class="vc_IconSubText_iconSubText vc_IconSubText_white" data-cy="voucher_card_sub_icon_text">Tất cả hình thức thanh toán</div>
-                        </div>
-                        <div class="vc_VoucherStandardTemplate_middle" role="presentation" tabindex="0">
-                            <div class="vc_A11yAriaText_A11yContent"><span aria-label="voucher #"></span><span aria-label=" Vui lòng mua hàng trên ứng dụng Shopee để sử dụng ưu đãi."></span></div>
-                            <div data-testid="vcMainTitle" class="vc_MainTitle_mainTitle">
-                                <div class="vc_MainTitle_text vc_MainTitle_fsvLine">Giảm tối đa ₫300k</div>
-                            </div>
-                            <div data-testid="vcSubtitle" class="vc_Subtitle_subTitle vc_Subtitle_oneLine">Đơn Tối Thiểu ₫0</div>
-                            <div data-testid="vcLabel" class="vc_Label_label">
-                                <div class="vc_Label_shopeeWalletLabel" data-cy="voucher_card_label">
-                                    <div class="vc_Label_shopeeWalletLabelContent" data-cy="voucher_card_label_content" aria-label="Freeship Cyber Monday" style="color: red;">Freeship Cyber Monday</div>
+                <?php
+
+                    foreach($listvoucher as $voucher) {
+                        $tinhtien = ($tong * $voucher['del_percent'] / 100) - $voucher['del_price'];
+                        ?>
+                            <div class="vc_Card_card">
+                                <div class="vc_Card_left">
+                                    <div class="vc_Card_sawtooth"></div>
+                                </div>
+                                <div class="vc_Card_right"></div>
+                                <div class="vc_VoucherStandardTemplate_hideOverflow"></div>
+                                <div data-testid="voucher-card" class="vc_VoucherStandardTemplate_template" role="presentation">
+                                    <div class="vc_VoucherStandardTemplate_left" role="presentation">
+                                        <div data-testid="vcLogo" class="vc_Logo_imageLogo" data-target="shop_icon"><img class="vc_Logo_logo" src="./img1/vch.png" alt="Logo"></div>
+                                        <div data-testid="vcIconText" class="vc_IconText_iconText vc_IconText_oneLine" data-cy="voucher_card_icon_text" style="color: white;">Mã vận chuyển</div>
+                                        <div data-testid="vcIconSubText" class="vc_IconSubText_iconSubText vc_IconSubText_white" data-cy="voucher_card_sub_icon_text">Tất cả hình thức thanh toán</div>
+                                    </div>
+                                    <div class="vc_VoucherStandardTemplate_middle" role="presentation" tabindex="0">
+                                        <div class="vc_A11yAriaText_A11yContent"><span aria-label="voucher #"></span><span aria-label=" Vui lòng mua hàng trên ứng dụng Shopee để sử dụng ưu đãi."></span></div>
+                                        <div data-testid="vcMainTitle" class="vc_MainTitle_mainTitle">
+                                            <div class="vc_MainTitle_text vc_MainTitle_fsvLine"><?= $voucher['content_voucher'] ?></div>
+                                        </div>
+                                        <div data-testid="vcSubtitle" class="vc_Subtitle_subTitle vc_Subtitle_oneLine">Đơn Tối Thiểu ₫0</div>
+                                        <div data-testid="vcLabel" class="vc_Label_label">
+                                            <div class="vc_Label_shopeeWalletLabel" data-cy="voucher_card_label">
+                                                <div class="vc_Label_shopeeWalletLabelContent" data-cy="voucher_card_label_content" aria-label="Freeship Cyber Monday" style="color: red;">Voucher giảm giá</div>
+                                            </div>
+                                        </div>
+                                        <div data-testid="vcProgressBarExpiry" class="vc_ProgressBarExpiry_progressBarExpiry">
+                                            <div data-testid="vcProgressBar" class="vc_ProgressBar_progressBar vc_ProgressBarExpiry_progressBar" style="--vc-progress-bar-percentage: 99%;"></div>
+                                            <div class="vc_ProgressBarExpiry_usageLimitedText vc_ProgressBarExpiry_twoRowsLimitText"><span class="vc_ProgressBarExpiry_isRunningOutSoon">Đã dùng 99%, </span><span class="vc_ProgressBarExpiry_isEndingSoon">Sắp hết hạn: Còn 1 ngày</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="vc_VoucherStandardTemplate_right" role="presentation">
+                                        <div></div>
+                                        <div class="vc_VoucherStandardTemplate_center">
+                                            <input type="radio" class="vc_RadioButton_radio vc_RadioButton_radioDisabled voucher_radio" value="<?= $tinhtien ?>" name="voucher" id="">
+                                            <input type="radio"style="opacity: 0;" class="" value="<?= $voucher['voucher_id'] ?>" name="id_voucher" id="">
+                                        </div>
+                                        <div>
+                                            <div data-testid="vcTNCLink" class="vc_TNCLink_tncLink" role="navigation">
+                                                <a>
+                                                    <span>Điều Kiện</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
-                            <div data-testid="vcProgressBarExpiry" class="vc_ProgressBarExpiry_progressBarExpiry">
-                                <div data-testid="vcProgressBar" class="vc_ProgressBar_progressBar vc_ProgressBarExpiry_progressBar" style="--vc-progress-bar-percentage: 99%;"></div>
-                                <div class="vc_ProgressBarExpiry_usageLimitedText vc_ProgressBarExpiry_twoRowsLimitText"><span class="vc_ProgressBarExpiry_isRunningOutSoon">Đã dùng 99%, </span><span class="vc_ProgressBarExpiry_isEndingSoon">Sắp hết hạn: Còn 1 ngày</span></div>
-                            </div>
-                        </div>
-                        <div class="vc_VoucherStandardTemplate_right" role="presentation">
-                            <div></div>
-                            <div class="vc_VoucherStandardTemplate_center">
-                                <input type="radio" class="vc_RadioButton_radio vc_RadioButton_radioDisabled" name="" id="">
-                            </div>
-                            <div>
-                                <div data-testid="vcTNCLink" class="vc_TNCLink_tncLink" role="navigation"><a><span>Điều Kiện</span></a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        <?php
+                    }
+                ?>
+                <input type="hidden" class="tongtien" name="tongtien" value="<?= $tong ?>">
             </div>
         </div>
         <div class="product__send_bill">
@@ -189,11 +204,12 @@
                 </div>
             </div>
             <div class="KQyCj0">
-                <h2 class="a11y-visually-hidden">Tổng thanh toán:</h2>
-                <h3 class="bwwaGp iL6wsx BcITa9">Tổng tiền hàng</h3>
+                <h3 class="bwwaGp iL6wsx BcITa9">Tổng tiền:</h3>
                 <div class="bwwaGp R3a05f BcITa9">₫<?= number_format($tong, 0, ",", ".") ?></div>
+                <h3 class="bwwaGp iL6wsx BcITa9">Voucher giảm giá:</h3>
+                <div class="bwwaGp R3a05f BcITa9 voucher_html">₫0</div>
                 <h3 class="bwwaGp iL6wsx _5y8V6a">Tổng thanh toán:</h3>
-                <div class="bwwaGp l2Nmnm R3a05f _5y8V6a">₫<?= number_format($tong, 0, ",", ".") ?></div>
+                <div class="bwwaGp l2Nmnm R3a05f _5y8V6a priceVch_html">₫<?= number_format($tong, 0, ",", ".") ?></div>
                 <div class="uTFqRt">
                     <div class="k4VpYA">
                         <div class="C-NSr-">
@@ -210,6 +226,20 @@
 <!-- End main -->
 
 <script>
+    var voucherHtml = document.querySelector('.voucher_html');
+    var priceVchHtml = document.querySelector('.priceVch_html');
+    var tongtien = document.querySelector('.tongtien');
+    var voucherRadioS = document.querySelectorAll('.voucher_radio');
+
+    voucherRadioS.forEach(function(radioIndex) {
+        radioIndex.addEventListener('click', function() {
+            radioIndex.nextElementSibling.checked = true;
+            voucherHtml.innerHTML = this.value;
+            let result = (Number(tongtien.value) + Number(this.value));
+            let formattedTotal = result.toLocaleString('vi-VN').replace(/,/g, '.');
+            priceVchHtml.innerHTML = "₫" + formattedTotal;
+        })
+    })
     function sendThanhToan() {
         var ip_name_thanhtoan = document.querySelector('.ip_name_thanhtoan');
         var ip_phone_thanhtoan = document.querySelector('.ip_phone_thanhtoan');

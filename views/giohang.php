@@ -67,7 +67,8 @@
                                                     $tong = 0;
                                                     foreach($listCart as $cart) {
                                                         $giamgia = $cart['price'] * (100 - $cart['sale']) / 100;
-                                                        $sotien = $cart['price'] * $cart['amount'];
+                                                        $sotien = $cart['sale'] * $cart['amount'];
+                                                        
                                                         $tong += $sotien;
                                                         ?>
                                                             <div class="Eb+POp">
@@ -75,7 +76,8 @@
                                                                     <div class="zoXdNN">
                                                                         <div class="lgcEHJ">
                                                                             <label class="stardust-checkbox">
-                                                                                <input class="stardust-checkbox__input checkbox_productcart access__color" id="checkBox__productCart" type="checkbox" name="id_cart[]" value="<?= $cart['cart_id'] ?>">
+                                                                                <input class="stardust-checkbox__input checkBox__productCart checkbox_productcart access__color" id="checkBox__productCart" type="checkbox" name="id_cart[]" value="<?= $cart['cart_id'] ?>">
+                                                                                <input id="checkbox_hidden" type="checkbox" class="checkbox_hidden" value="<?= $cart['sale'] ?>">
                                                                                 <div class="stardust-checkbox__box"></div>
                                                                             </label>
                                                                         </div>
@@ -111,65 +113,29 @@
 
                                                                         <div class="price-product">
                                                                             <div class="price-flex flex__price2">
-                                                                                <?php
-                                                                                    if($cart['sale'] > 0) {
-                                                                                        ?>
-                                                                                            <span id="price-throwChange" class="price-money price-chil">
-                                                                                                ₫<?= number_format($cart['price'], 0, ",", ".") ?>
-                                                                                            </span>
-                                                                                            <span id="price-click" class="price-money">
-                                                                                                ₫<?= number_format($giamgia, 0, ",", ".") ?>
-                                                                                            </span>
-                                                                                        <?php
-                                                                                    } else {
-                                                                                        ?>
-                                                                                            <span id="price-click" class="price-money">
-                                                                                                ₫<?= number_format($cart['price'], 0, ",", ".") ?>
-                                                                                            </span>
-                                                                                        <?php
-                                                                                    }
-                                                                                ?>
+                                                                                <span id="price-throwChange" class="price-money price-chil">
+                                                                                    ₫<?= number_format($cart['price'], 0, ",", ".") ?>
+                                                                                </span>
+                                                                                <span id="price-click" class="price-money">
+                                                                                    ₫<?= number_format($cart['sale'], 0, ",", ".") ?>
+                                                                                </span>
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="amount-product">
                                                                             <div class="amount-click-box">
-                                                                                
                                                                                 <input type="hidden" name="" class="id__cart" value="<?= $cart['cart_id'] ?>">
-                                                                                
                                                                                 <a id="" class="clickAdd__deleteprice_right click_left"><i style="pointer-events: none;" class="fa-solid fa-minus"></i></a>
                                                                                 <input disabled type="text" id="" class="amount__flex amount__cartItem" value="<?= $cart['amount'] ?>">
                                                                                 <a id="" class="clickAdd__deleteprice_left click_right"><i style="pointer-events: none;" class="fa-solid fa-plus"></i></a>
-
-                                                                                <?php
-                                                                                    if($cart['sale'] > 0) {
-                                                                                        ?>
-                                                                                            <input type="hidden" name="" class="price__cart" value="<?= $giamgia ?>">
-                                                                                        <?php
-                                                                                    } else {
-                                                                                        ?>
-                                                                                            <input type="hidden" name="" class="price__cart" value="<?= $cart['price'] ?>">            
-                                                                                        <?php
-                                                                                    }
-                                                                                ?>
+                                                                                <input type="hidden" name="" class="price__cart" value="<?= $cart['sale'] ?>">            
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="money-product">
                                                                             <div class="money_price">
                                                                                 ₫ <span id="money-send" class="money-send moneysend">
-                                                                                    <?php
-                                                                                        if($cart['sale'] > 0) {
-                                                                                            ?>
-                                                                                                <?= number_format($giamgia, 0, ",", ".") ?>
-                                                                                            <?php
-                                                                                        } else {
-                                                                                            ?>
-                                                                                                <?= number_format($sotien, 0, ",", ".") ?>
-                                                                                            <?php
-                                                                                        }
-                                                                                    ?>
-                                                                                    
+                                                                                    <?= number_format($sotien, 0, ",", ".") ?>              
                                                                                 </span>
                                                                             </div>
                                                                         </div>
@@ -232,7 +198,7 @@
                             <div class="s1Gxkq c2pfrq">
                                 <div class="wqjloc">
                                     <label class="stardust-checkbox">
-                                        <input class="stardust-checkbox__input access__color" type="checkbox" aria-checked="false" aria-disabled="false" tabindex="0" role="checkbox" aria-label="Click here to select all products">
+                                        <input class="stardust-checkbox__input access__color" type="checkbox" id="click_allcheckbox">
                                         <div class="stardust-checkbox__box"></div>
                                     </label>
                                 </div>
@@ -244,8 +210,8 @@
                                 <div class="total-payout">
                                     <div class="check-total-payout">
                                         <div class="flex-total-payout">
-                                            <div class="total-text-">Tổng thanh toán (<?= $countProduct_cart['countProduct_cart'] ?>): </div>
-                                            <div class="price-end-total price_full">₫<?= number_format($tong, 0, ",", ".") ?></div>
+                                            <div class="total-text-">Tổng thanh toán (0): </div>
+                                            <div class="price-end-total price_full">₫0</div>
                                             <input type="hidden" class="total_pricefull" value="<?= $tong ?>">
                                         </div>
                                     </div>
@@ -254,6 +220,52 @@
                                 <button id="thanhtoan__order" name="muahang" class="vanh-button-solid vanh-button-solid--primary">
                                     <span class="send-end-total">Mua hàng</span>
                                 </button>
+
+                                <script>
+                                    var checkBoxProductCart = document.querySelectorAll('.checkBox__productCart');
+                                    var checkboxHidden = document.querySelectorAll('.checkbox_hidden');
+                                    let amount__cartItem = document.querySelectorAll('.amount__cartItem');
+                                    var priceFull = document.querySelector('.price_full');
+                                    let total=0;
+                                    
+                                    checkBoxProductCart.forEach(function(checkboxIndex,index) {
+                                        checkboxIndex.addEventListener('click', function() {
+                                            if(this.checked == true) {
+                                                this.nextElementSibling.checked = true;
+                                                total = total + (Number(checkboxHidden[index].value) * Number(amount__cartItem[index].value));
+                                                
+                                            } else {
+                                                this.nextElementSibling.checked = false;
+                                                total = total - (Number(checkboxHidden[index].value) * Number(amount__cartItem[index].value));
+                                            }
+                                            priceFull.innerHTML = '₫' + formatNumber(total);
+                                        })
+                                    })
+
+                                    function formatNumber(number) {
+                                        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                    }
+                
+
+                                    var click_allcheckbox =document.querySelector('#click_allcheckbox');
+                                    click_allcheckbox.addEventListener('click', function() {
+                                        if(this.checked == true) {
+                                            checkBoxProductCart.forEach(function(checkboxIndex,index) {
+                                                checkboxIndex.checked = true;
+                                                checkboxIndex.nextElementSibling.checked = true
+                                                total = total + (Number(checkboxHidden[index].value) * Number(amount__cartItem[index].value));
+                                            })
+                                            
+                                        } else {
+                                            checkBoxProductCart.forEach(function(checkboxIndex,index) {
+                                                checkboxIndex.checked = false;
+                                                checkboxIndex.nextElementSibling.checked = false
+                                                total = total - (Number(checkboxHidden[index].value) * Number(amount__cartItem[index].value));
+                                            })
+                                        }
+                                        priceFull.innerHTML = '₫' + formatNumber(total);
+                                    })
+                                </script>
                             </div>
                         </section>
                     </div>
@@ -315,7 +327,7 @@
                                                 <div class="prd-v3-price prd-v3-price-bv">
                                                     <div class="prd-v3-price-textChil">
                                                         <span class="prd-v3-price-textChil-span">
-                                                            ₫<?= number_format($productCart['price'], 0,',','.') ?>
+                                                            ₫<?= number_format($productCart['sale'], 0,',','.') ?>
                                                         </span>
                                                     </div>
                                                     <div class="check-sub-success">
