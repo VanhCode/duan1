@@ -410,7 +410,7 @@
     
                     if(isset($_POST['dathang'])) {
                         $data = [];
-                        $_SESSION['id_voucher'] = $_POST['id_voucher'];
+                        $_SESSION['id_voucher'] = $_POST['id_voucher'] ?? "";
                         $_SESSION['payment_session'] = $_POST['payment_radio'];
     
                         if(isset($_POST['payment_radio']) && ($_POST['payment_radio'] == "VNPAY")) {
@@ -424,8 +424,9 @@
                             $_SESSION['cart'] = $_POST;
     
                             $_SESSION['ma_don_hang'] = generateRandomOrderCode();
+                            
                             $vnp_TxnRef = $_SESSION['ma_don_hang']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-                            $voucher = voucher_byId($_POST['id_voucher']);
+                            $voucher = voucher_byId($_SESSION['id_voucher']);
                             
                             $tongdon = 0;
                             foreach($data as $key => $oder_detail) {      

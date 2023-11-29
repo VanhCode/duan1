@@ -15,7 +15,7 @@
     }
 
     // Select Đơn hàng
-    function load_bill_byid($product_id) {
+    function load_bill_byid($order_id) {
         $sql = "SELECT
                     orders.order_id,
                     orders.user_id,
@@ -34,6 +34,7 @@
                     order_details.size,
                     order_details.color,
                     order_details.price as price_orderDetail,
+                    order_details.voucher,
                     products.product_id,
                     products.product_name,
                     products.images,
@@ -46,9 +47,8 @@
                 INNER JOIN
                     products ON order_details.product_id = products.product_id
                 WHERE
-                    products.product_id = $product_id
-                ORDER BY orders.order_id DESC
-                
+                    orders.order_id = $order_id
+                ORDER BY orders.order_id DESC   
         ";
         return pdo_query_one($sql);
     }
@@ -69,6 +69,7 @@
                     order_details.size,
                     order_details.color,
                     order_details.price as price_orderDetail,
+                    order_details.voucher,
                     products.product_id,
                     products.product_name,
                     products.images,
@@ -103,6 +104,7 @@
                     order_details.size,
                     order_details.color,
                     order_details.price as price_orderDetail,
+                    order_details.voucher,
                     products.product_id,
                     products.product_name,
                     products.images,
@@ -139,6 +141,7 @@
                     order_details.size,
                     order_details.color,
                     order_details.price as price_orderDetail,
+                    order_details.voucher,
                     products.product_id,
                     products.product_name,
                     products.images,
@@ -175,6 +178,7 @@
                     order_details.size,
                     order_details.color,
                     order_details.price as price_orderDetail,
+                    order_details.voucher,
                     products.product_id,
                     products.product_name,
                     products.images,
@@ -210,6 +214,7 @@
                     order_details.size,
                     order_details.color,
                     order_details.price as price_orderDetail,
+                    order_details.voucher,
                     products.product_id,
                     products.product_name,
                     products.images,

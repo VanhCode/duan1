@@ -2161,12 +2161,12 @@ svg:not(:root) {
 .stepper__line-foreground {
   background: #2dc258;
   transition: width 1s cubic-bezier(.4,0,.2,1);
-  width: calc((100% - 140px) * 0.5);
+  /* width: calc((100% - 140px) * 0.5); */
   background: rgb(45, 194, 88);
 }
 .stepper__line-background, .stepper__line-foreground {
   position: absolute;
-  width: calc(100% - 140px);
+  /* width: calc(100% - 140px); */
   margin: 0 70px;
   height: 100%;
   -moz-box-sizing: border-box;
