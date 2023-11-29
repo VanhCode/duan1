@@ -1,5 +1,6 @@
 <?php
 include '../../models/PDO_admin.php';
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 $voucher_id=$_GET['voucher_id']??8;
 $sql="SELECT CONCAT(
   GREATEST(TIMESTAMPDIFF(DAY, NOW(), `end_date`), 0), ',',

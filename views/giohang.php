@@ -66,7 +66,6 @@
                                                 <?php
                                                     $tong = 0;
                                                     foreach($listCart as $cart) {
-                                                        $giamgia = $cart['price'] * (100 - $cart['sale']) / 100;
                                                         $sotien = $cart['sale'] * $cart['amount'];
                                                         
                                                         $tong += $sotien;

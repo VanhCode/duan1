@@ -398,7 +398,7 @@
                     header('Location: index.php?action=login');
                     exit();
                 } else {
-                    $listvoucher = voucher($userID);
+                    
 
                     // Đặt hàng
                     $data = [];
@@ -409,10 +409,7 @@
                     // End đặt hàng
     
                     if(isset($_POST['dathang'])) {
-                        // print_r($_POST);
-                        // die;
                         $data = [];
-
                         $_SESSION['id_voucher'] = $_POST['id_voucher'];
                         $_SESSION['payment_session'] = $_POST['payment_radio'];
     
@@ -431,7 +428,7 @@
                             
                             $tongdon = 0;
                             foreach($data as $key => $oder_detail) {      
-                                $tongdon += $oder_detail['amount'] * $oder_detail['price'];
+                                $tongdon += $oder_detail['amount'] * $oder_detail['sale'];
                             }
 
                             $tongdon = $tongdon - ($tongdon * $voucher['del_percent'] / 100) - $voucher['del_price'];
@@ -516,8 +513,6 @@
     
                             header('Location: index.php?action=cam-on');
                         }
-
-    
                     }
     
                     include "views/thanhtoan.php";
@@ -544,7 +539,7 @@
                             $id_order = insert_bill($userID,$ma_donhang,$_SESSION['cart']['fullname'],$_SESSION['cart']['phone'],$_SESSION['cart']['address'],$loai_thanhtoan);
 
                             foreach($data as $key => $oder_detail) {
-                                insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['price']);
+                                insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale']);
                             }
 
                             $_GET['image'] = explode(",", $data[0]['images']);
@@ -592,7 +587,7 @@
                    
                     
                     foreach($data as $key => $oder_detail) {
-                        insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['price']);
+                        insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale']);
                     }
 
 

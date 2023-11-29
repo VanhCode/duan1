@@ -37,7 +37,7 @@ switch ($action) {
         break;
     // list
     case 'listVoucher':
-        $allVoucher=getAll('voucher');
+        $allVoucher=getAll('voucher',['ORDER BY voucher_id DESC']);
         include 'voucher/listVoucher.php';
         break;
 
@@ -113,7 +113,7 @@ switch ($action) {
                 'from_price'=>$_POST['from_price'],
                 'to_price'=>$_POST['to_price'],
                 'start_date'=>$_POST['start_date'],
-                'end_date'=>$_POST['end_date'],
+                'end_date'=>$_POST['end_date']
             ]);
             if(isset($_POST['addForAll'])){
                 if(isset($_POST['product_id'])){

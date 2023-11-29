@@ -94,8 +94,8 @@
                         <td><?=$voucher['start_date']?></td>
                         <td class="d-flex justify-content-center align-items-center"><p style="padding-top: 10px;" voucher_id="<?=$voucher['voucher_id']?>" class="timeCL">0 ngày 0 giờ 0 phút 0 giây</p></td>
                         <td>
-                            <a href="index.php?action=deleteVoucher&voucher_id=<?=$voucher['voucher_id']?>" class="btn btn-outline-danger btn-sm">Xoá</a>
                             <a href="index.php?action=editVoucher&voucher_id=<?=$voucher['voucher_id']?>" class="btn btn-outline-success btn-sm">Sửa</a>
+                            <a href="index.php?action=deleteVoucher&voucher_id=<?=$voucher['voucher_id']?>" class="btn btn-outline-danger btn-sm">Xoá</a>
                         </td>
                     </tr>
                     <?php endforeach;?>

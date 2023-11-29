@@ -15,6 +15,45 @@
     }
 
     // Select Đơn hàng
+    function load_bill_byid($product_id) {
+        $sql = "SELECT
+                    orders.order_id,
+                    orders.user_id,
+                    orders.ma_don_hang,
+                    orders.receiver_name,
+                    orders.receiver_phone,
+                    orders.receiver_address,
+                    orders.status,
+                    orders.payment_status,
+                    orders.payment_method,
+                    orders.create_at,
+                    order_details.order_detail_id,
+                    order_details.order_id,
+                    order_details.product_id,
+                    order_details.amount,
+                    order_details.size,
+                    order_details.color,
+                    order_details.price as price_orderDetail,
+                    products.product_id,
+                    products.product_name,
+                    products.images,
+                    products.price,
+                    products.sale
+                FROM
+                    orders
+                INNER JOIN
+                    order_details ON orders.order_id = order_details.order_id
+                INNER JOIN
+                    products ON order_details.product_id = products.product_id
+                WHERE
+                    products.product_id = $product_id
+                ORDER BY orders.order_id DESC
+                
+        ";
+        return pdo_query_one($sql);
+    }
+
+
     function load_all_order($user_id) {
         $sql = "SELECT
                     orders.order_id,

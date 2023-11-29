@@ -97,7 +97,7 @@
                     <div class="form-group">
                         <label for="" class="form-label">Ngày bắt đầu</label>
                         <div class="input-group flex-nowrap w-25">
-                            <input type="datetime-local" name="end_date" class="form-control">
+                            <input type="datetime-local" name="start_date" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
