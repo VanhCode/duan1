@@ -7,10 +7,10 @@
 
     }
 
-    function insert_bill_detail($order_id, $product_id, $amount, $size, $color, $price) {
-        $sql = "INSERT INTO `order_detailS`(`order_id`, `product_id`, `amount`, `size`, `color`, `price`) 
+    function insert_bill_detail($order_id, $product_id, $amount, $size, $color, $price,$voucher) {
+        $sql = "INSERT INTO `order_detailS`(`order_id`, `product_id`, `amount`, `size`, `color`, `price`,`voucher`) 
                 VALUES 
-        ('$order_id','$product_id','$amount','$size','$color','$price')";
+        ('$order_id','$product_id','$amount','$size','$color','$price','$voucher')";
         pdo_execute($sql);
     }
 

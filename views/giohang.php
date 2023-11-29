@@ -201,7 +201,7 @@
                                         <div class="stardust-checkbox__box"></div>
                                     </label>
                                 </div>
-                                <a href="" class="iGlIrs clear-btn-style">Chọn Tất Cả</a>
+                                <a class="iGlIrs clear-btn-style" id="click_allcheckbox2">Chọn Tất Cả</a>
                                 <a class="delete__bycheckbox"><input type="button" class="clear-btn-style clear-abate delete__checkbox" value="Xóa"></a>
                                 <div class=""></div>
                                 <a href="" class="clear-btn-style save-like">Lưu vào mục Đã thích</a>
@@ -264,6 +264,11 @@
                                         }
                                         priceFull.innerHTML = '₫' + formatNumber(total);
                                     })
+
+
+
+                                    
+
                                 </script>
                             </div>
                         </section>

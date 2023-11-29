@@ -53,7 +53,7 @@
                     <?php
                     $tong = 0;
                     foreach ($data as $key => $product_bill) {
-                        $listvoucher = voucher($userID,$product_bill['product_id']);
+                        $listvoucher = voucher($userID, $product_bill['product_id']);
                         $thanhtien = $product_bill['sale'] * $product_bill['amount'];
                         $tong += $thanhtien;
                     ?>
@@ -106,6 +106,18 @@
                                             </div>
                                         </div>
                                         <div class="zjjc32">
+                                            <div class="yeg4Dy item_voucher">
+                                                <div class="p6tHng"></div>
+                                                <div class="uLPYi2" style="border-color: rgb(238, 77, 45); color: rgb(238, 77, 45);">
+                                                    <span class="price_innerVoucher">-₫0</span>
+                                                    <div class="f3xPPv"><svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 1 5 35" style="fill: rgb(238, 77, 45);">
+                                                            <path d="M0 0v2.27a2 2 0 010 3.46v2.54a2 2 0 010 3.46v2.54a2 2 0 010 3.46V19h2v-1h-.76A2.99 2.99 0 001 13.76v-1.52a3 3 0 000-4.48V6.24a3 3 0 000-4.48V1h1V0H0z"></path>
+                                                        </svg></div>
+                                                    <div class="odBn9-"><svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 1 5 35" style="fill: rgb(238, 77, 45);">
+                                                            <path d="M0 0v2.27a2 2 0 010 3.46v2.54a2 2 0 010 3.46v2.54a2 2 0 010 3.46V19h2v-1h-.76A2.99 2.99 0 001 13.76v-1.52a3 3 0 000-4.48V6.24a3 3 0 000-4.48V1h1V0H0z"></path>
+                                                        </svg></div>
+                                                </div>
+                                            </div>
                                             <div>
                                                 <div>
                                                     <button type="button" class="_64JAsH btn_model_all">
@@ -129,58 +141,58 @@
                                                             </div>
                                                             <div id="confirmModalChil" class="gLboXK">
                                                                 <?php
-                                                                    foreach(voucher($userID,$product_bill['product_id']) as $voucher) {
-                                                                        $tinhtien = ($tong * $voucher['del_percent'] / 100) - $voucher['del_price'];
-                                                                        ?>
-                                                                            <div class="vc_Card_card">
-                                                                                <div class="vc_Card_left">
-                                                                                    <div class="vc_Card_sawtooth"></div>
+                                                                foreach (voucher($userID, $product_bill['product_id']) as $voucher) {
+                                                                    $tinhtien = ($tong * $voucher['del_percent'] / 100) - $voucher['del_price'];
+                                                                ?>
+                                                                    <div class="vc_Card_card">
+                                                                        <div class="vc_Card_left">
+                                                                            <div class="vc_Card_sawtooth"></div>
+                                                                        </div>
+                                                                        <div class="vc_Card_right"></div>
+                                                                        <div class="vc_VoucherStandardTemplate_hideOverflow"></div>
+                                                                        <div data-testid="voucher-card" class="vc_VoucherStandardTemplate_template" role="presentation">
+                                                                            <div class="vc_VoucherStandardTemplate_left" role="presentation">
+                                                                                <div data-testid="vcLogo" class="vc_Logo_imageLogo" data-target="shop_icon"><img class="vc_Logo_logo" src="./img1/vch.png" alt="Logo"></div>
+                                                                                <div data-testid="vcIconText" class="vc_IconText_iconText vc_IconText_oneLine" data-cy="voucher_card_icon_text" style="color: white;">Mã vận chuyển</div>
+                                                                                <div data-testid="vcIconSubText" class="vc_IconSubText_iconSubText vc_IconSubText_white" data-cy="voucher_card_sub_icon_text">Tất cả hình thức thanh toán</div>
+                                                                            </div>
+                                                                            <div class="vc_VoucherStandardTemplate_middle" role="presentation" tabindex="0">
+                                                                                <div class="vc_A11yAriaText_A11yContent"><span aria-label="voucher #"></span><span aria-label=" Vui lòng mua hàng trên ứng dụng Shopee để sử dụng ưu đãi."></span></div>
+                                                                                <div data-testid="vcMainTitle" class="vc_MainTitle_mainTitle">
+                                                                                    <div class="vc_MainTitle_text vc_MainTitle_fsvLine"><?= $voucher['content_voucher'] ?></div>
                                                                                 </div>
-                                                                                <div class="vc_Card_right"></div>
-                                                                                <div class="vc_VoucherStandardTemplate_hideOverflow"></div>
-                                                                                <div data-testid="voucher-card" class="vc_VoucherStandardTemplate_template" role="presentation">
-                                                                                    <div class="vc_VoucherStandardTemplate_left" role="presentation">
-                                                                                        <div data-testid="vcLogo" class="vc_Logo_imageLogo" data-target="shop_icon"><img class="vc_Logo_logo" src="./img1/vch.png" alt="Logo"></div>
-                                                                                        <div data-testid="vcIconText" class="vc_IconText_iconText vc_IconText_oneLine" data-cy="voucher_card_icon_text" style="color: white;">Mã vận chuyển</div>
-                                                                                        <div data-testid="vcIconSubText" class="vc_IconSubText_iconSubText vc_IconSubText_white" data-cy="voucher_card_sub_icon_text">Tất cả hình thức thanh toán</div>
+                                                                                <div data-testid="vcSubtitle" class="vc_Subtitle_subTitle vc_Subtitle_oneLine">Đơn Tối Thiểu ₫0</div>
+                                                                                <div data-testid="vcLabel" class="vc_Label_label">
+                                                                                    <div class="vc_Label_shopeeWalletLabel" data-cy="voucher_card_label">
+                                                                                        <div class="vc_Label_shopeeWalletLabelContent" data-cy="voucher_card_label_content" aria-label="Freeship Cyber Monday" style="color: red;">Voucher giảm giá</div>
                                                                                     </div>
-                                                                                    <div class="vc_VoucherStandardTemplate_middle" role="presentation" tabindex="0">
-                                                                                        <div class="vc_A11yAriaText_A11yContent"><span aria-label="voucher #"></span><span aria-label=" Vui lòng mua hàng trên ứng dụng Shopee để sử dụng ưu đãi."></span></div>
-                                                                                        <div data-testid="vcMainTitle" class="vc_MainTitle_mainTitle">
-                                                                                            <div class="vc_MainTitle_text vc_MainTitle_fsvLine"><?= $voucher['content_voucher'] ?></div>
-                                                                                        </div>
-                                                                                        <div data-testid="vcSubtitle" class="vc_Subtitle_subTitle vc_Subtitle_oneLine">Đơn Tối Thiểu ₫0</div>
-                                                                                        <div data-testid="vcLabel" class="vc_Label_label">
-                                                                                            <div class="vc_Label_shopeeWalletLabel" data-cy="voucher_card_label">
-                                                                                                <div class="vc_Label_shopeeWalletLabelContent" data-cy="voucher_card_label_content" aria-label="Freeship Cyber Monday" style="color: red;">Voucher giảm giá</div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div data-testid="vcProgressBarExpiry" class="vc_ProgressBarExpiry_progressBarExpiry">
-                                                                                            <div data-testid="vcProgressBar" class="vc_ProgressBar_progressBar vc_ProgressBarExpiry_progressBar" style="--vc-progress-bar-percentage: 99%;"></div>
-                                                                                            <div class="vc_ProgressBarExpiry_usageLimitedText vc_ProgressBarExpiry_twoRowsLimitText"><span class="vc_ProgressBarExpiry_isRunningOutSoon">Đã dùng 99%, </span><span class="vc_ProgressBarExpiry_isEndingSoon">Sắp hết hạn: Còn 1 ngày</span></div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="vc_VoucherStandardTemplate_right" role="presentation">
-                                                                                        <div></div>
-                                                                                        <div class="vc_VoucherStandardTemplate_center">
-                                                                                            <input type="radio" class="vc_RadioButton_radio vc_RadioButton_radioDisabled voucher_radio" value="<?= $tinhtien ?>" name="voucher" id="">
-                                                                                            <input type="radio" style="opacity: 0;" class="" value="<?= $voucher['voucher_id'] ?>" name="id_voucher" id="">
-                                                                                        </div>
-                                                                                        <div>
-                                                                                            <div data-testid="vcTNCLink" class="vc_TNCLink_tncLink" role="navigation">
-                                                                                                <a>
-                                                                                                    <span>Điều Kiện</span>
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-
+                                                                                </div>
+                                                                                <div data-testid="vcProgressBarExpiry" class="vc_ProgressBarExpiry_progressBarExpiry">
+                                                                                    <div data-testid="vcProgressBar" class="vc_ProgressBar_progressBar vc_ProgressBarExpiry_progressBar" style="--vc-progress-bar-percentage: 99%;"></div>
+                                                                                    <div class="vc_ProgressBarExpiry_usageLimitedText vc_ProgressBarExpiry_twoRowsLimitText"><span class="vc_ProgressBarExpiry_isRunningOutSoon">Đã dùng 99%, </span><span class="vc_ProgressBarExpiry_isEndingSoon">Sắp hết hạn: Còn 1 ngày</span></div>
                                                                                 </div>
                                                                             </div>
-                                                                        <?php
-                                                                    }
+                                                                            <div class="vc_VoucherStandardTemplate_right" role="presentation">
+                                                                                <div></div>
+                                                                                <div class="vc_VoucherStandardTemplate_center">
+                                                                                    <input type="radio" name="voucher_<?= $product_bill['cart_id'] ?>" class="vc_RadioButton_radio vc_RadioButton_radioDisabled voucher_radio" value="<?= $tinhtien ?>" id="">
+                                                                                    <input type="radio" name="id_voucher" style="opacity: 0;" class="" value="<?= $voucher['voucher_id'] ?>" id="">
+                                                                                </div>
+                                                                                <div>
+                                                                                    <div data-testid="vcTNCLink" class="vc_TNCLink_tncLink" role="navigation">
+                                                                                        <a>
+                                                                                            <span>Điều Kiện</span>
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                <?php
+                                                                }
                                                                 ?>
-                                                                
+
                                                             </div>
                                                             <div class="rySPUB">
                                                                 <button type="button" id="confirmBackBtn" class="vanhstore-button-solid vanhstore-button-solid--primary vanhstore-button-solid--confirm-popup confirmBackBtn">Ok</button>
@@ -188,7 +200,7 @@
                                                         </div>
                                                     </div>
                                                     <!-- End Model -->
-                                                    
+
                                                     <div style="display: contents;"></div>
                                                 </div>
                                             </div>
@@ -202,32 +214,7 @@
                     }
                     ?>
                     <input type="hidden" class="tongtien" name="tongtien" value="<?= $tong ?>">
-                    <script>
-                        var btnModel = document.querySelectorAll('.btn_model_all');
-                        var models = document.querySelectorAll('.model_all_sub');
 
-                        btnModel.forEach(function(button,index) {
-                            var BackgrountNone = models[index].querySelector('.BackgrountNone');
-                            var confirmBackBtn = models[index].querySelector('.confirmBackBtn');
-                            models[index].addEventListener('click', function(e) {
-                                if(e.target == BackgrountNone || e.target == confirmBackBtn) {
-                                    display(models[index]);
-                                }
-                            })
-
-                            button.addEventListener('click', function() {
-                                display(models[index]);
-                            })
-                        })
-
-                        function display(element) {
-                            if(element.style.display == "none"){
-                                element.style.display = "block";
-                            } else {
-                                element.style.display = "none";
-                            }
-                        }
-                    </script>
                     <div class="Nivkv-">
                         <div class="ULZMSb">
                             <h3 class="bwwaGp iL6wsx -snVIl">
@@ -289,16 +276,76 @@
     var priceVchHtml = document.querySelector('.priceVch_html');
     var tongtien = document.querySelector('.tongtien');
     var voucherRadioS = document.querySelectorAll('.voucher_radio');
+    var item_voucher = document.querySelectorAll('.item_voucher');
+    
 
+    let arrNameVoucher = [];
     voucherRadioS.forEach(function(radioIndex) {
-        radioIndex.addEventListener('click', function() {
-            radioIndex.nextElementSibling.checked = true;
-            voucherHtml.innerHTML = this.value;
-            let result = (Number(tongtien.value) + Number(this.value));
-            let formattedTotal = result.toLocaleString('vi-VN').replace(/,/g, '.');
-            priceVchHtml.innerHTML = "₫" + formattedTotal;
+        arrNameVoucher.push(radioIndex.name);
+    })
+    let result = arrNameVoucher.reduce((acc, val) => {
+        if (acc[val]) {
+            acc[val].push(val);
+        } else {
+            acc[val] = [val];
+        }
+        return acc;
+    }, {});
+
+
+    let sumVoucher = [];
+    var price_innerVoucher = document.querySelectorAll('.price_innerVoucher');
+
+    Object.values(result).forEach(function(valueGroup,index) {
+        let inputRadioS = document.querySelectorAll('input[name="' + valueGroup[0] + '"]');
+        inputRadioS.forEach(function(radioIndex,id) {
+            radioIndex.addEventListener('click', function() {
+                if(this.checked){
+                    sumVoucher[index] = this.value;
+                    price_innerVoucher[index].innerHTML = this.value;
+                }else{
+                    sumVoucher[index] = 0;
+                }
+
+                radioIndex.nextElementSibling.checked = true;
+                tongVoucher = sumVoucher.reduce((a,b) => Number(a) + Number(b));
+                voucherHtml.innerHTML = tongVoucher;
+
+                let result = (Number(tongtien.value) + Number(tongVoucher));
+                let formattedTotal = result.toLocaleString('vi-VN').replace(/,/g, '.');
+                priceVchHtml.innerHTML = "₫" + formattedTotal;
+                // console.log(sumVoucher);
+            })
         })
     })
+    // console.log(sumVoucher);
+
+
+    var btnModel = document.querySelectorAll('.btn_model_all');
+    var models = document.querySelectorAll('.model_all_sub');
+
+    btnModel.forEach(function(button, index) {
+        var BackgrountNone = models[index].querySelector('.BackgrountNone');
+        var confirmBackBtn = models[index].querySelector('.confirmBackBtn');
+        models[index].addEventListener('click', function(e) {
+            if (e.target == BackgrountNone || e.target == confirmBackBtn) {
+                display(models[index]);
+            }
+        })
+
+        button.addEventListener('click', function() {
+            display(models[index]);
+        })
+    })
+
+    function display(element) {
+        if (element.style.display == "none") {
+            element.style.display = "block";
+        } else {
+            element.style.display = "none";
+        }
+    }
+
 
     function sendThanhToan() {
         var ip_name_thanhtoan = document.querySelector('.ip_name_thanhtoan');
