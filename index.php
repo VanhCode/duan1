@@ -603,9 +603,9 @@
                     unset($_SESSION["id_voucher"]);
                     unset($_SESSION["payment_session"]);
                     unset($_SESSION["ma_don_hang"]);
-                    header("Location: index.php?action=user&user=don-mua&order=cho-xac-nhan");
                 }
                 
+                include "views/camon.php";
                 break;
             default:
                 include "views/404.php";

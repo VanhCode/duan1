@@ -265,7 +265,7 @@
 
             $mail->addEmbeddedImage('./img1/vanhcart.jpg', 'vanhcart', 'vanhcart.jpg');
             $email = 'email@example.com';
-
+            $body = "";
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = 'Đơn hàng #'.$madonhang.' được đặt thành công tại Website VanhStore';
 
@@ -348,7 +348,7 @@
             ';
             
             // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-            $mail->Body = $body;
+            $mail->Body = $body ? $body : "";
             $mail->send();
             // echo 'Message has been sent';
         } catch (Exception $e) {
