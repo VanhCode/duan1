@@ -99,9 +99,6 @@
     let form_statistical = document.querySelector('.form-statistical');
     let btn_send_data = document.querySelector('.send-data');
     let xmlHttp = new XMLHttpRequest();
-    let labels=[];
-    let numOrder=[];
-    let revenue=[];
     btn_send_data.addEventListener('click', function () {
         let from = form_statistical.querySelector('.from');
         let to = form_statistical.querySelector('.to');
@@ -121,8 +118,8 @@
     });
     getDataChart()
         .then((dt)=>{
-            dt.revenue=dt.revenue?.map((value)=>(parseInt(value)));
-            dt.numOrder=dt.numOrder?.map((value)=>(parseInt(value)));
+            dt.revenue=dt.revenue.map((value)=>(parseInt(value)));
+            dt.numOrder=dt.numOrder.map((value)=>(parseInt(value)));
             return dt;
         })
         .then((res)=>{
@@ -157,17 +154,46 @@
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            callback: function(value, index, values) {
+                                return value + ' units';
+                            }
                         },
-                        id: 'y-axis-0',
-                        position: 'left'
-                    }, {
-                        ticks: {
-                            beginAtZero: true
+                        gridLines: {
+                            drawBorder: false,
+                            color: 'rgba(225,225,225,0.5)',
+                            zeroLineColor: 'transparent',
                         },
-                        id: 'y-axis-1',
-                        position: 'right'
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Y-Axis Label',
+                            fontColor: 'black'
+                        }
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            drawBorder: false,
+                            color: 'rgba(225,225,225,0.5)',
+                            zeroLineColor: 'transparent',
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'X-Axis Label',
+                            fontColor: 'black'
+                        }
                     }]
+                },
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels: {
+                        fontColor: 'black'
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Beautiful Bar Chart',
+                    fontColor: 'black'
                 }
             }
         });
