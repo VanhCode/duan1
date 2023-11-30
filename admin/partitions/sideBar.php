@@ -8,7 +8,7 @@
         <li class="<?=$action=='dashboard' ?'active':''?>">
             <a href="index.php?action=dashboard">
                 <i class='bx bxs-dashboard' ></i>
-                <span class="text">Thống kê trang web</span>
+                <span class="text">Bảng điều khiển</span>
             </a>
         </li>
         <li class="<?=$action=='listProduct'|| $action=='addProduct' || $action=='editProduct' ?'active':''?>">

@@ -184,6 +184,7 @@
                                             'confirmed' => 'Đã xác nhận',
                                             'shipping' => 'Đang vận chuyển',
                                             'completed' => 'Hoàn thành',
+                                            'requestCanceled' => 'Yêu cầu huỷ',
                                             'canceled' => 'Đã huỷ'
                                         ];
                                     foreach ($status as $key => $order):?>
