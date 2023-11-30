@@ -1048,12 +1048,10 @@ svg:not(:root) {
 .vc_Card_card {
   height: var(--vc-card-height, 7.375rem);
   position: relative;
-  margin-right: 7px;
 }
 
 .vc_Card_card,
 .vc_Card_container {
-  width: var(--vc-card-width, 25.396rem);
   margin-bottom: 7px;
 }
 
@@ -1551,6 +1549,390 @@ user agent stylesheet div {
 .vc_IconSubText_white {
   color: #fff;
 }
+
+.uw1QJu {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  border-bottom: 1px dashed rgba(0,0,0,.09);
+  padding: 18px 30px;
+}
+
+.D2AHAU, .za7qoR {
+  display: flex;
+}
+
+.D2AHAU {
+  flex: 6;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.D2AHAU, .za7qoR {
+  display: flex;
+}
+
+.hcC4-3 {
+  font-size: 14px;
+}
+
+.hcC4-3, .zjjc32 {
+  display: flex;
+  align-items: center;
+}
+
+.hcC4-3 svg {
+  margin-right: 4px;
+  width: 24px;
+  height: 100%;
+  color: #ee4d2d;
+}
+
+.hcC4-3, .zjjc32 {
+  display: flex;
+  align-items: center;
+}
+
+.zjjc32 {
+  flex: 4;
+  justify-content: flex-end;
+}
+
+._64JAsH {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0;
+  float: right;
+  box-shadow: 0 0 0 0!important;
+  border: 0!important;
+  color: #05a!important;
+  line-height: 21px;
+  font-size: 14px;
+  text-transform: none!important;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+}
+
+.yeg4Dy {
+  margin-right: 15px;
+}
+
+.uLPYi2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-style: solid;
+  border-width: 0.0625rem 0;
+  color: #ee4d2d;
+  margin-left: 0.5rem;
+  padding: 0 0.3125rem;
+  font-size: .75rem;
+  height: 1.1875rem;
+  box-sizing: border-box;
+  cursor: default;
+}
+
+.uLPYi2 {
+  border-color: rgb(238, 77, 45);
+  color: rgb(238, 77, 45);
+}
+
+.f3xPPv {
+  left: 0;
+}
+
+.f3xPPv, .odBn9- {
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+}
+
+
+.f3xPPv svg, .odBn9- svg {
+  width: 5px;
+  height: 35px;
+  fill: rgb(238, 77, 45);
+}
+
+.odBn9- {
+  right: 0;
+  transform: rotate(180deg);
+}
+
+.f3xPPv, .odBn9- {
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  overflow: hidden;
+}
+
+/* .item_voucher {
+  display: none;
+} */
+
+/* Css model */
+
+.shopee-popup-form__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: unset;
+  margin: 2.25rem 37px 0 37px;;
+}
+
+.shopee-popup-form__title {
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: #222;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+}
+
+.stardust-popover {
+  position: relative;
+}
+
+.stardust-popup-content {
+  font-size: 14px;
+  text-align: left;
+  color: rgba(0,0,0,.54);
+}
+
+.stardust-popup-content, .stardust-popup-title {
+  font-family: -apple-system,Helvetica Neue,Helvetica,Roboto,Droid Sans,Arial,sans-serif;
+  font-weight: 400;
+}
+
+.w9zs1- {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+.shopee-svg-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  position: relative;
+}
+
+.vanhstore-popup__overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.4);
+}
+
+.vanhstore-popup__container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  overflow: visible;
+  max-height: 100%;
+  max-width: 100%;
+  background-color: #fff;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
+  box-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
+.vanhstore-alert-popup {
+  width: 31.25rem;
+  padding: 1.25rem;
+  overflow: visible;
+}
+
+.card {
+  background: #fff;
+  border-radius: 3px;
+  
+}
+
+.vanhstore-alert-popup__message-list {
+  margin-top: 1.875rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.vanhstore-alert-popup {
+  background-color: #fff;
+}
+
+.vanhstore-alert-popup__message {
+  margin-top: 2.5rem;
+  font-size: 1rem;
+}
+
+.vanhstore-alert-popup__button-horizontal-layout {
+  display: flex;
+  margin-top: 6.25rem;
+}
+
+.button__request__confirm {
+  flex: 1;
+  padding: 0.75rem 0;
+  text-transform: capitalize;
+  position: relative;
+  overflow: visible;
+  outline: 0;
+  background: var(--nc-cl-hd2-dost);
+  cursor: pointer;
+  border: 0;
+  font-size: .875rem;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: opacity .2s ease;
+  border-radius: 2px;
+  user-select: none;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.09);
+}
+
+.button__request__confirm:hover {
+  background-color: var(--nc-cl-hd2-dost_hover);
+}
+
+.vanhstore-popup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 600;
+  display: none;
+  flex-direction: column;
+}
+
+.vanhstore-popup__overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.4);
+}
+
+.vanhstore-popup__container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  overflow: visible;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.gLboXK {
+  font-size: 1rem;
+  background: #fff;
+  border-radius: 3px;
+  width: 31.5rem;
+  padding: 0 2.5rem 1.5rem;
+  height: 448px;
+  overflow-y: auto;
+  margin-top: 27px;
+}
+
+.hr7yn9 {
+  line-height: 1.125rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.rySPUB {
+  margin-bottom: 2.1875rem;
+  margin-top: 2.1875rem;
+  margin-right: 26px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.vanhstore-button-solid {
+  outline: none;
+  cursor: pointer;
+  border: 0;
+  font-size: .875rem;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color .1s cubic-bezier(.4,0,.6,1);
+  position: relative;
+  background: rgba(0,0,0,.54);
+  color: #fff;
+  transition: opacity .2s ease;
+  border-radius: 2px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,.09);
+}
+
+.vanhstore-button-solid--primary {
+  position: relative;
+  overflow: visible;
+  outline: 0;
+  background: #ee4d2d;
+}
+
+.rySPUB .vanhstore-button-solid--confirm-popup {
+  width: 6.5625rem;
+  min-height: 2.5rem;
+  font-size: .875rem;
+}
+
+.rySPUB .vanhstore-button-solid--confirm-popup {
+  text-transform: uppercase;
+  margin-right: 1.5rem;
+}
+
+.vanhstore-button-solid--primary:not(.vanhstore-button-solid--disabled):hover {
+  background: #f05d40;
+}
+
+.cancel-btn {
+  padding: 10px 0;
+  box-sizing: border-box;
+  width: 140px;
+  text-transform: uppercase;
+  font-size: .875rem;
+  font-weight: 400;
+  cursor: pointer;
+  color: #555;
+  margin-right: 6px;
+  line-height: 1;
+  background: none;
+  border: 0;
+  transition: background-color .1s cubic-bezier(.4,0,.6,1);
+}
+
+.rySPUB .cancel-btn {
+  width: 6.5625rem;
+  min-height: 2.5rem;
+  font-size: .875rem;
+}
+
+.cancel-btn:hover {
+  background: #f8f8f8;
+}
+
+/* End css model */
 
 /* footer */
 

@@ -16,7 +16,7 @@
                 <main>
                     <?php
                         foreach($load_order_all as $orderdetail) {
-                            $thanhtien = $orderdetail['amount'] * $orderdetail['price'];
+                            $thanhtien = $orderdetail['amount'] * $orderdetail['sale'] + $orderdetail['voucher'];
                             ?>
                                 <div>
                                     <div class="hiXKxx">
@@ -40,7 +40,8 @@
                                                 </section>
                                                 <div class="FycaKn"></div>
                                                 <section>
-                                                    <h3 class="a11y-hidden"></h3><a aria-label="" href="">
+                                                    <h3 class="a11y-hidden"></h3>
+                                                    <a href="index.php?action=user&user=order_detail&id_order=<?= $orderdetail['order_id'] ?>">
                                                         <div>
                                                             <div class="_0OiaZ-">
                                                                 <div class="FbLutl">

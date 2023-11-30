@@ -398,7 +398,7 @@
                     header('Location: index.php?action=login');
                     exit();
                 } else {
-                    $listvoucher = voucher($userID);
+                    
 
                     // Đặt hàng
                     $data = [];
@@ -409,14 +409,12 @@
                     // End đặt hàng
     
                     if(isset($_POST['dathang'])) {
-                        // print_r($_POST);
-                        // die;
                         $data = [];
-
-                        $_SESSION['id_voucher'] = $_POST['id_voucher'];
+                        $_SESSION['id_voucher'] = $_POST['id_voucher'] ?? "";
                         $_SESSION['payment_session'] = $_POST['payment_radio'];
     
                         if(isset($_POST['payment_radio']) && ($_POST['payment_radio'] == "VNPAY")) {
+                            
                             $data = [];
     
                             foreach($_POST['id_cart'] as $cart) {
@@ -426,12 +424,13 @@
                             $_SESSION['cart'] = $_POST;
     
                             $_SESSION['ma_don_hang'] = generateRandomOrderCode();
+                            
                             $vnp_TxnRef = $_SESSION['ma_don_hang']; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-                            $voucher = voucher_byId($_POST['id_voucher']);
+                            $voucher = voucher_byId($_SESSION['id_voucher']);
                             
                             $tongdon = 0;
                             foreach($data as $key => $oder_detail) {      
-                                $tongdon += $oder_detail['amount'] * $oder_detail['price'];
+                                $tongdon += $oder_detail['amount'] * $oder_detail['sale'];
                             }
 
                             $tongdon = $tongdon - ($tongdon * $voucher['del_percent'] / 100) - $voucher['del_price'];
@@ -513,11 +512,14 @@
     
                             $_SESSION['ma_don_hang'] = generateRandomOrderCode();
                             $vnp_TxnRef = $_SESSION['ma_don_hang'];
-    
+                            
+                            // echo "<pre>";
+                            // print_r($_POST);
+                            // echo "</pre>";
+                            // die;
+
                             header('Location: index.php?action=cam-on');
                         }
-
-    
                     }
     
                     include "views/thanhtoan.php";
@@ -525,7 +527,7 @@
                 }
 
             case "cam-on":
-
+                
                 if($_SESSION['payment_session'] == "VNPAY") {
 
                     if (isset($_GET["vnp_Amount"]) && $_GET['vnp_ResponseCode'] == '00') {
@@ -544,7 +546,12 @@
                             $id_order = insert_bill($userID,$ma_donhang,$_SESSION['cart']['fullname'],$_SESSION['cart']['phone'],$_SESSION['cart']['address'],$loai_thanhtoan);
 
                             foreach($data as $key => $oder_detail) {
-                                insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['price']);
+                                if(isset($_SESSION['cart']['voucher_'.$oder_detail['cart_id']])){
+                                    $voucher = $_SESSION['cart']['voucher_'.$oder_detail['cart_id']];
+                                    insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale'],$voucher);
+                                } else {
+                                    insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale'],0);
+                                }
                             }
 
                             $_GET['image'] = explode(",", $data[0]['images']);
@@ -592,7 +599,12 @@
                    
                     
                     foreach($data as $key => $oder_detail) {
-                        insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['price']);
+                        if(isset($_SESSION['cart']['voucher_'.$oder_detail['cart_id']])){
+                            $voucher = $_SESSION['cart']['voucher_'.$oder_detail['cart_id']];
+                            insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale'],$voucher);
+                        } else {
+                            insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale'],0);
+                        }
                     }
 
 
@@ -608,9 +620,9 @@
                     unset($_SESSION["id_voucher"]);
                     unset($_SESSION["payment_session"]);
                     unset($_SESSION["ma_don_hang"]);
-                    header("Location: index.php?action=user&user=don-mua&order=cho-xac-nhan");
                 }
                 
+                include "views/camon.php";
                 break;
             default:
                 include "views/404.php";

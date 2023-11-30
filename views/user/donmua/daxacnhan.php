@@ -12,7 +12,7 @@
                 <main>
                     <?php
                         foreach($load_order_daxacnhan as $orderdetail) {
-                            $thanhtien = $orderdetail['amount'] * $orderdetail['price'];
+                            $thanhtien = $orderdetail['amount'] * $orderdetail['sale'] + $orderdetail['voucher'];
                             ?>
                                 <div>
                                     <div class="hiXKxx">

@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="single">
-                        <a href="index.php?action=user&user=don-mua" id="singleID" class="single-text <?= $userAction == 'don-mua' ? 'sticky' : '' ?>">
+                        <a href="index.php?action=user&user=don-mua" id="singleID" class="single-text <?= $userAction == 'don-mua' || $_GET['user'] == "order_detail" ? 'sticky' : '' ?>">
                             <div class="icon">
                                 <i class="fa-solid fa-calendar-days"></i>
                             </div>
@@ -107,6 +107,10 @@
                         include "donmua.php";
                     } else if($action == "user" && $userAction == "thong-bao") {
                         include "thongbao.php";
+                    } else if($action == "user" && $userAction == "order_detail") {
+                        $id_order = $_GET['id_order'] ?? "";
+                        $order_detail = load_bill_byid($id_order);
+                        include "hoadonchitiet.php";
                     } else if($action == "user" && $userAction == "voucher") {
                         include "voucher.php";
                     } else {

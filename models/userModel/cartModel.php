@@ -26,7 +26,7 @@
                 INNER JOIN
                     products ON cart.product_id = products.product_id
                 WHERE
-                    cart.user_id = '$user_id'";
+                    cart.user_id = '$user_id' ORDER BY cart_id DESC";
         return pdo_query($sql);
     }
 
