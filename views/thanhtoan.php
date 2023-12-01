@@ -59,7 +59,7 @@
                     ?>
 
                         <input type="hidden" name="product_id[]" value="<?= $product_bill['product_id'] ?>">
-                        <input type="hidden" name="id_cart[]" value="<?= $_POST['id_cart'][$key] ?>">
+                        <input type="hidden" name="id_cart[]" value="<?= $_SESSION['id_cart'][$key] ?>">
 
                         <div>
                             <div class="product_one_bill">

@@ -402,22 +402,24 @@
 
                     // Đặt hàng
                     $data = [];
-    
-                    foreach($_POST['id_cart'] as $cart) {
+                    $_SESSION['id_cart'] = $_SESSION['id_cart'] ?? $_POST['id_cart'];
+
+                    foreach($_SESSION['id_cart'] as $cart) {
                         $data[] = listCart__bill($cart);
                     }
                     // End đặt hàng
     
                     if(isset($_POST['dathang'])) {
                         $data = [];
-                        $_SESSION['id_voucher'] = $_POST['id_voucher'] ?? "";
+                        $_SESSION['id_voucher'] = $_POST['id_voucher'] ?? 0;
                         $_SESSION['payment_session'] = $_POST['payment_radio'];
-    
+
+
                         if(isset($_POST['payment_radio']) && ($_POST['payment_radio'] == "VNPAY")) {
                             
                             $data = [];
     
-                            foreach($_POST['id_cart'] as $cart) {
+                            foreach($_SESSION['id_cart'] as $cart) {
                                 $data[] = listCart__bill($cart);
                             }
     
@@ -504,7 +506,7 @@
                         } else {
                             $data = [];
     
-                            foreach($_POST['id_cart'] as $cart) {
+                            foreach($_SESSION['id_cart'] as $cart) {
                                 $data[] = listCart__bill($cart);
                             }
     
@@ -549,8 +551,10 @@
                                 if(isset($_SESSION['cart']['voucher_'.$oder_detail['cart_id']])){
                                     $voucher = $_SESSION['cart']['voucher_'.$oder_detail['cart_id']];
                                     insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale'],$voucher);
+                                    
                                 } else {
                                     insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale'],0);
+    
                                 }
                             }
 
@@ -571,12 +575,12 @@
                         foreach ($_SESSION["cart"]['id_cart'] as $value) {
                             delete_cart($value);
                         }
-                        
+
                         unset($_SESSION["cart"]);
                         unset($_SESSION["id_voucher"]);
                         unset($_SESSION["payment_session"]);
                         unset($_SESSION["ma_don_hang"]);
-                    
+
                     } else {
                         echo "<script>alert('Đã hủy thanh toán');</script>";
                         echo '<script>window.location.href = "index.php?action=thanh-toan";</script>';
@@ -602,8 +606,10 @@
                         if(isset($_SESSION['cart']['voucher_'.$oder_detail['cart_id']])){
                             $voucher = $_SESSION['cart']['voucher_'.$oder_detail['cart_id']];
                             insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale'],$voucher);
+                            
                         } else {
                             insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale'],0);
+                            
                         }
                     }
 
@@ -615,7 +621,8 @@
                     foreach ($_SESSION["cart"]['id_cart'] as $value) {
                         delete_cart($value);
                     }
-                    
+
+                    unset($_SESSION["id_cart"]);
                     unset($_SESSION["cart"]);
                     unset($_SESSION["id_voucher"]);
                     unset($_SESSION["payment_session"]);

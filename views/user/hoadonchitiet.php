@@ -245,9 +245,12 @@
                     </div>
                     <div class="RZJjTX">
                         <div class="TokOv1">
+                            <?php
+                                $tongtienhang = $order_detail['amount'] * $order_detail['price_orderDetail'];
+                            ?>
                             <div class="_8kMYJ3"><span>Tổng tiền hàng</span></div>
                             <div class="CxyZBG">
-                                <div>₫<?= number_format($order_detail['price_orderDetail'], 0, ',', '.') ?></div>
+                                <div>₫<?= number_format($tongtienhang, 0, ',', '.') ?></div>
                             </div>
                         </div>
                         <?php
@@ -263,9 +266,12 @@
                             }
                         ?>
                         <div class="TokOv1 a59vwO">
+                            <?php
+                                $thanhtien = $tongtienhang + $order_detail['voucher'];
+                            ?>
                             <div class="_8kMYJ3 B6pCRN"><span>Thành tiền</span></div>
                             <div class="CxyZBG">
-                                <div class="_8ZGgbl">₫<?= number_format($order_detail['price_orderDetail'], 0, ',', '.') ?></div>
+                                <div class="_8ZGgbl">₫<?= number_format($thanhtien, 0, ',', '.') ?></div>
                             </div>
                         </div>
                     </div>

@@ -76,7 +76,7 @@
                                                                         <div class="lgcEHJ">
                                                                             <label class="stardust-checkbox">
                                                                                 <input class="stardust-checkbox__input checkBox__productCart checkbox_productcart access__color" id="checkBox__productCart" type="checkbox" name="id_cart[]" value="<?= $cart['cart_id'] ?>">
-                                                                                <input id="checkbox_hidden" type="checkbox" class="checkbox_hidden" value="<?= $cart['sale'] ?>">
+                                                                                <input id="checkbox_hidden" type="checkbox" style="opacity: 0;" class="checkbox_hidden" value="<?= $cart['sale'] ?>">
                                                                                 <div class="stardust-checkbox__box"></div>
                                                                             </label>
                                                                         </div>
@@ -264,11 +264,6 @@
                                         }
                                         priceFull.innerHTML = '₫' + formatNumber(total);
                                     })
-
-
-
-                                    
-
                                 </script>
                             </div>
                         </section>
