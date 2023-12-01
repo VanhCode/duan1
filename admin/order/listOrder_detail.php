@@ -63,6 +63,7 @@
                         <th>Size</th>
                         <th>Đơn giá</th>
                         <th>Số lượng</th>
+                        <th>Giảm từ voucher</th>
                         <th>Tổng tiền</th>
                     </tr>
                     </thead>
@@ -77,6 +78,7 @@
                             <td style="padding-right: 100px"><?=$value['size']?></td>
                             <td><?=$value['price']?></td>
                             <td><?=$value['amount']?></td>
+                            <td><?=$value['voucher']?></td>
                             <td><?=$value['total']?></td>
                         </tr>
                     <?php endforeach;?>

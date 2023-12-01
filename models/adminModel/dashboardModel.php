@@ -13,7 +13,7 @@ function totalUser(){
     return query($sql)->fetch();
 }
 function newOrder($day=7){
-    $sql="SELECT u.user_id,o.order_id,CONCAT(u.firth_name,' ',u.last_name) AS fullName,u.user_image,o.receiver_name,o.receiver_address,o.receiver_phone,o.status,o.payment_status,date(o.create_at) as create_at,SUM(od.price * od.amount) AS total
+    $sql="SELECT u.user_id,o.order_id,CONCAT(u.firth_name,' ',u.last_name) AS fullName,u.user_image,o.receiver_name,o.receiver_address,o.receiver_phone,o.status,o.payment_status,date(o.create_at) as create_at,SUM((od.price * od.amount) - od.voucher) AS total
     FROM `orders` o
     JOIN users u
     ON u.user_id= o.user_id

@@ -63,7 +63,7 @@
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Thống kê doanh thu</h3>
+                    <h3>Thống</h3>
                     <i class='bx bx-search'></i>
                     <i class='bx bx-filter'></i>
                 </div>
@@ -88,7 +88,14 @@
                     </div>
                 </form>
 
-                <canvas id="myChart"></canvas>
+                <div class="row">
+                    <div class="col-8">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <div class="col-4">
+                        <canvas id="myChart1"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -106,114 +113,129 @@
         let data = `from=${from.value}&to=${to.value}&type=${type.value}`;
         xmlHttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
-                dataReturn=JSON.parse(this.responseText);
-                dataReturn.revenue=dataReturn.revenue?.map((value)=>(parseInt(value)));
-                dataReturn.numOrder=dataReturn.numOrder?.map((value)=>(parseInt(value)));
+                dataReturn = JSON.parse(this.responseText);
+                dataReturn.revenue = dataReturn.revenue?.map((value) => (parseInt(value)));
+                dataReturn.numOrder = dataReturn.numOrder?.map((value) => (parseInt(value)));
+                // console.log(dataReturn);
                 updateChart(chart, dataReturn.date, dataReturn.numOrder, dataReturn.revenue);
             }
         }
-        xmlHttp.open('POST','xmlHttpRequest/chart.php');
+        xmlHttp.open('POST', 'xmlHttpRequest/chart.php');
         xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xmlHttp.send(data);
     });
     getDataChart()
-        .then((dt)=>{
-            dt.revenue=dt.revenue.map((value)=>(parseInt(value)));
-            dt.numOrder=dt.numOrder.map((value)=>(parseInt(value)));
+        .then((dt) => {
+            dt.revenue = dt.revenue.map((value) => (parseInt(value)));
+            dt.numOrder = dt.numOrder.map((value) => (parseInt(value)));
             return dt;
         })
-        .then((res)=>{
-            updateChart(chart,res.date,res.numOrder,res.revenue);
+        .then((res) => {
+            updateChart(chart, res.date, res.numOrder, res.revenue);
         })
-        .catch((err)=>{
-            console.error('có lỗi '+err);
+        .catch((err) => {
+            console.error('có lỗi ' + err);
         });
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: [],
-                datasets: [
-                    {
-                        label: 'Số đơn hàng',
-                        data: [],
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Doanh thu',
-                        data: [],
-                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                        borderColor: 'rgba(255, 206, 86, 1)',
-                        borderWidth: 1,
-                        yAxisID: 'y-axis-1'
-                    }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            callback: function(value, index, values) {
-                                return value + ' units';
-                            }
-                        },
-                        gridLines: {
-                            drawBorder: false,
-                            color: 'rgba(225,225,225,0.5)',
-                            zeroLineColor: 'transparent',
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Y-Axis Label',
-                            fontColor: 'black'
-                        }
-                    }],
-                    xAxes: [{
-                        gridLines: {
-                            drawBorder: false,
-                            color: 'rgba(225,225,225,0.5)',
-                            zeroLineColor: 'transparent',
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'X-Axis Label',
-                            fontColor: 'black'
-                        }
-                    }]
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var ctx1 = document.getElementById('myChart1').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [],
+            datasets: [
+                {
+                    label: 'Số đơn hàng',
+                    data: [],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
                 },
-                legend: {
-                    display: true,
-                    position: 'bottom',
-                    labels: {
+                {
+                    label: 'Doanh thu',
+                    data: [],
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 1,
+                    yAxisID: 'y-axis-1'
+                }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function (value, index, values) {
+                            return value + ' units';
+                        }
+                    },
+                    gridLines: {
+                        drawBorder: false,
+                        color: 'rgba(225,225,225,0.5)',
+                        zeroLineColor: 'transparent',
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Y-Axis Label',
                         fontColor: 'black'
                     }
-                },
-                title: {
-                    display: true,
-                    text: 'Beautiful Bar Chart',
-                    fontColor: 'black'
-                }
-            }
-        });
+                }],
+                xAxes: [{
+                    gridLines: {
+                        drawBorder: false,
+                        color: 'rgba(225,225,225,0.5)',
+                        zeroLineColor: 'transparent',
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'X-Axis Label',
+                        fontColor: 'black'
+                    }
+                }]
+            },
+        }
+    });
+    let product_volume = JSON.parse('<?=$product_volume?>');
+    product_volume.sale_volume=product_volume.sale_volume.map(value=>parseInt(value));
+    product_volume.product_name=product_volume.product_name.map(str=>str.substr( 0, 20)+'...')
+    console.log(product_volume)
+    var chart1 = new Chart(ctx1, {
+        type: 'doughnut',
+        data: {
+            labels: product_volume.product_name,
+            datasets: [{
+                label: 'Số lượng đã bán',
+                data: product_volume.sale_volume,
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)',
+                    'rgb(255,168,32)',
+                    'rgb(86,255,255)',
+                    'rgb(238,86,255)',
+                ],
+                hoverOffset: 4
+            }]
+        },
+    });
+
     function updateChart(chart, date, numOrder, revenue) {
-        chart.data.datasets[0].data=numOrder;
-        chart.data.datasets[1].data=revenue;
-        chart.data.labels=date
+        chart.data.datasets[0].data = numOrder;
+        chart.data.datasets[1].data = revenue;
+        chart.data.labels = date
         chart.update();
     }
+
     function getDataChart() {
         return new Promise((resolve, reject) => {
-            let dataR={};
-            let fromDate=new Date();
-            fromDate = fromDate.getFullYear() + '-' + (fromDate.getMonth() ) + '-' +
+            let dataR = {};
+            let fromDate = new Date();
+            fromDate = fromDate.getFullYear() + '-' + (fromDate.getMonth()) + '-' +
                 fromDate.getDate() + 'T' +
                 fromDate.getHours() + ':' +
                 fromDate.getMinutes()
 
             let toDate = new Date();
-            toDate=toDate.getFullYear() + '-' + (toDate.getMonth() + 1) + '-' +
+            toDate = toDate.getFullYear() + '-' + (toDate.getMonth() + 1) + '-' +
                 toDate.getDate() + 'T' +
                 toDate.getHours() + ':' +
                 toDate.getMinutes()
@@ -228,7 +250,7 @@
                 }
             }
 
-            xmlHttp.open('POST','xmlHttpRequest/chart.php');
+            xmlHttp.open('POST', 'xmlHttpRequest/chart.php');
             xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xmlHttp.send(data);
         });
