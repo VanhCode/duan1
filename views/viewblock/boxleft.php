@@ -61,63 +61,26 @@
     <div class="vanhstore-filter-group vanhstore-facet-filter">
         <div class="vanhstore-filter-group__header">Theo Danh Mục</div>
         <div class="folding-items vanhstore-filter-group__body folding-items--folded">
-            <div class="vanhstore-filter vanhstore-checkbox-filter">
-                <div class="vanhstore-checkbox">
-                    <label class="vanhstore-checkbox__control">
-                        <a href="pgp.com" class="a-checkbox__href">
-                            <span class="vanhstore-checkbox__box"><svg enable-background="new 0 0 12 12" viewBox="0 0 12 12" x="0" y="0" class="shopee-svg-icon icon-checkbox-ticked shopee-checkbox__tick icon-tick-bold">
-                                    <g>
-                                        <path d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z"></path>
-                                    </g>
-                                </svg></span>
-                        </a>
-                        <span class="vanhstore-checkbox__label">Áo Thun</span>
-                    </label>
-                </div>
-            </div>
-            <div class="vanhstore-filter vanhstore-checkbox-filter">
-                <div class="vanhstore-checkbox">
-                    <label class="vanhstore-checkbox__control">
-                        <a href="#" class="a-checkbox__href">
-                            <span class="vanhstore-checkbox__box"><svg enable-background="new 0 0 12 12" viewBox="0 0 12 12" x="0" y="0" class="shopee-svg-icon icon-checkbox-ticked shopee-checkbox__tick icon-tick-bold">
-                                    <g>
-                                        <path d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z"></path>
-                                    </g>
-                                </svg></span>
-                        </a>
-                        <span class="vanhstore-checkbox__label">Áo Khoác</span>
-                    </label>
-                </div>
-            </div>
-            <div class="vanhstore-filter vanhstore-checkbox-filter">
-                <div class="vanhstore-checkbox">
-                    <label class="vanhstore-checkbox__control">
-                        <a href="#" class="a-checkbox__href">
-                            <span class="vanhstore-checkbox__box"><svg enable-background="new 0 0 12 12" viewBox="0 0 12 12" x="0" y="0" class="shopee-svg-icon icon-checkbox-ticked shopee-checkbox__tick icon-tick-bold">
-                                    <g>
-                                        <path d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z"></path>
-                                    </g>
-                                </svg></span>
-                        </a>
-                        <span class="vanhstore-checkbox__label">Hoodie & Áo Nỉ</span>
-                    </label>
-                </div>
-            </div>
-            <div class="vanhstore-filter vanhstore-checkbox-filter">
-                <div class="vanhstore-checkbox">
-                    <label class="vanhstore-checkbox__control">
-                        <a href="#" class="a-checkbox__href">
-                            <span class="vanhstore-checkbox__box"><svg enable-background="new 0 0 12 12" viewBox="0 0 12 12" x="0" y="0" class="shopee-svg-icon icon-checkbox-ticked shopee-checkbox__tick icon-tick-bold">
-                                    <g>
-                                        <path d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z"></path>
-                                    </g>
-                                </svg>
-                            </span>
-                        </a>
-                        <span class="vanhstore-checkbox__label">Áo Sơ Mi</span>
-                    </label>
-                </div>
-            </div>
+            <?php
+                foreach($listcategoryLimit as $category) {
+                    ?>
+                        <div class="vanhstore-filter vanhstore-checkbox-filter">
+                            <div class="vanhstore-checkbox">
+                                <label class="vanhstore-checkbox__control">
+                                    <a href="index.php?action=danh-muc&category_id=<?= $category['category_id'] ?>" class="a-checkbox__href">
+                                        <span class="vanhstore-checkbox__box"><svg enable-background="new 0 0 12 12" viewBox="0 0 12 12" x="0" y="0" class="shopee-svg-icon icon-checkbox-ticked shopee-checkbox__tick icon-tick-bold">
+                                                <g>
+                                                    <path d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z"></path>
+                                                </g>
+                                            </svg></span>
+                                    </a>
+                                    <span class="vanhstore-checkbox__label"><?= $category['category_name'] ?></span>
+                                </label>
+                            </div>
+                        </div>
+                    <?php
+                }
+            ?>
             <div class="stardust-dropdown folding-items__toggle">
                 <div class="stardust-dropdown__item-header">
                     <div class="vanhstore-filter-group__toggle-btn">
@@ -126,67 +89,27 @@
                 </div>
                 <div class="stardust-dropdown__item-body stardust-filter_list__body">
                     <div class="folding-items__folded-items">
-                        <div class="vanhstore-filter vanhstore-checkbox-filter">
-                            <div class="vanhstore-checkbox">
-                                <label class="vanhstore-checkbox__control">
-                                    <a href="#" class="a-checkbox__href">
-                                        <span class="vanhstore-checkbox__box"><svg enable-background="new 0 0 12 12" viewBox="0 0 12 12" x="0" y="0" class="shopee-svg-icon icon-checkbox-ticked shopee-checkbox__tick icon-tick-bold">
-                                                <g>
-                                                    <path d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z"></path>
-                                                </g>
-                                            </svg>
-                                        </span>
-                                    </a>
-                                    <span class="vanhstore-checkbox__label">Áo Thun</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="vanhstore-filter vanhstore-checkbox-filter">
-                            <div class="vanhstore-checkbox">
-                                <label class="vanhstore-checkbox__control">
-                                    <a href="#" class="a-checkbox__href">
-                                        <span class="vanhstore-checkbox__box"><svg enable-background="new 0 0 12 12" viewBox="0 0 12 12" x="0" y="0" class="shopee-svg-icon icon-checkbox-ticked shopee-checkbox__tick icon-tick-bold">
-                                                <g>
-                                                    <path d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z"></path>
-                                                </g>
-                                            </svg>
-                                        </span>
-                                    </a>
-                                    <span class="vanhstore-checkbox__label">Áo Khoác</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="vanhstore-filter vanhstore-checkbox-filter">
-                            <div class="vanhstore-checkbox">
-                                <label class="vanhstore-checkbox__control">
-                                    <a href="#" class="a-checkbox__href">
-                                        <span class="vanhstore-checkbox__box"><svg enable-background="new 0 0 12 12" viewBox="0 0 12 12" x="0" y="0" class="shopee-svg-icon icon-checkbox-ticked shopee-checkbox__tick icon-tick-bold">
-                                                <g>
-                                                    <path d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z"></path>
-                                                </g>
-                                            </svg>
-                                        </span>
-                                    </a>
-                                    <span class="vanhstore-checkbox__label">Hoodie & Áo
-                                        Nỉ</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="vanhstore-filter vanhstore-checkbox-filter">
-                            <div class="vanhstore-checkbox">
-                                <label class="vanhstore-checkbox__control">
-                                    <a href="#" class="a-checkbox__href">
-                                        <span class="vanhstore-checkbox__box"><svg enable-background="new 0 0 12 12" viewBox="0 0 12 12" x="0" y="0" class="shopee-svg-icon icon-checkbox-ticked shopee-checkbox__tick icon-tick-bold">
-                                                <g>
-                                                    <path d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z"></path>
-                                                </g>
-                                            </svg>
-                                        </span>
-                                    </a>
-                                    <span class="vanhstore-checkbox__label">Áo Sơ Mi</span>
-                                </label>
-                            </div>
-                        </div>
+                        <?php
+                            foreach($listCategoryColum as $categoryColum) {
+                                ?>
+                                    <div class="vanhstore-filter vanhstore-checkbox-filter">
+                                        <div class="vanhstore-checkbox">
+                                            <label class="vanhstore-checkbox__control">
+                                                <a href="index.php?action=danh-muc&category_id=<?= $categoryColum['category_id'] ?>" class="a-checkbox__href">
+                                                    <span class="vanhstore-checkbox__box"><svg enable-background="new 0 0 12 12" viewBox="0 0 12 12" x="0" y="0" class="shopee-svg-icon icon-checkbox-ticked shopee-checkbox__tick icon-tick-bold">
+                                                            <g>
+                                                                <path d="m5.2 10.9c-.2 0-.5-.1-.7-.2l-4.2-3.7c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l3.4 3 5.1-7c .3-.4 1-.5 1.4-.2s.5 1 .2 1.4l-5.7 7.9c-.2.2-.4.4-.7.4 0-.1 0-.1-.1-.1z"></path>
+                                                            </g>
+                                                        </svg>
+                                                    </span>
+                                                </a>
+                                                <span class="vanhstore-checkbox__label"><?= $categoryColum['category_name'] ?></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                <?php
+                            }
+                        ?>
                     </div>
                 </div>
             </div>

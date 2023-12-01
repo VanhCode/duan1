@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="single">
-                        <a href="index.php?action=user&user=don-mua" id="singleID" class="single-text <?= $userAction == 'don-mua' || $_GET['user'] == "order_detail" ? 'sticky' : '' ?>">
+                        <a href="index.php?action=user&user=don-mua" id="singleID" class="single-text <?= $userAction == 'don-mua' || isset($_GET['user']) == "order_detail" ? 'sticky' : '' ?>">
                             <div class="icon">
                                 <i class="fa-solid fa-calendar-days"></i>
                             </div>
