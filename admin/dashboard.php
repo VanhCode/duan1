@@ -223,7 +223,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="todo" style="flex-basis: 56px;">
+            <div class="todo" style="flex-basis: 362px;">
                 <div class="head">
                     <h3>Việc cần làm</h3>
                     <i class='bx bx-plus'></i>
