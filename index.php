@@ -29,7 +29,7 @@
     $listProduct = listProduct();
     $productSale = productSale();
     $listProsearchMax = listProSearchMax();
-
+    $sanpham_moinhat = select_product_moinhat();
 
 
     if(isset($_GET['detail_product']) && ($_GET['detail_product'] > 0)) {
@@ -126,10 +126,40 @@
             case "danh-muc":
                 if(isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
                     $categoryId = $_GET['category_id'];
+                    if(isset($_GET['page']) && ($_GET['page'] > 0)) {
+                        $page = $_GET['page'];
+                    } else {
+                        $page = 1;
+                    }
+    
+                    if($page == "" || $page == 1) {
+                        $begin = 0;
+                    } else {
+                        $begin = ($page - 1) * 20;
+                    }
+    
+    
+                    $sapxep = "product_id ASC";
+    
+                    if(isset($_GET['gia-thap-cao'])) {
+                        $sapxep = "price ASC";
+                    }
+    
+                    if(isset($_GET['gia-cao-thap'])) {
+                        $sapxep = "price DESC";
+                    }
+    
+                    $listProduct_byIdcategory = listProduct_byCategory($categoryId,$sapxep,$begin);
+                    
+                    $count = count($listProduct_byIdcategory);
+                    $countTrang = ceil($count / 20); 
                 } else {
                     $categoryId = "";
                 }
                 
+                
+                
+                // Nếu không có id danh mục thì sẽ hiển thị sản phẩm theo bình thường 
                 if(isset($_GET['page']) && ($_GET['page'] > 0)) {
                     $page = $_GET['page'];
                 } else {
@@ -142,21 +172,20 @@
                     $begin = ($page - 1) * 20;
                 }
 
-
-                $sapxep = "product_id ASC";
+                $price = "product_id DESC";
 
                 if(isset($_GET['gia-thap-cao'])) {
-                    $sapxep = "price ASC";
+                    $price = "price ASC";
                 }
-
                 if(isset($_GET['gia-cao-thap'])) {
-                    $sapxep = "price DESC";
+                    $price = "price DESC";
                 }
 
-                $listProduct_byIdcategory = listProduct_byCategory($categoryId,$sapxep,$begin);
+                $countPage = CountlistProduct__moiNhat();
+                $listProduct_moiNhat = listProduct__moiNhat($price,$begin);
 
-                $count = count($listProduct_byIdcategory);
-                $countTrang = ceil($count / 20); 
+                $count = count($countPage);
+                $countTrang = ceil($count / 20);   
                 
 
                 include "views/danhmuc.php";
@@ -290,6 +319,11 @@
                 include "views/account/dangky.php";
                 break;
             case "logout":
+                unset($_SESSION["cart"]);
+                unset($_SESSION["id_cart"]);
+                unset($_SESSION["id_voucher"]);
+                unset($_SESSION["payment_session"]);
+                unset($_SESSION["ma_don_hang"]);
                 logoutAccount();
                 break;
             case "reset_pass":
@@ -356,6 +390,12 @@
                     deleteCart_checkbox_mutiItem($idCart);
                     header('Location: index.php?action=gio-hang');
                 }
+
+                unset($_SESSION["cart"]);
+                unset($_SESSION["id_cart"]);
+                unset($_SESSION["id_voucher"]);
+                unset($_SESSION["payment_session"]);
+                unset($_SESSION["ma_don_hang"]);
                 
                 break;
             case "addTocart":
@@ -391,6 +431,7 @@
                 } else {
                     $cart_id = "";
                 }
+                
                 break;
             case "thanh-toan":
                 
@@ -415,6 +456,7 @@
                     if(isset($_POST['dathang'])) {
                         $data = [];
                         $_SESSION['id_voucher'] = $_POST['id_voucher'] ?? 0;
+
                         $_SESSION['payment_session'] = $_POST['payment_radio'];
 
 
@@ -501,7 +543,7 @@
                             );
     
                             if (isset($_POST['dathang']) && isset($_POST['payment_radio']) && ($_POST['payment_radio'] == "VNPAY")) {
-                                echo '<script>window.location.href = "' . $vnp_Url . '";</script>';
+                                header('Location: ' . $vnp_Url);
                                 die();
                             } else {
                                 echo json_encode($returnData);

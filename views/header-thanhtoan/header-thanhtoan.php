@@ -58,12 +58,12 @@
                                 <div class="line-top"></div>
                             </li>
                             <li class="boxUser">
-                                <a href="user.php" class="userLog nomation"><i class="fa-solid fa-user"></i> Vanh</a>
+                                <a href="index.php?action=user" class="userLog nomation"><i class="fa-solid fa-user"></i> Vanh</a>
                                 <ul class="userChil">
-                                    <li><a href="user.php">Tài khoản của tôi</a></li>
-                                    <li><a href="user.php">Hồ sơ</a></li>
+                                    <li><a href="index.php?action=user">Tài khoản của tôi</a></li>
+                                    <li><a href="index.php?action=user">Hồ sơ</a></li>
                                     <li>
-                                        <a href="../php/logout.php" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất hay không?')">Đăng xuất</a>
+                                        <a href="index.php?action=logout">Đăng xuất</a>
                                     </li>
                                 </ul>
                             </li>

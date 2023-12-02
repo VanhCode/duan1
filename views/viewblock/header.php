@@ -206,21 +206,28 @@
                                     </ul>
                                 </li>
                                 <li class="megamenu__li">
-                                    <a href="" class="vanh-navBarr__a">Quần Áo <i class="fa-solid fa-chevron-down"></i></a>
+                                    <a href="index.php?action=danh-muc" class="vanh-navBarr__a">Danh mục <i class="fa-solid fa-chevron-down"></i></a>
                                     <ul class="chil-nav2">
                                         <li>
                                             <ul>
-                                                <h3 class="h3_logo__productNavBar">Quần</h3>
-                                                <li class="chil-nav__liMenu"><a href="">Quần Jean</a></li>
+                                                <h3 class="h3_logo__productNavBar">Danh mục</h3>
+                                                <?php
+                                                    foreach($listcategoryLimit as $cate) {
+                                                        ?>
+                                                            <li class="chil-nav__liMenu"><a href="index.php?action=danh-muc&category_id=<?= $cate['category_id'] ?>"><?= $cate['category_name'] ?></a></li>
+                                                        <?php
+                                                    }
+                                                ?>
+                                                <!-- <li class="chil-nav__liMenu"><a href="">Quần Jean</a></li>
                                                 <li class="chil-nav__liMenu"><a href="">Quần Short</a></li>
                                                 <li class="chil-nav__liMenu"><a href="">Quần Âu</a></li>
                                                 <li class="chil-nav__liMenu"><a href="">Quần Joke</a></li>
                                                 <li class="chil-nav__liMenu"><a href="">Quần Nỉ Bông</a></li>
                                                 <li class="chil-nav__liMenu"><a href="">Quần Đi Biển</a></li>
-                                                <li class="chil-nav__liMenu"><a href="">Quần Bò</a></li>
+                                                <li class="chil-nav__liMenu"><a href="">Quần Bò</a></li> -->
                                             </ul>
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                             <ul>
                                                 <h3 class="h3_logo__productNavBar">Áo</h3>
                                                 <li class="chil-nav__liMenu"><a href="">Sơ Mi</a></li>
@@ -231,12 +238,12 @@
                                                 <li class="chil-nav__liMenu"><a href="">Áo Khoác Gió</a></li>
                                                 <li class="chil-nav__liMenu"><a href="">Áo Phao Thu Đông</a></li>
                                             </ul>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </li>
-                                <a href="" class="vanh-navBarr__a">Giày Dép</a>
-                                <a href="" class="vanh-navBarr__a">Thời Trang Nam</a>
-                                <a href="" class="vanh-navBarr__a">Thời Trang Nữ</a>
+                                <a href="index.php?action=danh-muc&category_id=26" class="vanh-navBarr__a">Giày Dép</a>
+                                <a href="index.php?action=danh-muc&category_id=24" class="vanh-navBarr__a">Thời Trang Nam</a>
+                                <a href="index.php?action=danh-muc&category_id=25" class="vanh-navBarr__a">Thời Trang Nữ</a>
                                 <li class="megamenu__li">
                                     <a href="" class="vanh-navBarr__a">Sản Phẩm Mới Nhất <i class="fa-solid fa-chevron-down"></i></a>
                                     <ul class="chil-nav3">
