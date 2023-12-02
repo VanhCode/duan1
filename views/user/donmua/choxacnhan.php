@@ -37,7 +37,7 @@
                                                 <div class="FycaKn"></div>
                                                 <section>
                                                     <h3 class="a11y-hidden"></h3>
-                                                    <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $orderdetail['product_id'] ?>">
+                                                    <a href="index.php?action=user&user=order_detail&id_order=<?= $orderdetail['order_id'] ?>">
                                                         <div>
                                                             <div class="_0OiaZ-">
                                                                 <div class="FbLutl">

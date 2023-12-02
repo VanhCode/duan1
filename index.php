@@ -398,11 +398,14 @@
                     header('Location: index.php?action=login');
                     exit();
                 } else {
-                    
-
                     // Đặt hàng
                     $data = [];
                     $_SESSION['id_cart'] = $_SESSION['id_cart'] ?? $_POST['id_cart'];
+
+                    // echo "<pre>";
+                    // print_r($_SESSION['id_cart']);
+                    // echo "<pre>";
+                    // die;
 
                     foreach($_SESSION['id_cart'] as $cart) {
                         $data[] = listCart__bill($cart);
@@ -544,18 +547,17 @@
                             foreach($_SESSION['cart']['id_cart'] as $cart) {
                                 $data[] = listCart__bill($cart);
                             }
-
-                            $id_order = insert_bill($userID,$ma_donhang,$_SESSION['cart']['fullname'],$_SESSION['cart']['phone'],$_SESSION['cart']['address'],$loai_thanhtoan);
+                            $id_order = insert_bill($userID,$ma_donhang,$_SESSION['cart']['fullname'],$_SESSION['cart']['phone'],$_SESSION['cart']['address'],$loai_thanhtoan,$_SESSION['cart']['voucher'] = $_SESSION['cart']['voucher'] ?? 0);
 
                             foreach($data as $key => $oder_detail) {
-                                if(isset($_SESSION['cart']['voucher_'.$oder_detail['cart_id']])){
-                                    $voucher = $_SESSION['cart']['voucher_'.$oder_detail['cart_id']];
-                                    insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale'],$voucher);
+                                // if(isset($_SESSION['cart']['voucher_'.$oder_detail['cart_id']])){
+                                //     $voucher = $_SESSION['cart']['voucher_'.$oder_detail['cart_id']];
+                                //     insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale'],$voucher);
                                     
-                                } else {
-                                    insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale'],0);
-    
-                                }
+                                // } else {
+                                // }
+                                
+                                insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale']);
                             }
 
                             $_GET['image'] = explode(",", $data[0]['images']);
@@ -576,6 +578,7 @@
                             delete_cart($value);
                         }
 
+                        unset($_SESSION["id_cart"]);
                         unset($_SESSION["cart"]);
                         unset($_SESSION["id_voucher"]);
                         unset($_SESSION["payment_session"]);
@@ -599,18 +602,19 @@
                     }
 
 
-                    $id_order = insert_bill($userID,$ma_donhang,$_SESSION['cart']['fullname'],$_SESSION['cart']['phone'],$_SESSION['cart']['address'],$loai_thanhtoan);
+                    $id_order = insert_bill($userID,$ma_donhang,$_SESSION['cart']['fullname'],$_SESSION['cart']['phone'],$_SESSION['cart']['address'],$loai_thanhtoan,$_SESSION['cart']['voucher'] = $_SESSION['cart']['voucher'] ?? 0);
                    
                     
                     foreach($data as $key => $oder_detail) {
-                        if(isset($_SESSION['cart']['voucher_'.$oder_detail['cart_id']])){
-                            $voucher = $_SESSION['cart']['voucher_'.$oder_detail['cart_id']];
-                            insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale'],$voucher);
+                        // if(isset($_SESSION['cart']['voucher_'.$oder_detail['cart_id']])){
+                        //     $voucher = $_SESSION['cart']['voucher_'.$oder_detail['cart_id']];
+                        //     insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale'],$voucher);
                             
-                        } else {
-                            insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale'],0);
+                        // } else {
+                        //     insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale'],0);
                             
-                        }
+                        // }
+                        insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale']);
                     }
 
 
