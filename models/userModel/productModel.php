@@ -12,6 +12,12 @@
         return pdo_query($sql);
     }
 
+    // Select sản phẩm mới đăng theo ngày
+    function select_product_moinhat() {
+        $sql = "SELECT * FROM products WHERE 1 ORDER BY product_id DESC LIMIT 0,8";
+        return pdo_query($sql);
+    }
+
     function listProduct__moiNhat($price,$page) {
         $sql = "SELECT * FROM products WHERE 1 ORDER BY $price LIMIT $page, 20";
         return pdo_query($sql);

@@ -76,10 +76,10 @@
                                 <span style="display: inline-block; width: 500px; "><?=$value['product_name']?></span>
                             </td>
                             <td style="padding-right: 100px"><?=$value['size']?></td>
-                            <td><?=$value['price']?></td>
+                            <td><?=number_format($value['price'], 0,",",".")?></td>
                             <td><?=$value['amount']?></td>
-                            <td><?=$value['voucher']?></td>
-                            <td><?=$value['total']?></td>
+                            <td><?= number_format($value['voucher'], 0,",",".") ?></td>
+                            <td><?= number_format($value['total'], 0,",",".")?></td>
                         </tr>
                     <?php endforeach;?>
                     </tbody>

@@ -78,7 +78,7 @@
                                             <img src="../public/upload/image/product/<?= explode(",", $valueSanpham['images'])[0] ?>" alt="">
                                         </td>
                                         <td class="name__product__admin"><?= $valueSanpham['product_name'] ?></td>
-                                        <td class="name__product__admin" style="color: #ff8080;font-weight: 500;width: 150px!important;"><?= $valueSanpham['price'] ?></td>
+                                        <td class="name__product__admin" style="color: #ff8080;font-weight: 500;width: 150px!important;"><?= number_format($valueSanpham['price'], 0,",",".") ?></td>
                                         <td><?= $valueSanpham['category_name'] ?></td>
                                         <td><?= date("d-m-Y H:i:s", strtotime($valueSanpham['create_at'])) ?></td>
                                         <td>

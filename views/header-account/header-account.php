@@ -44,7 +44,11 @@
 
 <body>
     <div id="loading-overlay">
-        <div class="loader"></div>
+        <div class="loader">
+            <span class="ovOne"></span>
+            <span class="ovTwo"></span>
+            <span class="ovThree"></span>
+        </div>
     </div>
     <div class="wrapper">
 
