@@ -194,6 +194,7 @@
                 $profile = $_GET['profile'] ?? "";
                 $userAction = $_GET['user'] ?? "";
                 $order = $_GET['order'] ?? "";
+                
                 $userProfile = select__userByid($userID);
 
                 if($_SERVER['REQUEST_METHOD'] == "POST") {

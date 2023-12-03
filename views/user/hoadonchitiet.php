@@ -218,36 +218,68 @@
                     <div class="mbaGbp">
                         <div class="NuQDJM"></div>
                         <div class="FbLutl">
-                            <div>
-                                <section>
-                                    <a class="x7nENX" aria-label="" href="/Áo-Khoác-Nữ-Áo-Khoác-Cadigan-Thome-Thêu-Hình-Chó-Chất-Len-Tàu-Hàng-Qccc-i.533651106.22550845743">
-                                        <div class="aybVBK"><img src="./public/upload/image/product/<?= explode(",", $order_detail['images'])[0] ?>" class="rGP9Yd" alt="" tabindex="0">
-                                            <div class="_7uZf6Q">
-                                                <div>
-                                                    <div class="iJlxsT">
-                                                        <span class="x5GTyN" tabindex="0"><?= $order_detail['product_name'] ?></span>
+                            <?php
+                                // Sử dụng thông tin sản phẩm
+                                $orderDetailIds = explode(",", $order_detail['order_detail_ids']);
+                                $productIds = explode(",", $order_detail['product_ids']);
+                                $amounts = explode(",", $order_detail['amounts']);
+                                $sizes = explode(",", $order_detail['sizes']);
+                                $colors = explode(",", $order_detail['colors']);
+                                $prices = explode(",", $order_detail['prices']);
+                                $productNames = explode(",", $order_detail['product_names']);
+                                $productImages = explode(",", $order_detail['product_images']);
+                                $productSales = explode(",", $order_detail['product_sales']);
+
+                                // Lặp qua danh sách sản phẩm và hiển thị thông tin
+                                $tongtienhang = 0;
+                                for ($i = 0; $i < count($orderDetailIds); $i++) {
+                                    $orderDetailId = $orderDetailIds[$i];
+                                    $productId = $productIds[$i];
+                                    $amount = $amounts[$i];
+                                    $size = $sizes[$i];
+                                    $color = $colors[$i];
+                                    $price = $prices[$i];
+                                    $productName = $productNames[$i];
+                                    $productImage = $productImages[$i];
+                                    $productSale = $productSales[$i];
+
+                                    $tongtienhang += $amount * $productSale;
+
+
+                                    ?>
+                                        <div>
+                                            <section>
+                                                <a class="x7nENX" aria-label="" href="/Áo-Khoác-Nữ-Áo-Khoác-Cadigan-Thome-Thêu-Hình-Chó-Chất-Len-Tàu-Hàng-Qccc-i.533651106.22550845743">
+                                                    <div class="aybVBK"><img src="./public/upload/image/product/<?= $productImage ?>" class="rGP9Yd" alt="" tabindex="0">
+                                                        <div class="_7uZf6Q">
+                                                            <div>
+                                                                <div class="iJlxsT">
+                                                                    <span class="x5GTyN" tabindex="0"><?= $productName ?></span>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="vb0b-P" tabindex="0">Phân loại hàng: <?= $size ?></div>
+                                                                <div class="_3F1-5M" tabindex="0">x<?= $amount ?></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div>
-                                                    <div class="vb0b-P" tabindex="0">Phân loại hàng: <?= $order_detail['size'] ?></div>
-                                                    <div class="_3F1-5M" tabindex="0">x<?= $order_detail['amount'] ?></div>
-                                                </div>
-                                            </div>
+                                                    <div class="_9UJGhr" tabindex="0">
+                                                        <div class="rjqzk1"><span class="j2En5+">₫<?= number_format($price, 0, ',', '.') ?></span><span class="-x3Dqh OkfGBc money__kb">₫<?= number_format($productSale, 0, ',', '.') ?></span></div>
+                                                    </div>
+                                                </a>
+                                            </section>
                                         </div>
-                                        <div class="_9UJGhr" tabindex="0">
-                                            <div class="rjqzk1"><span class="j2En5+">₫<?= number_format($order_detail['price'], 0, ',', '.') ?></span><span class="-x3Dqh OkfGBc money__kb">₫<?= number_format($order_detail['sale'], 0, ',', '.') ?></span></div>
-                                        </div>
-                                    </a>
-                                </section>
-                            </div>
+                                    <?php
+                                }
+                            ?>
+                                        
+                            
+                            
                             <div class="Cde7Oe"></div>
                         </div>
                     </div>
                     <div class="RZJjTX">
                         <div class="TokOv1">
-                            <?php
-                                $tongtienhang = $order_detail['amount'] * $order_detail['price_orderDetail'];
-                            ?>
                             <div class="_8kMYJ3"><span>Tổng tiền hàng</span></div>
                             <div class="CxyZBG">
                                 <div>₫<?= number_format($tongtienhang, 0, ',', '.') ?></div>

@@ -11,8 +11,20 @@
             ?>
                 <main>
                     <?php
-                        foreach($load_order_daxacnhan as $orderdetail) {
-                            $thanhtien = $orderdetail['amount'] * $orderdetail['sale'] + $orderdetail['voucher'];
+                        $grouped_orders = [];
+                            
+                        foreach ($load_order_daxacnhan as $orderdetail) {
+
+                            $order_id = $orderdetail['order_id'];
+
+                            if (!isset($grouped_orders[$order_id])) {
+                                $grouped_orders[$order_id] = [];
+                            }
+                            $grouped_orders[$order_id][] = $orderdetail;
+                        }
+
+                        foreach($grouped_orders as $order_id => $order_details) {
+                            $thanhtien = 0;
                             ?>
                                 <div>
                                     <div class="hiXKxx">
@@ -22,6 +34,13 @@
                                                     <h3 class="a11y-hidden"></h3>
                                                     <div class="KrPQEI">
                                                         <div class="qCUYY8">
+                                                            <div>
+                                                                <svg width="17" height="16" viewBox="0 0 17 16" class="_0RxYUS">
+                                                                    <title>Shop Icon</title>
+                                                                    <path d="M1.95 6.6c.156.804.7 1.867 1.357 1.867.654 0 1.43 0 1.43-.933h.932s0 .933 1.155.933c1.176 0 1.15-.933 1.15-.933h.984s-.027.933 1.148.933c1.157 0 1.15-.933 1.15-.933h.94s0 .933 1.43.933c1.368 0 1.356-1.867 1.356-1.867H1.95zm11.49-4.666H3.493L2.248 5.667h12.437L13.44 1.934zM2.853 14.066h11.22l-.01-4.782c-.148.02-.295.042-.465.042-.7 0-1.436-.324-1.866-.86-.376.53-.88.86-1.622.86-.667 0-1.255-.417-1.64-.86-.39.443-.976.86-1.643.86-.74 0-1.246-.33-1.623-.86-.43.536-1.195.86-1.895.86-.152 0-.297-.02-.436-.05l-.018 4.79zM14.996 12.2v.933L14.984 15H1.94l-.002-1.867V8.84C1.355 8.306 1.003 7.456 1 6.6L2.87 1h11.193l1.866 5.6c0 .943-.225 1.876-.934 2.39v3.21z" stroke-width=".3" stroke="#333" fill="#333" fill-rule="evenodd"></path>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="_9Ro5mP" tabindex="0">VanhStore</div>
                                                         </div>
                                                         <div class="EQko8g">
                                                             <div class="qP6Mvo">
@@ -35,42 +54,49 @@
                                                     </div>
                                                 </section>
                                                 <div class="FycaKn"></div>
-                                                <section>
-                                                    <h3 class="a11y-hidden"></h3>
-                                                    <a href="index.php?action=user&user=order_detail&id_order=<?= $orderdetail['order_id'] ?>">
-                                                        <div>
-                                                            <div class="_0OiaZ-">
-                                                                <div class="FbLutl">
+                                                <?php
+                                                    foreach($order_details as $detail) {
+                                                        $thanhtien += ($detail['amount'] * $detail['sale']) + $detail['voucher'];
+                                                        ?>
+                                                            <section>
+                                                                <h3 class="a11y-hidden"></h3>
+                                                                <a href="index.php?action=user&user=order_detail&id_order=<?= $detail['order_id'] ?>">
                                                                     <div>
-                                                                        <section>
-                                                                            <div class="x7nENX">
-                                                                                <div class="aybVBK"><img src="./public/upload/image/product/<?= explode(',',$orderdetail['images'])[0] ?>" class="rGP9Yd" alt="" tabindex="0">
-                                                                                    <div class="_7uZf6Q">
-                                                                                        <div>
-                                                                                            <div class="iJlxsT"><span class="x5GTyN" tabindex="0"><?= $orderdetail['product_name'] ?></span></div>
+                                                                        <div class="_0OiaZ-">
+                                                                            <div class="FbLutl">
+                                                                                <div>
+                                                                                    <section>
+                                                                                        <div class="x7nENX">
+                                                                                            <div class="aybVBK"><img src="./public/upload/image/product/<?= explode(',',$detail['images'])[0] ?>" class="rGP9Yd" alt="" tabindex="0">
+                                                                                                <div class="_7uZf6Q">
+                                                                                                    <div>
+                                                                                                        <div class="iJlxsT"><span class="x5GTyN" tabindex="0"><?= $detail['product_name'] ?></span></div>
+                                                                                                    </div>
+                                                                                                    <div>
+                                                                                                        <div class="vb0b-P" tabindex="0">Phân loại hàng: <?= $detail['color'] ?> | <?= $detail['size'] ?></div>
+                                                                                                        <div class="_3F1-5M" tabindex="0">x<?= $detail['amount'] ?></div><span class="_8ex9dW">7 ngày trả hàng</span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="_9UJGhr" tabindex="0">
+                                                                                                <div class="rjqzk1">
+                                                                                                    <span class="j2En5+">₫<?= number_format($detail['price'],0,',','.') ?></span>
+                                                                                                    <span class="-x3Dqh OkfGBc">₫<?= number_format($detail['sale'] ,0,',','.') ?></span>
+                                                                                                    
+                                                                                                </div>
+                                                                                            </div>
                                                                                         </div>
-                                                                                        <div>
-                                                                                            <div class="vb0b-P" tabindex="0">Phân loại hàng: <?= $orderdetail['color'] ?> | <?= $orderdetail['size'] ?></div>
-                                                                                            <div class="_3F1-5M" tabindex="0">x<?= $orderdetail['amount'] ?></div><span class="_8ex9dW">7 ngày trả hàng</span>
-                                                                                        </div>
-                                                                                    </div>
+                                                                                    </section>
                                                                                 </div>
-                                                                                <div class="_9UJGhr" tabindex="0">
-                                                                                    <div class="rjqzk1">
-                                                                                        <span class="j2En5+">₫<?= number_format($orderdetail['price'],0,',','.') ?></span>
-                                                                                        <span class="-x3Dqh OkfGBc">₫<?= number_format($orderdetail['sale'] ,0,',','.') ?></span>
-                                                            
-                                                                                    </div>
-                                                                                </div>
+                                                                                <div class="Cde7Oe"></div>
                                                                             </div>
-                                                                        </section>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="Cde7Oe"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </section>
+                                                                </a>
+                                                            </section>
+                                                        <?php
+                                                    }
+                                                ?>
                                             </div>
                                         </div>
                                         <div class="O2KPzo">
@@ -87,6 +113,19 @@
                                                 </span><label class="_0NMXyN">Thành tiền:</label>
                                                 <div class="DeWpya" tabindex="0" aria-label="Thành tiền: ₫107.000">₫<?= number_format($thanhtien, 0, ",", ".") ?></div>
                                             </div>
+                                        </div>
+                                        <div class="AM4Cxf">
+                                            <div class="qtUncs"><span class="OwGaHA" aria-label="Đơn hàng sẽ được chuẩn bị và chuyển đi trước 12-12-2023." tabindex="0">Đơn hàng sẽ được chuẩn bị và chuyển đi trước <div class="shopee-drawer" id="pc-drawer-id-78" tabindex="0"><u class="M7wYu+" aria-describedby="0.5584431231837435">12-12-2023</u></div>.</span></div>
+                                            <section class="EOjXew">
+                                                <h3 class="a11y-hidden"></h3>
+                                                <div class="PF0-AU">
+                                                    <a href=""><button class="stardust-button stardust-button--primary WgYvse">Mua lại</button></a>
+                                                </div>
+                                                
+                                                <div class="PgtIur">
+                                                    <a href=""><button class="stardust-button stardust-button--secondary WgYvse close_orders">Hủy đơn hàng</button></a>
+                                                </div>
+                                            </section>
                                         </div>
                                     </div>
                                 </div>

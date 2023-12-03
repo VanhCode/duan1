@@ -109,7 +109,7 @@
                         include "thongbao.php";
                     } else if($action == "user" && $userAction == "order_detail") {
                         $id_order = $_GET['id_order'] ?? "";
-                        $order_detail = load_bill_byid($id_order);
+                        $order_detail = load_bill_byid($id_order, $userID);
                         include "hoadonchitiet.php";
                     } else if($action == "user" && $userAction == "voucher") {
                         include "voucher.php";
