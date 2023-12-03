@@ -197,17 +197,34 @@
                 
                 $userProfile = select__userByid($userID);
 
-                if($_SERVER['REQUEST_METHOD'] == "POST") {
+                if(isset($_POST['updateAccount'])) {
 
-                    $filename = time().basename($_FILES['image']['name']);
-                    $target = "./public/upload/image/user/".$filename;
-                    move_uploaded_file($_FILES['image']['tmp_name'],$target);
+                    $oldImage = $_POST['oldImage'];
+                    $filename = "";
                     
-                    updateAccount($userID,$_POST['firth_name'],$_POST['last_name'],$_POST['email'],$filename,$_POST['phone'],$_POST['date'],$_POST['gender']);
+                    if($_FILES['image']['name']) {
+                        $filename = time().basename($_FILES['image']['name']);
+                        $target = "./public/upload/image/user/".$filename;
+                        move_uploaded_file($_FILES['image']['tmp_name'],$target);
+                    }
+                    
+                    updateAccount($userID,$_POST['firth_name'],$_POST['last_name'],$_POST['email'],$filename ? $filename : $oldImage,$_POST['phone'],$_POST['date'],$_POST['gender']);
                     header('Location:'.$_SERVER['HTTP_REFERER']);
                     die;
                 }
+
+                if(isset($_POST['huydon'])) {
+                    update_donhuy($detail['order_id']);
+                    header('Location:'.$_SERVER['HTTP_REFERER']);
+                    exit();
+                }
+
                 include "views/user/user.php";
+                break;
+            case "huydon":
+                $id_order = $_GET['id_order'] ?? 0;
+                update_donhuy($id_order);
+                header('Location:'.$_SERVER['HTTP_REFERER']);
                 break;
             case "login":
                 $isCheck = true;

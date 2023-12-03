@@ -7,7 +7,7 @@
                     <img src="./public/upload/image/user/<?= $user['user_image'] ?>" alt="">
                     <div class="update-userImg">
                         <h5><?= $user['firth_name']." ".$user['last_name'] ?></h5>
-                        <a href=""><i class="fa-solid fa-pen"></i> Sửa Hồ Sơ</a>
+                        <a href="index.php?action=user&user=tai-khoan-cua-toi"><i class="fa-solid fa-pen"></i> Sửa Hồ Sơ</a>
                     </div>
                 </div>
                 <div class="menu-item">
@@ -75,7 +75,7 @@
         <div class="user-form">
             <?php
 
-
+                
                 if(isset($_GET['action']) && isset($_GET['user'])) {
 
                     $action = $_GET['action'];
@@ -87,23 +87,31 @@
 
                         $userProfile = select__userByid($userID);
 
-                        if($_SERVER['REQUEST_METHOD'] == "POST") {
+                        if(isset($_POST['updateAccount'])) {
 
-                            $filename = time().basename($_FILES['image']['name']);
-                            $target = "./public/upload/image/user/".$filename;
-                            move_uploaded_file($_FILES['image']['tmp_name'],$target);
+                            $oldImage = $_POST['oldImage'];
+                            $filename = "";
                             
-                            updateAccount($userID,$_POST['firth_name'],$_POST['last_name'],$_POST['email'],$filename,$_POST['phone'],$_POST['date'],$_POST['gender']);
+                            if($_FILES['image']['name']) {
+                                $filename = time().basename($_FILES['image']['name']);
+                                $target = "./public/upload/image/user/".$filename;
+                                move_uploaded_file($_FILES['image']['tmp_name'],$target);
+                            }
+                            
+                            updateAccount($userID,$_POST['firth_name'],$_POST['last_name'],$_POST['email'],$filename ? $filename : $oldImage,$_POST['phone'],$_POST['date'],$_POST['gender']);
                             header('Location:'.$_SERVER['HTTP_REFERER']);
+                            die;
                         }
 
                         include "thongtin.php";
                     } else if($action == "user" && $userAction == "don-mua") {
+                        
                         $load_order_all = load_all_order($userID);
                         $load_order_choxacnhan = load_bill_choxacnhan($userID);
                         $load_order_daxacnhan = load_bill_daxacnhan($userID);
                         $load_order_danggiao = load_bill_danggiao($userID);
                         $load_order_hoanthanh = load_bill_hoanthanh($userID);
+
                         include "donmua.php";
                     } else if($action == "user" && $userAction == "thong-bao") {
                         include "thongbao.php";

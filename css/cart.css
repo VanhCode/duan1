@@ -251,6 +251,7 @@ body {
   background-color: var(--nc-cl-hd2-dost_hover);
 }
 
+/* Model */
 .vanhstore-popup {
   position: fixed;
   top: 0;
@@ -372,6 +373,8 @@ body {
 .cancel-btn:hover {
   background: #f8f8f8;
 }
+
+/* End model */
 
 .container {
   width: 1300px;

@@ -2,7 +2,7 @@
     <?php
         if(!empty($listCart)) {
             ?>
-                <form action="index.php?action=gio-hang" id="formSendCart" onsubmit="return sendDeleteCart()" method="POST">
+                <form action="<?= $_SERVER['REQUEST_URI'] ?>" id="formSendCart" onsubmit="return sendDeleteCart()" method="POST">
                     <!-- Model delete Cart checkbox -->
 
                     <div class="vanhstore-popup vanhstore-modal__transition-enter-done" id="confirmModal">

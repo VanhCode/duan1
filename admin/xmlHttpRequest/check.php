@@ -5,7 +5,7 @@ if(isset($_GET['email'])){
     if(getDataBy('users',[
         'email'=>$_GET['email']
     ])){
-        echo 'đã có người dùng email này';
+        echo 'Đã có người dùng email này';
     }else{
         echo '';
     }

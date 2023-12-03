@@ -19,10 +19,13 @@
                 $order = $_GET['order'];
 
                 if ($action == "user" && $userAction == "don-mua" && $order == "all") {
+                    
                     include "donmua/fullbill.php";
                 } else if ($action == "user" && $userAction == "don-mua" && $order == "cho-xac-nhan") {
+                    
                     include "donmua/choxacnhan.php";
                 } else if ($action == "user" && $userAction == "don-mua" && $order == "da-xac-nhan") {
+                    
                     include "donmua/daxacnhan.php";
                 } else if ($action == "user" && $userAction == "don-mua" && $order == "dang-giao") {
                     include "donmua/danggiao.php";

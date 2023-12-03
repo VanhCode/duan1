@@ -146,19 +146,22 @@ document.addEventListener("DOMContentLoaded", function () {
   // const file=upFileInput.files[0];
 
   // Khi input file thay đổi
-  upFileInput.addEventListener("change", function () {
-      urlImageLoad.src = URL.createObjectURL(upFileInput.files[0]);
-      console.log(urlImageLoad.src);
-
-  });
+  if(upFileInput) {
+    upFileInput.addEventListener("change", function () {
+        urlImageLoad.src = URL.createObjectURL(upFileInput.files[0]);
+        console.log(urlImageLoad.src);
+  
+    });
+  }
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const urlImageLoad = document.querySelector(".url-image-load");
-  const upFileInput = document.querySelector(".upFile");
-  const subFileButton = document.querySelector(".subFile");
-  const divImg = document.querySelector(".div-img");
 
+const urlImageLoad = document.querySelector(".url-image-load");
+const upFileInput = document.querySelector(".upFile");
+const subFileButton = document.querySelector(".subFile");
+const divImg = document.querySelector(".div-img");
+
+if(urlImageLoad && upFileInput && subFileButton && divImg) {
   urlImageLoad.addEventListener("click", function () {
     upFileInput.click();
   });
@@ -187,41 +190,42 @@ document.addEventListener("DOMContentLoaded", function () {
       upFileInput.click();
     }
   });
-});
+
+}
 
 
+const accountLinks = document.querySelectorAll(".account-content-item a");
+const boxes = document.querySelectorAll(".account-box > div");
 
 
-document.addEventListener("DOMContentLoaded", function() {
-  const accountLinks = document.querySelectorAll(".account-content-item a");
-  const boxes = document.querySelectorAll(".account-box > div");
+accountLinks.forEach(link => {
+  link.addEventListener("click", function(event) {
+    // event.preventDefault();
+    
+    const target = this.getAttribute("data-target");
 
+    accountLinks.forEach(link => {
+      link.classList.remove("add-active");
+    });
 
-  accountLinks.forEach(link => {
-    link.addEventListener("click", function(event) {
-      // event.preventDefault();
-      
-      const target = this.getAttribute("data-target");
+    this.classList.add("add-active");
 
-      accountLinks.forEach(link => {
-        link.classList.remove("add-active");
-      });
-
-      this.classList.add("add-active");
-
-      boxes.forEach(box => {
-        if (box.classList.contains(target)) {
-          box.style.display = "block";
-        } else {
-          box.style.display = "none";
-        }
-      });
+    boxes.forEach(box => {
+      if (box.classList.contains(target)) {
+        box.style.display = "block";
+      } else {
+        box.style.display = "none";
+      }
     });
   });
-
-  // Hiển thị box đầu tiên khi trang tải xong
-  boxes[0].style.display = "block";
 });
+
+// Hiển thị box đầu tiên khi trang tải xong
+if(boxes[0]) {
+  boxes[0].style.display = "block";
+
+}
+
 
 
 
@@ -229,42 +233,42 @@ var icon1 = document.querySelectorAll('.fa-eye');
 var icon2 = document.querySelectorAll('.fa-eye-slash');
 var inputs = document.querySelectorAll('.pDzPRp');
 
-icon1[0].addEventListener('click', () => {
-    icon1[0].style.display = 'none';
-    inputs[0].setAttribute('type', 'text');
-    icon2[0].style.display = 'block';
-});
+if(icon1[0] && icon2[0] && inputs[0] && icon1[1] && icon2[1] && inputs[1] && icon1[2] && icon2[2] && inputs[2]) {
+  icon1[0].addEventListener('click', () => {
+      icon1[0].style.display = 'none';
+      inputs[0].setAttribute('type', 'text');
+      icon2[0].style.display = 'block';
+  });
 
-icon2[0].addEventListener('click', () => {
-    icon2[0].style.display = 'none';
-    inputs[0].setAttribute('type', 'password');
-    icon1[0].style.display = 'block';
-});
+  icon2[0].addEventListener('click', () => {
+      icon2[0].style.display = 'none';
+      inputs[0].setAttribute('type', 'password');
+      icon1[0].style.display = 'block';
+  });
 
-icon1[1].addEventListener('click', () => {
-    icon1[1].style.display = 'none';
-    inputs[1].setAttribute('type', 'text');
-    icon2[1].style.display = 'block';
-});
+  icon1[1].addEventListener('click', () => {
+      icon1[1].style.display = 'none';
+      inputs[1].setAttribute('type', 'text');
+      icon2[1].style.display = 'block';
+  });
 
-icon2[1].addEventListener('click', () => {
-    icon2[1].style.display = 'none';
-    inputs[1].setAttribute('type', 'password');
-    icon1[1].style.display = 'block';
-});
-icon1[2].addEventListener('click', () => {
-    icon1[2].style.display = 'none';
-    inputs[2].setAttribute('type', 'text');
-    icon2[2].style.display = 'block';
-});
+  icon2[1].addEventListener('click', () => {
+      icon2[1].style.display = 'none';
+      inputs[1].setAttribute('type', 'password');
+      icon1[1].style.display = 'block';
+  });
+  icon1[2].addEventListener('click', () => {
+      icon1[2].style.display = 'none';
+      inputs[2].setAttribute('type', 'text');
+      icon2[2].style.display = 'block';
+  });
 
-icon2[2].addEventListener('click', () => {
-    icon2[2].style.display = 'none';
-    inputs[2].setAttribute('type', 'password');
-    icon1[2].style.display = 'block';
-});
-
-
+  icon2[2].addEventListener('click', () => {
+      icon2[2].style.display = 'none';
+      inputs[2].setAttribute('type', 'password');
+      icon1[2].style.display = 'block';
+  });
+}
 
 
 // const anomationBox = document.querySelector('.anomation');

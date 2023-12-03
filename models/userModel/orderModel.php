@@ -279,7 +279,13 @@
         return pdo_query($sql);
     }
 
+    // Update yêu cầu hủy đơn hàng
+    function update_donhuy($order_id) {
+        $sql = "UPDATE orders SET status = 'canceled' WHERE order_id = $order_id";
+        pdo_execute($sql);
+    }
 
+    // Gửi mail khi đặt hàng thành công
     function sendMail_bil($data, $dataimg, $ngaydathang, $madonhang, $emailUser, $fullname) {
         include "./PHPMailer/src/PHPMailer.php";
         include "./PHPMailer/src/Exception.php";
