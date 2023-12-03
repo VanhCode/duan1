@@ -1,6 +1,6 @@
 <style>
     .form-group {
-        width: 40%;
+        width: 50%;
     }
 
     .form-group label {
@@ -63,36 +63,49 @@
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Thống</h3>
+                    <h3>Thống kê</h3>
                     <i class='bx bx-search'></i>
                     <i class='bx bx-filter'></i>
                 </div>
-                <form class="d-flex align-items-center form-statistical">
-                    <div class="form-group d-flex justify-content-center align-items-center">
-                        <label for="">Từ</label>
-                        <input class="form-control from" type="datetime-local">
-                        <label for="">Đến</label>
-                        <input class="form-control to" type="datetime-local">
-                    </div>
-                    <div class="form-group d-flex align-items-center">
-                        <select class="form-select w-50 type mx-2">
-                            <option hidden="hidden" value="DATE">Thống kê theo</option>
-                            <option value="DATE">Ngày</option>
-                            <option value="WEEK">Tuần</option>
-                            <option value="MONTH">Tháng</option>
-                            <option value="YEAR">Năm</option>
-                        </select>
-                    </div>
-                    <div class="form-group" style="text-align: right">
-                        <button class="btn btn-success send-data" type="button">Lọc</button>
-                    </div>
-                </form>
 
                 <div class="row">
                     <div class="col-8">
-                        <canvas id="myChart"></canvas>
+                        <form class="d-flex align-items-center form-statistical">
+                            <div class="form-group d-flex justify-content-center align-items-center">
+                                <label for="">Từ</label>
+                                <input class="form-control from" type="date">
+                                <label for="">Đến</label>
+                                <input class="form-control to" type="date">
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                                <select class="form-select type mx-2">
+                                    <option value="DATE">Ngày</option>
+                                    <option value="MONTH">Tháng</option>
+                                    <option value="YEAR">Năm</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="text-align: right">
+                                <button class="btn btn-success send-data" type="button">Lọc</button>
+                            </div>
+                        </form>
+                        <div class="">
+                            <select class="form-select filter-day">
+                                <option value="7">7 ngày</option>
+                                <option value="14">14 ngày</option>
+                                <option value="30">30 ngày</option>
+                            </select>
+                        </div>
+                        <div class="chart">
+                            <canvas id="myChart">
+                            </canvas>
+                            <div class="group-btn d-flex justify-content-between">
+                                <button class="btn btn-sm btn-outline-danger" id="back">back</button>
+                                <button class="btn btn-sm btn-outline-primary" id="next">next</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-4">
+                        <h3 align="center" class="py-3">Sản phẩm bán chạy</h3>
                         <canvas id="myChart1"></canvas>
                     </div>
                 </div>
@@ -106,36 +119,62 @@
     let form_statistical = document.querySelector('.form-statistical');
     let btn_send_data = document.querySelector('.send-data');
     let xmlHttp = new XMLHttpRequest();
+    let dateNow = new Date();
+    let fromDate=changeDays(dateNow,Number('-'+7));
+    let toDate = changeDays(dateNow,0)
+    let next=document.querySelector('#next');
+    let back=document.querySelector('#back');
     btn_send_data.addEventListener('click', function () {
         let from = form_statistical.querySelector('.from');
         let to = form_statistical.querySelector('.to');
         let type = form_statistical.querySelector('.type');
-        let data = `from=${from.value}&to=${to.value}&type=${type.value}`;
-        xmlHttp.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                dataReturn = JSON.parse(this.responseText);
-                dataReturn.revenue = dataReturn.revenue?.map((value) => (parseInt(value)));
-                dataReturn.numOrder = dataReturn.numOrder?.map((value) => (parseInt(value)));
-                // console.log(dataReturn);
-                updateChart(chart, dataReturn.date, dataReturn.numOrder, dataReturn.revenue);
-            }
-        }
-        xmlHttp.open('POST', 'xmlHttpRequest/chart.php');
-        xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xmlHttp.send(data);
+        fromDate=from.value;
+        toDate=to.value;
+        getDataChart(fromDate,toDate,type.value)
+            .then((dt) => {
+                dt.revenue = dt.revenue.map((value) => (parseInt(value)));
+                dt.numOrder = dt.numOrder.map((value) => (parseInt(value)));
+                updateChart(chart, dt.date, dt.numOrder, dt.revenue);
+            })
     });
-    getDataChart()
+    let filterDay=document.querySelector('.filter-day');
+    filterDay.onchange=function (e){
+        fromDate=changeDays(toDate,Number('-'+this.value));
+        getDataChart(fromDate,toDate)
+            .then((dt) => {
+                dt.revenue = dt.revenue.map((value) => (parseInt(value)));
+                dt.numOrder = dt.numOrder.map((value) => (parseInt(value)));
+                updateChart(chart, dt.date, dt.numOrder, dt.revenue);
+            });
+    }
+    getDataChart(fromDate,toDate)
         .then((dt) => {
             dt.revenue = dt.revenue.map((value) => (parseInt(value)));
             dt.numOrder = dt.numOrder.map((value) => (parseInt(value)));
-            return dt;
-        })
-        .then((res) => {
-            updateChart(chart, res.date, res.numOrder, res.revenue);
-        })
-        .catch((err) => {
-            console.error('có lỗi ' + err);
+            updateChart(chart, dt.date, dt.numOrder, dt.revenue);
         });
+    next.onclick=function (e){
+        fromDate=changeDays(fromDate,+1);
+        toDate=changeDays(toDate,+1);
+
+        getDataChart(fromDate,toDate)
+            .then((dt) => {
+                dt.revenue = dt.revenue.map((value) => (parseInt(value)));
+                dt.numOrder = dt.numOrder.map((value) => (parseInt(value)));
+                updateChart(chart, dt.date, dt.numOrder, dt.revenue);
+            });
+    }
+    back.onclick=function (e){
+        fromDate=changeDays(fromDate,-1);
+        toDate=changeDays(toDate,-1);
+
+        getDataChart(fromDate,toDate)
+            .then((dt) => {
+                dt.revenue = dt.revenue.map((value) => (parseInt(value)));
+                dt.numOrder = dt.numOrder.map((value) => (parseInt(value)));
+                updateChart(chart, dt.date, dt.numOrder, dt.revenue);
+            });
+    }
     var ctx = document.getElementById('myChart').getContext('2d');
     var ctx1 = document.getElementById('myChart1').getContext('2d');
     var chart = new Chart(ctx, {
@@ -160,44 +199,34 @@
                 }]
         },
         options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        callback: function (value, index, values) {
-                            return value + ' units';
+            plugins: {
+                datalabels: {
+                    color: '#36A2EB',
+                    display: function(context) {
+                        return context.dataset.data[context.dataIndex] > 15;
+                    },
+                    font: {
+                        weight: 'bold'
+                    },
+                    formatter: Math.round,
+                    animations: {
+                        numbers: {
+                            type: 'number',
+                            properties: ['x', 'y', 'base', 'width', 'height'],
+                            duration: 1000,
+                            easing: 'easeOutElastic',
+                            delay: function(context) {
+                                return context.index * 100;
+                            }
                         }
-                    },
-                    gridLines: {
-                        drawBorder: false,
-                        color: 'rgba(225,225,225,0.5)',
-                        zeroLineColor: 'transparent',
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Y-Axis Label',
-                        fontColor: 'black'
                     }
-                }],
-                xAxes: [{
-                    gridLines: {
-                        drawBorder: false,
-                        color: 'rgba(225,225,225,0.5)',
-                        zeroLineColor: 'transparent',
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'X-Axis Label',
-                        fontColor: 'black'
-                    }
-                }]
-            },
+                }
+            }
         }
     });
     let product_volume = JSON.parse('<?=$product_volume?>');
     product_volume.sale_volume=product_volume.sale_volume.map(value=>parseInt(value));
     product_volume.product_name=product_volume.product_name.map(str=>str.substr( 0, 20)+'...')
-    console.log(product_volume)
     var chart1 = new Chart(ctx1, {
         type: 'doughnut',
         data: {
@@ -225,21 +254,10 @@
         chart.update();
     }
 
-    function getDataChart() {
+    function getDataChart(from, to, type='DATE') {
         return new Promise((resolve, reject) => {
             let dataR = {};
-            let fromDate = new Date();
-            fromDate = fromDate.getFullYear() + '-' + (fromDate.getMonth()) + '-' +
-                fromDate.getDate() + 'T' +
-                fromDate.getHours() + ':' +
-                fromDate.getMinutes()
-
-            let toDate = new Date();
-            toDate = toDate.getFullYear() + '-' + (toDate.getMonth() + 1) + '-' +
-                toDate.getDate() + 'T' +
-                toDate.getHours() + ':' +
-                toDate.getMinutes()
-            let data = `from=${fromDate}&to=${toDate}&type=DATE`;
+            let data = `from=${from}&to=${to}&type=${type}`;
 
             xmlHttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
@@ -254,6 +272,15 @@
             xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xmlHttp.send(data);
         });
+    }
+
+    function changeDays(date, days) {
+        let result = new Date(date);
+        result.setDate(result.getDate() + days);
+        let year = result.getFullYear();
+        let month = (result.getMonth() + 1).toString().padStart(2, '0');
+        let day = result.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
     }
 </script>
 
