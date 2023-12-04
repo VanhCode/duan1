@@ -186,7 +186,7 @@
                                             'confirmed' => 'Đã xác nhận',
                                             'shipping' => 'Đang vận chuyển',
                                             'completed' => 'Hoàn thành',
-                                            'requestCanceled' => 'Yêu cầu huỷ',
+                                            // 'requestCanceled' => 'Yêu cầu huỷ',
                                             'canceled' => 'Đã huỷ'
                                         ];
                                     foreach ($status as $key => $order):?>
@@ -200,7 +200,7 @@
                             <td>
                                 <select onchange="changeStatus(this,<?= $value['order_id'] ?>,'payment_status')"
                                         class="form-select-sm selected_status" name="status"
-                                    <?= $value['payment_status'] == 'completed' ? 'disabled' : '' ?>
+                                    <?= $value['payment_status'] == 'paid' ? 'disabled' : '' ?>
                                 >
                                     <?php
                                     $status =
