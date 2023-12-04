@@ -7,7 +7,7 @@
         $duongdan = 'index.php';
     }
 
-    if ($order_detail['status'] == 'canceled') {
+    if ($order_detail['status'] == 'canceled' || $order_detail['status'] == 'requestCanceled') {
     ?>
         <main class="g03JX2">
             <div style="position: fixed; top: 0px; left: 0px;"></div>
@@ -27,7 +27,7 @@
             <div class="z8GWA3">
                 <div class="OlNNjU">
                     <div class="psdeAM">
-                        <div class="LrjR+B">Đã hủy đơn hàng</div>
+                        <div class="LrjR+B"><?= $order_detail['status'] == 'requestCanceled' ? 'Đang chờ yêu cầu hủy' : 'Đã hủy đơn hàng' ?></div>
                         <div class="qS3A+k">vào <?= date('H:i d-m-Y', strtotime($order_detail['create_at'])) ?>.</div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
 
                                     ?>
                                         <div class="kZWCCe">
-                                            <a href="/Dây-G-Shock-GA-100-GA-110-GA-120(GA-100-GA-110-GA-120-màu-đen-nhám-với-móc-khóa-bạc-mờ-i.102557534.3613733511">
+                                            <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $productId ?>">
                                                 <div class="L4d8ZG">
                                                     <img src="./public/upload/image/product/<?= $productImage ?>" alt="<?= $productName ?>">
                                                 </div>

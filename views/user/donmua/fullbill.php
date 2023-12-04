@@ -81,19 +81,19 @@
                                                 <div class="V+w7Xs cho_giao" tabindex="0">
 
                                                     <?php
-                                                    if ($detail['status'] == 'pending') {
-                                                        echo 'Chờ xác nhận';
-                                                    } else if ($detail['status'] == 'confirmed') {
-                                                        echo 'Đã xác nhận';
-                                                    } else if ($detail['status'] == 'shipping') {
-                                                        echo 'Đang giao';
-                                                    } else if ($detail['status'] == 'completed') {
-                                                        echo 'Hoàn thành';
-                                                    } else if ($detail['status'] == 'requestCanceled') {
-                                                        echo 'Đang chờ yêu cầu hủy';
-                                                    } else {
-                                                        echo 'Đã hủy';
-                                                    }
+                                                        if ($detail['status'] == 'pending') {
+                                                            echo 'Chờ xác nhận';
+                                                        } else if ($detail['status'] == 'confirmed') {
+                                                            echo 'Đã xác nhận';
+                                                        } else if ($detail['status'] == 'shipping') {
+                                                            echo 'Đang giao';
+                                                        } else if ($detail['status'] == 'completed') {
+                                                            echo 'Hoàn thành';
+                                                        } else if ($detail['status'] == 'requestCanceled') {
+                                                            echo 'Đang chờ yêu cầu hủy';
+                                                        } else {
+                                                            echo 'Đã hủy';
+                                                        }
                                                     ?>
                                                 </div>
                                             </div>
@@ -206,6 +206,15 @@
                                                 
                                                 <div class="PgtIur">
                                                     <a href=""><button class="stardust-button stardust-button--secondary WgYvse close_orders">Liện hệ với shop</button></a>
+                                                </div>
+                                            <?php
+                                        } else if ($detail['status'] == 'requestCanceled') {
+                                            ?>
+                                                <div class="PF0-AU">
+                                                    <a href="index.php?action=rutyeucau&id_order=<?= $detail['product_id'] ?>"><button class="stardust-button stardust-button--primary WgYvse">Rút yêu càu hủy</button></a>
+                                                </div>
+                                                <div class="PgtIur">
+                                                    <a href="index.php?action=user&user=order_detail&id_order=<?= $detail['order_id'] ?>"><button class="stardust-button stardust-button--secondary WgYvse close_orders">Xem chi tiết hủy đơn</button></a>
                                                 </div>
                                             <?php
                                         } else if ($detail['status'] == 'completed') {

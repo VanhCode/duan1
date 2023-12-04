@@ -326,12 +326,17 @@
     }
 
     function check_trangthai_thanhtoan($order_id) {
-        $sql = "SELECT payment_method FROM orders WHERE order_id = $order_id";
+        $sql = "SELECT orders.payment_method FROM orders WHERE order_id = $order_id";
         return pdo_query_one($sql);
     }
 
     // Update yêu cầu hủy đơn hàng
     function update_donhuy($order_id,$status) {
+        $sql = "UPDATE orders SET status = '".$status."', create_at = NOW() WHERE order_id = $order_id";
+        pdo_execute($sql);
+    }
+
+    function update_rutyeucauhuy($order_id,$status) {
         $sql = "UPDATE orders SET status = '".$status."', create_at = NOW() WHERE order_id = $order_id";
         pdo_execute($sql);
     }
