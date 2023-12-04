@@ -113,7 +113,7 @@
                                         <label></label>
                                     </td>
                                     <td class="suggest">
-                                        <button type="submit" class="btn btn-solid-primary btn--m btn--inline" aria-disabled="false">Lưu</button>
+                                        <button type="submit" name="updateAccount" class="btn btn-solid-primary btn--m btn--inline" aria-disabled="false">Lưu</button>
                                     </td>
                                 </tr>
                             </table>
@@ -123,7 +123,8 @@
                         <div class="div-img">
                             <div class="imgUrl">
                                 <div class="url-image-load">
-                                    <img class="url-image-load__imagechill" src="./public/upload/image/user/<?= $userProfile['user_image'] ?>" alt="">
+                                    <img class="url-image-load__imagechill" src="public/upload/image/user/<?= $userProfile['user_image'] ?>" alt="">
+                                    <input type="hidden" name="oldImage" value="<?= $userProfile['user_image'] ?>">
                                 </div>
                             </div>
                             <input class="upFile" type="file" name="image" accept=".jpg,.jpeg,.png">

@@ -154,6 +154,7 @@
                     <thead>
                     <tr>
                         <th style="padding-right: 20px">STT</th>
+                        <th>Mã đơn hàng</th>
                         <th>Người đặt hàng</th>
                         <th>Tổng cộng</th>
                         <th>Ngày đặt hàng</th>
@@ -166,6 +167,7 @@
                     <?php foreach ($newOrder as $key => $value): ?>
                         <tr>
                             <td style="margin-top: 7px"><?= $key + 1 ?></td>
+                            <td style="width:100px"><?= $value['ma_don_hang'] ?></td>
                             <td>
                                 <img src="../public/upload/image/user/<?= $value['user_image'] ?>" alt="">
                                 <span><?= $value['fullName'] ?></span>
@@ -223,7 +225,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="todo" style="flex-basis: 56px;">
+            <div class="todo" style="flex-basis: 362px;">
                 <div class="head">
                     <h3>Việc cần làm</h3>
                     <i class='bx bx-plus'></i>

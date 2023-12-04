@@ -90,6 +90,7 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="./js/scrolldanhgia.js"></script>
     <?php
         if(isset($_GET['action']) && $_GET['action'] == 'signup'){
             ?>
@@ -106,6 +107,7 @@
         }   else if(isset($_GET['action']) && $_GET['action'] == 'user'){
             ?>
                 <script src="./js/userJS.js"></script>
+                <script src="./js/huydon.js"></script>
             <?php
         }   else if(isset($_GET['action']) && $_GET['action'] == 'chi-tiet-sanpham'){
             ?>

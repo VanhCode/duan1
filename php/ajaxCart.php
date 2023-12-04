@@ -10,5 +10,5 @@
     // Sau khi update thì sẽ lấy lại chính nó sản phẩm trong giỏ hàng được click số lượng
     $cartBill = getCartByid($cartId);
 
-    echo $cartBill['amount'];
+    // echo $cartBill['amount'];
 ?>

@@ -240,7 +240,7 @@
                             </div>
                         </section>
                     </div>
-                    <div>
+                    <div id="form_comment">
                         <div style="display:contents;">
                             <div class="product-ratings">
                                 <div class="product-ratings__header">

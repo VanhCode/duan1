@@ -1,21 +1,89 @@
 <?php
-    function insert_bill($user_id,$ma_don_hang,$receiver_name,$receiver_phone,$receiver_address,$payment_method) {
-        $sql = "INSERT INTO `orders`(`user_id`, `ma_don_hang`, `receiver_name`, `receiver_phone`, `receiver_address`,`payment_method`) 
+    function insert_bill($user_id,$ma_don_hang,$receiver_name,$receiver_phone,$receiver_address,$payment_status,$payment_method,$voucher) {
+        $sql = "INSERT INTO `orders`(`user_id`, `ma_don_hang`, `receiver_name`, `receiver_phone`, `receiver_address`,`payment_status`,`payment_method`,`voucher`) 
                 VALUES 
-        ('$user_id','$ma_don_hang','$receiver_name','$receiver_phone','$receiver_address','$payment_method')";
+        ('$user_id','$ma_don_hang','$receiver_name','$receiver_phone','$receiver_address','$payment_status','$payment_method','$voucher')";
         return pdo_execute_returnLastInsertId($sql);
 
     }
 
-    function insert_bill_detail($order_id, $product_id, $amount, $size, $color, $price,$voucher) {
-        $sql = "INSERT INTO `order_detailS`(`order_id`, `product_id`, `amount`, `size`, `color`, `price`,`voucher`) 
+    function insert_bill_detail($order_id, $product_id, $amount, $size, $color, $price) {
+        $sql = "INSERT INTO `order_detailS`(`order_id`, `product_id`, `amount`, `size`, `color`, `price`) 
                 VALUES 
-        ('$order_id','$product_id','$amount','$size','$color','$price','$voucher')";
+        ('$order_id','$product_id','$amount','$size','$color','$price')";
         pdo_execute($sql);
     }
 
     // Select Đơn hàng
-    function load_bill_byid($order_id) {
+    function load_bill_byid($order_id, $user_id) {
+        $sql = "SELECT
+                orders.order_id,
+                orders.user_id,
+                orders.ma_don_hang,
+                orders.receiver_name,
+                orders.receiver_phone,
+                orders.receiver_address,
+                orders.status,
+                orders.payment_status,
+                orders.payment_method,
+                orders.voucher,
+                orders.create_at,
+                GROUP_CONCAT(order_details.order_detail_id) as order_detail_ids,
+                GROUP_CONCAT(order_details.product_id) as product_ids,
+                GROUP_CONCAT(order_details.amount) as amounts,
+                GROUP_CONCAT(order_details.size) as sizes,
+                GROUP_CONCAT(order_details.color) as colors,
+                GROUP_CONCAT(order_details.price) as prices,
+                GROUP_CONCAT(products.product_name) as product_names,
+                GROUP_CONCAT(products.images) as product_images,
+                GROUP_CONCAT(products.sale) as product_sales
+            FROM
+                orders
+            INNER JOIN
+                order_details ON orders.order_id = order_details.order_id
+            INNER JOIN
+                products ON order_details.product_id = products.product_id
+            WHERE
+                orders.order_id = $order_id
+            AND
+                orders.user_id = $user_id
+        ";
+        
+        return pdo_query_one($sql);
+    }
+
+    // Đếm số đơn trong Bảng orders
+    function count_order_allbill($user_id) {
+        $sql = "SELECT * FROM orders WHERE user_id = $user_id";
+        return pdo_query($sql);
+    }
+
+    function count_order_choxacnhan($user_id) {
+        $sql = "SELECT * FROM orders WHERE orders.status = 'pending' AND user_id = $user_id";
+        return pdo_query($sql);
+    }
+
+    function count_order_daxacnhan($user_id) {
+        $sql = "SELECT * FROM orders WHERE orders.status = 'confirmed' AND user_id = $user_id";
+        return pdo_query($sql);
+    }
+
+    function count_order_danggiao($user_id) {
+        $sql = "SELECT * FROM orders WHERE orders.status = 'shipping' AND user_id = $user_id";
+        return pdo_query($sql);
+    }
+
+    function count_order_hoanthanh($user_id) {
+        $sql = "SELECT * FROM orders WHERE orders.status = 'completed' AND user_id = $user_id";
+        return pdo_query($sql);
+    }
+
+    function count_order_dahuy($user_id) {
+        $sql = "SELECT * FROM orders WHERE orders.status = 'canceled' AND user_id = $user_id";
+        return pdo_query($sql);
+    }
+
+    function load_all_order($user_id) {
         $sql = "SELECT
                     orders.order_id,
                     orders.user_id,
@@ -26,6 +94,7 @@
                     orders.status,
                     orders.payment_status,
                     orders.payment_method,
+                    orders.voucher,
                     orders.create_at,
                     order_details.order_detail_id,
                     order_details.order_id,
@@ -34,42 +103,6 @@
                     order_details.size,
                     order_details.color,
                     order_details.price as price_orderDetail,
-                    order_details.voucher,
-                    products.product_id,
-                    products.product_name,
-                    products.images,
-                    products.price,
-                    products.sale
-                FROM
-                    orders
-                INNER JOIN
-                    order_details ON orders.order_id = order_details.order_id
-                INNER JOIN
-                    products ON order_details.product_id = products.product_id
-                WHERE
-                    orders.order_id = $order_id
-                ORDER BY orders.order_id DESC   
-        ";
-        return pdo_query_one($sql);
-    }
-
-
-    function load_all_order($user_id) {
-        $sql = "SELECT
-                    orders.order_id,
-                    orders.user_id,
-                    orders.ma_don_hang,
-                    orders.status,
-                    orders.payment_status,
-                    orders.payment_method,
-                    order_details.order_detail_id,
-                    order_details.order_id,
-                    order_details.product_id,
-                    order_details.amount,
-                    order_details.size,
-                    order_details.color,
-                    order_details.price as price_orderDetail,
-                    order_details.voucher,
                     products.product_id,
                     products.product_name,
                     products.images,
@@ -84,7 +117,6 @@
                 WHERE
                     user_id = $user_id
                 ORDER BY orders.order_id DESC
-                
         ";
         return pdo_query($sql);
     }
@@ -94,9 +126,14 @@
                     orders.order_id,
                     orders.user_id,
                     orders.ma_don_hang,
+                    orders.receiver_name,
+                    orders.receiver_phone,
+                    orders.receiver_address,
                     orders.status,
                     orders.payment_status,
                     orders.payment_method,
+                    orders.voucher,
+                    orders.create_at,
                     order_details.order_detail_id,
                     order_details.order_id,
                     order_details.product_id,
@@ -104,7 +141,6 @@
                     order_details.size,
                     order_details.color,
                     order_details.price as price_orderDetail,
-                    order_details.voucher,
                     products.product_id,
                     products.product_name,
                     products.images,
@@ -131,9 +167,14 @@
                     orders.order_id,
                     orders.user_id,
                     orders.ma_don_hang,
+                    orders.receiver_name,
+                    orders.receiver_phone,
+                    orders.receiver_address,
                     orders.status,
                     orders.payment_status,
                     orders.payment_method,
+                    orders.voucher,
+                    orders.create_at,
                     order_details.order_detail_id,
                     order_details.order_id,
                     order_details.product_id,
@@ -141,7 +182,6 @@
                     order_details.size,
                     order_details.color,
                     order_details.price as price_orderDetail,
-                    order_details.voucher,
                     products.product_id,
                     products.product_name,
                     products.images,
@@ -168,9 +208,14 @@
                     orders.order_id,
                     orders.user_id,
                     orders.ma_don_hang,
+                    orders.receiver_name,
+                    orders.receiver_phone,
+                    orders.receiver_address,
                     orders.status,
                     orders.payment_status,
                     orders.payment_method,
+                    orders.voucher,
+                    orders.create_at,
                     order_details.order_detail_id,
                     order_details.order_id,
                     order_details.product_id,
@@ -178,7 +223,6 @@
                     order_details.size,
                     order_details.color,
                     order_details.price as price_orderDetail,
-                    order_details.voucher,
                     products.product_id,
                     products.product_name,
                     products.images,
@@ -204,9 +248,14 @@
                     orders.order_id,
                     orders.user_id,
                     orders.ma_don_hang,
+                    orders.receiver_name,
+                    orders.receiver_phone,
+                    orders.receiver_address,
                     orders.status,
                     orders.payment_status,
                     orders.payment_method,
+                    orders.voucher,
+                    orders.create_at,
                     order_details.order_detail_id,
                     order_details.order_id,
                     order_details.product_id,
@@ -214,7 +263,6 @@
                     order_details.size,
                     order_details.color,
                     order_details.price as price_orderDetail,
-                    order_details.voucher,
                     products.product_id,
                     products.product_name,
                     products.images,
@@ -236,7 +284,59 @@
         return pdo_query($sql);
     }
 
+    function load_bill_dahuy($user_id) {
+        $sql = "SELECT
+                    orders.order_id,
+                    orders.user_id,
+                    orders.ma_don_hang,
+                    orders.receiver_name,
+                    orders.receiver_phone,
+                    orders.receiver_address,
+                    orders.status,
+                    orders.payment_status,
+                    orders.payment_method,
+                    orders.voucher,
+                    orders.create_at,
+                    order_details.order_detail_id,
+                    order_details.order_id,
+                    order_details.product_id,
+                    order_details.amount,
+                    order_details.size,
+                    order_details.color,
+                    order_details.price as price_orderDetail,
+                    products.product_id,
+                    products.product_name,
+                    products.images,
+                    products.price,
+                    products.sale
+                FROM
+                    orders
+                INNER JOIN
+                    order_details ON orders.order_id = order_details.order_id
+                INNER JOIN
+                    products ON order_details.product_id = products.product_id
+                WHERE
+                    orders.status = 'canceled'
+                AND
+                    user_id = $user_id
+                ORDER BY orders.order_id DESC
+                
+        ";
+        return pdo_query($sql);
+    }
 
+    // function check_trangthai_thanhtoan($order_id) {
+    //     $sql = "SELECT orders.payment_method FROM orders WHERE order_id = $order_id";
+    //     return pdo_query_one($sql);
+    // }
+
+    // Update yêu cầu hủy đơn hàng
+    function update_donhuy($order_id,$status) {
+        $sql = "UPDATE orders SET status = '".$status."', create_at = NOW() WHERE order_id = $order_id";
+        pdo_execute($sql);;
+    }
+
+    // Gửi mail khi đặt hàng thành công
     function sendMail_bil($data, $dataimg, $ngaydathang, $madonhang, $emailUser, $fullname) {
         include "./PHPMailer/src/PHPMailer.php";
         include "./PHPMailer/src/Exception.php";

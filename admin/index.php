@@ -8,6 +8,7 @@ include '../models/adminModel/commentModel.php';
 include '../models/adminModel/orderModel.php';
 include '../models/adminModel/dashboardModel.php';
 include '../models/adminModel/voucherModel.php';
+include '../models/adminModel/statisticalModel.php';
 
 $action = $_GET['action'] ?? 'dashboard';
 
@@ -33,6 +34,13 @@ switch ($action) {
         include 'dashboard.php';
         break;
     case 'statistical':
+        $product_volume=product_volume();
+        $sale_volume=array_column($product_volume,'sale_volume');
+        $product_name=array_column($product_volume,'product_name');
+        $product_volume=[];
+        $product_volume['sale_volume']=$sale_volume;
+        $product_volume['product_name']=$product_name;
+        $product_volume=json_encode($product_volume);
         include 'statistical.php';
         break;
     // list
@@ -70,7 +78,9 @@ switch ($action) {
         break;
 
     case 'listOrder':
-        $listOrder=listOrder();
+        $_GET['filter_status']=$_GET['filter_status']??'';
+        $filter_status=$_GET['filter_status'];
+        $listOrder=listOrder($filter_status);
         include 'order/listOrder.php';
         break;
 
@@ -179,6 +189,7 @@ switch ($action) {
 
             header('location: index.php?action=listProduct');
         }
+        $listCategory_addSp = listDanhmuc_addsp();
         include 'product/addProduct.php';
         break;
 

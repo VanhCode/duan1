@@ -6,6 +6,12 @@
         return $result;
     }
 
+    function listDanhmuc_addsp() {
+        $sql = "SELECT * FROM categories WHERE status_category = 'show' ORDER BY category_id ASC";
+        $result = pdo_query($sql);
+        return $result;
+    }
+
     // function selectImage__byId($img) {
     //     $sql = "SELECT * FROM categories WHERE cate = '$imgid'";
     //     $result = pdo_query_one($sql);

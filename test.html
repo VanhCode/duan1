@@ -1,0 +1,14 @@
+<script>
+    // Địa chỉ URL của API bạn muốn gọi
+    let url = "test.json";
+
+    // Sử dụng phương thức fetch() để tạo một Promise
+    fetch(url)
+        .then(response => {
+            return response.json()
+        })
+        .then(data=>{
+            console.log(data)
+        })
+
+</script>
