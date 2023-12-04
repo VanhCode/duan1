@@ -234,10 +234,6 @@
             
                 header('Location:'.$_SERVER['HTTP_REFERER']);
                 break;
-            case "rutyeucau":
-                $id_order = $_GET['id_order'] ?? 0;
-                update_rutyeucauhuy($id_order,$status);
-                break;
             case "login":
                 $isCheck = true;
                 $phoneErr = $success = "";
