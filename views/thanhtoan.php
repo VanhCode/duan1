@@ -52,10 +52,10 @@
                     <?php
                     $tong = 0;
                     foreach ($data as $key => $product_bill) {
-                        $listvoucher = voucher($userID);
                         $thanhtien = $product_bill['sale'] * $product_bill['amount'];
                         $tong += $thanhtien;
-                    ?>
+                        $listvoucher = voucher($userID,$tong??999999999);
+                        ?>
 
                         <input type="hidden" name="product_id[]" value="<?= $product_bill['product_id'] ?>">
                         <input type="hidden" name="id_cart[]" value="<?= $_SESSION['id_cart'][$key] ?>">

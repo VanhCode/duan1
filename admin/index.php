@@ -189,6 +189,7 @@ switch ($action) {
 
             header('location: index.php?action=listProduct');
         }
+        $listCategory_addSp = listDanhmuc_addsp();
         include 'product/addProduct.php';
         break;
 

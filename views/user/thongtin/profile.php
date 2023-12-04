@@ -123,7 +123,7 @@
                         <div class="div-img">
                             <div class="imgUrl">
                                 <div class="url-image-load">
-                                    <img class="url-image-load__imagechill" src="./public/upload/image/user/<?= $userProfile['user_image'] ?>" alt="">
+                                    <img class="url-image-load__imagechill" src="public/upload/image/user/<?= $userProfile['user_image'] ?>" alt="">
                                     <input type="hidden" name="oldImage" value="<?= $userProfile['user_image'] ?>">
                                 </div>
                             </div>

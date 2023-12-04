@@ -82,7 +82,7 @@
                         <label for="" class="form-label">Danh mục</label>
                         <select class="form-select" name="selectCategory" id="">
                             <?php
-                                foreach($listCategory as $key) {
+                                foreach($listCategory_addSp as $key) {
                                     ?>
                                         <option value="<?= $key['category_id'] ?>"><?= $key['category_name'] ?></option>
                                     <?php
