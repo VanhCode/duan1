@@ -1,8 +1,8 @@
 <?php
-    function insert_bill($user_id,$ma_don_hang,$receiver_name,$receiver_phone,$receiver_address,$payment_method,$voucher) {
-        $sql = "INSERT INTO `orders`(`user_id`, `ma_don_hang`, `receiver_name`, `receiver_phone`, `receiver_address`,`payment_method`,`voucher`) 
+    function insert_bill($user_id,$ma_don_hang,$receiver_name,$receiver_phone,$receiver_address,$payment_status,$payment_method,$voucher) {
+        $sql = "INSERT INTO `orders`(`user_id`, `ma_don_hang`, `receiver_name`, `receiver_phone`, `receiver_address`,`payment_status`,`payment_method`,`voucher`) 
                 VALUES 
-        ('$user_id','$ma_don_hang','$receiver_name','$receiver_phone','$receiver_address','$payment_method','$voucher')";
+        ('$user_id','$ma_don_hang','$receiver_name','$receiver_phone','$receiver_address','$payment_status','$payment_method','$voucher')";
         return pdo_execute_returnLastInsertId($sql);
 
     }
@@ -279,9 +279,14 @@
         return pdo_query($sql);
     }
 
+    function check_trangthai_thanhtoan($order_id) {
+        $sql = "SELECT payment_method FROM orders WHERE order_id = $order_id";
+        return pdo_query_one($sql);
+    }
+
     // Update yêu cầu hủy đơn hàng
-    function update_donhuy($order_id) {
-        $sql = "UPDATE orders SET status = 'canceled' WHERE order_id = $order_id";
+    function update_donhuy($order_id,$status) {
+        $sql = "UPDATE orders SET status = '".$status."', create_at = NOW() WHERE order_id = $order_id";
         pdo_execute($sql);
     }
 

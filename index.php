@@ -213,17 +213,25 @@
                     die;
                 }
 
-                if(isset($_POST['huydon'])) {
-                    update_donhuy($detail['order_id']);
-                    header('Location:'.$_SERVER['HTTP_REFERER']);
-                    exit();
-                }
 
                 include "views/user/user.php";
                 break;
             case "huydon":
                 $id_order = $_GET['id_order'] ?? 0;
-                update_donhuy($id_order);
+                $payment_method = check_trangthai_thanhtoan($id_order);
+            
+                $status = "";
+            
+                if($payment_method == "VNPAY") {
+                    $status = "requestCanceled";
+                } else if($payment_method == "tienmat") {
+                    $status = "canceled";
+                }
+            
+                if (!empty($status)) {
+                    update_donhuy($id_order, $status);
+                }
+            
                 header('Location:'.$_SERVER['HTTP_REFERER']);
                 break;
             case "login":
@@ -600,6 +608,7 @@
                         if(isset($user)) {
                             $ma_donhang = $_SESSION['ma_don_hang'];
                             $loai_thanhtoan = "VNPAY";
+                            $tinhtrang_thanhtoan = "paid";
                             $fullname = $user['firth_name']." ".$user['last_name'];
                             $ngaydathang = date("d-m-Y H:i:s");
                             $data = [];
@@ -607,7 +616,7 @@
                             foreach($_SESSION['cart']['id_cart'] as $cart) {
                                 $data[] = listCart__bill($cart);
                             }
-                            $id_order = insert_bill($userID,$ma_donhang,$_SESSION['cart']['fullname'],$_SESSION['cart']['phone'],$_SESSION['cart']['address'],$loai_thanhtoan,$_SESSION['cart']['voucher'] = $_SESSION['cart']['voucher'] ?? 0);
+                            $id_order = insert_bill($userID,$ma_donhang,$_SESSION['cart']['fullname'],$_SESSION['cart']['phone'],$_SESSION['cart']['address'],$tinhtrang_thanhtoan,$loai_thanhtoan,$_SESSION['cart']['voucher'] = $_SESSION['cart']['voucher'] ?? 0);
 
                             foreach($data as $key => $oder_detail) {
                                 // if(isset($_SESSION['cart']['voucher_'.$oder_detail['cart_id']])){
@@ -651,6 +660,7 @@
                 } else {
                     $ma_donhang = $_SESSION['ma_don_hang'];
                     $loai_thanhtoan = "tienmat";
+                    $tinhtrang_thanhtoan = "unpaid";
                     $fullname = $user['firth_name']." ".$user['last_name'];
                     $ngaydathang = date("d-m-Y H:i:s");
 
@@ -662,7 +672,7 @@
                     }
 
 
-                    $id_order = insert_bill($userID,$ma_donhang,$_SESSION['cart']['fullname'],$_SESSION['cart']['phone'],$_SESSION['cart']['address'],$loai_thanhtoan,$_SESSION['cart']['voucher'] = $_SESSION['cart']['voucher'] ?? 0);
+                    $id_order = insert_bill($userID,$ma_donhang,$_SESSION['cart']['fullname'],$_SESSION['cart']['phone'],$_SESSION['cart']['address'],$tinhtrang_thanhtoan,$loai_thanhtoan,$_SESSION['cart']['voucher'] = $_SESSION['cart']['voucher'] ?? 0);
                    
                     
                     foreach($data as $key => $oder_detail) {

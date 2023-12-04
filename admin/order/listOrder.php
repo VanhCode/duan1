@@ -61,6 +61,7 @@
                     <thead>
                     <tr>
                         <th style="padding-right: 20px">STT</th>
+                        <th>Mã đơn hàng</th>
                         <th>Người đặt hàng</th>
                         <th>Người nhận</th>
                         <th>Tổng cộng</th>
@@ -74,6 +75,7 @@
                         <?php foreach ($listOrder as $key => $value) : ?>
                             <tr>
                                 <td style="margin-top: 45px"><?= $key + 1 ?></td>
+                                <td style="width:100px"><?= $value['ma_don_hang'] ?></td>
                                 <td>
                                     <img src="../public/upload/image/user/<?= $value['user_image'] ?>" alt="">
                                     <span><?= $value['fullName'] ?></span>
