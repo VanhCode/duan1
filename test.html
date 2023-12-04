@@ -1,21 +1,14 @@
 <script>
-    let data1='name=duynnz&age=19';
-    let contentType1='application/x-www-form-urlencoded';
-    let data2=JSON.stringify({
-        name: 'duynnz',
-        age: '19'
-    });
-    let contentType2='application/json;charset=UTF-8';
-    fetch('test.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': contentType2
-        },
-        body: data2
-    })
-        .then(response => response.text())
-        .then(data => {
-            alert(data);
+    // Địa chỉ URL của API bạn muốn gọi
+    let url = "test.json";
+
+    // Sử dụng phương thức fetch() để tạo một Promise
+    fetch(url)
+        .then(response => {
+            return response.json()
         })
-        .catch(err=>console.log(err.status));
+        .then(data=>{
+            console.log(data)
+        })
+
 </script>
