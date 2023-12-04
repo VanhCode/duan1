@@ -222,9 +222,9 @@
             
                 $status = "";
             
-                if($payment_method == "VNPAY") {
+                if($payment_method === 'VNPAY') {
                     $status = "requestCanceled";
-                } else if($payment_method == "tienmat") {
+                } else {
                     $status = "canceled";
                 }
             

@@ -131,6 +131,32 @@
                                                 <div class="DeWpya" tabindex="0" aria-label="Thành tiền: ₫107.000">₫<?= number_format($thanhtien, 0, ",", ".") ?></div>
                                             </div>
                                         </div>
+                                        <div class="AM4Cxf">
+                                            <div class="qtUncs">
+                                                <span class="OwGaHA" tabindex="0">Đơn hàng sẽ được chuẩn bị và chuyển đi trước <div class="shopee-drawer" id="pc-drawer-id-78" tabindex="0"><u class="M7wYu+" aria-describedby="0.5584431231837435"><?= date("d-m-Y", strtotime($detail['create_at'])) ?></u></div>.</span></div>
+                                            <section class="EOjXew">
+                                                <h3 class="a11y-hidden"></h3>
+                                                <?php
+                                                    if ($detail['status'] == 'completed') {
+                                                        ?>
+                                                            <div class="PF0-AU">
+                                                                <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $detail['product_id'] ?>&scroll_to_comment=true"><button class="stardust-button stardust-button--primary WgYvse">Đánh giá</button></a>
+                                                            </div>
+
+
+                                                            <div class="PgtIur">
+                                                                <a href="index.php?action=user&user=order_detail&id_order=<?= $detail['order_id'] ?>"><button class="stardust-button stardust-button--secondary WgYvse close_orders">Yêu cầu trả hàng/Hoàn Tiền</button></a>
+                                                            </div>
+                                                            
+                                                            <div class="PgtIur">
+                                                                <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $detail['product_id'] ?>"><button class="stardust-button stardust-button--secondary WgYvse close_orders">Mua Lại</button></a>
+                                                            </div>
+                                                        <?php
+                                                    } 
+                                                ?>
+                                                
+                                            </section>
+                                        </div>
                                     </div>
                                 </div>
                             <?php

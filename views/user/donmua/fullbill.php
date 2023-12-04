@@ -90,7 +90,7 @@
                                                     } else if ($detail['status'] == 'completed') {
                                                         echo 'Hoàn thành';
                                                     } else if ($detail['status'] == 'requestCanceled') {
-                                                        echo 'Yêu cầu hủy';
+                                                        echo 'Đang chờ yêu cầu hủy';
                                                     } else {
                                                         echo 'Đã hủy';
                                                     }

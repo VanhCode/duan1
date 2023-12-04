@@ -111,6 +111,7 @@
                         $load_order_daxacnhan = load_bill_daxacnhan($userID);
                         $load_order_danggiao = load_bill_danggiao($userID);
                         $load_order_hoanthanh = load_bill_hoanthanh($userID);
+                        $load_order_dahuy = load_bill_dahuy($userID);
 
                         include "donmua.php";
                     } else if($action == "user" && $userAction == "thong-bao") {
