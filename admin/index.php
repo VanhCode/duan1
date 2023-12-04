@@ -78,7 +78,9 @@ switch ($action) {
         break;
 
     case 'listOrder':
-        $listOrder=listOrder();
+        $_GET['filter_status']=$_GET['filter_status']??'';
+        $filter_status=$_GET['filter_status'];
+        $listOrder=listOrder($filter_status);
         include 'order/listOrder.php';
         break;
 

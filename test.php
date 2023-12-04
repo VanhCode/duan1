@@ -1,3 +1,12 @@
 <?php
-print_r(json_decode(file_get_contents('php://input')));
-print_r($_POST);
+$obj=[
+    [
+        'name'=>'duynnz',
+        'age'=>19
+    ],
+    [
+        'name'=>'manh',
+        'age'=>18
+    ]
+];
+file_put_contents('test.json',json_encode($obj));

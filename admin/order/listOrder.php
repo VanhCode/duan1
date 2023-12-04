@@ -43,10 +43,22 @@
                     </li>
                 </ul>
             </div>
-            <a href="#" class="btn-download">
-                <i class='bx bxs-cloud-download'></i>
-                <span class="text">Tải xuống PDF</span>
-            </a>
+            <select onchange="window.location.href=`index.php?action=listOrder&filter_status=${this.value}`" style="width: 200px;" class="form-select" name="" id="">
+                <option value="">Tất cả</option>
+            <?php
+            $status =
+                [
+                    'pending' => 'Chờ xác nhận',
+                    'confirmed' => 'Đã xác nhận',
+                    'shipping' => 'Đang vận chuyển',
+                    'completed' => 'Hoàn thành',
+                    'requestCanceled' => 'Yêu cầu huỷ',
+                    'canceled' => 'Đã huỷ'
+                ];
+            foreach ($status as $key=>$value):?>
+                <option <?=$_GET['filter_status']==$key ? 'selected':''?> value="<?=$key?>"><?=$value?></option>
+            <?php endforeach;?>
+            </select>
         </div>
 
 
