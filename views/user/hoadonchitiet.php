@@ -171,8 +171,6 @@
                                 echo 'Đang giao';
                             } else if ($order_detail['status'] == 'completed') {
                                 echo 'Hoàn thành';
-                            } else if ($order_detail['status'] == 'requestCanceled') {
-                                echo 'Yêu cầu hủy';
                             } else {
                                 echo 'Đã hủy';
                             }

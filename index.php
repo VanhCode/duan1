@@ -218,18 +218,11 @@
                 break;
             case "huydon":
                 $id_order = $_GET['id_order'] ?? 0;
-                $payment_method = check_trangthai_thanhtoan($id_order);
             
-                $status = "";
-            
-                if($payment_method['payment_method'] === 'VNPAY') {
-                    $status = "requestCanceled";
-                } else {
-                    $status = "canceled";
-                }
-            
+                $status = "canceled";
+                
                 if (!empty($status)) {
-                    update_donhuy($id_order, $status);
+                    update_donhuy($id_order,$status);
                 }
             
                 header('Location:'.$_SERVER['HTTP_REFERER']);

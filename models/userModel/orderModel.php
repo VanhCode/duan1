@@ -325,10 +325,10 @@
         return pdo_query($sql);
     }
 
-    function check_trangthai_thanhtoan($order_id) {
-        $sql = "SELECT orders.payment_method FROM orders WHERE order_id = $order_id";
-        return pdo_query_one($sql);
-    }
+    // function check_trangthai_thanhtoan($order_id) {
+    //     $sql = "SELECT orders.payment_method FROM orders WHERE order_id = $order_id";
+    //     return pdo_query_one($sql);
+    // }
 
     // Update yêu cầu hủy đơn hàng
     function update_donhuy($order_id,$status) {

@@ -219,12 +219,9 @@
                                                 <div class="PF0-AU">
                                                     <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $detail['product_id'] ?>&scroll_to_comment=true"><button class="stardust-button stardust-button--primary WgYvse">Đánh giá</button></a>
                                                 </div>
-
-
                                                 <div class="PgtIur">
-                                                    <a href="index.php?action=user&user=order_detail&id_order=<?= $detail['order_id'] ?>"><button class="stardust-button stardust-button--secondary WgYvse close_orders">Yêu cầu trả hàng/Hoàn Tiền</button></a>
+                                                    <a href="index.php?action=user&user=order_detail&id_order=<?= $detail['order_id'] ?>"><button class="stardust-button stardust-button--secondary WgYvse close_orders">Thông tin đơn hàng</button></a>
                                                 </div>
-                                                
                                                 <div class="PgtIur">
                                                     <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $detail['product_id'] ?>"><button class="stardust-button stardust-button--secondary WgYvse close_orders">Mua Lại</button></a>
                                                 </div>
