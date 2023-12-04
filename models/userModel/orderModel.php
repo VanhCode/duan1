@@ -333,12 +333,7 @@
     // Update yêu cầu hủy đơn hàng
     function update_donhuy($order_id,$status) {
         $sql = "UPDATE orders SET status = '".$status."', create_at = NOW() WHERE order_id = $order_id";
-        pdo_execute($sql);
-    }
-
-    function update_rutyeucauhuy($order_id,$status) {
-        $sql = "UPDATE orders SET status = '".$status."', create_at = NOW() WHERE order_id = $order_id";
-        pdo_execute($sql);
+        pdo_execute($sql);;
     }
 
     // Gửi mail khi đặt hàng thành công
