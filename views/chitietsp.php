@@ -14,7 +14,7 @@
 <div class="main">
     <div class="container">
         <div class="flex items-center page-product__main">
-            <a class="page-product__main_a" href="index.php">VanhStore</a>
+            <a class="page-product__main_a" href="index.php">Trang chủ</a>
             <i class="fa-solid fa-angle-right"></i>
             <a class="page-product__main_a" href="">Sản Phẩm Chi Tiết</a>
             <i class="fa-solid fa-angle-right"></i>
@@ -92,8 +92,8 @@
                                         Giá Bán:
                                     </div>
                                     <div class="flex_price__product_text">
-                                        <div class="flex_price__product_text_throw" name="priceThrow">₫<?= number_format($chitiet_product['price'], 0, ",", ".") ?></div>
-                                        <div class="flex_price__product_text" name="price">₫<?= number_format($chitiet_product['sale'], 0, ",", ".") ?></div>
+                                            <div class="flex_price__product_text_throw" name="priceThrow">₫<?= number_format($chitiet_product['price'], 0, ",", ".") ?></div>
+                                            <div class="flex_price__product_text" name="price">₫<?= number_format($chitiet_product['sale'], 0, ",", ".") ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -285,7 +285,7 @@
                                                             </div>
                                                         </a>
                                                         <div class="vanhstore-product-rating__main">
-                                                            <a class="vanhstore-product-rating__author-name" href="/shop/991020722"><?= $commnent['firth_name']." ".$commnent['last_name'] ?></a>
+                                                            <a class="vanhstore-product-rating__author-name" href="/shop/991020722"><?= $commnent['first_name']." ".$commnent['last_name'] ?></a>
                                                             <div class="repeat-purchase-con">
                                                                 <div class="vanhstore-product-rating__rating">
                                                                     <i class="fa-solid fa-star"></i>
