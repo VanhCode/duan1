@@ -76,6 +76,7 @@
                         <th>Mã đơn hàng</th>
                         <th>Người đặt hàng</th>
                         <th>Người nhận</th>
+                        <th>Voucher</th>
                         <th>Tổng cộng</th>
                         <th>Ngày đặt hàng</th>
                         <th>Trạng thái</th>
@@ -97,6 +98,7 @@
                                     <p style="width: 150px;"><b>ĐC: </b><?= $value['receiver_address'] ?></p>
                                     <p><b>SĐT: </b><?= $value['receiver_phone'] ?></p>
                                 </td>
+                                <td style="color: #ff7d7d;font-weight: 500;"><?= number_format($value['voucher'], 0, ',', '.') ?></td>
                                 <td style="color: #ff7d7d;font-weight: 500;"><?= number_format($value['total'], 0, ',', '.') ?></td>
                                 <td><?= $value['create_at'] ?></td>
 
