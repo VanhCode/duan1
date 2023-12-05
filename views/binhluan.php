@@ -26,7 +26,7 @@
                     </div>
                 </a>
                 <div class="vanhstore-product-rating__main">
-                    <a class="vanhstore-product-rating__author-name" href="/shop/991020722"><?= $comment['firth_name']." ".$comment['last_name'] ?></a>
+                    <a class="vanhstore-product-rating__author-name" href="/shop/991020722"><?= $comment['first_name']." ".$comment['last_name'] ?></a>
                     <div class="repeat-purchase-con">
                         <div class="vanhstore-product-rating__rating">
                             <i class="fa-solid fa-star"></i>

@@ -56,7 +56,13 @@
     
     // Chi tiết sản phẩm
     function chitietSanpham($id) {
-        $sql = "SELECT * FROM products WHERE product_id = $id";
+        $sql = "SELECT 
+                    *
+                FROM 
+                    products
+                WHERE 
+                    product_id = $id";
+
         return pdo_query_one($sql);
     }
 
