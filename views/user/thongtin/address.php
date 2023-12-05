@@ -1,22 +1,49 @@
 <!-- end địa chỉ -->
 
 <div class="address-box box3">
-        <div class="Hvae38" role="main">
-            <div style="display: contents;">
-                <div class="UWIOO4">
-                    <div class="d2XTTX">
-                        <div class="KxkIgA">
-                            <div class="Df4Vny">Địa chỉ của tôi</div>
-                            <div class="VwAsdf"></div>
-                        </div>
-                        <div class="my-account-section__header-button">
-                            <button>
-                                <a href="">Thêm địa chỉ mới</a>
-                            </button>
-                            <i class="fa-solid fa-top-list fa-plus"></i>
+    <div class="Hvae38" role="main">
+        <div style="display: contents;">
+            <div class="UWIOO4">
+                <div class="d2XTTX">
+                    <div class="KxkIgA">
+                        <div class="Df4Vny">Địa chỉ của tôi</div>
+                        <div class="VwAsdf"></div>
+                    </div>
+                    <div class="my-account-section__header-button">
+                        <button>
+                            <a href="">Thêm địa chỉ mới</a>
+                        </button>
+                        <i class="fa-solid fa-top-list fa-plus"></i>
+                    </div>
+                </div>
+                <div class="G-rPVC">
+                    <div class="EHan+5">
+                        <div class="GsuIol">Địa chỉ</div>
+                        <div class="RnMqRZ OIBd-J">
+                            <div class="_70j3aj">
+                                <div role="heading" class="_7lC5y1 fVHv1Z">
+                                    <div id="address-card_ceff43be-e12e-40ec-8026-0081983f0954_header" class="XBSydm DikMLj"><span class="Tv2wKj uBRQwt">
+                                            <div class="YD3W3V"><?= $userProfile['first_name']." ".$userProfile['last_name']  ?></div>
+                                        </span>
+                                        <div class="xbIya3"></div>
+                                        <div role="row" class="Ayh0hN L8KYK3 IsnjAd"><?= $userProfile['phone'] ?></div>
+                                    </div>
+                                    <div class="oSiOlj"><button class="tXBaRL">Cập nhật</button></div>
+                                </div>
+                                <div id="address-card_ceff43be-e12e-40ec-8026-0081983f0954_content" role="heading" class="_7lC5y1 fVHv1Z">
+                                    <div class="XBSydm DikMLj">
+                                        <div class="tiDOor">
+                                            <div role="row" class="IsnjAd"><?= $userProfile['address'] ?></div>
+                                            <!-- <div role="row" class="IsnjAd">Xã Thượng Mỗ, Huyện Đan Phượng, Hà Nội</div> -->
+                                        </div>
+                                    </div>
+                                    <div class="iI3vH9 oSiOlj"><button class="mgW0lg DmXQ31 PEXLbW" disabled="">Thiết lập mặc định</button></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="FS90r3">
+                </div>
+                <!-- <div class="FS90r3">
                         <svg fill="none" viewBox="0 0 121 120" class="+elnpp">
                             <path d="M16 79.5h19.5M43 57.5l-2 19" stroke="#BDBDBD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                             <path d="M56.995 78.791v-.001L41.2 38.195c-2.305-5.916-2.371-12.709.44-18.236 1.576-3.095 4.06-6.058 7.977-8 5.061-2.5 11.038-2.58 16.272-.393 3.356 1.41 7 3.92 9.433 8.43v.002c2.837 5.248 2.755 11.853.602 17.603L60.503 78.766v.001c-.617 1.636-2.88 1.643-3.508.024Z" fill="#fff" stroke="#BDBDBD" stroke-width="2"></path>
@@ -31,10 +58,10 @@
                         <div class="tYrwYD">
                             Bạn chưa có địa chỉ
                         </div>
-                    </div>
-                </div>
+                    </div> -->
             </div>
         </div>
     </div>
+</div>
 
-    <!-- end địa chỉ -->
+<!-- end địa chỉ -->

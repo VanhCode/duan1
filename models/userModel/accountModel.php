@@ -6,6 +6,7 @@
         return $result;
     }
 
+
     function selectAllAccount($email) {
         $sql = "SELECT * FROM users WHERE email = '$email'";
         pdo_execute($sql);
@@ -29,7 +30,7 @@
 
     // Insert tài khoản 
     function addAccount($firstname,$lastname,$email,$user_image,$password,$phone,$date,$gender) {
-        $sql = "INSERT INTO users (`firth_name`, `last_name`, `email`,`user_image`,`password`, `phone`, `date`, `gender`)
+        $sql = "INSERT INTO users (`first_name`, `last_name`, `email`,`user_image`,`password`, `phone`, `date`, `gender`)
                 VALUES ('$firstname','$lastname','$email','$user_image','$password','$phone','$date','$gender')
         ";
         pdo_execute($sql);
@@ -58,8 +59,8 @@
         pdo_execute($sql);
     }
 
-    function updateAccount($user_id,$firth_name,$last_name,$email,$image,$phone,$date,$gender) {
-        $sql = "UPDATE users SET firth_name = '".$firth_name."', last_name = '".$last_name."', email = '".$email."', user_image = '".$image."', phone = '".$phone."', date = '".$date."', gender = '".$gender."' 
+    function updateAccount($user_id,$first_name,$last_name,$email,$image,$phone,$date,$address,$gender) {
+        $sql = "UPDATE users SET first_name = '".$first_name."', last_name = '".$last_name."', email = '".$email."', user_image = '".$image."', phone = '".$phone."', date = '".$date."', address = '".$address."', gender = '".$gender."' 
                 WHERE user_id = '".$user_id."'";
         pdo_execute($sql);
     }
@@ -105,7 +106,6 @@
             $mail->addEmbeddedImage('./img1/vanhcart.jpg', 'vanhcart', 'vanhcart.jpg');
             $email = 'email@example.com';
             // Tạo link đặt lại mật khẩu
-            $resetLink = 'https://shopee.vn/forgot_password/?token=' . urlencode($resetToken) . '&email=' . urlencode($email);
 
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = 'Thiết lập lại mật khẩu đăng nhập VanhStore';
@@ -119,9 +119,6 @@
                         <div style="max-width: 610px; margin: 0 auto;">
                             <p>Xin chào '.$fullname.',</p>
                             <p>Chúng tôi nhận được yêu cầu thiết lập lại mật khẩu cho tài khoản VanhStore của bạn.</p>                
-                            <p>Nhấn <a href="' . $resetLink . '" style="color: #ee4d2d;">tại đây</a> để thiết lập mật khẩu mới cho tài khoản của bạn.</p>
-                            <p>Hoặc vui lòng copy và dán đường dẫn bên dưới lên trình duyệt:</p>
-                            <p>['.$resetLink.']</p>   
                             <p>Nếu bạn không yêu cầu thiết lập lại mật khẩu, vui lòng liên hệ Bộ phận Chăm sóc Khách hàng tại đây</p>  
                             <p>Trân trọng,</p>
                             <p>Đội ngũ VanhStore</p>

@@ -17,7 +17,7 @@
                     <div class="group__location_edit">
                         <div class="group_location_ip">
                             <h4>Họ và tên..*</h4>
-                            <input type="text" class="information_ip ip_name_thanhtoan" placeholder="Nhập tên của bạn..." value="<?= $user['firth_name'] . " " . $user['last_name'] ?>" name="fullname">
+                            <input type="text" class="information_ip ip_name_thanhtoan" placeholder="Nhập tên của bạn..." value="<?= $user['first_name'] . " " . $user['last_name'] ?>" name="fullname">
                             <div class="information_Err information_Errname"></div>
                         </div>
                         <div class="group_location_ip">

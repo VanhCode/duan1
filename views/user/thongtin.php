@@ -17,6 +17,16 @@
                     $newPassword = $_POST['newPassword'];
                     $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
                     updatePassword($newPasswordHash);
+                    $success_change = '
+                        <div style="display:flex;" class="group_content__succesS">
+                            <div class="group_content__Animation__success__icon">
+                                <i class="fa-regular fa-circle-check check__squa"></i>
+                            </div>
+                            <div class="group_content__Animation__success">
+                                Đổi mật khẩu thành công
+                            </div>
+                        </div>
+                    ';
                 }
                 include "thongtin/changepass.php";
             }

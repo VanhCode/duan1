@@ -53,7 +53,7 @@
                 <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="" class="form-label">Firth Name</label>
-                        <input type="text" class="form-control first blurinp" name="firth_name" value="<?=$user['firth_name']?>">
+                        <input type="text" class="form-control first blurinp" name="first_name" value="<?=$user['first_name']?>">
                         <small class="error er_firstname"></small>
                     </div>
                     <div class="form-group">

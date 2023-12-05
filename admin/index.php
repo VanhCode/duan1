@@ -218,7 +218,7 @@ switch ($action) {
             $path = "../public/upload/image/user/";
             move_uploaded_file($_FILES['user_image']['tmp_name'], $path . $_FILES['user_image']['name']);
             addData('users', [
-                'firth_name' => $_POST['firth_name'],
+                'first_name' => $_POST['first_name'],
                 'last_name' => $_POST['last_name'],
                 'user_image' => $_FILES['user_image']['name'],
                 'email' => $_POST['email'],
@@ -397,11 +397,11 @@ switch ($action) {
             'user_id' => $_GET['user_id']
         ]);
 
-        if (isset($_POST['firth_name'])) {
+        if (isset($_POST['first_name'])) {
             $path = "../public/upload/image/user/";
             move_uploaded_file($_FILES['user_image']['tmp_name'], $path . $_FILES['user_image']['name']);
             updateData('users', [
-                'firth_name' => $_POST['firth_name'],
+                'first_name' => $_POST['first_name'],
                 'last_name' => $_POST['last_name'],
                 'user_image' => $_FILES['user_image']['name'] !='' ? $_FILES['user_image']['name']:  $user['user_image'],
                 'email' => $_POST['email'],

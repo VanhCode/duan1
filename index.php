@@ -116,8 +116,9 @@
                     }
 
                     $itemsPerPage = 20; 
+                    $count_listprd_search = count_search__khoanggia($min_price,$max_price);
                     $listProduct_khoanggia = search__khoanggia($min_price, $max_price, $price, $begin, $itemsPerPage);
-                    $count_minMax = count($listProduct_khoanggia);
+                    $count_minMax = count($count_listprd_search);
                     $count_price_min_max = ceil($count_minMax / $itemsPerPage);
                 }
 
@@ -208,9 +209,21 @@
                         move_uploaded_file($_FILES['image']['tmp_name'],$target);
                     }
                     
-                    updateAccount($userID,$_POST['firth_name'],$_POST['last_name'],$_POST['email'],$filename ? $filename : $oldImage,$_POST['phone'],$_POST['date'],$_POST['gender']);
-                    header('Location:'.$_SERVER['HTTP_REFERER']);
-                    die;
+                    updateAccount($userID,$_POST['first_name'],$_POST['last_name'],$_POST['email'],$filename ? $filename : $oldImage,$_POST['phone'],$_POST['date'],$_POST['address'],$_POST['gender']);
+                    
+                    $success_account = '
+                        <div style="display:flex;" class="group_content__succesS">
+                            <div class="group_content__Animation__success__icon">
+                                <i class="fa-regular fa-circle-check check__squa"></i>
+                            </div>
+                            <div class="group_content__Animation__success">
+                                Cập nhật hồ sơ thành công
+                            </div>
+                        </div>
+                    ';
+
+                    // header('Location:'.$_SERVER['HTTP_REFERER']);
+                    // die;
                 }
 
 
@@ -350,7 +363,7 @@
                 if(isset($_POST['guimail'])) {
                     $email = $_POST['phone'];
                     $mailFogot = check_email_quenmk($email);
-                    $fullname = $mailFogot['firth_name']." ".$mailFogot['last_name'];
+                    $fullname = $mailFogot['first_name']." ".$mailFogot['last_name'];
                     if($mailFogot) {
                         $hashedPassword = $mailFogot['password'];
                         
@@ -602,7 +615,7 @@
                             $ma_donhang = $_SESSION['ma_don_hang'];
                             $loai_thanhtoan = "VNPAY";
                             $tinhtrang_thanhtoan = "paid";
-                            $fullname = $user['firth_name']." ".$user['last_name'];
+                            $fullname = $user['first_name']." ".$user['last_name'];
                             $ngaydathang = date("d-m-Y H:i:s");
                             $data = [];
 
@@ -654,7 +667,7 @@
                     $ma_donhang = $_SESSION['ma_don_hang'];
                     $loai_thanhtoan = "tienmat";
                     $tinhtrang_thanhtoan = "unpaid";
-                    $fullname = $user['firth_name']." ".$user['last_name'];
+                    $fullname = $user['first_name']." ".$user['last_name'];
                     $ngaydathang = date("d-m-Y H:i:s");
 
 
@@ -726,9 +739,10 @@
             $sapxep = "price DESC";
         }
 
+        $count_prdSearch = count_searchModel($keyword);
         $listProdSearch = searchModel($keyword,$sapxep,$begin);
 
-        $count = count($listProdSearch);
+        $count = count($count_prdSearch);
 
         $countTrang = ceil($count / 20);
 

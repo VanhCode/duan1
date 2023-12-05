@@ -84,7 +84,7 @@
                                     <div class="line-top"></div>
                                 </li>
                                 <li class="boxUser">
-                                    <a href="index.php?action=user" class="userLog nomation"><i class="fa-solid fa-user"></i> <?= $user ? $user['firth_name'] . " " . $user['last_name'] : "" ?></a>
+                                    <a href="index.php?action=user" class="userLog nomation"><i class="fa-solid fa-user"></i> <?= $user ? $user['first_name'] . " " . $user['last_name'] : "" ?></a>
                                     <ul class="userChil">
                                         <li><a href="index.php?action=user">Tài khoản của tôi</a></li>
                                         <li><a href="index.php?action=user">Hồ sơ</a></li>

@@ -209,7 +209,7 @@
                                 <div class="total-payout">
                                     <div class="check-total-payout">
                                         <div class="flex-total-payout">
-                                            <div class="total-text-">Tổng thanh toán (0): </div>
+                                            <div class="total-text-">Tổng thanh toán: </div>
                                             <div class="price-end-total price_full">₫0</div>
                                             <input type="hidden" class="total_pricefull" value="<?= $tong ?>">
                                         </div>

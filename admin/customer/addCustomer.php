@@ -54,7 +54,7 @@
 
                     <div class="form-group">
                         <label for="" class="form-label">Họ</label>
-                        <input type="text" class="form-control first blurinp" name="firth_name">
+                        <input type="text" class="form-control first blurinp" name="first_name">
                         <small class="error er_firstname"></small>
                     </div>
                     <div class="form-group">

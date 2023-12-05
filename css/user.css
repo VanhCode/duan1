@@ -1866,7 +1866,7 @@ input {
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  min-height: 100%;
+  min-height: 120%;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
   border-radius: 0.125rem;
   overflow: hidden;
@@ -3735,3 +3735,221 @@ h3.a11y-hidden {
 }
 
 /* End model */
+
+/* Địa chỉ */
+
+.G-rPVC {
+  background: #f5f5f5;
+}
+
+.EHan\+5 {
+  padding: 12px 30px 0;
+  background: #fff;
+}
+
+.GsuIol {
+  margin-bottom: 8px;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.RnMqRZ:last-child {
+  border-bottom: 0;
+}
+
+.OIBd-J {
+  padding: 18px 0 20px;
+}
+.RnMqRZ {
+  border-bottom: 1px solid rgba(0,0,0,.09);
+  background: #fff;
+}
+.RnMqRZ {
+  display: flex;
+}
+
+._70j3aj {
+  min-width: 0;
+  width: 100%;
+}
+
+.DikMLj, .fVHv1Z, .IsnjAd, .oSiOlj {
+  display: flex;
+}
+.fVHv1Z {
+  justify-content: space-between;
+}
+._7lC5y1 {
+  margin-bottom: 4px;
+}
+
+.XBSydm {
+  margin-right: 8px;
+}
+.DikMLj {
+  flex-grow: 1;
+  overflow-x: hidden;
+}
+
+.Tv2wKj {
+  color: rgba(0,0,0,.87);
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.uBRQwt {
+  font-weight: 500;
+  min-width: 0;
+}
+.uBRQwt {
+  display: inline-flex;
+}
+.IsnjAd, .uBRQwt {
+  align-items: center;
+}
+
+.YD3W3V {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.xbIya3 {
+  border-left: 0.5px solid rgba(0,0,0,.26);
+  margin: 0 8px;
+}
+
+._9Gtqqd, .L8KYK3 {
+  font-size: .875rem;
+  line-height: 1.25rem;
+}
+
+.L8KYK3 {
+  color: rgba(0,0,0,.54);
+}
+.Ayh0hN {
+  white-space: nowrap;
+}
+.DikMLj, .fVHv1Z, .IsnjAd, .oSiOlj {
+  display: flex;
+}
+.IsnjAd, .uBRQwt {
+  align-items: center;
+}
+
+.oSiOlj {
+  flex-basis: 40px;
+}
+
+.oSiOlj {
+  justify-content: flex-end;
+}
+
+.tXBaRL {
+  border: 0;
+  background: none;
+  outline: none;
+  padding: 4px;
+  color: #08f;
+  white-space: nowrap;
+  cursor: pointer;
+  text-transform: none;
+  overflow: visible;
+}
+
+._7lC5y1 {
+  margin-bottom: 4px;
+}
+
+.fVHv1Z {
+  justify-content: space-between;
+}
+
+.XBSydm {
+  margin-right: 8px;
+}
+
+.DikMLj {
+  flex-grow: 1;
+  overflow-x: hidden;
+}
+
+.tiDOor {
+  font-size: .875rem;
+  line-height: 1.25rem;
+}
+
+._5IKb-F, .tiDOor {
+  color: rgba(0,0,0,.54);
+}
+
+.IsnjAd, .uBRQwt {
+  align-items: center;
+}
+
+.iI3vH9 {
+  padding-top: 4px;
+}
+.oSiOlj {
+  flex-basis: 40px;
+}
+.oSiOlj {
+  justify-content: flex-end;
+}
+
+.DmXQ31 {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  outline: none;
+  padding: 10px;
+  border: 0;
+  background: none;
+  border-radius: 2px;
+  min-width: 140px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.mgW0lg {
+  font-size: .875rem;
+  line-height: 1.25rem;
+  padding: 4px 12px;
+  height: 28px;
+  min-width: 0;
+  color: rgba(0,0,0,.87);
+  border: 1px solid rgba(0,0,0,.26);
+  box-shadow: 0 1px 1px rgba(0,0,0,.03);
+  white-space: nowrap;
+}
+
+.PEXLbW, .q4sbrS {
+  background-color: #fff;
+}
+
+/* End địa chỉ */
+
+/* Đổi mật khẩu thành công */
+
+.group_content__succesS {
+  align-items: center;
+  box-sizing: border-box;
+  padding: .75rem .9375rem;
+  margin: 0 30px 15px 30px;
+  border: 1px solid #1eb81e;
+  background-color: #1eb81e2b;
+  display: none;
+}
+
+.group_content__Animation__success {
+  text-transform: capitalize;
+  margin-left: 10px;
+  font-size: .875rem;
+  color: #222;
+}
+
+.group_content__Animation__success__icon {
+  font-size: 16px;
+  color: #0eb008;
+}
+
+/* End đổi mật khẩu thành công */

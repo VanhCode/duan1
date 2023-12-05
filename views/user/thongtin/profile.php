@@ -8,6 +8,9 @@
                     <h2 class="SbCTde">Hồ Sơ Của Tôi</h2>
                     <div class="administer-text">Quản lý thông tin hồ sơ để bảo mật tài khoản</div>
                 </div>
+                <div style="position: absolute; right: 40px; top: 21px;">
+                    <?= isset($success_account) ? $success_account : "" ?>
+                </div>
                 <div class="edit-user">
                     <div class="box-form">
                         
@@ -19,7 +22,7 @@
                                     <td class="suggest">
                                         <div>
                                             <div class="userLogin">
-                                                <input type="text" class="nameLogin" name="firth_name" value="<?= $userProfile['firth_name'] ?>">
+                                                <input type="text" class="nameLogin" name="first_name" value="<?= $userProfile['first_name'] ?>">
                                             </div>
                                         </div>
                                     </td>
@@ -56,6 +59,18 @@
                                         <div class="td3">
                                             <div class="userLogin">
                                                 <input type="text" class="nameLogin" name="phone" value="<?= $userProfile['phone'] ?>">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-user">
+                                        <label>Địa chỉ</label>
+                                    </td>
+                                    <td class="suggest">
+                                        <div class="td3">
+                                            <div class="userLogin">
+                                                <input type="text" class="nameLogin" name="address" value="<?= $userProfile['address'] ?>">
                                             </div>
                                         </div>
                                     </td>

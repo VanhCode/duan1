@@ -130,17 +130,37 @@
                                                     
                                                     <div class="btn__click_stardust__product page__product">
                                                         <div class="vanhstore-mini-page-controller">
-                                                            <a href="index.php?action=san-pham&page=<?= $page - 1 >= 1 ? $page - 1 : $page ?>" class="vanhstore-mini_controller_left ctl__left">&lt;</a>
-                                                            <div class="vanhstore-mini-page-controller__state page__url">
-                                                                <?php
-                                                                    for($i = 1; $i <= $count_price_min_max; $i++) {
-                                                                        ?>
-                                                                            <a href="index.php?action=san-pham&page=<?= $i; ?>" class="curent__page <?= $page == $i ? "activePage" : "" ?>"><?= $i ?></a>
-                                                                        <?php
-                                                                    }
-                                                                ?>
-                                                            </div>
-                                                            <a href="index.php?action=san-pham&page=<?= $page + 1 <= $countTrang ? $page + 1 : $page ?>" class="vanhstore-mini_controller_right ctl__right">&gt;</a>
+                                                            <?php
+                                                                if(isset($_GET['min_price']) && isset($_GET['max_price'])) {
+                                                                    ?>
+                                                                        <a href="index.php?action=san-pham&min_price=<?= $_GET['min_price'] ?>&max_price=<?= $_GET['max_price'] ?>&page_gia=<?= $page_gia - 1 >= 1 ? $page_gia - 1 : $page_gia ?>" class="vanhstore-mini_controller_left ctl__left">&lt;</a>
+                                                                        <div class="vanhstore-mini-page-controller__state page__url">
+                                                                            <?php
+                                                                                for($i = 1; $i <= $count_price_min_max; $i++) {
+                                                                                    ?>
+                                                                                        <a href="index.php?action=san-pham&min_price=<?= $_GET['min_price'] ?>&max_price=<?= $_GET['max_price'] ?>&page_gia=<?= $i ?>" class="curent__page <?= $page_gia == $i ? "activePage" : "" ?>"><?= $i ?></a>
+                                                                                    <?php
+                                                                                }
+                                                                            ?>
+                                                                        </div>
+                                                                        <a href="index.php?action=san-pham&min_price=<?= $_GET['min_price'] ?>&max_price=<?= $_GET['max_price'] ?>&page_gia=<?= $page_gia + 1 <= $count_price_min_max ? $page_gia + 1 : $page_gia ?>" class="vanhstore-mini_controller_right ctl__right">&gt;</a>
+                                                                    <?php
+                                                                } else {
+                                                                    ?>
+                                                                        <a href="index.php?action=san-pham&page=<?= $page - 1 >= 1 ? $page - 1 : $page ?>" class="vanhstore-mini_controller_left ctl__left">&lt;</a>
+                                                                        <div class="vanhstore-mini-page-controller__state page__url">
+                                                                            <?php
+                                                                                for($i = 1; $i <= $count_price_min_max; $i++) {
+                                                                                    ?>
+                                                                                        <a href="index.php?action=san-pham&page=<?= $i; ?>" class="curent__page <?= $page == $i ? "activePage" : "" ?>"><?= $i ?></a>
+                                                                                    <?php
+                                                                                }
+                                                                            ?>
+                                                                        </div>
+                                                                        <a href="index.php?action=san-pham&page=<?= $page + 1 <= $countTrang ? $page + 1 : $page ?>" class="vanhstore-mini_controller_right ctl__right">&gt;</a>
+                                                                    <?php
+                                                                }
+                                                            ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -196,6 +216,7 @@
                                                             <a href="index.php?action=san-pham&page=<?= $page - 1 >= 1 ? $page - 1 : $page ?>" class="vanhstore-mini_controller_left ctl__left">&lt;</a>
                                                             <div class="vanhstore-mini-page-controller__state page__url">
                                                                 <?php
+                                                                    
                                                                     for($i = 1; $i <= $countTrang; $i++) {
                                                                         ?>
                                                                             <a href="index.php?action=san-pham&page=<?= $i; ?>" class="curent__page <?= $page == $i ? "activePage" : "" ?>"><?= $i ?></a>

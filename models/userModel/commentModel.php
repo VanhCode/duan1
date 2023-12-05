@@ -14,7 +14,7 @@
                     comments.content,
                     comments.create_at,
                     users.user_id,
-                    users.firth_name,
+                    users.first_name,
                     users.last_name,
                     users.user_image
                 FROM
