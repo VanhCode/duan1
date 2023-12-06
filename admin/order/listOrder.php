@@ -17,7 +17,7 @@
             <span class="num">8</span>
         </a>
         <a href="#" class="profile">
-            <img src="img/people.png">
+            <img src="../public/upload/image/user/<?= $user['user_image'] ?>">
         </a>
     </nav>
     <!-- NAVBAR -->
@@ -52,7 +52,7 @@
                     'confirmed' => 'Đã xác nhận',
                     'shipping' => 'Đang vận chuyển',
                     'completed' => 'Hoàn thành',
-                    'requestCanceled' => 'Yêu cầu huỷ',
+                    // 'requestCanceled' => 'Yêu cầu huỷ',
                     'canceled' => 'Đã huỷ'
                 ];
             foreach ($status as $key=>$value):?>
