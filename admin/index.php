@@ -94,7 +94,7 @@ switch ($action) {
         include 'comment/listComment_statistical.php';
         break;
     case 'listComment':
-        $limit=2;
+        $limit=6;
         $_GET['page']=$_GET['page']??1;
         $startIndex=($_GET['page']-1)*$limit;
         $product_id=$_GET['product_id']??0;

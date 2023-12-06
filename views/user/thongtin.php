@@ -18,7 +18,7 @@
                     $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
                     updatePassword($newPasswordHash);
                     header('Location:'.$_SERVER['HTTP_REFERER']);
-                    $_SESSION['success_change'] = '
+                    $success_change = '
                         <div style="display:flex;" class="group_content__succesS">
                             <div class="group_content__Animation__success__icon">
                                 <i class="fa-regular fa-circle-check check__squa"></i>

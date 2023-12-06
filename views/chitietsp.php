@@ -264,13 +264,13 @@
                                     </div>
                                     <div class="product-rating-overview__filters">
                                         <div class="product-rating-overview__filter product-rating-overview__filter--active">tất cả</div>
-                                        <div class="product-rating-overview__filter">5 Sao (310)</div>
-                                        <div class="product-rating-overview__filter">4 Sao (0)</div>
-                                        <div class="product-rating-overview__filter">3 Sao (0)</div>
-                                        <div class="product-rating-overview__filter">2 Sao (3)</div>
-                                        <div class="product-rating-overview__filter">1 Sao (166)</div>
-                                        <div class="product-rating-overview__filter">Có Bình luận (244)</div>
-                                        <div class="product-rating-overview__filter">Có hình ảnh / video (90)</div>
+                                        <!-- <div class="product-rating-overview__filter">5 Sao (310)</div> -->
+                                        <!-- <div class="product-rating-overview__filter">4 Sao (0)</div> -->
+                                        <!-- <div class="product-rating-overview__filter">3 Sao (0)</div> -->
+                                        <!-- <div class="product-rating-overview__filter">2 Sao (3)</div> -->
+                                        <!-- <div class="product-rating-overview__filter">1 Sao (166)</div> -->
+                                        <div class="product-rating-overview__filter"><?= !empty($listComment) ? "Có Bình luận"." "."(".count($listComment).")" : "Không có bình luận" ?></div>
+                                        <!-- <div class="product-rating-overview__filter">Có hình ảnh / video (90)</div> -->
                                     </div>
                                 </div>
                                 <div class="product-ratings__list" style="opacity: 1;">
@@ -306,19 +306,32 @@
                                         ?>
                                     </div>
                                 </div>
-                                <form id="commentForm" action="<?= $_SERVER['REQUEST_URI'] ?>" method="post">
-                                    <div class="comment__product">
-                                        <div class="comment__product__header">
-                                            <img src="./public/upload/image/user/<?= $user['user_image'] ?>" alt="">    
-                                        </div>
-                                        <div class="comment__product__content__btn">
-                                            <input type="hidden" id="idproduct" name="idproduct" value="<?= $chitiet_product['product_id'] ?>">
-                                            <input type="hidden" id="iduser" name="iduser" value="<?= $userID ?>">
-                                            <input type="text" class="vanhstore__input__comments" id="noidung" name="noidung" placeholder="Viết bình luận...">
-                                            <input type="submit" class="vanhstore__input__buttons" name="submitComment" value="Gửi">
-                                        </div>
-                                    </div>
-                                </form>
+                                <?php
+                                    if(isset($_SESSION['user_id'])) {
+                                        ?>
+                                            <form id="commentForm" action="<?= $_SERVER['REQUEST_URI'] ?>" method="post">
+                                                <div class="comment__product">
+                                                    <div class="comment__product__header">
+                                                        <img src="./public/upload/image/user/<?= $user['user_image'] ?>" alt="">    
+                                                    </div>
+                                                    <div class="comment__product__content__btn">
+                                                        <input type="hidden" id="idproduct" name="idproduct" value="<?= $chitiet_product['product_id'] ?>">
+                                                        <input type="hidden" id="iduser" name="iduser" value="<?= $userID ?>">
+                                                        <input type="text" class="vanhstore__input__comments" id="noidung" name="noidung" placeholder="Viết bình luận...">
+                                                        <input type="submit" class="vanhstore__input__buttons" name="submitComment" value="Gửi">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        <?php
+                                    } else {
+                                        ?>
+                                            <div class="comment__product">
+                                                <span>Bạn cần đăng nhập để sử dụng tính năng bình luận</span>
+                                            </div>
+                                        <?php
+                                    }
+                                ?>
+                                
                             </div>
                         </div>
                     </div>

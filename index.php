@@ -211,8 +211,7 @@
                     
                     updateAccount($userID,$_POST['first_name'],$_POST['last_name'],$_POST['email'],$filename ? $filename : $oldImage,$_POST['phone'],$_POST['date'],$_POST['address'],$_POST['gender']);
                     
-                    
-                    $_SESSION['success_change'] = '
+                    $success_account = '
                         <div style="display:flex;" class="group_content__succesS">
                             <div class="group_content__Animation__success__icon">
                                 <i class="fa-regular fa-circle-check check__squa"></i>
@@ -222,7 +221,9 @@
                             </div>
                         </div>
                     ';
-                    echo "<script>window.location.href = '".$_SERVER['HTTP_REFERER']."'</script>";
+
+                    // header('Location:'.$_SERVER['HTTP_REFERER']);
+                    // die;
                 }
 
 
