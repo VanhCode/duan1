@@ -9,14 +9,7 @@
                     <div class="administer-text">Quản lý thông tin hồ sơ để bảo mật tài khoản</div>
                 </div>
                 <div style="position: absolute; right: 40px; top: 21px;">
-                    
-                    <?php
-                        if(isset($_SESSION['success_change'])) {
-                            echo $_SESSION['success_change'];
-                        } else {
-                        }
-                        unset($_SESSION['success_change']);
-                    ?>
+                    <?= isset($success_account) ? $success_account : "" ?>
                 </div>
                 <div class="edit-user">
                     <div class="box-form">
