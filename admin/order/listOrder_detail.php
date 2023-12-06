@@ -63,7 +63,6 @@
                         <th>Size</th>
                         <th>Đơn giá</th>
                         <th>Số lượng</th>
-                        <th>Giảm từ voucher</th>
                         <th>Tổng tiền</th>
                     </tr>
                     </thead>
@@ -78,7 +77,6 @@
                             <td style="padding-right: 100px"><?=$value['size']?></td>
                             <td><?=number_format($value['price'], 0,",",".")?></td>
                             <td><?=$value['amount']?></td>
-                            <td><?= number_format($value['voucher'], 0,",",".") ?></td>
                             <td><?= number_format($value['total'], 0,",",".")?></td>
                         </tr>
                     <?php endforeach;?>

@@ -1,6 +1,6 @@
 <?php
 function listOrder($status=''){
-    $sql="SELECT u.user_id,o.order_id,CONCAT(u.first_name,' ',u.last_name) AS fullName,u.user_image,o.receiver_name,o.receiver_address,o.receiver_phone,o.ma_don_hang,o.status,o.payment_status,o.create_at,SUM((od.price * od.amount) - o.voucher) AS total
+    $sql="SELECT u.user_id,o.order_id,CONCAT(u.first_name,' ',u.last_name) AS fullName,u.user_image,o.receiver_name,o.receiver_address,o.receiver_phone,o.ma_don_hang,o.status,o.payment_status,o.create_at,o.voucher,SUM((od.price * od.amount) + o.voucher) AS total
     FROM `orders` o
     JOIN users u
     ON u.user_id= o.user_id
