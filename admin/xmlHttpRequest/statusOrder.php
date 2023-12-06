@@ -7,15 +7,19 @@
         updateData('orders',[
             'status'=>$status
         ],'order_id='.$order_id);
-        echo $status;
-    }
-
-    if($status== 'completed') {
-        $status_payment = 'paid';   
-        updateData('orders',[
-            'payment_status'=>$status_payment
-        ],'order_id='.$order_id);
-        echo $status_payment;
+        if($status=='completed'){
+            updateData('orders',[
+                'payment_status'=>'paid'
+            ],'order_id='.$order_id);
+            echo json_encode([
+                'status'=>$status,
+                'payment_status'=>'paid'
+            ]);
+        }else{
+            echo json_encode([
+                'status'=>$status,
+            ]);
+        }
     }
 
     if(isset($_GET['payment_status'])){
@@ -25,6 +29,8 @@
         updateData('orders',[
             'payment_status'=>$status
         ],'order_id='.$order_id);
-        echo $status;
+        echo json_encode([
+            'payment_status'=>$status,
+        ]);
     }
 ?>
