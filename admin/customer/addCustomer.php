@@ -72,6 +72,34 @@
                         <small class="error er_email"></small>
                     </div>
                     <div class="form-group">
+                        <div class="start-radio-group d-flex gap-3" role="radiogroup">
+                            <div class="radio-group-item d-flex">
+                                <div class="input-radio">
+                                    <input type="radio" name="gender" value="Nam">
+                                </div>
+                                <div class="radio-text">
+                                    <span>Nam</span>
+                                </div>
+                            </div>
+                            <div class="radio-group-item d-flex">
+                                <div class="input-radio">
+                                    <input type="radio" name="gender" value="Nữ">
+                                </div>
+                                <div class="radio-text">
+                                    <span>Nữ</span>
+                                </div>
+                            </div>
+                            <div class="radio-group-item d-flex">
+                                <div class="input-radio">
+                                    <input type="radio" name="gender" value="Khác">
+                                </div>
+                                <div class="radio-text">
+                                    <span>Khác</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="" class="form-label">Số điện thoại</label>
                         <input type="text" class="form-control phone blurinp" name="phone">
                         <small class="error er_phone"></small>
