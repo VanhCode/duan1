@@ -47,12 +47,79 @@
 
 
     // Select sản phẩm theo danh mục
+    function count_listProduct_byCategory($category_id) {
+        $sql = "SELECT * FROM products WHERE category_id = '$category_id' ORDER BY product_id ASC";
+        return pdo_query($sql);
+    }
     function listProduct_byCategory($category_id,$orderBy,$begin) {
         $sql = "SELECT * FROM products WHERE category_id = '$category_id' ORDER BY $orderBy LIMIT $begin, 20";
         return pdo_query($sql);
     }
 
-    
+    // Lấy những sản phẩm phổ biến, mới nhất,bán chạy
+    function count_list_product_moinhat() {
+        $sql = "SELECT
+                    *
+                FROM 
+                    products
+                WHERE 
+                    create_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+                ORDER BY 
+                    product_id DESC";
+        return pdo_query($sql);
+    }   
+    function list_product_moinhat($sapxep,$begin) {
+        $sql = "SELECT
+                    *
+                FROM 
+                    products
+                WHERE 
+                    create_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+                ORDER BY 
+                    $sapxep LIMIT $begin, 20";
+        return pdo_query($sql);
+    }   
+
+    function count_list_product_banchay() {
+        $sql = "SELECT
+                    order_details.order_detail_id,
+                    order_details.product_id,
+                    order_details.amount,
+                    products.product_id,
+                    products.product_name,
+                    products.price,
+                    products.sale,
+                    products.images
+                FROM 
+                    order_details
+                JOIN
+                    products ON order_details.product_id = products.product_id
+                WHERE 
+                    order_details.amount >= 2 
+                ORDER BY 
+                    order_details.order_detail_id DESC";
+        return pdo_query($sql);
+    }   
+    function list_product_banchay($sapxep,$begin) {
+        $sql = "SELECT
+                    order_details.order_detail_id,
+                    order_details.product_id,
+                    order_details.amount,
+                    products.product_id,
+                    products.product_name,
+                    products.price,
+                    products.sale,
+                    products.images
+                FROM 
+                    order_details
+                JOIN
+                    products ON order_details.product_id = products.product_id
+                WHERE 
+                    order_details.amount >= 2 
+                ORDER BY 
+                    $sapxep LIMIT $begin, 20";
+        return pdo_query($sql);
+    }   
     
     // Chi tiết sản phẩm
     function chitietSanpham($id) {
