@@ -91,6 +91,10 @@
                         </select>
                     </div>
                     <div class="title-text fw-semibold">Phân loại</div>
+                    <div class="form-group">
+                        <label for="" class="form-label">Mô tả chi tiết</label>
+                        <textarea placeholder="Không bắt buộc" class="form-control" id="" rows="3"></textarea name="description" value="">
+                    </div>
                     <div class="form-group" id="listVariant">
                         <div class="variant">
                             <label for="" class="form-label">Màu sắc</label>

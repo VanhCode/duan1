@@ -121,6 +121,10 @@
                         </select>
                     </div>
                     <div class="title-text fw-semibold">Phân loại</div>
+                    <div class="form-group">
+                        <label for="" class="form-label">Mô tả chi tiết</label>
+                        <textarea class="form-control" placeholder="Không bắt buộc" rows="3"><?=$productInfo['description']?></textarea name="description" value="">
+                    </div>
                     <div class="form-group" id="listVariant">
                         <?php 
                             if (!empty($listVariations)) {

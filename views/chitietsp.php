@@ -340,66 +340,23 @@
                     <div style="display: contents;"></div>
                     <section class="product-shop-hot-sales page-product__hot-sales">
                         <h2 class="product-shop-hot-sales__header">Top sản phẩm bán chạy</h2>
+                        <?php foreach ($top3Pro as $value):?>
                         <a href="" class="item-card-special__link product-shop-hot-sales__item">
                             <div class="item-card-special">
                                 <div class="item-card-special__img">
                                     <div class="lazy-image__container item-card-special__img-background">
-                                        <img width="100%" src="./img1/a1.jpg" alt="">
+                                        <img width="100%" src="./public/upload/image/product/<?= explode(",", $value['images'])[0] ?>" alt="">
                                     </div>
                                 </div>
                                 <div class="item-card-special__lower-padding">
                                     <div class="item-card-special__name item-card-special__name--special">ÁO thun</div>
                                     <div class="item-card-special__section-price item-card-special__section-price--special">
-                                        <div class="item-card-special__current-price item-card-special__current-price--special">₫150.000</div>
+                                        <div class="item-card-special__current-price item-card-special__current-price--special">₫<?=number_format($value['price'],'0',',','.')?></div>
                                     </div>
                                 </div>
                             </div>
                         </a>
-                        <a href="" class="item-card-special__link product-shop-hot-sales__item">
-                            <div class="item-card-special">
-                                <div class="item-card-special__img">
-                                    <div class="lazy-image__container item-card-special__img-background">
-                                        <img width="100%" src="./img1/a1.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="item-card-special__lower-padding">
-                                    <div class="item-card-special__name item-card-special__name--special">Áo thun</div>
-                                    <div class="item-card-special__section-price item-card-special__section-price--special">
-                                        <div class="item-card-special__current-price item-card-special__current-price--special">₫150.000</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="" class="item-card-special__link product-shop-hot-sales__item">
-                            <div class="item-card-special">
-                                <div class="item-card-special__img">
-                                    <div class="lazy-image__container item-card-special__img-background">
-                                        <img width="100%" src="./img1/a1.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="item-card-special__lower-padding">
-                                    <div class="item-card-special__name item-card-special__name--special">Áo thun</div>
-                                    <div class="item-card-special__section-price item-card-special__section-price--special">
-                                        <div class="item-card-special__current-price item-card-special__current-price--special">₫150.000</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="" class="item-card-special__link product-shop-hot-sales__item">
-                            <div class="item-card-special">
-                                <div class="item-card-special__img">
-                                    <div class="lazy-image__container item-card-special__img-background">
-                                        <img width="100%" src="./img1/a1.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="item-card-special__lower-padding">
-                                    <div class="item-card-special__name item-card-special__name--special">ÁO thun</div>
-                                    <div class="item-card-special__section-price item-card-special__section-price--special">
-                                        <div class="item-card-special__current-price item-card-special__current-price--special">₫150.000</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                        <?php endforeach;?>
                     </section>
                 </div>
             </div>

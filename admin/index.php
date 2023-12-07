@@ -167,6 +167,7 @@ switch ($action) {
             $size = $_POST['size'];
             $amount = $_POST['amount'];
             $product_gender = $_POST['product_gender'];
+            $description=$_POST['description'];
 
             $uploadedImages = array();
 
@@ -181,7 +182,7 @@ switch ($action) {
 
             $filename = implode(",", $uploadedImages);
 
-            $product_id = addProduct($namePro, $pricePro, $sale, $filename, $product_gender, $selectCategory);
+            $product_id = addProduct($namePro, $pricePro, $sale, $filename, $product_gender, $selectCategory,$description);
 
             for ($i = 0; $i < count($color); $i++) {
                 addVation($product_id, $color[$i], $size[$i], $amount[$i]);
@@ -312,6 +313,7 @@ switch ($action) {
             $amount = $_POST['amount'];
             $product_gender = $_POST['product_gender'];
             $oldImage = $_POST['oldImage'];
+            $description=$_POST['description'];
 
             if ($_FILES['image']['name']) {
                 $uploadedImages = array();
@@ -333,7 +335,7 @@ switch ($action) {
                 $oldImage = $oldImage . ",";
             }
 
-            $product_id = updateProduct($id, $namePro, $pricePro, $sale, $filename ? $oldImage . $filename : $oldImage, $product_gender, $selectCategory);
+            $product_id = updateProduct($id, $namePro, $pricePro, $sale, $filename ? $oldImage . $filename : $oldImage, $product_gender, $selectCategory,$description);
 
             $length=9999;
 
