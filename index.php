@@ -17,6 +17,7 @@
     
     $userID = $_SESSION['user_id'] ?? 0;
     $user = select__userByid($userID);
+    $_SESSION['user']=$user;
 
 
     // Danh mục (category)

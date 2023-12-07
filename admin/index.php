@@ -17,6 +17,7 @@ include 'partitions/sideBar.php';
 session_start();
 $userID = $_SESSION['user_id'] ?? 0;
 $user = getDataBy('users',['user_id'=>$userID]);
+$_SESSION['user']=$user;
 if(!$user['role']){
     header('location: ../index.php?action=login');
 }
@@ -45,7 +46,7 @@ switch ($action) {
         break;
     // list
     case 'listVoucher':
-        $allVoucher=getAll('voucher',['ORDER BY voucher_id DESC']);
+        $allVoucher=getAll('voucher',['voucher_id DESC']);
         include 'voucher/listVoucher.php';
         break;
 
@@ -105,7 +106,7 @@ switch ($action) {
         break;
 
     case 'listCustomer':
-        $users = getAll('users');
+        $users = getAll('users',['user_id DESC']);
         include 'customer/listCustomer.php';
         break;
 

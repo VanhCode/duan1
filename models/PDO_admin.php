@@ -24,7 +24,7 @@ function getDataBy($table, $data)
 
 function getAll($table, $orderBy=[], $limit=999999)
 {
-    $orderBy = implode(",", $orderBy)??"ORDER BY ".implode(",", $orderBy);
+    $orderBy = $orderBy==[]?'':("ORDER BY ".implode(",", $orderBy));
     $sql = "SELECT * FROM ${table}  ${orderBy} LIMIT ${limit}";
     return query($sql)->fetchAll();
 }
