@@ -93,7 +93,7 @@
                     <div class="title-text fw-semibold">Phân loại</div>
                     <div class="form-group">
                         <label for="" class="form-label">Mô tả chi tiết</label>
-                        <textarea placeholder="Không bắt buộc" class="form-control" id="" rows="3"></textarea name="description" value="">
+                        <textarea placeholder="Không bắt buộc" class="form-control" name="description" rows="3"></textarea>
                     </div>
                     <div class="form-group" id="listVariant">
                         <div class="variant">

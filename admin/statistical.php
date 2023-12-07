@@ -115,7 +115,7 @@
     </main>
     <!-- MAIN -->
 </section>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../models/lib/chartjs.js"></script>
 <script>
     let form_statistical = document.querySelector('.form-statistical');
     let btn_send_data = document.querySelector('.send-data');

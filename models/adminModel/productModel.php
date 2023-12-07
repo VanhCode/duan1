@@ -1,6 +1,6 @@
 <?php
     // Thêm sản phẩm
-    function addProduct($name, $price, $sale, $image, $product_gender, $danhmuc, $description='') {
+    function addProduct($name, $price, $sale, $image, $product_gender, $danhmuc, $description) {
         $sql = "INSERT INTO products (product_name, price, sale, images, product_gender, category_id, description) 
                 VALUES ('$name','$price','$sale','$image','$product_gender','$danhmuc','$description')";
         return pdo_execute_returnLastInsertId($sql);
