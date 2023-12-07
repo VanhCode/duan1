@@ -18,12 +18,12 @@
 
     // Tìm kiếm sản phẩm theo giá
     function count_search__khoanggia($min,$max) {
-        $sql = "SELECT * FROM products WHERE price >= $min AND price <= $max ORDER BY product_id DESC";
+        $sql = "SELECT * FROM products WHERE sale >= $min AND sale <= $max ORDER BY product_id DESC";
         $result = pdo_query($sql);
         return $result;
     }
     function search__khoanggia($min,$max,$sapxep,$begin) {
-        $sql = "SELECT * FROM products WHERE price >= $min AND price <= $max ORDER BY $sapxep LIMIT $begin, 20";
+        $sql = "SELECT * FROM products WHERE sale >= $min AND sale <= $max ORDER BY $sapxep LIMIT $begin, 20";
         $result = pdo_query($sql);
         return $result;
     }
