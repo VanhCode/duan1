@@ -2,7 +2,7 @@
 
 <div class="administer-user">
     <div style="display: contents;">
-        <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="POST" enctype="multipart/form-data">
+        <form onsubmit="return checkForm()" action="<?= $_SERVER['REQUEST_URI'] ?>" method="POST" enctype="multipart/form-data">
             <div class="administer-chil">
                 <div class="administer">
                     <h2 class="SbCTde">Hồ Sơ Của Tôi</h2>
@@ -46,9 +46,10 @@
                                     <td class="suggest">
                                         <div class="td3">
                                             <div class="userLogin">
-                                                <input type="text" class="nameLogin" name="email" value="<?= $userProfile['email'] ?>">
+                                                <input type="text" class="nameLogin inputEmail" name="email" value="<?= $userProfile['email'] ?>">
                                             </div>
                                         </div>
+                                        <small style="color: red" class="er_email erForm"></small>
                                     </td>
                                 </tr>
                                 <tr>
@@ -58,9 +59,10 @@
                                     <td class="suggest">
                                         <div class="td3">
                                             <div class="userLogin">
-                                                <input type="text" class="nameLogin" name="phone" value="<?= $userProfile['phone'] ?>">
+                                                <input type="text" class="nameLogin inputPhone" name="phone" value="<?= $userProfile['phone'] ?>">
                                             </div>
                                         </div>
+                                        <small style="color: red" class="er_phone erForm"></small>
                                     </td>
                                 </tr>
                                 <tr>
@@ -157,3 +159,45 @@
 </div>
 
 <!-- end chỉnh sửa hồ sơ -->
+<script>
+    function checkForm(){
+        let countErr=0;
+        let erEl=document.querySelectorAll('.erForm');
+        erEl.forEach((el)=>{
+            if(el.innerHTML!==""){
+                console.log(el.innerHTML)
+                countErr++;
+            }
+        });
+        if(countErr==0){
+            return true;
+        }
+        return false;
+    }
+    let errPhone =document.querySelector('.er_phone');
+    let inputPhone=document.querySelector('.inputPhone');
+    var xmlHttp = new XMLHttpRequest();
+    inputPhone.onblur= function (e){
+        xmlHttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                errPhone.innerHTML = xmlHttp.responseText;
+            }
+        };
+        xmlHttp.open("GET", "admin/xmlHttpRequest/check.php?phone="+inputPhone.value);
+        xmlHttp.send();
+    }
+    let errEmail = document.querySelector('.er_email');
+    let inputEmail=document.querySelector('.inputEmail');
+    inputEmail.onblur= function (e){
+        xmlHttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                errEmail.innerHTML = xmlHttp.responseText;
+            }
+        };
+        xmlHttp.open("GET", "admin/xmlHttpRequest/check.php?email="+inputEmail.value);
+        xmlHttp.send();
+    }
+    checkForm();
+
+
+</script>

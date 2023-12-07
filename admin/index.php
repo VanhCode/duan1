@@ -17,6 +17,7 @@ include 'partitions/sideBar.php';
 session_start();
 $userID = $_SESSION['user_id'] ?? 0;
 $user = getDataBy('users',['user_id'=>$userID]);
+$_SESSION['user']=$user;
 if(!$user['role']){
     header('location: ../index.php?action=login');
 }
@@ -45,7 +46,7 @@ switch ($action) {
         break;
     // list
     case 'listVoucher':
-        $allVoucher=getAll('voucher',['ORDER BY voucher_id DESC']);
+        $allVoucher=getAll('voucher',['voucher_id DESC']);
         include 'voucher/listVoucher.php';
         break;
 
@@ -105,7 +106,7 @@ switch ($action) {
         break;
 
     case 'listCustomer':
-        $users = getAll('users');
+        $users = getAll('users',['user_id DESC']);
         include 'customer/listCustomer.php';
         break;
 
@@ -167,6 +168,7 @@ switch ($action) {
             $size = $_POST['size'];
             $amount = $_POST['amount'];
             $product_gender = $_POST['product_gender'];
+            $description=$_POST['description'];
 
             $uploadedImages = array();
 
@@ -181,7 +183,7 @@ switch ($action) {
 
             $filename = implode(",", $uploadedImages);
 
-            $product_id = addProduct($namePro, $pricePro, $sale, $filename, $product_gender, $selectCategory);
+            $product_id = addProduct($namePro, $pricePro, $sale, $filename, $product_gender, $selectCategory,$description);
 
             for ($i = 0; $i < count($color); $i++) {
                 addVation($product_id, $color[$i], $size[$i], $amount[$i]);
@@ -224,7 +226,8 @@ switch ($action) {
                 'email' => $_POST['email'],
                 'password' => password_hash($_POST['password'],PASSWORD_DEFAULT),
                 'phone' => $_POST['phone'],
-                'role'=>$_POST['role']??0
+                'role'=>$_POST['role']??0,
+                'gender'=>$_POST['gender']??''
             ]);
             header("location: index.php?action=listCustomer");
         }
@@ -312,6 +315,7 @@ switch ($action) {
             $amount = $_POST['amount'];
             $product_gender = $_POST['product_gender'];
             $oldImage = $_POST['oldImage'];
+            $description=$_POST['description'];
 
             if ($_FILES['image']['name']) {
                 $uploadedImages = array();
@@ -333,7 +337,7 @@ switch ($action) {
                 $oldImage = $oldImage . ",";
             }
 
-            $product_id = updateProduct($id, $namePro, $pricePro, $sale, $filename ? $oldImage . $filename : $oldImage, $product_gender, $selectCategory);
+            $product_id = updateProduct($id, $namePro, $pricePro, $sale, $filename ? $oldImage . $filename : $oldImage, $product_gender, $selectCategory,$description);
 
             $length=9999;
 
@@ -407,7 +411,8 @@ switch ($action) {
                 'email' => $_POST['email'],
                 'password' => $_POST['password']==$user['password']?$_POST['password']:password_hash($_POST['password'],PASSWORD_DEFAULT),
                 'phone' => $_POST['phone'],
-                'role'=>$_POST['role']??0
+                'role'=>$_POST['role']??0,
+                'gender'=>$_POST['gender']??''
             ], "user_id=" . $_GET['user_id']);
             header("location: index.php?action=listCustomer");
         }

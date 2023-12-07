@@ -181,4 +181,14 @@
         $sql = "UPDATE products SET search_count = search_count + 1 WHERE product_name LIKE '%".$keyword."%'";
         pdo_execute($sql);
     }
+    function getTopPro($limit=3){
+        $sql="SELECT SUM(od.amount) AS sale_volume, p.*
+        FROM `order_details` od
+        JOIN products p
+        ON od.product_id=p.product_id 
+        GROUP BY p.product_id
+        ORDER BY sale_volume DESC
+        LIMIT $limit";
+        return pdo_query($sql);
+    }
 ?>
