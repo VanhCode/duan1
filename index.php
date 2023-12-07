@@ -748,8 +748,13 @@
                     }
 
 
-                    $_GET['image'] = explode(",", $data[0]['images']);
-                    sendMail_bil($data, $_GET['image'], $ngaydathang, $ma_donhang, $user['email'], $fullname);             
+                    $dataimg = [];
+
+                    foreach ($data as $product) {
+                        $images = explode(",", $product['images']);
+                        $dataimg = array_merge($dataimg, $images);
+                    }
+                    sendMail_bil($data, $dataimg, $ngaydathang, $ma_donhang, $user['email'], $fullname);             
     
 
                     foreach ($_SESSION["cart"]['id_cart'] as $value) {
