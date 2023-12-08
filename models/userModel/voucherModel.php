@@ -26,6 +26,8 @@
                 user_voucher.product_id IS NULL
                 AND
                 $dk BETWEEN voucher.from_price AND voucher.to_price
+                AND
+                NOW() BETWEEN voucher.start_date AND voucher.end_date
                 ";
         return pdo_query($sql);
     }
