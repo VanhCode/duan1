@@ -87,7 +87,7 @@
                             }else if($voucher['to_price']==999999999){
                                 echo 'Từ '. preg_replace('/.0{3}k/','m',preg_replace('/.0{3}$/','k',number_format($voucher['from_price'],0,',','.'))).' trở lên';
                             }else{
-                                echo 'Từ '. preg_replace('/.0{3}k/','m',preg_replace('/.0{3}$/','k',number_format($voucher['from_price'],0,',','.'))).'Đến'.preg_replace('/.0{3}k/','m',preg_replace('/.0{3}$/','k',number_format($voucher['from_price'],0,',','.')));
+                                echo 'Từ '. preg_replace('/.0{3}k/','m',preg_replace('/.0{3}$/','k',number_format($voucher['from_price'],0,',','.'))).'Đến'.preg_replace('/.0{3}k/','m',preg_replace('/.0{3}$/','k',number_format($voucher['from_price'],0,',','.')))   ;
                             }
                             ?>
                         </td>
