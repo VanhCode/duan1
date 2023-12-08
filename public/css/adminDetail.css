@@ -163,7 +163,7 @@
 }
 
 .error_category {
-    position: absolute;
+    /*position: absolute;*/
     bottom: 168px;
     color: red;
 }
