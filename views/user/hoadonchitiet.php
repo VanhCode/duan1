@@ -386,9 +386,12 @@
                                 $colors = explode(",", $order_detail['colors']);
                                 $prices = explode(",", $order_detail['prices']);
                                 $productNames = explode(",", $order_detail['product_names']);
-                                $productImages = explode(",", $order_detail['product_images']);
+                                $productImages = explode(";", $order_detail['product_images']);
                                 $productSales = explode(",", $order_detail['product_sales']);
 
+                                // echo "<pre>";
+                                // echo $order_detail['product_images'];
+                                // echo "</pre>";
                                 // Lặp qua danh sách sản phẩm và hiển thị thông tin
                                 $tongtienhang = 0;
                                 for ($i = 0; $i < count($orderDetailIds); $i++) {
@@ -409,7 +412,7 @@
                                     <div>
                                         <section>
                                             <a class="x7nENX" aria-label="" href="index.php?action=chi-tiet-sanpham&detail_product=<?= $productId ?>">
-                                                <div class="aybVBK"><img src="./public/upload/image/product/<?= $productImage ?>" class="rGP9Yd" alt="" tabindex="0">
+                                                <div class="aybVBK"><img src="./public/upload/image/product/<?= explode(",", $productImage)[0] ?>" class="rGP9Yd" alt="" tabindex="0">
                                                     <div class="_7uZf6Q">
                                                         <div>
                                                             <div class="iJlxsT">
