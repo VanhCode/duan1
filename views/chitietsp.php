@@ -200,40 +200,7 @@
                             <div class="MCCLkq">
                                 <div class="f7AU53">
                                     <p class="irIKAp">
-                                        Chào bạn đến với shop Hà Nội Phố của cô chủ nhỏ mới đến TPHCM
-
-                                        #NIACINAMIDE - Thành phần “thần thánh” đa công dụng được yêu thích. Hoạt động như một chất chống oxy hóa. Giúp tái tạo và củng cố “hàng rào” bảo vệ da, tăng sản sinh các ceramides lấy lại sự trẻ trung, mềm mịn cho làn da. Điều tiết bã nhờn trên da, cải thiện kết cấu da, làm dịu nốt mụn, đặc biệt là loại mụn trứng cá. Làm sáng đều màu da, khắc phục được những hệ quả của mụn để lại như vết thâm hay sẹo.
-
-                                        #ZINC - Kẽm có khả năng điều tiết bã nhờn, thích hợp với da dầu có mụn.
-
-                                        REVIEW
-                                        "Trước khi sử dụng em này da mình là da hỗn hợp thiên dầu, mụn li ti khá nhiều và một vài nốt mụn sưng đỏ. Sau khoảng gần 2 tháng kiên trì liên tục sử dụng thì mình khá hài lòng về em này vì da đã có một chút chuyển biến.
-
-                                        Làn da của mình bắt đầu mịn màng hơn, lỗ chân lông được thu nhỏ lại và làn da trở nên săn chắc. Đặc biệt là da có hiệu ứng “bóng” ở gò má tạo cảm giác da khỏe mạnh hơn hẳn. Tình trạng mụn cũng giảm hẳn, các nốt mụn sưng đỏ được làm dịu đi nhiều, nhưng để xử lý mụn nặng thì mình ko nghĩ em này sẽ thích hợp đâu nhé các nàng. Đối với các tình trạng mụn nhẹ thì sp này có hiệu quả khá là tốt. Khả năng làm mờ thâm và sáng da được đánh giá là khá ổn vì vết thâm cũng mờ dần, nếu kiên trì thì hiệu quả sẽ rõ rệt hơn."
-
-                                        # # # Routine sang tối thông thường # # #
-
-                                        Sáng
-
-                                        • Bước 1: Rửa Mặt
-                                        • Bước 2: Nước Cân Bằng Da (Toner)
-                                        • Bước 3: Essence/ Serum/ Ampoule
-                                        • Bước 4: Emulsion/ Lotion
-                                        • Bước 5: Dưỡng Ẩm (Bằng Moisturizer/ Cream/ Face Oil)
-                                        • Bước 6: KCN
-
-
-                                        Tối
-
-                                        • Bước 1+2: Double Cleansing (Rửa Mặt + Tẩy Trang)
-                                        • Bước 3: Nước Cân Bằng Da (Toner)
-                                        • Bước 4: Mặt Nạ (Mask)
-                                        • Bước 5: Treatments
-                                        • Bước 6: Essence/ Serum/ Ampoule
-                                        • Bước 7: Emulsion/ Lotion
-                                        • Bước 8: Kem Mắt (Eyes Cream)
-                                        • Bước 9: Dưỡng Ẩm (Bằng Moisturizer/ Cream/ Face Oil)
-                                        • Bước 10: Mặt Nạ Ngủ (Sleeping Mask)
+                                      <?= $chitiet_product['description']?>
 
                                     </p>
                                 </div>

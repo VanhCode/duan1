@@ -82,12 +82,12 @@
                         <td><p style="text-align: left; padding-left:50px"><?=$voucher['content_voucher']?></p></td>
                         <td><?php if($voucher['del_price']!=0){echo number_format($voucher['del_price'],0,',','.');}if($voucher['del_percent']!=0){echo number_format($voucher['del_percent'],0,',','.').'%';}?></td>
                         <td><?php
-                            if($voucher['from_price']==0&&$voucher['to_price']==0){
+                            if($voucher['from_price']==0&&$voucher['to_price']==999999999){
                                 echo 'Không giới hạn';
                             }else if($voucher['to_price']==999999999){
-                                echo number_format($voucher['from_price'],0,',','.').' trở lên';
+                                echo 'Từ '. preg_replace('/.0{3}k/','m',preg_replace('/.0{3}$/','k',number_format($voucher['from_price'],0,',','.'))).' trở lên';
                             }else{
-                                echo number_format($voucher['from_price'],0,',','.').'->'.number_format($voucher['to_price'],0,',','.');
+                                echo 'Từ '. preg_replace('/.0{3}k/','m',preg_replace('/.0{3}$/','k',number_format($voucher['from_price'],0,',','.'))).'Đến'.preg_replace('/.0{3}k/','m',preg_replace('/.0{3}$/','k',number_format($voucher['from_price'],0,',','.')));
                             }
                             ?>
                         </td>
