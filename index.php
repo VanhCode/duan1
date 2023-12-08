@@ -310,6 +310,11 @@
                 include "views/danhmuc.php";
                 break;
             case "user":
+                if(!isset($_SESSION['user_id'])) {
+                    header('Location: index.php?action=login');
+                    exit();
+                }
+
                 $profile = $_GET['profile'] ?? "";
                 $userAction = $_GET['user'] ?? "";
                 $order = $_GET['order'] ?? "";
@@ -478,6 +483,8 @@
                 break;
             case "reset_pass":
 
+                        
+
                 if(isset($_POST['guimail'])) {
                     $email = $_POST['phone'];
                     $mailFogot = check_email_quenmk($email);
@@ -549,19 +556,52 @@
                 
                 break;
             case "addTocart":
+                if(isset($_POST['muangay'])) {
+                    if ($user) {
+                        
+                        $stateCheck = checkProCartBySizeColor($_POST['id_sanpham'],$_POST['size'],$_POST['color']);
+                        $id_cart = 0;
+                        
+                        if ($stateCheck) {
+                            $amount = $stateCheck['amount'] + $_POST['amount__flex'];
+                            updateCart($stateCheck['cart_id'], $amount);
+                        } else {
+                            $id_cart = add_cart($userID, $_POST['id_sanpham'], $_POST['amount__flex'], $_POST['size'], $_POST['color']);                   
+                        }
+                        
+                        if(isset($_POST['muangay'])) {
+                            header('Location: index.php?action=gio-hang&idCart='.$id_cart);
+                            exit();
+                        }
+
+                        $message = $_POST['id_sanpham'];
+                        header("Location: index.php?action=chi-tiet-sanpham&detail_product={$_POST['id_sanpham']}&message=$message");
+                        exit();
+                    } else {
+                        header('Location: index.php?action=login');
+                        exit();
+                    }
+                }
+                
                 if(isset($_POST['addTocart'])) {  
  
                     if ($user) {
                         
                         $stateCheck = checkProCartBySizeColor($_POST['id_sanpham'],$_POST['size'],$_POST['color']);
-    
+                        $id_cart = 0;
+                        
                         if ($stateCheck) {
                             $amount = $stateCheck['amount'] + $_POST['amount__flex'];
                             updateCart($stateCheck['cart_id'], $amount);
                         } else {
-                            add_cart($userID, $_POST['id_sanpham'], $_POST['amount__flex'], $_POST['size'], $_POST['color']);                   
+                            $id_cart = add_cart($userID, $_POST['id_sanpham'], $_POST['amount__flex'], $_POST['size'], $_POST['color']);                   
                         }
-    
+                        
+                        if(isset($_POST['muangay'])) {
+                            header('Location: index.php?action=gio-hang&idCart='.$id_cart);
+                            exit();
+                        }
+
                         $message = $_POST['id_sanpham'];
                         header("Location: index.php?action=chi-tiet-sanpham&detail_product={$_POST['id_sanpham']}&message=$message");
                         exit();
@@ -571,6 +611,8 @@
                     }
     
                 }
+
+                
 
                 break;
             case "deleteCart";
@@ -725,6 +767,11 @@
 
             case "cam-on":
                 
+                if(!isset($_SESSION['user_id'])) {
+                    header('Location: index.php?action=login');
+                    exit();
+                }
+
                 if($_SESSION['payment_session'] == "VNPAY") {
 
                     if (isset($_GET["vnp_Amount"]) && $_GET['vnp_ResponseCode'] == '00') {
@@ -753,8 +800,8 @@
                                 insert_bill_detail($id_order, $oder_detail['product_id'], $oder_detail['amount'], $oder_detail['size'], $oder_detail['color'], $oder_detail['sale']);
                             }
 
-                            $_GET['image'] = explode(",", $data[0]['images']);
-                            sendMail_bil($data, $_GET['image'], $ngaydathang, $ma_donhang, $user['email'], $fullname);   
+                            $_GET['image'] = explode(",", $data[0]);
+                            sendMail_bil($data, $_GET['image'], $ngaydathang, $ma_donhang, $user['email'], $fullname,$_SESSION['cart']['voucher'] = $_SESSION['cart']['voucher'] ?? 0);   
                         }
 
                         $vnp_BankCode = $_GET["vnp_BankCode"];
@@ -812,8 +859,8 @@
                     }
 
 
-                    $_GET['image'] = explode(",", $data['image'])[0];
-                    sendMail_bil($data, $_GET['image'], $ngaydathang, $ma_donhang, $user['email'], $fullname);             
+                    $_GET['image'] = explode(",", $data[0]['images']);
+                    sendMail_bil($data, $_GET['image'], $ngaydathang, $ma_donhang, $user['email'], $fullname, $_SESSION['cart']['voucher'] = $_SESSION['cart']['voucher'] ?? 0);             
     
 
                     foreach ($_SESSION["cart"]['id_cart'] as $value) {

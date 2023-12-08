@@ -64,18 +64,21 @@
 
                                             <!-- sản phẩm -->
                                                 <?php
+
+                                                    $_GET['idCart'] = $_GET['idCart'] ?? 0;
+
                                                     $tong = 0;
                                                     foreach($listCart as $cart) {
                                                         $sotien = $cart['sale'] * $cart['amount'];
-                                                        
                                                         $tong += $sotien;
+
                                                         ?>
                                                             <div class="Eb+POp">
                                                                 <div class="VPZ9zs">
                                                                     <div class="zoXdNN">
                                                                         <div class="lgcEHJ">
                                                                             <label class="stardust-checkbox">
-                                                                                <input class="stardust-checkbox__input checkBox__productCart checkbox_productcart access__color" id="checkBox__productCart" type="checkbox" name="id_cart[]" value="<?= $cart['cart_id'] ?>">
+                                                                                <input class="stardust-checkbox__input checkBox__productCart checkbox_productcart access__color" id="checkBox__productCart" <?= $_GET['idCart'] == $cart['cart_id'] ? "checked" : "" ?> type="checkbox" name="id_cart[]" value="<?= $cart['cart_id'] ?>">
                                                                                 <input id="checkbox_hidden" type="checkbox" style="opacity: 0;" class="checkbox_hidden" value="<?= $cart['sale'] ?>">
                                                                                 <div class="stardust-checkbox__box"></div>
                                                                             </label>

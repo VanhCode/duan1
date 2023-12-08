@@ -58,7 +58,7 @@
                                     </td>
                                     <td class="suggest">
                                         <div class="td3">
-                                            <div class="userLogin">
+                                            <div class="userLogin phone_login">
                                                 <input type="text" class="nameLogin inputPhone" name="phone" value="<?= $userProfile['phone'] ?>">
                                             </div>
                                         </div>
@@ -176,19 +176,31 @@
     }
     let errPhone =document.querySelector('.er_phone');
     let inputPhone=document.querySelector('.inputPhone');
+    let userLogin = document.querySelector('.phone_login');
     var xmlHttp = new XMLHttpRequest();
-    inputPhone.onblur= function (e){
+
+    inputPhone.oninput= function (e){
         xmlHttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 errPhone.innerHTML = xmlHttp.responseText;
+                // userLogin.classList.add('activeErr')
             }
         };
         xmlHttp.open("GET", "admin/xmlHttpRequest/check.php?phone="+inputPhone.value);
         xmlHttp.send();
     }
+    // inputPhone.onblur= function (e){
+    //     xmlHttp.onreadystatechange = function() {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             errPhone.innerHTML = xmlHttp.responseText;
+    //         }
+    //     };
+    //     xmlHttp.open("GET", "admin/xmlHttpRequest/check.php?phone="+inputPhone.value);
+    //     xmlHttp.send();
+    // }
     let errEmail = document.querySelector('.er_email');
     let inputEmail=document.querySelector('.inputEmail');
-    inputEmail.onblur= function (e){
+    inputEmail.oninput= function (e){
         xmlHttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 errEmail.innerHTML = xmlHttp.responseText;
@@ -197,6 +209,15 @@
         xmlHttp.open("GET", "admin/xmlHttpRequest/check.php?email="+inputEmail.value);
         xmlHttp.send();
     }
+    // inputEmail.onblur= function (e){
+    //     xmlHttp.onreadystatechange = function() {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             errEmail.innerHTML = xmlHttp.responseText;
+    //         }
+    //     };
+    //     xmlHttp.open("GET", "admin/xmlHttpRequest/check.php?email="+inputEmail.value);
+    //     xmlHttp.send();
+    // }
     checkForm();
 
 

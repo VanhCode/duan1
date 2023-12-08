@@ -168,7 +168,7 @@
                                                 <i class="fa-solid fa-cart-arrow-down"></i>
                                                 <span class="add_click_text">Thêm Vào Giỏ Hàng</span>
                                             </button>
-                                            <a href="" class="click_send_new btn__send">Mua Ngay</a>
+                                            <button style="border: none;" name="muangay" class="click_send_new btn__send">Mua Ngay</button>
                                         </div>
                                     </div>
                                 </div>
@@ -193,7 +193,7 @@
         </div>
         <div class="UwHWuz">
             <div class="page-product__content">
-                <div class="page-product__content__left">
+                <div class="page-product__content__left" style="width: 100%;">
                     <div class="product-detail page-product__detail">
                         <section class="U9rGd1">
                             <h2 class="Iv7FJp">MÔ TẢ SẢN PHẨM</h2>
@@ -308,7 +308,7 @@
                     <section class="product-shop-hot-sales page-product__hot-sales">
                         <h2 class="product-shop-hot-sales__header">Top sản phẩm bán chạy</h2>
                         <?php foreach ($top3Pro as $value):?>
-                        <a href="" class="item-card-special__link product-shop-hot-sales__item">
+                        <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $value['product_id'] ?>" class="item-card-special__link product-shop-hot-sales__item">
                             <div class="item-card-special">
                                 <div class="item-card-special__img">
                                     <div class="lazy-image__container item-card-special__img-background">

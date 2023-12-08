@@ -20,6 +20,8 @@ function newOrder($day=7){
     JOIN order_details od
     ON od.order_id=o.order_id
     WHERE date(create_at) >= DATE_SUB(CURRENT_DATE,INTERVAL ${day} DAY)
-    GROUP BY order_id";
+    GROUP BY order_id
+    ORDER BY order_id DESC
+    ";
     return query($sql)->fetchAll();
 }

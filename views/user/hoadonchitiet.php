@@ -412,7 +412,8 @@
                                     <div>
                                         <section>
                                             <a class="x7nENX" aria-label="" href="index.php?action=chi-tiet-sanpham&detail_product=<?= $productId ?>">
-                                                <div class="aybVBK"><img src="./public/upload/image/product/<?= explode(",", $productImage)[0] ?>" class="rGP9Yd" alt="" tabindex="0">
+                                                <div class="aybVBK">
+                                                    <img src="./public/upload/image/product/<?= explode(",", $productImage)[0] ?>" class="rGP9Yd" alt="" tabindex="0">
                                                     <div class="_7uZf6Q">
                                                         <div>
                                                             <div class="iJlxsT">
@@ -426,7 +427,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="_9UJGhr" tabindex="0">
-                                                    <div class="rjqzk1"><span class="j2En5+">₫<?= number_format($price, 0, ',', '.') ?></span><span class="-x3Dqh OkfGBc money__kb">₫<?= number_format($productSale, 0, ',', '.') ?></span></div>
+                                                    <div class="rjqzk1">
+                                                        <!-- <span class="j2En5+">₫</span> -->
+                                                        <span class="-x3Dqh OkfGBc money__kb">₫<?= number_format($productSale, 0, ',', '.') ?></span>
+                                                    </div>
                                                 </div>
                                             </a>
                                         </section>
