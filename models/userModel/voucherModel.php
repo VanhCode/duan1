@@ -20,11 +20,12 @@
     }
 
     function voucher($user_id,$dk=0) {
+//        echo $dk;
         $sql = "SELECT * FROM user_voucher JOIN voucher ON voucher.voucher_id = user_voucher.voucher_id WHERE user_id = $user_id 
                 AND
                 user_voucher.product_id IS NULL
                 AND
-                $dk <= voucher.to_price
+                $dk BETWEEN voucher.from_price AND voucher.to_price
                 ";
         return pdo_query($sql);
     }

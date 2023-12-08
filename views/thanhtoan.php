@@ -54,7 +54,7 @@
                     foreach ($data as $key => $product_bill) {
                         $thanhtien = $product_bill['sale'] * $product_bill['amount'];
                         $tong += $thanhtien;
-                        $listvoucher = voucher($userID,$tong??999999999);
+                        $listvoucher = voucher($userID,$tong);
                         ?>
 
                         <input type="hidden" name="product_id[]" value="<?= $product_bill['product_id'] ?>">
@@ -166,7 +166,7 @@
                                     </div>
                                     <div id="confirmModalChil" class="gLboXK">
                                         <?php
-                                        foreach (voucher($userID) as $voucher) {
+                                        foreach (voucher($userID,$tong) as $voucher) {
                                             $tinhtien = ($tong * $voucher['del_percent'] / 100) - $voucher['del_price'];
                                         ?>
                                             <div class="vc_Card_card">
