@@ -27,4 +27,28 @@
         $result = pdo_query($sql);
         return $result;
     }
+
+    // Sản phẩm theo keyword phổ biến, mới nhất, bán chạy
+    function list_product_byKeyword($keyword,$sapxep,$begin) {
+        $sql = "SELECT
+                    order_details.order_detail_id,
+                    order_details.product_id,
+                    order_details.amount,
+                    products.product_id,
+                    products.product_name,
+                    products.price,
+                    products.sale,
+                    products.images
+                FROM 
+                    order_details
+                JOIN
+                    products ON order_details.product_id = products.product_id
+                WHERE 
+                    products.product_name LIKE '%'.$keyword.'%'
+                AND
+                    order_details.amount >= 2 
+                ORDER BY 
+                    $sapxep LIMIT $begin, 20";
+        return pdo_query($sql);
+    }  
 ?>

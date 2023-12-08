@@ -108,7 +108,7 @@
                     <div class="form-group">
                         <input class="btn btn-success addVariant" type="button" value="Thêm phân loại">
                         <input class="btn btn-primary" type="submit" name="addProduct" value="Thêm sản phẩm">
-                        <a href="index.php?action=listCus" class="btn btn-dark">Danh sách</a>
+                        <a href="index.php?action=listProduct" class="btn btn-dark">Danh sách</a>
                     </div>
                 </form>
             </div>
