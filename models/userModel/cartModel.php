@@ -4,7 +4,7 @@
         $sql = "INSERT INTO `cart`(`user_id`, `product_id`, `amount`, `size`, `color`) 
                     VALUES 
         ('$user_id','$product_id','$amount','$size','$color')";
-        pdo_execute($sql);
+        return pdo_execute_returnLastInsertId($sql);
     }
     
 

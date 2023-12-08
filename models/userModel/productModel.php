@@ -63,9 +63,10 @@
                 FROM 
                     products
                 WHERE 
-                    create_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+                    -- create_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+                    1
                 ORDER BY 
-                    product_id DESC";
+                    product_id ASC";
         return pdo_query($sql);
     }   
     function list_product_moinhat($sapxep,$begin) {
@@ -74,7 +75,8 @@
                 FROM 
                     products
                 WHERE 
-                    create_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+                    -- create_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+                    1
                 ORDER BY 
                     $sapxep LIMIT $begin, 20";
         return pdo_query($sql);
@@ -95,9 +97,12 @@
                 JOIN
                     products ON order_details.product_id = products.product_id
                 WHERE 
-                    order_details.amount >= 2 
+                    order_details.amount >= 1 
+                GROUP BY
+                    products.product_id
                 ORDER BY 
-                    order_details.order_detail_id DESC";
+                    order_details.order_detail_id DESC
+                ";
         return pdo_query($sql);
     }   
     function list_product_banchay($sapxep,$begin) {
@@ -115,11 +120,16 @@
                 JOIN
                     products ON order_details.product_id = products.product_id
                 WHERE 
-                    order_details.amount >= 2 
+                    order_details.amount >= 1 
+                GROUP BY
+                    products.product_id    
                 ORDER BY 
-                    $sapxep LIMIT $begin, 20";
+                    $sapxep LIMIT $begin, 20
+                ";
         return pdo_query($sql);
     }   
+
+    
     
     // Chi tiết sản phẩm
     function chitietSanpham($id) {

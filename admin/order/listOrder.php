@@ -79,6 +79,7 @@
                         <th>Voucher</th>
                         <th>Tổng cộng</th>
                         <th>Ngày đặt hàng</th>
+                        <th>Phương thức thanh toán</th>
                         <th>Trạng thái</th>
                         <th>Thanh toán</th>
                         <th>Chi tiết</th>
@@ -101,7 +102,7 @@
                                 <td style="color: #ff7d7d;font-weight: 500;"><?= number_format($value['voucher'], 0, ',', '.') ?></td>
                                 <td style="color: #ff7d7d;font-weight: 500;"><?= number_format($value['total'], 0, ',', '.') ?></td>
                                 <td><?= $value['create_at'] ?></td>
-
+                                <td><?= $value['payment_method'] == 'VNPAY' ? "Thanh toán VNPAY" : "Thanh toán khi nhận" ?></td>
                             <td>
                                 <select id="status" onchange="changeStatus(this,<?=$value['order_id']?>)"
                                         class="form-select-sm selected_status" name="status"

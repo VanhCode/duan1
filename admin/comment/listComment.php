@@ -80,9 +80,27 @@
                         <td><?=$comment['content']?></td>
                         <td><?=$comment['create_at']?></td>
                         <td>
-                            <a class="btn btn-outline-danger btn-sm" onclick="return confirm('bạn có chắc không')" href="index.php?action=deleteComment&comment_id=<?=$comment['comment_id']?>">Xoá</a>
+                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?=$comment['comment_id']?>">Xoá</a>
                         </td>
                     </tr>
+                    <div class="modal fade" id="exampleModal<?=$comment['comment_id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Xóa bình luận</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Bạn có muốn xóa bình luận: <br> <?= $comment['content'] ?><br>
+                                Người dùng: '<?= $comment['fullName'] ?>'
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                <a class="btn btn-primary" href="index.php?action=deleteComment&comment_id=<?=$comment['comment_id']?>">Xoá</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                     <?php endforeach;?>
                     </tbody>
                 </table>

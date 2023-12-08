@@ -337,7 +337,7 @@
     }
 
     // Gửi mail khi đặt hàng thành công
-    function sendMail_bil($data, $dataimg, $ngaydathang, $madonhang, $emailUser, $fullname) {
+    function sendMail_bil($data, $dataimg, $ngaydathang, $madonhang, $emailUser, $fullname,$voucher) {
 
         include "./PHPMailer/src/PHPMailer.php";
         include "./PHPMailer/src/Exception.php";
@@ -408,7 +408,7 @@
         $thanhtien = 0;
 
         foreach ($data as $index => $product) {
-            $tongtien = $product['amount'] * $product['price'];
+            $tongtien = $product['amount'] * $product['sale'];
             $thanhtien += $tongtien;
             $body .='       <table style="width: 100%; margin: 20px 0;">
                                 
@@ -434,7 +434,7 @@
                                                 <p>'.$product['color'].'</p>
                                                 <p>'.$product['size'].'</p>
                                                 <p>'.$product['amount'].'</p>
-                                                <p>₫ '.number_format($product['price'],0,',','.').'</p>
+                                                <p>₫ '.number_format($product['sale'],0,',','.').'</p>
                                             </div>
                                         </td>
                                     </tr>
@@ -450,8 +450,8 @@
                             </div>
                             <div>
                                 <p>₫ '.number_format($thanhtien,0,',','.').'</p>
-                                <p>₫ 20.000</p>
-                                <p>₫ '.number_format($thanhtien,0,',','.').'</p>
+                                <p>₫ '.number_format($voucher,0,',','.').'</p>
+                                <p>₫ '.number_format($thanhtien + $voucher,0,',','.').'</p>
                             </div>
                         </div>
                         <hr>

@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="vanhstore-mini-page-controller">
                                     <div class="vanhstore-mini-page-controller__state">
-                                        <span class="vanhstore-mini-page-controller__current" style="color:#ee4d2d;"><?= $page ?></span>
+                                        <span class="vanhstore-mini-page-controller__current" style="color:#ee4d2d;"><?= isset($page) ? $page : 0 ?></span>
                                         /
                                         <span class="vanhstore-mini-page-controller__total"><?= isset($_GET['min_price']) && isset($_GET['max_price']) ? $count_price_min_max : $countTrang ?></span>
                                             
@@ -228,7 +228,7 @@
                                                     </div>
                                                 </div>
                                             <?php
-                                        } else if(isset($_GET['product_filter'])) {
+                                        } else if (isset($_GET['product_filter'])) {
                                             if(isset($_GET['product_filter']) && $_GET['product_filter'] == 'moi-nhat') {
                                                 ?>
                                                     <div class="stardust-tabs-panels__panel_navS">
@@ -353,6 +353,70 @@
                                                                     ?>
                                                                 </div>
                                                                 <a href="index.php?action=san-pham&product_filter=ban-chay&page=<?= $page + 1 <= $countTrang ? $page + 1 : $page ?>" class="vanhstore-mini_controller_right ctl__right">&gt;</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                    <div class="stardust-tabs-panels__panel_navS">
+                                                        <?php
+                                                            foreach($listProduct_moiNhat as $productNew) {
+                                                                $sales = 100 - (($productNew['sale'] / $productNew['price']) * 100);
+                                                                ?>
+                                                                    <div class="stardust-tabs-panels__panel_navSChilrent std__sanpham">
+                                                                        <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $productNew['product_id'] ?>" class="stardust-tabs-panels__flexHref">
+                                                                            <div class="stardust-tabs-panels__ColumFlex__div">
+                                                                                <div class="stardust-tabs-panels__ColumFlex_img">
+                                                                                    <img src="./public/upload/image/product/<?= explode(",", $productNew['images'])[0] ?>" alt="">
+                                                                                    <div class="ColumFlex_img__spanSale">
+                                                                                        <span class="ColumFlex_img__span">Sale</span>
+                                                                                    </div>  
+                                                                                    <div class="ColumFlex_img__spanSalePt">
+                                                                                        <span class="ColumFlex_img__textSaleContent"><?= ceil($sales) ?>%</span>
+                                                                                        <span class="ColumFlex_img__textSaleGiam">GIẢM</span>
+                                                                                    </div>
+                                                                                    <div class="ColumFlex_img__bgrImage">
+                                                                                        <img src="./img1/bgpr.png" alt="">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="stardust-tabs-panels__ColumFlex_BoxText">
+                                                                                    <div class="stardust-ColumFlex_title">
+                                                                                        <?= $productNew['product_name'] ?>
+                                                                                    </div>
+                                                                                    <div class="stardust-ColumFlex_Boxprice">
+                                                                                        <div class="stardust-ColumFlex_Boxprice">
+                                                                                            ₫<?= number_format($productNew['sale'], 0, ",", ".") ?>
+                                                                                        </div>
+                                                                                        <div class="stardust-ColumFlex_clickPrice">
+                                                                                            Đã bán 2k
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="vanhstore-item-card__hover-footer _6o9eaa">
+                                                                                    <a href="">Tìm sản phẩm tương tự</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                        
+                                                        <div class="btn__click_stardust__product page__product">
+                                                            <div class="vanhstore-mini-page-controller">
+                                                                <a href="index.php?action=san-pham&page=<?= $page - 1 >= 1 ? $page - 1 : $page ?>" class="vanhstore-mini_controller_left ctl__left">&lt;</a>
+                                                                <div class="vanhstore-mini-page-controller__state page__url">
+                                                                    <?php
+                                                                        
+                                                                        for($i = 1; $i <= $countTrang; $i++) {
+                                                                            ?>
+                                                                                <a href="index.php?action=san-pham&page=<?= $i; ?>" class="curent__page <?= $page == $i ? "activePage" : "" ?>"><?= $i ?></a>
+                                                                            <?php
+                                                                        }
+                                                                    ?>
+                                                                </div>
+                                                                <a href="index.php?action=san-pham&page=<?= $page + 1 <= $countTrang ? $page + 1 : $page ?>" class="vanhstore-mini_controller_right ctl__right">&gt;</a>
                                                             </div>
                                                         </div>
                                                     </div>

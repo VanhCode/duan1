@@ -291,7 +291,7 @@
                     'rgb(86,255,255)',
                     'rgb(238,86,255)',
                 ],
-                hoverOffset: 200
+                hoverOffset: 30
             }]
         },
     });

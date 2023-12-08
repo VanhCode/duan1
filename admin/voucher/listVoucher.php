@@ -95,9 +95,26 @@
                         <td class="d-flex justify-content-center align-items-center"><p style="padding-top: 10px;" voucher_id="<?=$voucher['voucher_id']?>" class="timeCL">0 ngày 0 giờ 0 phút 0 giây</p></td>
                         <td>
                             <a href="index.php?action=editVoucher&voucher_id=<?=$voucher['voucher_id']?>" class="btn btn-outline-success btn-sm">Sửa</a>
-                            <a href="index.php?action=deleteVoucher&voucher_id=<?=$voucher['voucher_id']?>" class="btn btn-outline-danger btn-sm">Xoá</a>
+                            <a data-bs-toggle="modal" data-bs-target="#exampleModal<?=$voucher['voucher_id']?>" class="btn btn-outline-danger btn-sm">Xoá</a>
                         </td>
                     </tr>
+                    <div class="modal fade" id="exampleModal<?=$voucher['voucher_id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Xóa voucher</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Bạn có muốn xóa voucher: <br> '<?=$voucher['content_voucher'] ?>' này không ?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                <a class="btn btn-primary" href="index.php?action=deleteVoucher&voucher_id=<?=$voucher['voucher_id']?>">Xoá</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                     <?php endforeach;?>
                     <script>
                         let timeCL=document.querySelectorAll('.timeCL');
