@@ -483,8 +483,6 @@
                 break;
             case "reset_pass":
 
-                        
-
                 if(isset($_POST['guimail'])) {
                     $email = $_POST['phone'];
                     $mailFogot = check_email_quenmk($email);
@@ -612,8 +610,6 @@
     
                 }
 
-                
-
                 break;
             case "deleteCart";
                 if(isset($_GET['cart_id']) && $_GET['cart_id'] > 0) {
@@ -626,7 +622,6 @@
                 
                 break;
             case "thanh-toan":
-                
                 if(!isset($_SESSION['user_id'])) {
                     header('Location: index.php?action=login');
                     exit();
@@ -636,7 +631,7 @@
                     $_SESSION['id_cart'] = $_SESSION['id_cart'] ?? $_POST['id_cart'];
 
                     // echo "<pre>";
-                    // print_r($_SESSION['id_cart']);
+                    // print_r($_SESSION['id_cart']); 
                     // echo "<pre>";
                     // die;
 
