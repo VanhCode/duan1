@@ -30,7 +30,7 @@
             <span class="num">8</span>
         </a>
         <a href="#" class="profile">
-            <img src="img/people.png">
+            <img src="../public/upload/image/user/<?= $user['user_image'] ?>">
         </a>
     </nav>
     <!-- NAVBAR -->
@@ -93,6 +93,7 @@
                                 <option value="7">7 ngày</option>
                                 <option value="14">14 ngày</option>
                                 <option value="30">30 ngày</option>
+                                <option value="360">360 ngày</option>
                             </select>
                         </div>
                         <div class="chart">
@@ -114,66 +115,114 @@
     </main>
     <!-- MAIN -->
 </section>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../models/lib/chartjs.js"></script>
 <script>
     let form_statistical = document.querySelector('.form-statistical');
     let btn_send_data = document.querySelector('.send-data');
     let xmlHttp = new XMLHttpRequest();
     let dateNow = new Date();
-    let fromDate=changeDays(dateNow,Number('-'+7));
-    let toDate = changeDays(dateNow,0)
-    let next=document.querySelector('#next');
-    let back=document.querySelector('#back');
+    let type = form_statistical.querySelector('.type');
+    let fromDate = changeDays(dateNow, {[type.value]: Number('-' + 7)});
+    let toDate = changeDays(dateNow, {[type.value]: Number(0)});
+    let next = document.querySelector('#next');
+    let back = document.querySelector('#back');
     btn_send_data.addEventListener('click', function () {
         let from = form_statistical.querySelector('.from');
         let to = form_statistical.querySelector('.to');
-        let type = form_statistical.querySelector('.type');
-        fromDate=from.value;
-        toDate=to.value;
-        getDataChart(fromDate,toDate,type.value)
+        fromDate = from.value;
+        toDate = to.value;
+        getDataChart(fromDate, toDate, type.value)
             .then((dt) => {
                 dt.revenue = dt.revenue.map((value) => (parseInt(value)));
                 dt.numOrder = dt.numOrder.map((value) => (parseInt(value)));
                 updateChart(chart, dt.date, dt.numOrder, dt.revenue);
             })
     });
-    let filterDay=document.querySelector('.filter-day');
-    filterDay.onchange=function (e){
-        fromDate=changeDays(toDate,Number('-'+this.value));
-        getDataChart(fromDate,toDate)
+    let filterDay = document.querySelector('.filter-day');
+    filterDay.onchange = function (e) {
+        let toDate = changeDays(dateNow, {[type.value]: Number(0)});
+        fromDate = changeDays(toDate, {DATE: Number('-' + this.value)});
+        getDataChart(fromDate, toDate, type.value)
             .then((dt) => {
                 dt.revenue = dt.revenue.map((value) => (parseInt(value)));
                 dt.numOrder = dt.numOrder.map((value) => (parseInt(value)));
                 updateChart(chart, dt.date, dt.numOrder, dt.revenue);
             });
     }
-    getDataChart(fromDate,toDate)
+    getDataChart(fromDate, toDate, type.value)
         .then((dt) => {
             dt.revenue = dt.revenue.map((value) => (parseInt(value)));
             dt.numOrder = dt.numOrder.map((value) => (parseInt(value)));
             updateChart(chart, dt.date, dt.numOrder, dt.revenue);
         });
-    next.onclick=function (e){
-        fromDate=changeDays(fromDate,+1);
-        toDate=changeDays(toDate,+1);
-
-        getDataChart(fromDate,toDate)
+    type.onchange = function (e) {
+        if (this.value === 'MONTH') {
+            fromDate = toDate.replace(/.{2}$/, '01');
+            fromDate = changeDays(fromDate,{MONTH: - 5});
+            toDate = changeDays(toDate, {DATE: null})
+        }
+        if (this.value === 'DATE') {
+            fromDate = changeDays(dateNow, {[type.value]: Number('-' + 7)});
+            toDate = changeDays(dateNow, {[type.value]: Number(0)});
+        }
+        if(type.value==='YEAR'){
+            toDate = changeDays(dateNow, {[type.value]: Number(0)});
+            fromDate = changeDays(toDate,{YEAR: - 5});
+        }
+        getDataChart(fromDate, toDate, this.value)
             .then((dt) => {
                 dt.revenue = dt.revenue.map((value) => (parseInt(value)));
                 dt.numOrder = dt.numOrder.map((value) => (parseInt(value)));
                 updateChart(chart, dt.date, dt.numOrder, dt.revenue);
             });
     }
-    back.onclick=function (e){
-        fromDate=changeDays(fromDate,-1);
-        toDate=changeDays(toDate,-1);
+    next.onclick = function (e) {
+        fromDate = changeDays(fromDate, {[type.value]: 1});
+        if(type.value!=='MONTH'){
+            toDate =changeDays(toDate,{[type.value]:1})
+        }
+        if (type.value === 'MONTH') {
+            toDate =changeDays(fromDate,{[type.value]:5});
+            toDate = changeDays(toDate, {DATE: null});
+        }
 
-        getDataChart(fromDate,toDate)
+        getDataChart(fromDate, toDate, type.value)
             .then((dt) => {
                 dt.revenue = dt.revenue.map((value) => (parseInt(value)));
                 dt.numOrder = dt.numOrder.map((value) => (parseInt(value)));
                 updateChart(chart, dt.date, dt.numOrder, dt.revenue);
             });
+    }
+    back.onclick = function (e) {
+        fromDate =changeDays(fromDate,{[type.value]:-1})
+        if(type.value!=='MONTH'){
+            toDate =changeDays(toDate,{[type.value]:-1})
+        }
+        if(type.value==='MONTH'){
+            toDate =changeDays(fromDate,{[type.value]:5});
+            toDate = changeDays(toDate, {DATE: null});
+        }
+        getDataChart(fromDate, toDate, type.value)
+            .then((dt) => {
+                dt.revenue = dt.revenue.map((value) => (parseInt(value)));
+                dt.numOrder = dt.numOrder.map((value) => (parseInt(value)));
+                updateChart(chart, dt.date, dt.numOrder, dt.revenue);
+            });
+    }
+    function changeDays(date, DATE) {
+        let result = new Date(date);
+        if (DATE['DATE'] === null) {
+            result = new Date(result.getFullYear(), result.getMonth() + 1, 0);
+        }
+        result.setDate(result.getDate() + (DATE['DATE'] || 0));
+        result.setMonth(result.getMonth() + (DATE['MONTH'] || 0));
+        result.setFullYear(result.getFullYear() + (DATE['YEAR'] || 0));
+
+        let year = result.getFullYear();
+        let month = (result.getMonth() + 1).toString().padStart(2, '0');
+        let day = result.getDate().toString().padStart(2, '0');
+        DATE = `${year}-${month}-${day}`;
+        return DATE;
     }
     var ctx = document.getElementById('myChart').getContext('2d');
     var ctx1 = document.getElementById('myChart1').getContext('2d');
@@ -202,7 +251,7 @@
             plugins: {
                 datalabels: {
                     color: '#36A2EB',
-                    display: function(context) {
+                    display: function (context) {
                         return context.dataset.data[context.dataIndex] > 15;
                     },
                     font: {
@@ -215,7 +264,7 @@
                             properties: ['x', 'y', 'base', 'width', 'height'],
                             duration: 1000,
                             easing: 'easeOutElastic',
-                            delay: function(context) {
+                            delay: function (context) {
                                 return context.index * 100;
                             }
                         }
@@ -224,9 +273,9 @@
             }
         }
     });
-    let product_volume = JSON.parse('<?=$product_volume?>');
-    product_volume.sale_volume=product_volume.sale_volume.map(value=>parseInt(value));
-    product_volume.product_name=product_volume.product_name.map(str=>str.substr( 0, 20)+'...')
+    let product_volume = <?=$product_volume?>;
+    product_volume.sale_volume = product_volume.sale_volume.map(value => parseInt(value));
+    product_volume.product_name = product_volume.product_name.map(str => str.substr(0, 20) + '...')
     var chart1 = new Chart(ctx1, {
         type: 'doughnut',
         data: {
@@ -242,7 +291,7 @@
                     'rgb(86,255,255)',
                     'rgb(238,86,255)',
                 ],
-                hoverOffset: 4
+                hoverOffset: 30
             }]
         },
     });
@@ -254,14 +303,16 @@
         chart.update();
     }
 
-    function getDataChart(from, to, type='DATE') {
+    function getDataChart(from, to, type = 'DATE') {
         return new Promise((resolve, reject) => {
             let dataR = {};
             let data = `from=${from}&to=${to}&type=${type}`;
 
             xmlHttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
+                    console.log(this.responseText);
                     dataR = JSON.parse(this.responseText);
+                    dataR=sortData(dataR);
                     resolve(dataR); // Resolve the promise with the data
                 } else if (this.readyState === 4) {
                     reject(this.status); // Reject the promise if there's an error
@@ -274,13 +325,30 @@
         });
     }
 
-    function changeDays(date, days) {
-        let result = new Date(date);
-        result.setDate(result.getDate() + days);
-        let year = result.getFullYear();
-        let month = (result.getMonth() + 1).toString().padStart(2, '0');
-        let day = result.getDate().toString().padStart(2, '0');
-        return `${year}-${month}-${day}`;
+    function sortData(data) {
+        // Chuyển đổi dữ liệu thành mảng các đối tượng
+        console.log(data)
+        var dataArray = data.date.map(function(e, i) {
+            return {
+                date: e,
+                numOrder: data.numOrder[i],
+                revenue: data.revenue[i]
+            };
+        });
+        console.log(dataArray);
+        // Sắp xếp mảng theo ngày
+        dataArray.sort(function(a, b) {
+            return new Date(a.date) - new Date(b.date);
+        });
+
+        // Chuyển đổi lại thành đối tượng
+        var sortedData = {
+            date: dataArray.map(e => e.date),
+            numOrder: dataArray.map(e => e.numOrder),
+            revenue: dataArray.map(e => e.revenue)
+        };
+
+        return sortedData;
     }
 </script>
 

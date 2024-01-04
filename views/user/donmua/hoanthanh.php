@@ -91,7 +91,7 @@
                                                                                                     </div>
                                                                                                     <div>
                                                                                                         <div class="vb0b-P" tabindex="0">Phân loại hàng: <?= $detail['color'] ?> | <?= $detail['size'] ?></div>
-                                                                                                        <div class="_3F1-5M" tabindex="0">x<?= $detail['amount'] ?></div><span class="_8ex9dW">7 ngày trả hàng</span>
+                                                                                                        <div class="_3F1-5M" tabindex="0">x<?= $detail['amount'] ?></div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>

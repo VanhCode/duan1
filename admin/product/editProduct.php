@@ -2,6 +2,9 @@
     .form-group>span{
         color: red;
     }
+    .variant>small{
+        color: red;
+    }
 </style>
 <!-- CONTENT -->
 <section id="content">
@@ -22,7 +25,7 @@
             <span class="num">8</span>
         </a>
         <a href="#" class="profile">
-            <img src="img/people.png">
+            <img src="../public/upload/image/user/<?= $user['user_image'] ?>">
         </a>
     </nav>
     <!-- NAVBAR -->
@@ -121,6 +124,10 @@
                         </select>
                     </div>
                     <div class="title-text fw-semibold">Phân loại</div>
+                    <div class="form-group">
+                        <label for="" class="form-label">Mô tả chi tiết</label>
+                        <textarea class="form-control" placeholder="Không bắt buộc" rows="3" name="description"><?=$productInfo['description']?></textarea>
+                    </div>
                     <div class="form-group" id="listVariant">
                         <?php 
                             if (!empty($listVariations)) {
@@ -136,10 +143,13 @@
 
                                                     <label for="" class="form-label">Màu sắc</label>
                                                     <input class="add_vari" type="text" value="<?= $variant['color'] ?>" name="color[]">
+                                                    <small></small>
                                                     <label for="" class="form-label mg_lr">Size</label>
                                                     <input class="add_vari" type="text" value="<?= $variant['size'] ?>" name="size[]">
+                                                    <small></small>
                                                     <label for="" class="form-label mg_lr">Số lượng</label>
                                                     <input class="add_vari" type="text" value="<?= $variant['amount'] ?>" name="amount[]">
+                                                    <small></small>
                                                     <?php
                                                     if ($count>=2){
                                                         echo '<input type="button" value="xoá" onclick="removeElement(this)" class="btn btn-outline-danger btn-sm" style="margin-left: 8px;">';
@@ -175,6 +185,15 @@
                                 ip.nextElementSibling.innerHTML='';
                             }
                         }
+                        let variant = document.querySelectorAll('.add_vari');
+                        variant.forEach((input, index) => {
+                            if (input.value === '') {
+                                input.nextElementSibling.innerHTML = 'Không được để trống';
+                                status = false;
+                            } else {
+                                input.nextElementSibling.innerHTML = '';
+                            }
+                        });
                     });
                     return status
                 }
@@ -191,6 +210,17 @@
                             }
                         }
                     }
+                    let variant = document.querySelectorAll('.add_vari');
+                    variant.forEach((input, index) => {
+                        input.onblur=function (){
+                            if (input.value === '') {
+                                input.nextElementSibling.innerHTML = 'Không được để trống';
+                                status = false;
+                            } else {
+                                input.nextElementSibling.innerHTML = '';
+                            }
+                        }
+                    });
                 });
             </script>
         </div>

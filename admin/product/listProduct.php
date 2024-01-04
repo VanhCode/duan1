@@ -17,7 +17,7 @@
             <span class="num">8</span>
         </a>
         <a href="#" class="profile">
-            <img src="img/people.png">
+            <img src="../public/upload/image/user/<?= $user['user_image'] ?>">
         </a>
     </nav>
     <!-- NAVBAR -->

@@ -27,7 +27,7 @@
             <span class="num">8</span>
         </a>
         <a href="#" class="profile">
-            <img src="img/people.png">
+            <img src="../public/upload/image/user/<?= $user['user_image'] ?>">
         </a>
     </nav>
     <!-- NAVBAR -->
@@ -82,12 +82,12 @@
                         <td><p style="text-align: left; padding-left:50px"><?=$voucher['content_voucher']?></p></td>
                         <td><?php if($voucher['del_price']!=0){echo number_format($voucher['del_price'],0,',','.');}if($voucher['del_percent']!=0){echo number_format($voucher['del_percent'],0,',','.').'%';}?></td>
                         <td><?php
-                            if($voucher['from_price']==0&&$voucher['to_price']==0){
+                            if($voucher['from_price']==0&&$voucher['to_price']==999999999){
                                 echo 'Không giới hạn';
                             }else if($voucher['to_price']==999999999){
-                                echo number_format($voucher['from_price'],0,',','.').' trở lên';
+                                echo 'Từ '. preg_replace('/.0{3}k/','m',preg_replace('/.0{3}$/','k',number_format($voucher['from_price'],0,',','.'))).' trở lên';
                             }else{
-                                echo number_format($voucher['from_price'],0,',','.').'->'.number_format($voucher['to_price'],0,',','.');
+                                echo 'Từ '. preg_replace('/.0{3}k/','m',preg_replace('/.0{3}$/','k',number_format($voucher['from_price'],0,',','.'))).'Đến'.preg_replace('/.0{3}k/','m',preg_replace('/.0{3}$/','k',number_format($voucher['from_price'],0,',','.')))   ;
                             }
                             ?>
                         </td>
@@ -95,9 +95,26 @@
                         <td class="d-flex justify-content-center align-items-center"><p style="padding-top: 10px;" voucher_id="<?=$voucher['voucher_id']?>" class="timeCL">0 ngày 0 giờ 0 phút 0 giây</p></td>
                         <td>
                             <a href="index.php?action=editVoucher&voucher_id=<?=$voucher['voucher_id']?>" class="btn btn-outline-success btn-sm">Sửa</a>
-                            <a href="index.php?action=deleteVoucher&voucher_id=<?=$voucher['voucher_id']?>" class="btn btn-outline-danger btn-sm">Xoá</a>
+                            <a data-bs-toggle="modal" data-bs-target="#exampleModal<?=$voucher['voucher_id']?>" class="btn btn-outline-danger btn-sm">Xoá</a>
                         </td>
                     </tr>
+                    <div class="modal fade" id="exampleModal<?=$voucher['voucher_id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Xóa voucher</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Bạn có muốn xóa voucher: <br> '<?=$voucher['content_voucher'] ?>' này không ?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                <a class="btn btn-primary" href="index.php?action=deleteVoucher&voucher_id=<?=$voucher['voucher_id']?>">Xoá</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                     <?php endforeach;?>
                     <script>
                         let timeCL=document.querySelectorAll('.timeCL');

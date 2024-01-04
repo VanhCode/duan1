@@ -14,7 +14,7 @@
 <div class="main">
     <div class="container">
         <div class="flex items-center page-product__main">
-            <a class="page-product__main_a" href="index.php">VanhStore</a>
+            <a class="page-product__main_a" href="index.php">Trang chủ</a>
             <i class="fa-solid fa-angle-right"></i>
             <a class="page-product__main_a" href="">Sản Phẩm Chi Tiết</a>
             <i class="fa-solid fa-angle-right"></i>
@@ -92,8 +92,8 @@
                                         Giá Bán:
                                     </div>
                                     <div class="flex_price__product_text">
-                                        <div class="flex_price__product_text_throw" name="priceThrow">₫<?= number_format($chitiet_product['price'], 0, ",", ".") ?></div>
-                                        <div class="flex_price__product_text" name="price">₫<?= number_format($chitiet_product['sale'], 0, ",", ".") ?></div>
+                                            <div class="flex_price__product_text_throw" name="priceThrow">₫<?= number_format($chitiet_product['price'], 0, ",", ".") ?></div>
+                                            <div class="flex_price__product_text" name="price">₫<?= number_format($chitiet_product['sale'], 0, ",", ".") ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +168,7 @@
                                                 <i class="fa-solid fa-cart-arrow-down"></i>
                                                 <span class="add_click_text">Thêm Vào Giỏ Hàng</span>
                                             </button>
-                                            <a href="" class="click_send_new btn__send">Mua Ngay</a>
+                                            <button style="border: none;" name="muangay" class="click_send_new btn__send">Mua Ngay</button>
                                         </div>
                                     </div>
                                 </div>
@@ -193,47 +193,14 @@
         </div>
         <div class="UwHWuz">
             <div class="page-product__content">
-                <div class="page-product__content__left">
+                <div class="page-product__content__left" style="width: 100%;">
                     <div class="product-detail page-product__detail">
                         <section class="U9rGd1">
                             <h2 class="Iv7FJp">MÔ TẢ SẢN PHẨM</h2>
                             <div class="MCCLkq">
                                 <div class="f7AU53">
                                     <p class="irIKAp">
-                                        Chào bạn đến với shop Hà Nội Phố của cô chủ nhỏ mới đến TPHCM
-
-                                        #NIACINAMIDE - Thành phần “thần thánh” đa công dụng được yêu thích. Hoạt động như một chất chống oxy hóa. Giúp tái tạo và củng cố “hàng rào” bảo vệ da, tăng sản sinh các ceramides lấy lại sự trẻ trung, mềm mịn cho làn da. Điều tiết bã nhờn trên da, cải thiện kết cấu da, làm dịu nốt mụn, đặc biệt là loại mụn trứng cá. Làm sáng đều màu da, khắc phục được những hệ quả của mụn để lại như vết thâm hay sẹo.
-
-                                        #ZINC - Kẽm có khả năng điều tiết bã nhờn, thích hợp với da dầu có mụn.
-
-                                        REVIEW
-                                        "Trước khi sử dụng em này da mình là da hỗn hợp thiên dầu, mụn li ti khá nhiều và một vài nốt mụn sưng đỏ. Sau khoảng gần 2 tháng kiên trì liên tục sử dụng thì mình khá hài lòng về em này vì da đã có một chút chuyển biến.
-
-                                        Làn da của mình bắt đầu mịn màng hơn, lỗ chân lông được thu nhỏ lại và làn da trở nên săn chắc. Đặc biệt là da có hiệu ứng “bóng” ở gò má tạo cảm giác da khỏe mạnh hơn hẳn. Tình trạng mụn cũng giảm hẳn, các nốt mụn sưng đỏ được làm dịu đi nhiều, nhưng để xử lý mụn nặng thì mình ko nghĩ em này sẽ thích hợp đâu nhé các nàng. Đối với các tình trạng mụn nhẹ thì sp này có hiệu quả khá là tốt. Khả năng làm mờ thâm và sáng da được đánh giá là khá ổn vì vết thâm cũng mờ dần, nếu kiên trì thì hiệu quả sẽ rõ rệt hơn."
-
-                                        # # # Routine sang tối thông thường # # #
-
-                                        Sáng
-
-                                        • Bước 1: Rửa Mặt
-                                        • Bước 2: Nước Cân Bằng Da (Toner)
-                                        • Bước 3: Essence/ Serum/ Ampoule
-                                        • Bước 4: Emulsion/ Lotion
-                                        • Bước 5: Dưỡng Ẩm (Bằng Moisturizer/ Cream/ Face Oil)
-                                        • Bước 6: KCN
-
-
-                                        Tối
-
-                                        • Bước 1+2: Double Cleansing (Rửa Mặt + Tẩy Trang)
-                                        • Bước 3: Nước Cân Bằng Da (Toner)
-                                        • Bước 4: Mặt Nạ (Mask)
-                                        • Bước 5: Treatments
-                                        • Bước 6: Essence/ Serum/ Ampoule
-                                        • Bước 7: Emulsion/ Lotion
-                                        • Bước 8: Kem Mắt (Eyes Cream)
-                                        • Bước 9: Dưỡng Ẩm (Bằng Moisturizer/ Cream/ Face Oil)
-                                        • Bước 10: Mặt Nạ Ngủ (Sleeping Mask)
+                                      <?= $chitiet_product['description']?>
 
                                     </p>
                                 </div>
@@ -264,13 +231,13 @@
                                     </div>
                                     <div class="product-rating-overview__filters">
                                         <div class="product-rating-overview__filter product-rating-overview__filter--active">tất cả</div>
-                                        <div class="product-rating-overview__filter">5 Sao (310)</div>
-                                        <div class="product-rating-overview__filter">4 Sao (0)</div>
-                                        <div class="product-rating-overview__filter">3 Sao (0)</div>
-                                        <div class="product-rating-overview__filter">2 Sao (3)</div>
-                                        <div class="product-rating-overview__filter">1 Sao (166)</div>
-                                        <div class="product-rating-overview__filter">Có Bình luận (244)</div>
-                                        <div class="product-rating-overview__filter">Có hình ảnh / video (90)</div>
+                                        <!-- <div class="product-rating-overview__filter">5 Sao (310)</div> -->
+                                        <!-- <div class="product-rating-overview__filter">4 Sao (0)</div> -->
+                                        <!-- <div class="product-rating-overview__filter">3 Sao (0)</div> -->
+                                        <!-- <div class="product-rating-overview__filter">2 Sao (3)</div> -->
+                                        <!-- <div class="product-rating-overview__filter">1 Sao (166)</div> -->
+                                        <div class="product-rating-overview__filter"><?= !empty($listComment) ? "Có Bình luận"." "."(".count($listComment).")" : "Không có bình luận" ?></div>
+                                        <!-- <div class="product-rating-overview__filter">Có hình ảnh / video (90)</div> -->
                                     </div>
                                 </div>
                                 <div class="product-ratings__list" style="opacity: 1;">
@@ -285,7 +252,7 @@
                                                             </div>
                                                         </a>
                                                         <div class="vanhstore-product-rating__main">
-                                                            <a class="vanhstore-product-rating__author-name" href="/shop/991020722"><?= $commnent['firth_name']." ".$commnent['last_name'] ?></a>
+                                                            <a class="vanhstore-product-rating__author-name" href="/shop/991020722"><?= $commnent['first_name']." ".$commnent['last_name'] ?></a>
                                                             <div class="repeat-purchase-con">
                                                                 <div class="vanhstore-product-rating__rating">
                                                                     <i class="fa-solid fa-star"></i>
@@ -306,19 +273,32 @@
                                         ?>
                                     </div>
                                 </div>
-                                <form id="commentForm" action="<?= $_SERVER['REQUEST_URI'] ?>" method="post">
-                                    <div class="comment__product">
-                                        <div class="comment__product__header">
-                                            <img src="./public/upload/image/user/<?= $user['user_image'] ?>" alt="">    
-                                        </div>
-                                        <div class="comment__product__content__btn">
-                                            <input type="hidden" id="idproduct" name="idproduct" value="<?= $chitiet_product['product_id'] ?>">
-                                            <input type="hidden" id="iduser" name="iduser" value="<?= $userID ?>">
-                                            <input type="text" class="vanhstore__input__comments" id="noidung" name="noidung" placeholder="Viết bình luận...">
-                                            <input type="submit" class="vanhstore__input__buttons" name="submitComment" value="Gửi">
-                                        </div>
-                                    </div>
-                                </form>
+                                <?php
+                                    if(isset($_SESSION['user_id'])) {
+                                        ?>
+                                            <form id="commentForm" action="<?= $_SERVER['REQUEST_URI'] ?>" method="post">
+                                                <div class="comment__product">
+                                                    <div class="comment__product__header">
+                                                        <img src="./public/upload/image/user/<?= $user['user_image'] ?>" alt="">    
+                                                    </div>
+                                                    <div class="comment__product__content__btn">
+                                                        <input type="hidden" id="idproduct" name="idproduct" value="<?= $chitiet_product['product_id'] ?>">
+                                                        <input type="hidden" id="iduser" name="iduser" value="<?= $userID ?>">
+                                                        <input type="text" class="vanhstore__input__comments" id="noidung" name="noidung" placeholder="Viết bình luận...">
+                                                        <input type="submit" class="vanhstore__input__buttons" name="submitComment" value="Gửi">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        <?php
+                                    } else {
+                                        ?>
+                                            <div class="comment__product">
+                                                <span>Bạn cần đăng nhập để sử dụng tính năng bình luận</span>
+                                            </div>
+                                        <?php
+                                    }
+                                ?>
+                                
                             </div>
                         </div>
                     </div>
@@ -327,66 +307,23 @@
                     <div style="display: contents;"></div>
                     <section class="product-shop-hot-sales page-product__hot-sales">
                         <h2 class="product-shop-hot-sales__header">Top sản phẩm bán chạy</h2>
-                        <a href="" class="item-card-special__link product-shop-hot-sales__item">
+                        <?php foreach ($top3Pro as $value):?>
+                        <a href="index.php?action=chi-tiet-sanpham&detail_product=<?= $value['product_id'] ?>" class="item-card-special__link product-shop-hot-sales__item">
                             <div class="item-card-special">
                                 <div class="item-card-special__img">
                                     <div class="lazy-image__container item-card-special__img-background">
-                                        <img width="100%" src="./img1/a1.jpg" alt="">
+                                        <img width="100%" src="./public/upload/image/product/<?= explode(",", $value['images'])[0] ?>" alt="">
                                     </div>
                                 </div>
                                 <div class="item-card-special__lower-padding">
                                     <div class="item-card-special__name item-card-special__name--special">ÁO thun</div>
                                     <div class="item-card-special__section-price item-card-special__section-price--special">
-                                        <div class="item-card-special__current-price item-card-special__current-price--special">₫150.000</div>
+                                        <div class="item-card-special__current-price item-card-special__current-price--special">₫<?=number_format($value['price'],'0',',','.')?></div>
                                     </div>
                                 </div>
                             </div>
                         </a>
-                        <a href="" class="item-card-special__link product-shop-hot-sales__item">
-                            <div class="item-card-special">
-                                <div class="item-card-special__img">
-                                    <div class="lazy-image__container item-card-special__img-background">
-                                        <img width="100%" src="./img1/a1.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="item-card-special__lower-padding">
-                                    <div class="item-card-special__name item-card-special__name--special">Áo thun</div>
-                                    <div class="item-card-special__section-price item-card-special__section-price--special">
-                                        <div class="item-card-special__current-price item-card-special__current-price--special">₫150.000</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="" class="item-card-special__link product-shop-hot-sales__item">
-                            <div class="item-card-special">
-                                <div class="item-card-special__img">
-                                    <div class="lazy-image__container item-card-special__img-background">
-                                        <img width="100%" src="./img1/a1.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="item-card-special__lower-padding">
-                                    <div class="item-card-special__name item-card-special__name--special">Áo thun</div>
-                                    <div class="item-card-special__section-price item-card-special__section-price--special">
-                                        <div class="item-card-special__current-price item-card-special__current-price--special">₫150.000</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="" class="item-card-special__link product-shop-hot-sales__item">
-                            <div class="item-card-special">
-                                <div class="item-card-special__img">
-                                    <div class="lazy-image__container item-card-special__img-background">
-                                        <img width="100%" src="./img1/a1.jpg" alt="">
-                                    </div>
-                                </div>
-                                <div class="item-card-special__lower-padding">
-                                    <div class="item-card-special__name item-card-special__name--special">ÁO thun</div>
-                                    <div class="item-card-special__section-price item-card-special__section-price--special">
-                                        <div class="item-card-special__current-price item-card-special__current-price--special">₫150.000</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                        <?php endforeach;?>
                     </section>
                 </div>
             </div>

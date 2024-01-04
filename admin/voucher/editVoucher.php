@@ -17,7 +17,7 @@
             <span class="num">8</span>
         </a>
         <a href="#" class="profile">
-            <img src="img/people.png">
+            <img src="../public/upload/image/user/<?= $user['user_image'] ?>">
         </a>
     </nav>
     <!-- NAVBAR -->
@@ -46,7 +46,7 @@
         <div class="table-data">
             <div class="order">
                 <div class="head">
-                    <h3>Thêm voucher</h3>
+                    <h3>Sửa voucher</h3>
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>

@@ -17,7 +17,7 @@
             <span class="num">8</span>
         </a>
         <a href="#" class="profile">
-            <img src="img/people.png">
+            <img src="../public/upload/image/user/<?= $user['user_image'] ?>">
         </a>
     </nav>
     <!-- NAVBAR -->
@@ -80,21 +80,39 @@
                         <td><?=$comment['content']?></td>
                         <td><?=$comment['create_at']?></td>
                         <td>
-                            <a class="btn btn-outline-danger btn-sm" onclick="return confirm('bạn có chắc không')" href="index.php?action=deleteComment&comment_id=<?=$comment['comment_id']?>">Xoá</a>
+                            <a class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal<?=$comment['comment_id']?>">Xoá</a>
                         </td>
                     </tr>
+                    <div class="modal fade" id="exampleModal<?=$comment['comment_id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Xóa bình luận</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Bạn có muốn xóa bình luận: <br> <?= $comment['content'] ?><br>
+                                Người dùng: '<?= $comment['fullName'] ?>'
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                <a class="btn btn-primary" href="index.php?action=deleteComment&comment_id=<?=$comment['comment_id']?>">Xoá</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                     <?php endforeach;?>
                     </tbody>
                 </table>
                 <div class="flex_page">
-                    <a class="click_right" href="index.php?action=listComment&product_id=<?=$_GET['product_id']?>&page=<?=$_GET['page']>1?$_GET['page']-1:1?>">&lt;</a>
+                    <a class="click_right" href="index.php?action=listComment&product_id=<?=$_GET['product_id']?>&page=<?= $_GET['page'] > 1 ? $_GET['page'] - 1 : 1 ?>">&lt;</a>
                     <?php for($i=1;$i<=$pageSL;$i++):?>
                     <?php if($i<=5):?>
                             <a class="page__i" <?=$_GET['page']==$i?'style="color: #ee4d2d;"':''?> href="index.php?action=listComment&product_id=<?=$_GET['product_id']?>&page=<?=$i?>"><?=$i?></a>
                         <?php endif;?>
                     <?php endfor;?>
                     <span style="font-size: 26px;">. . .</span>
-                    <a class="click_left" href="index.php?action=listComment&product_id=<?=$_GET['product_id']?>&page=<?=$_GET['page']+1?>">&gt;</a>
+                    <a class="click_left" href="index.php?action=listComment&product_id=<?=$_GET['product_id']?>&page=<?= $_GET['page'] + 1 <= $pageSL ? $_GET['page'] + 1 : $pageSL ?>">&gt;</a>
                 </div>
             </div>
         </div>

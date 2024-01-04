@@ -122,7 +122,7 @@
                         <div class="Lov07e">Mã đơn hàng</div>
                         <div class="_7TXYl9">
                             <div style="display: inline-block;">
-                                <a class="Fgge+p" href="/user/purchase/order/154704241265533">
+                                <a class="Fgge+p" href="">
                                     <span><?= $order_detail['ma_don_hang'] ?></span>
                                     <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.67983 2.66743C7.92391 2.42336 8.31963 2.42336 8.56371 2.66743L10.3315 4.4352C10.5756 4.67928 10.5756 5.07501 10.3315 5.31908L7.32628 8.32429C7.0822 8.56837 6.68647 8.56837 6.44239 8.32429L4.8514 6.7333L4.32107 7.26363L5.91206 8.85462C6.44903 9.39159 7.31963 9.39159 7.85661 8.85462L10.8618 5.84941C11.3988 5.31244 11.3988 4.44184 10.8618 3.90487L9.09404 2.1371C8.55707 1.60013 7.68647 1.60013 7.1495 2.1371L5.91206 3.37454L6.44239 3.90487L7.67983 2.66743Z" fill="#EE4D2D"></path>
@@ -386,9 +386,12 @@
                                 $colors = explode(",", $order_detail['colors']);
                                 $prices = explode(",", $order_detail['prices']);
                                 $productNames = explode(",", $order_detail['product_names']);
-                                $productImages = explode(",", $order_detail['product_images']);
+                                $productImages = explode(";", $order_detail['product_images']);
                                 $productSales = explode(",", $order_detail['product_sales']);
 
+                                // echo "<pre>";
+                                // echo $order_detail['product_images'];
+                                // echo "</pre>";
                                 // Lặp qua danh sách sản phẩm và hiển thị thông tin
                                 $tongtienhang = 0;
                                 for ($i = 0; $i < count($orderDetailIds); $i++) {
@@ -408,8 +411,9 @@
                                 ?>
                                     <div>
                                         <section>
-                                            <a class="x7nENX" aria-label="" href="/Áo-Khoác-Nữ-Áo-Khoác-Cadigan-Thome-Thêu-Hình-Chó-Chất-Len-Tàu-Hàng-Qccc-i.533651106.22550845743">
-                                                <div class="aybVBK"><img src="./public/upload/image/product/<?= $productImage ?>" class="rGP9Yd" alt="" tabindex="0">
+                                            <a class="x7nENX" aria-label="" href="index.php?action=chi-tiet-sanpham&detail_product=<?= $productId ?>">
+                                                <div class="aybVBK">
+                                                    <img src="./public/upload/image/product/<?= explode(",", $productImage)[0] ?>" class="rGP9Yd" alt="" tabindex="0">
                                                     <div class="_7uZf6Q">
                                                         <div>
                                                             <div class="iJlxsT">
@@ -423,7 +427,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="_9UJGhr" tabindex="0">
-                                                    <div class="rjqzk1"><span class="j2En5+">₫<?= number_format($price, 0, ',', '.') ?></span><span class="-x3Dqh OkfGBc money__kb">₫<?= number_format($productSale, 0, ',', '.') ?></span></div>
+                                                    <div class="rjqzk1">
+                                                        <!-- <span class="j2En5+">₫</span> -->
+                                                        <span class="-x3Dqh OkfGBc money__kb">₫<?= number_format($productSale, 0, ',', '.') ?></span>
+                                                    </div>
                                                 </div>
                                             </a>
                                         </section>
@@ -463,6 +470,12 @@
                                 <div class="_8kMYJ3 B6pCRN"><span>Thành tiền</span></div>
                                 <div class="CxyZBG">
                                     <div class="_8ZGgbl">₫<?= number_format($thanhtien, 0, ',', '.') ?></div>
+                                </div>
+                            </div>
+                            <div class="TokOv1 a59vwO">
+                                <div class="_8kMYJ3 B6pCRN"><span>Tình trạng</span></div>
+                                <div class="CxyZBG">
+                                    <div><span><?= $order_detail['payment_status'] === 'paid' ? "Đã thanh toán" : "Chưa thanh toán" ?></span></div>
                                 </div>
                             </div>
                         </div>

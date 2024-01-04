@@ -1,3 +1,8 @@
+<style>
+    .variant>small{
+        color: red;
+    }
+</style>
 <!-- CONTENT -->
 <section id="content">
     <!-- NAVBAR -->
@@ -17,7 +22,7 @@
             <span class="num">8</span>
         </a>
         <a href="#" class="profile">
-            <img src="img/people.png">
+            <img src="../public/upload/image/user/<?= $user['user_image'] ?>">
         </a>
     </nav>
     <!-- NAVBAR -->
@@ -50,7 +55,8 @@
                     <i class="bx bx-search"></i>
                     <i class="bx bx-filter"></i>
                 </div>
-                <form onsubmit="return checkFormSubmit()" action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data">
+                <form onsubmit="return checkFormSubmit()" action="<?= $_SERVER['REQUEST_URI'] ?>" method="post"
+                      enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="" class="form-label">Tên</label>
                         <input type="text" name="namePro" class="form-control">
@@ -58,7 +64,8 @@
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Ảnh</label>
-                        <input type="file" id="imageInput" class="upFile form-control" name="image[]" multiple accept="image/*">
+                        <input type="file" id="imageInput" class="upFile form-control" name="image[]" multiple
+                               accept="image/*">
                     </div>
                     <div class="product__images">
 
@@ -82,62 +89,91 @@
                         <label for="" class="form-label">Danh mục</label>
                         <select class="form-select" name="selectCategory" id="">
                             <?php
-                                foreach($listCategory_addSp as $key) {
-                                    ?>
-                                        <option value="<?= $key['category_id'] ?>"><?= $key['category_name'] ?></option>
-                                    <?php
-                                }
+                            foreach ($listCategory_addSp as $key) {
+                                ?>
+                                <option value="<?= $key['category_id'] ?>"><?= $key['category_name'] ?></option>
+                                <?php
+                            }
                             ?>
                         </select>
                     </div>
                     <div class="title-text fw-semibold">Phân loại</div>
+                    <div class="form-group">
+                        <label for="" class="form-label">Mô tả chi tiết</label>
+                        <textarea placeholder="Không bắt buộc" class="form-control" name="description"
+                                  rows="3"></textarea>
+                    </div>
                     <div class="form-group" id="listVariant">
                         <div class="variant">
                             <label for="" class="form-label">Màu sắc</label>
                             <input class="add_vari" type="text" name="color[]">
+                            <small></small>
                             <label for="" class="form-label mg_lr">Size</label>
                             <input class="add_vari" type="text" name="size[]">
+                            <small></small>
                             <label for="" class="form-label mg_lr">Số lượng</label>
                             <input class="add_vari" type="text" name="amount[]">
+                            <small></small>
                         </div>
                     </div>
                     <div class="form-group">
                         <input class="btn btn-success addVariant" type="button" value="Thêm phân loại">
                         <input class="btn btn-primary" type="submit" name="addProduct" value="Thêm sản phẩm">
-                        <a href="index.php?action=listCus" class="btn btn-dark">Danh sách</a>
+                        <a href="index.php?action=listProduct" class="btn btn-dark">Danh sách</a>
                     </div>
                 </form>
             </div>
             <script>
-                function checkFormSubmit(){
-                    let status=true;
-                    let formGRS=document.querySelectorAll('.form-group');
-                    formGRS.forEach(function (formGR,index){
-                        let ip=formGR.querySelector('input[type=text]');
-                        if(ip&&index<6){
-                            if(ip.value===''){
-                                ip.nextElementSibling.innerHTML='Không được để trống';
-                                status=false;
-                            }else {
-                                ip.nextElementSibling.innerHTML='';
+                function checkFormSubmit() {
+                    let status = true;
+                    let formGRS = document.querySelectorAll('.form-group');
+                    formGRS.forEach(function (formGR, index) {
+                        let ip = formGR.querySelector('input[type=text]');
+                        if (ip && index < 6) {
+                            if (ip.value === '') {
+                                ip.nextElementSibling.innerHTML = 'Không được để trống';
+                                status = false;
+                            } else {
+                                ip.nextElementSibling.innerHTML = '';
                             }
                         }
                     });
+                    let variant = document.querySelectorAll('.add_vari');
+                    variant.forEach((input, index) => {
+                        if (input.value === '') {
+                            input.nextElementSibling.innerHTML = 'Không được để trống';
+                            status = false;
+                        } else {
+                            input.nextElementSibling.innerHTML = '';
+                        }
+                    });
+
                     return status
                 }
-                let status=true;
-                let formGRS=document.querySelectorAll('.form-group');
-                formGRS.forEach(function (formGR,index){
-                    let ip=formGR.querySelector('input[type=text]');
-                    if(ip&&index<6){
-                        ip.onblur=function (e){
-                            if(ip.value===''){
-                                ip.nextElementSibling.innerHTML='Không được để trống';
-                            }else {
-                                ip.nextElementSibling.innerHTML='';
+
+                let status = true;
+                let formGRS = document.querySelectorAll('.form-group');
+                formGRS.forEach(function (formGR, index) {
+                    let ip = formGR.querySelector('input[type=text]');
+                    if (ip && index < 6) {
+                        ip.onblur = function (e) {
+                            if (ip.value === '') {
+                                ip.nextElementSibling.innerHTML = 'Không được để trống';
+                            } else {
+                                ip.nextElementSibling.innerHTML = '';
                             }
                         }
                     }
+                    let variant = document.querySelectorAll('.add_vari');
+                    variant.forEach((input, index) => {
+                        input.onblur=function (){
+                            if (input.value === '') {
+                                input.nextElementSibling.innerHTML = 'Không được để trống';
+                            } else {
+                                input.nextElementSibling.innerHTML = '';
+                            }
+                        }
+                    })
                 });
             </script>
 

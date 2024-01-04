@@ -71,6 +71,9 @@
                         </div>
                     </div>
                 </div>
+                <div style="position: absolute; right: 49px; top: 137px;">
+                    <?= isset($success_change) ? $success_change : "" ?>
+                </div>
             </form>
         </div>
     </div>

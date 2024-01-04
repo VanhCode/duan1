@@ -6,7 +6,7 @@
                 <div class="updateForm">
                     <img src="./public/upload/image/user/<?= $user['user_image'] ?>" alt="">
                     <div class="update-userImg">
-                        <h5><?= $user['firth_name']." ".$user['last_name'] ?></h5>
+                        <h5><?= $user['first_name']." ".$user['last_name'] ?></h5>
                         <a href="index.php?action=user&user=tai-khoan-cua-toi"><i class="fa-solid fa-pen"></i> Sửa Hồ Sơ</a>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="single">
-                        <a href="index.php?action=user&user=don-mua" id="singleID" class="single-text <?= $userAction == 'don-mua' || isset($_GET['user']) == "order_detail" ? 'sticky' : '' ?>">
+                        <a href="index.php?action=user&user=don-mua" id="singleID" class="single-text <?= $userAction == 'don-mua' ? 'sticky' : '' ?>">
                             <div class="icon">
                                 <i class="fa-solid fa-calendar-days"></i>
                             </div>
@@ -98,9 +98,18 @@
                                 move_uploaded_file($_FILES['image']['tmp_name'],$target);
                             }
                             
-                            updateAccount($userID,$_POST['firth_name'],$_POST['last_name'],$_POST['email'],$filename ? $filename : $oldImage,$_POST['phone'],$_POST['date'],$_POST['gender']);
-                            header('Location:'.$_SERVER['HTTP_REFERER']);
-                            die;
+                            updateAccount($userID,$_POST['first_name'],$_POST['last_name'],$_POST['email'],$filename ? $filename : $oldImage,$_POST['phone'],$_POST['date'],$_POST['address'],$_POST['gender']);
+                            // echo "<script>window.location.href = 'index.php?action=user&user=tai-khoan-cua-toi&profile=change-page';</script>";
+                            $success_change = '
+                                <div style="display:flex;" class="group_content__succesS">
+                                    <div class="group_content__Animation__success__icon">
+                                        <i class="fa-regular fa-circle-check check__squa"></i>
+                                    </div>
+                                    <div class="group_content__Animation__success">
+                                        Đổi mật khẩu thành công
+                                    </div>
+                                </div>
+                            ';
                         }
 
                         include "thongtin.php";

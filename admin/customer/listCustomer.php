@@ -17,7 +17,7 @@
             <span class="num">8</span>
         </a>
         <a href="#" class="profile">
-            <img src="img/people.png">
+            <img src="../public/upload/image/user/<?= $user['user_image'] ?>">
         </a>
     </nav>
     <!-- NAVBAR -->
@@ -72,7 +72,7 @@
                             <td>
                                 <div class="td_user_img">
                                     <img src="../public/upload/image/user/<?= $user['user_image'] ?>">
-                                    <p class="img__bg_user"><?= $user['firth_name'] . ' ' . $user['last_name'] ?></p>
+                                    <p class="img__bg_user"><?= $user['first_name'] . ' ' . $user['last_name'] ?></p>
                                 </div>
                             </td>
                             <td><?=$user['email']?></td>
@@ -91,7 +91,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                 <div class="modal-body">
-                                    Bạn có muốn xóa tài khoản: <?= $user['firth_name'] . ' ' . $user['last_name'] ?>
+                                    Bạn có muốn xóa tài khoản: <?= $user['first_name'] . ' ' . $user['last_name'] ?>
                                 </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>

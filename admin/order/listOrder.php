@@ -17,7 +17,7 @@
             <span class="num">8</span>
         </a>
         <a href="#" class="profile">
-            <img src="img/people.png">
+            <img src="../public/upload/image/user/<?= $user['user_image'] ?>">
         </a>
     </nav>
     <!-- NAVBAR -->
@@ -52,7 +52,7 @@
                     'confirmed' => 'Đã xác nhận',
                     'shipping' => 'Đang vận chuyển',
                     'completed' => 'Hoàn thành',
-                    'requestCanceled' => 'Yêu cầu huỷ',
+                    // 'requestCanceled' => 'Yêu cầu huỷ',
                     'canceled' => 'Đã huỷ'
                 ];
             foreach ($status as $key=>$value):?>
@@ -76,8 +76,10 @@
                         <th>Mã đơn hàng</th>
                         <th>Người đặt hàng</th>
                         <th>Người nhận</th>
+                        <th>Voucher</th>
                         <th>Tổng cộng</th>
                         <th>Ngày đặt hàng</th>
+                        <th>Phương thức thanh toán</th>
                         <th>Trạng thái</th>
                         <th>Thanh toán</th>
                         <th>Chi tiết</th>
@@ -97,11 +99,12 @@
                                     <p style="width: 150px;"><b>ĐC: </b><?= $value['receiver_address'] ?></p>
                                     <p><b>SĐT: </b><?= $value['receiver_phone'] ?></p>
                                 </td>
+                                <td style="color: #ff7d7d;font-weight: 500;"><?= number_format($value['voucher'], 0, ',', '.') ?></td>
                                 <td style="color: #ff7d7d;font-weight: 500;"><?= number_format($value['total'], 0, ',', '.') ?></td>
                                 <td><?= $value['create_at'] ?></td>
-
+                                <td><?= $value['payment_method'] == 'VNPAY' ? "Thanh toán VNPAY" : "Thanh toán khi nhận" ?></td>
                             <td>
-                                <select onchange="changeStatus(this,<?=$value['order_id']?>)"
+                                <select id="status" onchange="changeStatus(this,<?=$value['order_id']?>)"
                                         class="form-select-sm selected_status" name="status"
                                         <?=$value['status']=='completed'||$value['status']=='canceled'?'disabled':''?>
                                 >
@@ -124,9 +127,9 @@
                                 </select>
                             </td>
                             <td>
-                                <select onchange="changeStatus(this,<?= $value['order_id'] ?>,'payment_status')"
+                                <select id="payment_status" onchange="changeStatus(this,<?= $value['order_id'] ?>,'payment_status')"
                                         class="form-select-sm selected_status" name="status"
-                                    <?= $value['payment_status'] == 'completed' ? 'disabled' : '' ?>
+                                    <?= $value['payment_status'] == 'paid' ? 'disabled' : '' ?>
                                 >
                                     <?php
                                     $status =
@@ -159,8 +162,18 @@
                             let xmlHttp = new XMLHttpRequest();
                             xmlHttp.onreadystatechange = function() {
                                 if (this.readyState === 4 && this.status === 200) {
-                                    select.value = this.responseText
-                                    if (this.responseText === 'completed'||this.responseText === 'canceled') {
+                                    let data=JSON.parse(this.responseText);
+                                    select.value=data[select.id];
+                                    if (data['status']&&data['payment_status']) {
+                                        let paymenStatusEL=select.parentElement.parentElement.querySelector('#payment_status');
+                                        paymenStatusEL.value=data['payment_status'];
+                                        paymenStatusEL.disabled = true;
+                                        select.disabled = true;
+                                    }
+                                    if (data.status === 'completed'||data.status === 'canceled') {
+                                        select.disabled = true;
+                                    }
+                                    if (data.payment_status === 'paid') {
                                         select.disabled = true;
                                     }
                                 }

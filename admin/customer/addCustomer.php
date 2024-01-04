@@ -17,7 +17,7 @@
             <span class="num">8</span>
         </a>
         <a href="#" class="profile">
-            <img src="img/people.png">
+            <img src="../public/upload/image/user/<?= $user['user_image'] ?>">
         </a>
     </nav>
     <!-- NAVBAR -->
@@ -54,7 +54,7 @@
 
                     <div class="form-group">
                         <label for="" class="form-label">Họ</label>
-                        <input type="text" class="form-control first blurinp" name="firth_name">
+                        <input type="text" class="form-control first blurinp" name="first_name">
                         <small class="error er_firstname"></small>
                     </div>
                     <div class="form-group">
@@ -70,6 +70,34 @@
                         <label for="" class="form-label">Email</label>
                         <input type="text" class="form-control email blurinp" name="email">
                         <small class="error er_email"></small>
+                    </div>
+                    <div class="form-group">
+                        <div class="start-radio-group d-flex gap-3" role="radiogroup">
+                            <div class="radio-group-item d-flex">
+                                <div class="input-radio">
+                                    <input type="radio" name="gender" value="Nam">
+                                </div>
+                                <div class="radio-text">
+                                    <span>Nam</span>
+                                </div>
+                            </div>
+                            <div class="radio-group-item d-flex">
+                                <div class="input-radio">
+                                    <input type="radio" name="gender" value="Nữ">
+                                </div>
+                                <div class="radio-text">
+                                    <span>Nữ</span>
+                                </div>
+                            </div>
+                            <div class="radio-group-item d-flex">
+                                <div class="input-radio">
+                                    <input type="radio" name="gender" value="Khác">
+                                </div>
+                                <div class="radio-text">
+                                    <span>Khác</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="" class="form-label">Số điện thoại</label>

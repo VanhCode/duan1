@@ -64,18 +64,21 @@
 
                                             <!-- sản phẩm -->
                                                 <?php
+
+                                                    $_GET['idCart'] = $_GET['idCart'] ?? 0;
+
                                                     $tong = 0;
                                                     foreach($listCart as $cart) {
                                                         $sotien = $cart['sale'] * $cart['amount'];
-                                                        
                                                         $tong += $sotien;
+
                                                         ?>
                                                             <div class="Eb+POp">
                                                                 <div class="VPZ9zs">
                                                                     <div class="zoXdNN">
                                                                         <div class="lgcEHJ">
                                                                             <label class="stardust-checkbox">
-                                                                                <input class="stardust-checkbox__input checkBox__productCart checkbox_productcart access__color" id="checkBox__productCart" type="checkbox" name="id_cart[]" value="<?= $cart['cart_id'] ?>">
+                                                                                <input class="stardust-checkbox__input checkBox__productCart checkbox_productcart access__color" id="checkBox__productCart" <?= $_GET['idCart'] == $cart['cart_id'] ? "checked" : "" ?> type="checkbox" name="id_cart[]" value="<?= $cart['cart_id'] ?>">
                                                                                 <input id="checkbox_hidden" type="checkbox" style="opacity: 0;" class="checkbox_hidden" value="<?= $cart['sale'] ?>">
                                                                                 <div class="stardust-checkbox__box"></div>
                                                                             </label>
@@ -209,7 +212,7 @@
                                 <div class="total-payout">
                                     <div class="check-total-payout">
                                         <div class="flex-total-payout">
-                                            <div class="total-text-">Tổng thanh toán (0): </div>
+                                            <div class="total-text-">Tổng thanh toán: </div>
                                             <div class="price-end-total price_full">₫0</div>
                                             <input type="hidden" class="total_pricefull" value="<?= $tong ?>">
                                         </div>

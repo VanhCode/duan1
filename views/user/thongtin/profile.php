@@ -2,11 +2,14 @@
 
 <div class="administer-user">
     <div style="display: contents;">
-        <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="POST" enctype="multipart/form-data">
+        <form onsubmit="return checkForm()" action="<?= $_SERVER['REQUEST_URI'] ?>" method="POST" enctype="multipart/form-data">
             <div class="administer-chil">
                 <div class="administer">
                     <h2 class="SbCTde">Hồ Sơ Của Tôi</h2>
                     <div class="administer-text">Quản lý thông tin hồ sơ để bảo mật tài khoản</div>
+                </div>
+                <div style="position: absolute; right: 40px; top: 21px;">
+                    <?= isset($success_account) ? $success_account : "" ?>
                 </div>
                 <div class="edit-user">
                     <div class="box-form">
@@ -19,7 +22,7 @@
                                     <td class="suggest">
                                         <div>
                                             <div class="userLogin">
-                                                <input type="text" class="nameLogin" name="firth_name" value="<?= $userProfile['firth_name'] ?>">
+                                                <input type="text" class="nameLogin" name="first_name" value="<?= $userProfile['first_name'] ?>">
                                             </div>
                                         </div>
                                     </td>
@@ -43,9 +46,10 @@
                                     <td class="suggest">
                                         <div class="td3">
                                             <div class="userLogin">
-                                                <input type="text" class="nameLogin" name="email" value="<?= $userProfile['email'] ?>">
+                                                <input type="text" class="nameLogin inputEmail" name="email" value="<?= $userProfile['email'] ?>">
                                             </div>
                                         </div>
+                                        <small style="color: red" class="er_email erForm"></small>
                                     </td>
                                 </tr>
                                 <tr>
@@ -54,8 +58,21 @@
                                     </td>
                                     <td class="suggest">
                                         <div class="td3">
+                                            <div class="userLogin phone_login">
+                                                <input type="text" class="nameLogin inputPhone" name="phone" value="<?= $userProfile['phone'] ?>">
+                                            </div>
+                                        </div>
+                                        <small style="color: red" class="er_phone erForm"></small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-user">
+                                        <label>Địa chỉ</label>
+                                    </td>
+                                    <td class="suggest">
+                                        <div class="td3">
                                             <div class="userLogin">
-                                                <input type="text" class="nameLogin" name="phone" value="<?= $userProfile['phone'] ?>">
+                                                <input type="text" class="nameLogin" name="address" value="<?= $userProfile['address'] ?>">
                                             </div>
                                         </div>
                                     </td>
@@ -142,3 +159,66 @@
 </div>
 
 <!-- end chỉnh sửa hồ sơ -->
+<script>
+    function checkForm(){
+        let countErr=0;
+        let erEl=document.querySelectorAll('.erForm');
+        erEl.forEach((el)=>{
+            if(el.innerHTML!==""){
+                console.log(el.innerHTML)
+                countErr++;
+            }
+        });
+        if(countErr==0){
+            return true;
+        }
+        return false;
+    }
+    let errPhone =document.querySelector('.er_phone');
+    let inputPhone=document.querySelector('.inputPhone');
+    let userLogin = document.querySelector('.phone_login');
+    var xmlHttp = new XMLHttpRequest();
+
+    inputPhone.oninput= function (e){
+        xmlHttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                errPhone.innerHTML = xmlHttp.responseText;
+                // userLogin.classList.add('activeErr')
+            }
+        };
+        xmlHttp.open("GET", "admin/xmlHttpRequest/check.php?phone="+inputPhone.value);
+        xmlHttp.send();
+    }
+    // inputPhone.onblur= function (e){
+    //     xmlHttp.onreadystatechange = function() {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             errPhone.innerHTML = xmlHttp.responseText;
+    //         }
+    //     };
+    //     xmlHttp.open("GET", "admin/xmlHttpRequest/check.php?phone="+inputPhone.value);
+    //     xmlHttp.send();
+    // }
+    let errEmail = document.querySelector('.er_email');
+    let inputEmail=document.querySelector('.inputEmail');
+    inputEmail.oninput= function (e){
+        xmlHttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                errEmail.innerHTML = xmlHttp.responseText;
+            }
+        };
+        xmlHttp.open("GET", "admin/xmlHttpRequest/check.php?email="+inputEmail.value);
+        xmlHttp.send();
+    }
+    // inputEmail.onblur= function (e){
+    //     xmlHttp.onreadystatechange = function() {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             errEmail.innerHTML = xmlHttp.responseText;
+    //         }
+    //     };
+    //     xmlHttp.open("GET", "admin/xmlHttpRequest/check.php?email="+inputEmail.value);
+    //     xmlHttp.send();
+    // }
+    checkForm();
+
+
+</script>

@@ -17,6 +17,18 @@
                     $newPassword = $_POST['newPassword'];
                     $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
                     updatePassword($newPasswordHash);
+                    header('Location:'.$_SERVER['HTTP_REFERER']);
+                    $success_change = '
+                        <div style="display:flex;" class="group_content__succesS">
+                            <div class="group_content__Animation__success__icon">
+                                <i class="fa-regular fa-circle-check check__squa"></i>
+                            </div>
+                            <div class="group_content__Animation__success">
+                                Đổi mật khẩu thành công
+                            </div>
+                        </div>
+                    ';
+                    echo "<script>window.location.href = '".$_SERVER['HTTP_REFERER']."'</script>";
                 }
                 include "thongtin/changepass.php";
             }

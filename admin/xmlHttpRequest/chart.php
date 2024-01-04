@@ -9,11 +9,12 @@ function statistical($from,$to,$type='DATE'){
       WHERE DATE_ADD(date, INTERVAL 1 DAY) <= '$to'
     )
     ";
-    $sql.="SELECT ".($type == 'MONTH' ? "DATE_FORMAT(dates.date, '%Y-%m')" : "$type(dates.date)")." AS date, COUNT(orders.order_id) AS num_orders, SUM((order_details.amount * order_details.price) - orders.voucher) AS revenue
+    $sql.="SELECT ".($type == 'MONTH' ? "DATE_FORMAT(dates.date, '%Y-%m')" : "$type(dates.date)")." AS date, COUNT(orders.order_id) AS num_orders, SUM((order_details.amount * order_details.price) + orders.voucher) AS revenue
     FROM dates
     LEFT JOIN orders ON DATE(orders.create_at) = DATE(dates.date)
     LEFT JOIN order_details ON order_details.order_id=orders.order_id
-    GROUP BY $type(dates.date)";
+    GROUP BY $type(dates.date)
+    ORDER BY $type(dates.date)";
     return query($sql)->fetchAll();
 }
 $data=statistical($_POST['from']??'2023-10-11',$_POST['to']??'2023-11-30',$_POST['type']??'DATE');
