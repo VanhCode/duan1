@@ -136,7 +136,7 @@
             <li>
                 <i class='bx bxs-dollar-circle'></i>
                 <span class="text">
-                    <h3><?= number_format($totalSell['total_sell'], 0, ',', '.') ?></h3>
+                    <h3><?= number_format($totalSell['total_sell']??0, 0, ',', '.') ?></h3>
                     <p>Tổng doanh thu</p>
                 </span>
             </li>

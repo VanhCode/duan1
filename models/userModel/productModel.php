@@ -166,7 +166,7 @@
                 FROM 
                     variants
                 WHERE 
-                    product_id = '$id_product' GROUP BY color";
+                    product_id = '$id_product' GROUP BY color,variant_id";
         return pdo_query($sql);
     }    
 
@@ -181,7 +181,7 @@
                 FROM 
                     variants
                 WHERE 
-                    product_id = '$id_product' GROUP BY product_id";
+                    product_id = '$id_product' GROUP BY product_id,variant_id";
         return pdo_query_one($sql);
     }
 
