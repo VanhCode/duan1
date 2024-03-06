@@ -335,7 +335,6 @@
                 revenue: data.revenue[i]
             };
         });
-        console.log(dataArray);
         // Sắp xếp mảng theo ngày
         dataArray.sort(function(a, b) {
             return new Date(a.date) - new Date(b.date);

@@ -18,7 +18,11 @@ session_start();
 $userID = $_SESSION['user_id'] ?? 0;
 $user = getDataBy('users',['user_id'=>$userID]);
 $_SESSION['user']=$user;
-if(!$user['role']){
+if($user){
+    if(!$user['role']){
+        header('location: ../index.php?action=login');
+    }
+}else{
     header('location: ../index.php?action=login');
 }
 
