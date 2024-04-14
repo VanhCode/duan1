@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 31, 2024 at 09:12 PM
--- Server version: 8.0.30
--- PHP Version: 8.1.10
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th12 25, 2023 lúc 07:34 AM
+-- Phiên bản máy phục vụ: 10.4.28-MariaDB
+-- Phiên bản PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,50 +18,52 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `vanh-store`
+-- Cơ sở dữ liệu: `vanh-store`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart`
+-- Cấu trúc bảng cho bảng `cart`
 --
 
 CREATE TABLE `cart` (
-  `cart_id` int NOT NULL,
-  `user_id` int NOT NULL,
-  `product_id` int NOT NULL,
-  `amount` int NOT NULL,
-  `size` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `color` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `cart_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `amount` int(100) NOT NULL,
+  `size` varchar(100) NOT NULL,
+  `color` varchar(100) NOT NULL,
+  `create_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `cart`
+-- Đang đổ dữ liệu cho bảng `cart`
 --
 
 INSERT INTO `cart` (`cart_id`, `user_id`, `product_id`, `amount`, `size`, `color`, `create_at`) VALUES
+(209, 37, 123, 1, 'XL', 'Áo sọc trắng', '2023-12-02 15:13:05'),
 (228, 30, 122, 2, 'XL', 'Trắng', '2023-12-06 05:08:47'),
 (229, 30, 129, 1, 'S', 'Hồng nhạt', '2023-12-06 05:10:21'),
+(235, 41, 156, 1, 'orversize', '7 sắc màu', '2023-12-08 07:18:12'),
 (239, 43, 134, 1, 'L', 'Đen', '2023-12-08 08:20:45'),
 (240, 43, 125, 1, 'XL', 'vàng nhạt', '2023-12-08 08:20:51');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Cấu trúc bảng cho bảng `categories`
 --
 
 CREATE TABLE `categories` (
-  `category_id` int NOT NULL,
-  `category_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `image_cate` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `status_category` varchar(20) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'show'
+  `category_id` int(11) NOT NULL,
+  `category_name` varchar(100) NOT NULL,
+  `image_cate` varchar(255) DEFAULT NULL,
+  `status_category` varchar(20) NOT NULL DEFAULT 'show'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `categories`
+-- Đang đổ dữ liệu cho bảng `categories`
 --
 
 INSERT INTO `categories` (`category_id`, `category_name`, `image_cate`, `status_category`) VALUES
@@ -76,22 +78,24 @@ INSERT INTO `categories` (`category_id`, `category_name`, `image_cate`, `status_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Cấu trúc bảng cho bảng `comments`
 --
 
 CREATE TABLE `comments` (
-  `comment_id` int NOT NULL,
-  `user_id` int NOT NULL,
-  `product_id` int NOT NULL,
-  `content` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `comment_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `create_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `comments`
+-- Đang đổ dữ liệu cho bảng `comments`
 --
 
 INSERT INTO `comments` (`comment_id`, `user_id`, `product_id`, `content`, `create_at`) VALUES
+(1, 23, 133, 'Chất lượng tốt', '2023-11-16 16:10:33'),
+(2, 23, 133, 'Tôi nhận đc hàng chất lượng tốt lắm', '2023-11-16 16:33:07'),
 (8, 30, 159, 'Chất lượng', '2023-11-26 04:33:09'),
 (14, 30, 159, 'Chất lượng', '2023-11-26 07:35:31'),
 (15, 30, 159, 'Ok lắm', '2023-11-26 07:41:34'),
@@ -102,6 +106,7 @@ INSERT INTO `comments` (`comment_id`, `user_id`, `product_id`, `content`, `creat
 (20, 30, 122, 'Chất lượng', '2023-11-26 09:17:23'),
 (21, 30, 122, 'Ok lắm', '2023-11-26 09:17:33'),
 (22, 30, 128, 'Đẹp lắm', '2023-11-26 13:41:19'),
+(23, 30, 134, 'Chất lượng', '2023-11-29 04:09:42'),
 (24, 30, 131, 'Chất lượng', '2023-12-03 07:58:58'),
 (25, 30, 131, 'Ok lắm', '2023-12-03 11:14:25'),
 (26, 30, 131, 'g', '2023-12-03 14:46:02'),
@@ -110,25 +115,25 @@ INSERT INTO `comments` (`comment_id`, `user_id`, `product_id`, `content`, `creat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders`
+-- Cấu trúc bảng cho bảng `orders`
 --
 
 CREATE TABLE `orders` (
-  `order_id` int NOT NULL,
-  `user_id` int NOT NULL,
-  `ma_don_hang` varchar(11) COLLATE utf8mb4_general_ci NOT NULL,
-  `receiver_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `receiver_phone` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `receiver_address` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` varchar(100) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'pending',
-  `payment_status` varchar(100) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'unpaid',
-  `payment_method` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `voucher` int NOT NULL,
-  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `order_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `ma_don_hang` varchar(11) NOT NULL,
+  `receiver_name` varchar(255) NOT NULL,
+  `receiver_phone` varchar(255) NOT NULL,
+  `receiver_address` varchar(255) NOT NULL,
+  `status` varchar(100) NOT NULL DEFAULT 'pending',
+  `payment_status` varchar(100) NOT NULL DEFAULT 'unpaid',
+  `payment_method` varchar(100) DEFAULT NULL,
+  `voucher` int(50) NOT NULL,
+  `create_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `orders`
+-- Đang đổ dữ liệu cho bảng `orders`
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `ma_don_hang`, `receiver_name`, `receiver_phone`, `receiver_address`, `status`, `payment_status`, `payment_method`, `voucher`, `create_at`) VALUES
@@ -137,26 +142,39 @@ INSERT INTO `orders` (`order_id`, `user_id`, `ma_don_hang`, `receiver_name`, `re
 (152, 30, 'ASTHBWF4', 'admin  ', '0356720081', 'Hà nội', 'pending', 'paid', 'tienmat', -100000, '2023-12-04 07:26:34'),
 (153, 30, '72GV243Q', 'admin ', 'tranvanh2k4@gmail.com', 'Hà nội', 'pending', 'paid', 'VNPAY', 0, '2023-12-04 16:44:57'),
 (154, 30, 'SQLNGBH6', 'admin ', '0969621079', 'Đan Phượng', 'pending', 'paid', 'VNPAY', -15000, '2023-12-04 16:26:25'),
-(165, 43, 'T88ELCVV', 'Linh Nguyen', '0968607305', 'vinh phuc', 'pending', 'paid', 'VNPAY', -30000, '2023-12-08 08:21:43');
+(155, 40, 'IRW0LXI2', 'vanhh trann', '0969621079', 'Số nhà 14, Thôn 5, xã Thượng Mỗ, Huyện Đan Phượng, Hà Nội', 'pending', 'unpaid', 'tienmat', 0, '2023-12-05 05:13:49'),
+(156, 40, 'FD7UXNV6', 'vanhh trann', '0969621079', 'Số nhà 14, Thôn 5, xã Thượng Mỗ, Huyện Đan Phượng, Hà Nội', 'completed', 'paid', 'VNPAY', 0, '2023-12-05 05:25:07'),
+(157, 40, 'JHBM78CO', 'vanhh trann', '0969621079', 'Số nhà 14, Thôn 5, xã Thượng Mỗ, Huyện Đan Phượng, Hà Nội', 'completed', 'paid', 'tienmat', 0, '2023-12-05 05:27:37'),
+(158, 41, '932S58WF', 'ĐÀO ĐỨC HIỆP', '0961619038', '14 ngõ 75 đường phú diễn', 'canceled', 'unpaid', 'tienmat', 0, '2023-12-07 17:18:54'),
+(159, 41, 'GETLB06V', 'ĐÀO ĐỨC HIỆP', '0961619038', '14 ngõ 75 đường phú diễn', 'canceled', 'unpaid', 'tienmat', 0, '2023-12-07 17:15:00'),
+(160, 41, 'UPPDDDWC', 'ĐÀO ĐỨC HIỆP', 'hiepdepzai2508@gmail.com', '14 ngõ 75 đường phú diễn', 'pending', 'unpaid', 'tienmat', 0, '2023-12-07 17:15:43'),
+(161, 41, '', '', '', '', 'pending', 'unpaid', 'tienmat', 0, '2023-12-07 17:18:18'),
+(162, 41, 'QWKGE4Q2', 'ĐÀO ĐỨC HIỆP', '0961619038', '14 ngõ 75 đường phú diễn', 'canceled', 'unpaid', 'tienmat', 0, '2023-12-07 17:18:57'),
+(163, 41, 'BVBR047Q', 'ĐÀO ĐỨC HIỆP', '0961619038', '14 ngõ 75 đường phú diễn', 'pending', 'unpaid', 'tienmat', 0, '2023-12-07 17:37:13'),
+(164, 41, '0H7RC4VK', 'duy nguyen', '0968607305', 'P. Vĩnh Phúc, hà nội', 'pending', 'unpaid', 'tienmat', -100000, '2023-12-08 07:40:50'),
+(165, 43, 'T88ELCVV', 'Linh Nguyen', '0968607305', 'vinh phuc', 'pending', 'paid', 'VNPAY', -30000, '2023-12-08 08:21:43'),
+(166, 45, 'ZHEL7BLV', 'duy nguyen', '0968607305', 'P. Vĩnh Phúc, hà nội', 'pending', 'paid', 'VNPAY', 0, '2023-12-08 08:22:31'),
+(167, 45, 'O8HSU2BD', 'duy nguyen', '0968607305', 'P. Vĩnh Phúc, hà nội', 'completed', 'paid', 'tienmat', 0, '2023-12-08 08:22:50'),
+(168, 45, 'LQ2QYO0K', 'duy nguyen', '0968607305', 'P. Vĩnh Phúc, hà nội', 'canceled', 'unpaid', 'tienmat', 0, '2023-12-08 08:24:30');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_details`
+-- Cấu trúc bảng cho bảng `order_details`
 --
 
 CREATE TABLE `order_details` (
-  `order_detail_id` int NOT NULL,
-  `order_id` int NOT NULL,
-  `product_id` int NOT NULL,
-  `amount` int NOT NULL,
-  `size` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `color` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `price` int NOT NULL
+  `order_detail_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `amount` int(100) NOT NULL,
+  `size` varchar(100) NOT NULL,
+  `color` varchar(100) NOT NULL,
+  `price` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `order_details`
+-- Đang đổ dữ liệu cho bảng `order_details`
 --
 
 INSERT INTO `order_details` (`order_detail_id`, `order_id`, `product_id`, `amount`, `size`, `color`, `price`) VALUES
@@ -168,30 +186,44 @@ INSERT INTO `order_details` (`order_detail_id`, `order_id`, `product_id`, `amoun
 (185, 152, 125, 3, 'XL', 'vàng nhạt', 179000),
 (186, 153, 134, 1, 'M', 'Đen', 130000),
 (187, 154, 139, 1, 'M', 'Trắng', 179000),
+(188, 155, 128, 1, 'M', 'Hồng', 269000),
+(189, 156, 133, 1, 'L', 'trắng', 149000),
+(190, 157, 132, 1, 'M', 'Đen', 180000),
+(191, 158, 128, 1, 'S', 'Hồng', 269000),
+(192, 159, 151, 1, 'L', 'Nâu', 69000),
+(193, 160, 131, 1, 'M', 'Đen', 535000),
+(194, 162, 158, 1, 'orversize', 'trắng', 87000),
+(195, 163, 128, 1, 'M', 'Hồng', 269000),
+(196, 164, 122, 6, 'L', 'Trắng', 229000),
 (197, 165, 125, 1, 'XL', 'vàng nhạt', 179000),
-(198, 165, 134, 1, 'L', 'Đen', 130000); 
+(198, 165, 134, 1, 'L', 'Đen', 130000),
+(199, 166, 124, 1, 'S', 'Đen', 169000),
+(200, 166, 160, 1, 'L', 'Nâu', 100000),
+(201, 167, 124, 1, 'S', 'Đen', 169000),
+(202, 167, 160, 1, 'L', 'Nâu', 100000),
+(203, 168, 164, 1, 'L', 'Trắng Xanh', 59000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Cấu trúc bảng cho bảng `products`
 --
 
 CREATE TABLE `products` (
-  `product_id` int NOT NULL,
-  `product_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_name` varchar(100) NOT NULL,
   `price` double(10,2) NOT NULL,
   `sale` double(10,2) DEFAULT NULL,
-  `images` text COLLATE utf8mb4_general_ci,
-  `search_count` int NOT NULL DEFAULT '0',
-  `product_gender` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_general_ci NOT NULL,
-  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `category_id` int NOT NULL
+  `images` text DEFAULT NULL,
+  `search_count` int(11) NOT NULL DEFAULT 0,
+  `product_gender` varchar(20) DEFAULT NULL,
+  `description` text NOT NULL,
+  `create_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `products`
+-- Đang đổ dữ liệu cho bảng `products`
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `price`, `sale`, `images`, `search_count`, `product_gender`, `description`, `create_at`, `category_id`) VALUES
@@ -238,101 +270,158 @@ INSERT INTO `products` (`product_id`, `product_name`, `price`, `sale`, `images`,
 (163, 'Bộ Quần Áo Ngắn Tay In Chữ Thời Trang Chất Lượng Cao Cho Nam', 400000.00, 299000.00, '1701967949sg-11134201-7qvda-liliif84grepb9_tn.jpg,1701967949sg-11134201-7qvdz-lil2wr5m36z1d7_tn.jpg,1701967949sg-11134201-7qves-lil2ws04vy3z0d_tn.jpg,1701967949sg-11134201-7qvfd-lil2wqrqni0nb0_tn.jpg', 0, 'Nam', '- Thiết kế trẻ trung cá tính cực kỳ sang trọng và lịch sự giễ dàng tạo ấn tượng ở cái nhìn đầu tiên giúp bạn thêm phần tự tin thể hiện cá tính\r\n\r\n\r\n\r\n- Sản phẩm được shop sản xuất gia công tỷ phú thẩm mỹ đảm bảo chất lượng - đường may kỹ chắc chắn dáng chuẩn dễ mặc không kén dáng\r\n\r\n\r\n\r\n- Màu sắc đa dạng , cá tính , nổi bật , rất giễ phối đồ , rất cuốn hút khi mặc đi chơi hay đi làm\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nRỒI DẪN CHỌN SIZE : *** ( lưu ý : bảng size chỉ mang tính chất tham khảo các bạn hãy để lại 1 tin nhắn để shop được tư vấn kỹ hơn nhé !!! )\r\n\r\n\r\n\r\n\r\n\r\nsize M : dưới 1m68 < 55kg\r\n\r\n\r\n\r\nsize L : từ 1m65 đến 1m73 dưới 60kg\r\n\r\n\r\n\r\nsize XL : từ 1m73 - 1m76 dưới 70kg\r\n\r\n\r\n\r\n\r\n\r\nSHOP hỗ trợ đổi size , đổi màu , đổi mẫu  nếu sản phẩm bạn mặc không vừa , không giống mẫu , sai mẫu ... không vừa ý ạ\r\n\r\n\r\n\r\n\r\n\r\nTên DẪN BẢO QUẢN :\r\n\r\n\r\n\r\nVải thun co giãn pha thêm trong vải cá sấu poly kém bền với nhiệt vì vậy không nên giặt chúng trong nước nóng trên 40 độ C hay phơi ngoài trời nắng gạt vì sẽ làm vải xơ cứng, vải bạc màu.\r\n\r\n\r\n\r\nVải poly ít nhăn không cần phải may, nếu cần may thì nên điều chỉnh nhiệt độ xuống dưới 180 độ C để tránh làm vải mất độ đàn hồi do quá nóng.\r\n\r\n\r\n\r\nKhông nên sử dụng chất tẩy rửa mạnh, phân loại đồ màu đậm với màu nhạt khi giặt để tránh lem màu và nên lộn trái áo khi phơi để bảo vệ màu và hình trên áo.\r\n\r\n🔰🔰🔰  HƯỚNG DẪN CÁCH ĐẶT HÀNG:     \r\n\r\n\r\n\r\n     *KHÔNG GỬI THEO GHI CHÚ** \r\n\r\n\r\n\r\n\r\n\r\n✔ Cách chọn size: Shop có bảng size mẫu. Bạn NÊN INBOX, cung cấp chiều cao, cân nặng để SHOP TƯ VẤN SIZE \r\n\r\n\r\n\r\n✔ Mã sản phẩm đã có trong ảnh \r\n\r\n\r\n\r\n✔ Cách đặt hàng: Nếu bạn muốn mua 2 sản phẩm khác nhau hoặc 2 size khác nhau, để được freeship \r\n\r\n\r\n\r\n-	Bạn chọn từng sản phẩm rồi thêm vào giỏ hàng \r\n\r\n\r\n\r\n-	Khi giỏ hàng đã có đầy đủ các sản phẩm cần mua, bạn mới tiến hành ấn nút “\r\n\r\n\r\n\r\n🔰🔰🔰  **CAM KẾT VỀ ĐỔI TRẢ VÀ BẢO HÀNH\r\n\r\n\r\n\r\nSản phẩm cam kết đúng như mô tả, shop cam kết mang đến cho khách hàng sản phẩm chất lượng và giá cả hợp lý\r\n\r\n\r\n\r\n- Áo được kiểm tra trước khi gói hàng tránh giao nhầm lẫn cho khách\r\n\r\n\r\n\r\n- Hoàn lại tiền cho khách nếu sản phẩm không đúng như mô tả\r\n\r\n\r\n\r\n- Giao hàng nhanh nhất sau khi có đơn. Giao hàng trên toàn quốc, thanh toán khi nhận hàng\r\n\r\n\r\n\r\n- Đổi trả đúng theo quy định của shopee\r\n\r\n\r\n\r\n--------------------------------------------------------------------------------------------------------------------------------\r\n\r\n\r\n\r\nQuy định bảo hành, đổi trả đối với sản phẩm \r\n\r\n\r\n\r\n- Đổi trả theo đúng quy định của shopee\r\n\r\n\r\n\r\n- Điều kiện áp dụng (trong vòng 07 ngày kể từ khi nhận sản phẩm)\r\n\r\n\r\n\r\n- Hàng hoá vẫn còn mới, không bị hỏng hóc và giặt tẩy\r\n\r\n\r\n\r\n- Hàng hóa hư hỏng do lỗi vận chuyển hoặc do nhà sản xuất. \r\n\r\n\r\n\r\n- Hàng không đúng kiểu dáng mà khách hàng đã đặt \r\n\r\n\r\n\r\n- Không đủ bộ, số lượng mà khách hàng đã đặt \r\n\r\n\r\n\r\n', '2023-12-07 16:52:29', 24),
 (164, 'Bộ Quần Áo Nam AVIANO Dài Tay, Bộ Thể Thao Nam Chất Nỉ Tổ Ong 4 Màu', 89000.00, 59000.00, '1701968203vn-11134207-7r98o-lmo5lmvo3f1b12_tn.jpg,1701968203vn-11134207-7r98o-lmo5lmvo4tlr08_tn.jpg,1701968217sg-11134201-7rbl8-lmik919ho7mx74_tn.jpg', 0, 'Nam', 'Bộ Quần Áo Nam AVIANO Dài Tay, Bộ Thể Thao Nam Chất Nỉ Tổ Ong 4 Màu', '2023-12-07 16:56:43', 24),
 (165, 'Giày Thể Thao Giả Da Thời Trang Năng Động Dành Cho Nữ', 400000.00, 199000.00, '1701968592sg-11134201-7qvcu-li1k49uuwt2h2b_tn.jpg,1701968592sg-11134201-7qvd0-li1k47om3b22b5_tn.jpg,1701968592sg-11134201-7qvfc-li1k48kss8329d_tn.jpg', 0, 'Giày', 'Thời gian giao hàng dự kiến cho sản phẩm này là từ 7-9 ngày\r\n\r\n\r\n\r\nLoại hoạ tiết: Màu trơn\r\n\r\nKiểu gót: Gót nêm\r\n\r\nChất liệu lớp lót bên trong: Vải\r\n\r\nDành cho các môn thể thao: Thông dụng\r\n\r\nMàu sắc: Đỏ, đen, tím, hồng, xám\r\n\r\nDanh mục sản phẩm: Giày thể thao lười\r\n\r\nChiều cao thân trên: Thấp\r\n\r\nChiều cao gót: Gót thấp (1-3cm)\r\n\r\nHình dạng gót giày: Gót nêm\r\n\r\nSize: 36, 37, 38, 39, 40, 41\r\n\r\nQuy trình sản xuất đế giày: Giày đúc phun\r\n\r\nĐộ sâu miệng giày: Miệng nông (Dưới 7cm)\r\n\r\nChất liệu đế: Nhựa\r\n\r\nChất liệu và công nghệ: Dệt bay\r\n\r\nChi tiết phong cách: Miệng nhẹ, Kết hợp màu sắc\r\n\r\nPhong cách: Thường ngày\r\n\r\nCách mang: Xỏ vào bàn chân\r\n\r\nChất liệu đế: Loại dệt\r\n\r\nDịp sử dụng thích hợp: Đi chơi\r\n\r\nHình dạng mũi giày: Mũi tròn\r\n\r\nChất liệu mặt trên: Lưới\r\n\r\nPhong cách: Xỏ vào bàn chân\r\n\r\nThích hợp cho: Nữ\r\n\r\nĐộ tuổi sử dụng thích hợp: Người lớn\r\n\r\nChức năng: Thoáng khí\r\n\r\nMùa sử dụng thích hợp: Mùa hè, Mùa xuân, Mùa thu\r\n\r\nPhong cách: Đi chơi', '2023-12-07 17:03:12', 26),
-(166, 'Giày thể thao IELGY mềm mại thoáng khí sành điệu thời trang dành cho nữ', 399000.00, 250000.00, '1701968779a941506dfe81fad5990188c08c219033_tn.jpg,1701968779c05b38ea9619dc832a149fcf4c39df8b_tn.jpg', 0, 'Giày', 'Thời gian giao hàng dự kiến cho sản phẩm này là từ 7-9 ngày\r\n\r\n\r\n\r\nLoại hoạ tiết: Màu trơn\r\n\r\nKiểu gót: Gót nêm\r\n\r\nChất liệu lớp lót bên trong: Vải\r\n\r\nDành cho các môn thể thao: Thông dụng\r\n\r\nMàu sắc: Đỏ, đen, tím, hồng, xám\r\n\r\nDanh mục sản phẩm: Giày thể thao lười\r\n\r\nChiều cao thân trên: Thấp\r\n\r\nChiều cao gót: Gót thấp (1-3cm)\r\n\r\nHình dạng gót giày: Gót nêm\r\n\r\nSize: 36, 37, 38, 39, 40, 41\r\n\r\nQuy trình sản xuất đế giày: Giày đúc phun\r\n\r\nĐộ sâu miệng giày: Miệng nông (Dưới 7cm)\r\n\r\nChất liệu đế: Nhựa\r\n\r\nChất liệu và công nghệ: Dệt bay\r\n\r\nChi tiết phong cách: Miệng nhẹ, Kết hợp màu sắc\r\n\r\nPhong cách: Thường ngày\r\n\r\nCách mang: Xỏ vào bàn chân\r\n\r\nChất liệu đế: Loại dệt\r\n\r\nDịp sử dụng thích hợp: Đi chơi\r\n\r\nHình dạng mũi giày: Mũi tròn\r\n\r\nChất liệu mặt trên: Lưới\r\n\r\nPhong cách: Xỏ vào bàn chân\r\n\r\nThích hợp cho: Nữ\r\n\r\nĐộ tuổi sử dụng thích hợp: Người lớn\r\n\r\nChức năng: Thoáng khí\r\n\r\nMùa sử dụng thích hợp: Mùa hè, Mùa xuân, Mùa thu\r\n\r\nPhong cách: Đi chơi', '2023-12-07 17:06:19', 30);
+(166, 'Giày thể thao IELGY mềm mại thoáng khí sành điệu thời trang dành cho nữ', 399000.00, 250000.00, '170196877967d21d0631fd964ca7c9ec7751d33e37_tn.jpg,1701968779a941506dfe81fad5990188c08c219033_tn.jpg,1701968779c05b38ea9619dc832a149fcf4c39df8b_tn.jpg', 0, 'Giày', 'Thời gian giao hàng dự kiến cho sản phẩm này là từ 7-9 ngày\r\n\r\n\r\n\r\nLoại hoạ tiết: Màu trơn\r\n\r\nKiểu gót: Gót nêm\r\n\r\nChất liệu lớp lót bên trong: Vải\r\n\r\nDành cho các môn thể thao: Thông dụng\r\n\r\nMàu sắc: Đỏ, đen, tím, hồng, xám\r\n\r\nDanh mục sản phẩm: Giày thể thao lười\r\n\r\nChiều cao thân trên: Thấp\r\n\r\nChiều cao gót: Gót thấp (1-3cm)\r\n\r\nHình dạng gót giày: Gót nêm\r\n\r\nSize: 36, 37, 38, 39, 40, 41\r\n\r\nQuy trình sản xuất đế giày: Giày đúc phun\r\n\r\nĐộ sâu miệng giày: Miệng nông (Dưới 7cm)\r\n\r\nChất liệu đế: Nhựa\r\n\r\nChất liệu và công nghệ: Dệt bay\r\n\r\nChi tiết phong cách: Miệng nhẹ, Kết hợp màu sắc\r\n\r\nPhong cách: Thường ngày\r\n\r\nCách mang: Xỏ vào bàn chân\r\n\r\nChất liệu đế: Loại dệt\r\n\r\nDịp sử dụng thích hợp: Đi chơi\r\n\r\nHình dạng mũi giày: Mũi tròn\r\n\r\nChất liệu mặt trên: Lưới\r\n\r\nPhong cách: Xỏ vào bàn chân\r\n\r\nThích hợp cho: Nữ\r\n\r\nĐộ tuổi sử dụng thích hợp: Người lớn\r\n\r\nChức năng: Thoáng khí\r\n\r\nMùa sử dụng thích hợp: Mùa hè, Mùa xuân, Mùa thu\r\n\r\nPhong cách: Đi chơi', '2023-12-07 17:06:19', 26);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `todolist`
+-- Cấu trúc bảng cho bảng `todolist`
 --
 
 CREATE TABLE `todolist` (
-  `todolist_id` int NOT NULL,
-  `content` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` varchar(100) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'not-completed'
+  `todolist_id` int(11) NOT NULL,
+  `content` varchar(100) NOT NULL,
+  `status` varchar(100) NOT NULL DEFAULT 'not-completed'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `todolist`
+-- Đang đổ dữ liệu cho bảng `todolist`
 --
 
 INSERT INTO `todolist` (`todolist_id`, `content`, `status`) VALUES
 (2, 'Bán 100 đơn hàng', 'completed'),
-(3, '', 'not-completed'),
-(4, '', 'not-completed');
+(3, '', 'not-completed');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `users`
 --
 
 CREATE TABLE `users` (
-  `user_id` int NOT NULL,
-  `first_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `last_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `user_image` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `password` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `phone` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `user_image` varchar(255) DEFAULT NULL,
+  `password` varchar(100) NOT NULL,
+  `phone` varchar(100) DEFAULT NULL,
   `date` date NOT NULL,
-  `address` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `gender` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
-  `role` int NOT NULL DEFAULT '0'
+  `address` varchar(255) DEFAULT NULL,
+  `gender` varchar(10) NOT NULL,
+  `role` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
 INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `user_image`, `password`, `phone`, `date`, `address`, `gender`, `role`) VALUES
-(30, 'admin', '', 'admin@gmail.com', '17018383221701005255nam.png', '$2y$10$NkJq23HyaGznm8n/6J6HfOhJsApTy9HUn9X/j5yPQyrkqqElli.fi', '', '2023-12-22', 'Hà nội', 'Nam', 1),
-(43, 'admin', '', 'duynnz1901@gmail.com', '17020214671701005255nam.png', '$2y$10$G6T2ZmJCDkRf.sUUdVEASOAYWnH2edE3HrbYSdcLTqAjjgCGvolly', '0968607305', '0000-00-00', '', 'Nam', 1);
+(23, 'Trần', 'Việt Anh', '0969621079', '1700209006t.jpg', '$2y$10$fD1QlC9oO9ctnW72mkcn8u0WtSermLnsV1FTw51lhxgBEO3ED57Rm', '0969621079', '2023-11-16', 'Hà nội', 'Nam', 0),
+(30, 'admin', '', 'admin@gmail.com', '17018383221701005255nam.png', '$2y$10$fD1QlC9oO9ctnW72mkcn8u0WtSermLnsV1FTw51lhxgBEO3ED57Rm', '', '2023-12-22', 'Hà nội', 'Nam', 1),
+(35, 'Trần', 'Vanh', 'v@gmail.com', 'nam.png', '$2y$10$fD1QlC9oO9ctnW72mkcn8u0WtSermLnsV1FTw51lhxgBEO3ED57Rm', 'v@gmail.com', '2023-11-29', NULL, 'Nam', 0),
+(36, 'nguyen', 'huyen', 'nguyenthi@gmail.com', 'nu.jpg', '$2y$10$fD1QlC9oO9ctnW72mkcn8u0WtSermLnsV1FTw51lhxgBEO3ED57Rm', 'nguyenthi@gmail.com', '2023-11-22', NULL, 'Nữ', 0),
+(37, 'Trần', 'Việt Anh', 'tranvanh2k4@gmail.com', 'nam.png', '$2y$10$fD1QlC9oO9ctnW72mkcn8u0WtSermLnsV1FTw51lhxgBEO3ED57Rm', 'tranvanh2k4@gmail.com', '2023-11-23', NULL, 'Nam', 0),
+(38, 'vanh', 'tran', 'k@gmail.com', 'nam.png', '$2y$10$fD1QlC9oO9ctnW72mkcn8u0WtSermLnsV1FTw51lhxgBEO3ED57Rm', 'k@gmail.com', '2023-11-29', NULL, 'Nam', 0),
+(39, 'Trần', 'ádas', 'vd@gmail.com', 'nam.png', '$2y$10$fD1QlC9oO9ctnW72mkcn8u0WtSermLnsV1FTw51lhxgBEO3ED57Rm', 'vd@gmail.com', '2023-11-30', NULL, 'Nam', 0),
+(40, 'vanh', 'tran', 'vanhtran@gmail.com', '1701743959z4897646583672_11bfd6eb78c799e135078d16b7fc42df.jpg', '$2y$10$fD1QlC9oO9ctnW72mkcn8u0WtSermLnsV1FTw51lhxgBEO3ED57Rm', '0969621079', '2004-06-28', 'Số nhà 14, Thôn 5, xã Thượng Mỗ, Huyện Đan Phượng, Hà Nội', 'Nam', 0),
+(41, 'ĐÀO ĐỨC', 'HIỆP', '0961619038', '1701968941hinh-nen-may-tinh-fantasy-4k-blogchiasekienthuc.com-1.png', '$2y$10$z1zygES3MbznHKAlWLSy2.oC6uALtyyob3uIHsOLEiGFAVGu3q/r.', '0961619038', '2023-12-07', '', 'Nam', 1),
+(42, 'ĐÀO ĐỨC', 'HIỆP', '0988836681', '1701963636cb4362f54d9f3b5bb1ab4c86a4c4cc88_tn.jpg', '$2y$10$SuoD791UepaeNF6DC56gBeWv6XigwYadbg5F.cFEl/ITfLWMgfij.', '0988836681', '2023-12-07', '', 'Nữ', 0),
+(43, 'admin', '', 'duynnz1901@gmail.com', '17020214671701005255nam.png', '$2y$10$G6T2ZmJCDkRf.sUUdVEASOAYWnH2edE3HrbYSdcLTqAjjgCGvolly', '0968607305', '0000-00-00', '', 'Nam', 1),
+(44, 'duynnz', 'nguyen', 'duynnz2812@gmail.com', 'Admin (2).jpg', '$2y$10$tf3oyArI/Qgk..2LOXlXxeRneZDnGEH6qXI.piQlNzLOiJf8ujXTu', '0968607305', '0000-00-00', NULL, 'Nam', 0),
+(45, 'vah', 'tran', 'vanh@gmail.com', 'nam.png', '$2y$10$Kj0ssmDL2z2fOTNW74B3kO73UCJZeorhPqHAvoezYAKQHP0IpSG/W', 'vanh@gmail.com', '2023-12-21', NULL, 'Nam', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_voucher`
+-- Cấu trúc bảng cho bảng `user_voucher`
 --
 
 CREATE TABLE `user_voucher` (
-  `user_id` int NOT NULL,
-  `voucher_id` int NOT NULL,
-  `product_id` int DEFAULT NULL
+  `user_id` int(11) NOT NULL,
+  `voucher_id` int(11) NOT NULL,
+  `product_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user_voucher`
+-- Đang đổ dữ liệu cho bảng `user_voucher`
 --
 
 INSERT INTO `user_voucher` (`user_id`, `voucher_id`, `product_id`) VALUES
+(23, 36, 129),
 (30, 36, 129),
+(35, 36, 129),
+(36, 36, 129),
+(37, 36, 129),
+(38, 36, 129),
+(39, 36, 129),
+(40, 36, 129),
+(23, 37, NULL),
 (30, 37, NULL),
+(35, 37, NULL),
+(36, 37, NULL),
+(37, 37, NULL),
+(38, 37, NULL),
+(39, 37, NULL),
+(40, 37, NULL),
+(41, 37, NULL),
+(42, 37, NULL),
 (43, 37, NULL),
+(41, 36, NULL),
+(42, 36, NULL),
 (43, 36, NULL),
+(23, 38, NULL),
 (30, 38, NULL),
+(35, 38, NULL),
+(36, 38, NULL),
+(37, 38, NULL),
+(38, 38, NULL),
+(39, 38, NULL),
+(40, 38, NULL),
+(41, 38, NULL),
+(42, 38, NULL),
 (43, 38, NULL),
+(23, 39, NULL),
 (30, 39, NULL),
+(35, 39, NULL),
+(36, 39, NULL),
+(37, 39, NULL),
+(38, 39, NULL),
+(39, 39, NULL),
+(40, 39, NULL),
+(41, 39, NULL),
+(42, 39, NULL),
 (43, 39, NULL),
+(23, 40, NULL),
 (30, 40, NULL),
-(43, 40, NULL);
+(35, 40, NULL),
+(36, 40, NULL),
+(37, 40, NULL),
+(38, 40, NULL),
+(39, 40, NULL),
+(40, 40, NULL),
+(41, 40, NULL),
+(42, 40, NULL),
+(43, 40, NULL),
+(44, 40, NULL),
+(45, 40, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `variants`
+-- Cấu trúc bảng cho bảng `variants`
 --
 
 CREATE TABLE `variants` (
-  `variant_id` int NOT NULL,
-  `product_id` int NOT NULL,
-  `color` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `size` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `amount` int DEFAULT NULL
+  `variant_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `color` varchar(100) DEFAULT NULL,
+  `size` varchar(100) DEFAULT NULL,
+  `amount` int(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `variants`
+-- Đang đổ dữ liệu cho bảng `variants`
 --
 
 INSERT INTO `variants` (`variant_id`, `product_id`, `color`, `size`, `amount`) VALUES
@@ -627,22 +716,22 @@ INSERT INTO `variants` (`variant_id`, `product_id`, `color`, `size`, `amount`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `voucher`
+-- Cấu trúc bảng cho bảng `voucher`
 --
 
 CREATE TABLE `voucher` (
-  `voucher_id` int NOT NULL,
-  `content_voucher` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `del_price` int NOT NULL DEFAULT '0',
-  `del_percent` int NOT NULL DEFAULT '0',
-  `from_price` int NOT NULL DEFAULT '0',
-  `to_price` int NOT NULL DEFAULT '99999999',
+  `voucher_id` int(11) NOT NULL,
+  `content_voucher` varchar(255) NOT NULL,
+  `del_price` int(10) NOT NULL DEFAULT 0,
+  `del_percent` int(10) NOT NULL DEFAULT 0,
+  `from_price` int(10) NOT NULL DEFAULT 0,
+  `to_price` int(10) NOT NULL DEFAULT 99999999,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `voucher`
+-- Đang đổ dữ liệu cho bảng `voucher`
 --
 
 INSERT INTO `voucher` (`voucher_id`, `content_voucher`, `del_price`, `del_percent`, `from_price`, `to_price`, `start_date`, `end_date`) VALUES
@@ -650,14 +739,14 @@ INSERT INTO `voucher` (`voucher_id`, `content_voucher`, `del_price`, `del_percen
 (37, 'Giảm tối đa 30k', 30000, 0, 0, 999999999, '2023-12-06 12:11:00', '2024-01-06 12:11:00'),
 (38, 'Giảm giá 100k cho đơn từ 1 m trở lên', 100000, 0, 1000000, 999999999, '2023-12-08 14:21:00', '2023-12-14 14:21:00'),
 (39, 'giảm 10k cho mọi đơn hàng', 10000, 0, 0, 999999999, '2023-11-29 14:36:00', '2023-12-06 14:37:00'),
-(40, 'Giảm giá 20k', 20000, 0, 0, 999999999, '2023-12-08 15:20:00', '2024-03-26 15:20:00');
+(40, 'Giảm giá 20k', 20000, 0, 0, 999999999, '2023-12-08 15:20:00', '2023-12-20 15:20:00');
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `cart`
+-- Chỉ mục cho bảng `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`cart_id`),
@@ -665,13 +754,13 @@ ALTER TABLE `cart`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `categories`
+-- Chỉ mục cho bảng `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`);
 
 --
--- Indexes for table `comments`
+-- Chỉ mục cho bảng `comments`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`comment_id`),
@@ -679,14 +768,14 @@ ALTER TABLE `comments`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `orders`
+-- Chỉ mục cho bảng `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `order_details`
+-- Chỉ mục cho bảng `order_details`
 --
 ALTER TABLE `order_details`
   ADD PRIMARY KEY (`order_detail_id`),
@@ -694,26 +783,26 @@ ALTER TABLE `order_details`
   ADD KEY `product_id` (`product_id`);
 
 --
--- Indexes for table `products`
+-- Chỉ mục cho bảng `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`product_id`),
   ADD KEY `category_id` (`category_id`);
 
 --
--- Indexes for table `todolist`
+-- Chỉ mục cho bảng `todolist`
 --
 ALTER TABLE `todolist`
   ADD PRIMARY KEY (`todolist_id`);
 
 --
--- Indexes for table `users`
+-- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indexes for table `user_voucher`
+-- Chỉ mục cho bảng `user_voucher`
 --
 ALTER TABLE `user_voucher`
   ADD KEY `user_voucher_ibfk_1` (`user_id`),
@@ -721,121 +810,121 @@ ALTER TABLE `user_voucher`
   ADD KEY `product_id` (`product_id`);
 
 --
--- Indexes for table `variants`
+-- Chỉ mục cho bảng `variants`
 --
 ALTER TABLE `variants`
   ADD PRIMARY KEY (`variant_id`),
   ADD KEY `product_id` (`product_id`);
 
 --
--- Indexes for table `voucher`
+-- Chỉ mục cho bảng `voucher`
 --
 ALTER TABLE `voucher`
   ADD PRIMARY KEY (`voucher_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `cart`
+-- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=242;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=242;
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT for table `comments`
+-- AUTO_INCREMENT cho bảng `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT for table `orders`
+-- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
--- AUTO_INCREMENT for table `order_details`
+-- AUTO_INCREMENT cho bảng `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `order_detail_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=204;
+  MODIFY `order_detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=204;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 
 --
--- AUTO_INCREMENT for table `todolist`
+-- AUTO_INCREMENT cho bảng `todolist`
 --
 ALTER TABLE `todolist`
-  MODIFY `todolist_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `todolist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
--- AUTO_INCREMENT for table `variants`
+-- AUTO_INCREMENT cho bảng `variants`
 --
 ALTER TABLE `variants`
-  MODIFY `variant_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=386;
+  MODIFY `variant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=386;
 
 --
--- AUTO_INCREMENT for table `voucher`
+-- AUTO_INCREMENT cho bảng `voucher`
 --
 ALTER TABLE `voucher`
-  MODIFY `voucher_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `voucher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `cart`
+-- Các ràng buộc cho bảng `cart`
 --
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
-  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE RESTRICT;
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- Constraints for table `comments`
+-- Các ràng buộc cho bảng `comments`
 --
 ALTER TABLE `comments`
   ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `orders`
+-- Các ràng buộc cho bảng `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `order_details`
+-- Các ràng buộc cho bảng `order_details`
 --
 ALTER TABLE `order_details`
   ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `products`
+-- Các ràng buộc cho bảng `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `user_voucher`
+-- Các ràng buộc cho bảng `user_voucher`
 --
 ALTER TABLE `user_voucher`
   ADD CONSTRAINT `user_voucher_ibfk_1` FOREIGN KEY (`voucher_id`) REFERENCES `voucher` (`voucher_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -843,7 +932,7 @@ ALTER TABLE `user_voucher`
   ADD CONSTRAINT `user_voucher_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `variants`
+-- Các ràng buộc cho bảng `variants`
 --
 ALTER TABLE `variants`
   ADD CONSTRAINT `variants_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE;
